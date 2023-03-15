@@ -21,8 +21,8 @@ import lombok.Setter;
 public class Member extends BaseEntity{
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long member_num;		// 유저 번호 부여. (PK)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int member_num;		// 유저 번호 부여. (PK)
 	
 	@Column(nullable = false, unique = true)
 	private String id;			// 로그인ID. (unique)
