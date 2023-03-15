@@ -41,4 +41,24 @@ public class AuthService {
 		return memberEntity;
 	}
 	
+	@Transactional
+	public Member update(Member member) {
+		
+		if(memberRepository.findByEmail(member.getEmail()) == null) {
+			String passwordBefore = member.getPassword();
+			String passwordAfter = passwordEncoder.encode(passwordBefore);
+			
+			member.setPassword(passwordAfter);
+			member.setEmail(member.getEmail());
+			member.setAddress(member.getAddress());
+			member.setPhoneNumber(member.getPhoneNumber());
+			
+			Member memberEntity = memberRepository.save(member);
+			return memberEntity;
+		}
+		return null;
+		
+		
+	}
+	
 }
