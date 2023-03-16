@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.shop.entity.Member;
@@ -8,18 +10,21 @@ import com.shop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@Transactional
 @Service
 public class MemberService {
 
 	private final MemberRepository memberRepository;
 	
-	public Member findMember(String id) {
-		return memberRepository.findById(id).get();
+	public Member saveMember(Member member) {
+		validateDuplicateMember(member);
+		return memberRepository.save(member);
 	}
 	
-	public void memberUpdate(String id, Member member) {
-		Member tempMember = memberRepository.findById(id).get();
-		tempMember.setRole(member.getRole());
-		memberRepository.save(tempMember);
+	private void validateDuplicateMember(Member member) {
+		Member findMember = memberRepository.findByEmail(member.getEmail());
+		if(findMember != null) {
+			throw new IllegalStateException("이미 가입된 회원임.");
+		}
 	}
 }
