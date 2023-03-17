@@ -70,8 +70,8 @@ public class MemberController {
 	}
 	
 	@GetMapping("/exMember")
-	public void exMember(@AuthenticationPrincipal MemberFormDTO authMemberDTO, Model model) {
-		Member member = memberService.findEmail(authMemberDTO.getEmail());
+	public void exMember(MemberFormDTO dto, Model model) {
+		Member member = memberService.findEmail(dto.getEmail());
 		model.addAttribute("member", member);
 //		return "/exMember";
 	}
