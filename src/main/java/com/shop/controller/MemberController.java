@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -38,14 +40,14 @@ public class MemberController {
 
 	
 	@PostMapping("/new")
-	public String userForm(@Valid MemberFormDTO userFormDto, BindingResult bindingResult, Model model) {
+	public String userForm(@Valid MemberFormDTO memberFormDTO, BindingResult bindingResult, Model model) {
 		
 		if(bindingResult.hasErrors()) {
 			return "member/memberForm";
 		}
 		
 		try {
-			Member member = Member.createMember(userFormDto, passwordEncoder);
+			Member member = Member.createMember(memberFormDTO, passwordEncoder);
 			memberService.saveMember(member);
 			System.out.println("********************************* " + member);
 		}catch(IllegalStateException e) {
@@ -57,7 +59,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/login")
-	public String loginMember() {
+	public String loginMember(Model model) {
 		return "/member/memberLoginForm";
 	}
 	
@@ -68,9 +70,12 @@ public class MemberController {
 	}
 	
 	@GetMapping("/exMember")
-	public void exMember(@AuthenticationPrincipal MemberFormDTO authMemberDTO) {
-		System.out.println("사용자 정보 ---------------------> " + authMemberDTO);
-		
+	public void exMember(@AuthenticationPrincipal MemberFormDTO authMemberDTO, Model model) {
+		Member member = memberService.findEmail(authMemberDTO.getEmail());
+		model.addAttribute("member", member);
+//		return "/exMember";
 	}
+	
+	
 	
 }

@@ -1,5 +1,8 @@
 package com.shop.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.security.core.userdetails.User;
@@ -31,6 +34,18 @@ public class MemberService implements UserDetailsService{
 			throw new IllegalStateException("이미 가입된 회원임.");
 		}
 	}
+	
+	public List<Member> findMembers() {
+        return memberRepository.findAll();
+    }
+
+    public Optional<Member> findOne(Long memberId){
+        return memberRepository.findById(memberId);
+    }
+    
+    public Member findEmail(String email) {
+    	return memberRepository.findByEmailQuery(email);
+    }
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -45,7 +60,5 @@ public class MemberService implements UserDetailsService{
 				.password(member.getPassword())
 				.roles(member.getRole().toString())
 				.build();
-
-
 	}
 }
