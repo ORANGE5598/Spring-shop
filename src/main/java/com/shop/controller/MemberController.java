@@ -2,6 +2,7 @@ package com.shop.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +24,11 @@ public class MemberController {
 	
 	private final MemberService memberService;
 	private final PasswordEncoder passwordEncoder;
+	
+	@GetMapping("/")
+	public String index() {
+		return "/";
+	}
 	
 	@GetMapping("/new")
 	public String memberForm(MemberFormDTO memberFormDTO, Model model) {
@@ -49,4 +55,22 @@ public class MemberController {
 		
 		return "redirct:/";
 	}
+	
+	@GetMapping("/login")
+	public String loginMember() {
+		return "/member/memberLoginForm";
+	}
+	
+	@GetMapping("/login/error")
+	public String loginError(Model model) {
+		model.addAttribute("loginErrorMsg", "아이디/패스워드 입력바람.");
+		return "/member/memberLoginForm";
+	}
+	
+	@GetMapping("/exMember")
+	public void exMember(@AuthenticationPrincipal MemberFormDTO authMemberDTO) {
+		System.out.println("사용자 정보 ---------------------> " + authMemberDTO);
+		
+	}
+	
 }
