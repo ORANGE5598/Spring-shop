@@ -20,7 +20,7 @@ import com.shop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-@RequestMapping("/member")
+@RequestMapping({"/member", ""})
 @Controller
 public class MemberController {
 	
@@ -29,7 +29,7 @@ public class MemberController {
 	
 	@GetMapping("/")
 	public String index() {
-		return "/";
+		return "index";
 	}
 	
 	@GetMapping("/new")
@@ -55,18 +55,18 @@ public class MemberController {
 			return "member/memberForm";
 		}
 		
-		return "redirct:/";
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/login")
 	public String loginMember(Model model) {
-		return "/member/memberLoginForm";
+		return "member/memberLoginForm";
 	}
 	
 	@GetMapping("/login/error")
 	public String loginError(Model model) {
 		model.addAttribute("loginErrorMsg", "아이디/패스워드 입력바람.");
-		return "/member/memberLoginForm";
+		return "member/memberLoginForm";
 	}
 	
 	@GetMapping("/exMember")

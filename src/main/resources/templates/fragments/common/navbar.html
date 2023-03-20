@@ -1,0 +1,325 @@
+<body class="animsition">
+
+
+
+
+<!-- Header -->
+<header class="header-v4">
+    <!-- Header desktop -->
+    <div class="container-menu-desktop">
+        <!-- Topbar -->
+        <div class="top-bar">
+            <div class="content-topbar flex-sb-m h-full container">
+                <div class="left-top-bar">
+                    100% 정품 ! 한정판을 구매하는 가장 안전한 방법!
+                </div>
+
+                <div class="right-top-bar flex-w h-full">
+                    <a href="#" class="flex-c-m trans-04 p-lr-20">
+                        Help & FAQs
+                    </a>
+
+                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        LOG IN
+                    </a>
+                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        SIGN UP
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-menu-desktop">
+            <nav class="limiter-menu-desktop container">
+
+                <!-- Logo desktop -->
+                <a th:href="@{/}" class="logo">
+                    <img src="/img/icons/logo1.png" alt="IMG-LOGO">
+                </a>
+
+                <!-- Menu desktop -->
+                <div class="menu-desktop">
+                    <ul class="customMenu expanded">
+                        <li class="active-menu">
+                            <a th:href="@{/index}">HOME</a>
+                        </li>
+                        <li>
+                            <a href="#">STYLE</a>
+                        </li>
+                        <li>
+                            <a href="#">SHOP</a>
+                            <ul class="sub-menu">
+                                <li><a href="#">CLOTHING</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="#">TOP</a></li>
+                                        <li><a href="#">BOTTOM</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">FOOTWEAR</a></li>
+                                <li><a href="#">ACCESSORIES</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="#">BAG</a></li>
+                                        <li><a href="#">HAEDWEAR</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">TECH</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#">COMMUNITY</a>
+                        </li>
+
+                        <li>
+                            <a href="#">MYPAGE</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Icon header -->
+
+                <!--------------------검색창 (클릭 시 따로 열리는 속성)----------------------->
+                <div class="wrap-icon-header flex-w flex-r-m">
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                        <i class="zmdi zmdi-search"></i>
+                    </div>
+
+                    <!---------------------------------장바구니 기능 ( 장바구니에 상품 넣으면 카운트 메서드 필요)---------------------------->
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+                         data-notify="2">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </div>
+
+                    <!----------------------찜하기 기능 (상품 찜하기 버튼 누르면 카운트 메서드 필요)--------------------------->
+                    <a href="#"
+                       class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                       data-notify="0">
+                        <i class="zmdi zmdi-favorite-outline"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+
+
+
+    <!-- 반응형용 아이콘임, 이건 메서드 추가해야함... -->
+    <div class="wrap-header-mobile">
+        <!-- Logo moblie -->
+        <div class="logo-mobile">
+            <a th:href="@{/}"> <img th:src="@{/img/icons/logo1.png}" alt="IMG-LOGO"/></a>
+        </div>
+
+        <!-- Icon header -->
+        <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+            <!---------------------------------검색창아이콘------------------------->
+            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+                <i class="zmdi zmdi-search"></i>
+            </div>
+
+
+
+            <!---------------------------카트아이콘 ( 카운트 메서드 필요)--------------------------->
+            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+                 data-notify="2">
+                <i class="zmdi zmdi-shopping-cart"></i>
+
+            </div>
+            <!---------------찜하기 아이콘 ( 카운트 메서드 필요 ) ------------------------->
+            <a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
+               data-notify="0">
+                <i class="zmdi zmdi-favorite-outline"></i>
+            </a>
+        </div>
+
+
+
+        <!-- 카트 버튼 누르면 내가 장바구니 안에 넣은 상품들이 보임. -->
+        <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+        </div>
+    </div>
+    <!----------------------------------------------------------------->
+
+    <!-- 반응형 메뉴바, 안건들여도 되는 부분-->
+    <div class="menu-mobile">
+        <ul class="topbar-mobile">
+
+            <li>
+                <div class="left-top-bar">
+                    100% genuine ! The safest way to buy limited edition!
+                </div>
+            </li>
+
+            <li>
+                <div class="right-top-bar flex-w h-full">
+                    <a href="#" class="flex-c-m p-lr-10 trans-04">
+                        Help & FAQs
+                    </a>
+
+                    <a href="#" class="flex-c-m p-lr-10 trans-04">
+                        LOG IN
+                    </a>
+                    <a href="#" class="flex-c-m p-lr-10 trans-04">
+                        SIGN UP
+                    </a>
+
+                </div>
+            </li>
+        </ul>
+
+        <ul class="main-menu-m">
+            <li>
+                <a th:href="@{/index}">HOME</a>
+            </li>
+
+            <li>
+                <a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
+                <ul class="sub-menu-m">
+                    <li><a href="#">CLOTHING</a>
+                        <ul class="sub-menu-m">
+                            <li><a href="#">TOP</a></li>
+                            <li><a href="#">BOTTOM</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">FOOTWEAR</a></li>
+                    <li><a href="#">ACCESSORIES</a>
+                        <ul class="sub-menu-m">
+                            <li><a href="#">BAG</a></li>
+                            <li><a href="#">HAEDWEAR</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">TECH</a></li>
+                </ul>
+                <span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+            </li>
+
+            <li>
+                <a href="#">Community</a>
+            </li>
+
+            <li>
+                <a href="#">MYPAGE</a>
+            </li>
+
+            <li>
+                <a href="#">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Modal Search -->
+    <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <div class="container-search-header">
+            <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                <img src="/img/icons/icon-close2.png" alt="CLOSE">
+            </button>
+
+            <form class="wrap-search-header flex-w p-l-15">
+                <button class="flex-c-m trans-04">
+                    <i class="zmdi zmdi-search"></i>
+                </button>
+                <input class="plh3" type="text" name="search" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</header>
+
+<!-- 카트이모티콘 눌렀을때 나오는 메뉴창 -->
+<div class="wrap-header-cart js-panel-cart">
+    <div class="s-full js-hide-cart"></div>
+
+    <div class="header-cart flex-col-l p-l-65 p-r-25">
+        <div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Your Cart
+				</span>
+
+            <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+                <i class="zmdi zmdi-close"></i>
+            </div>
+        </div>
+
+        <div class="header-cart-content flex-w js-pscroll">
+            <ul class="header-cart-wrapitem w-full">
+                <li class="header-cart-item flex-w flex-t m-b-12">
+                    <!--카트안에 들어간 상품의 사진-->
+                    <div class="header-cart-item-img">
+                        <img src="/img/cart/cart1.jpg" alt="IMG">
+                    </div>
+
+                    <div class="header-cart-item-txt p-t-8">
+                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            Nike x Tiffany & Co. Air Force 1 Low SP 1837
+                        </a>
+
+                        <span class="header-cart-item-info">
+								<!--갯수카운트 매섣드필요-->
+								{1} x ￦1,700,000
+
+							</span>
+                    </div>
+                </li>
+
+                <li class="header-cart-item flex-w flex-t m-b-12">
+                    <div class="header-cart-item-img">
+                        <img src="/img/cart/cart2.jpg" alt="IMG">
+                    </div>
+
+                    <div class="header-cart-item-txt p-t-8">
+                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            Gucci GG Marmont Half Moon Shaped Mini Bag Blackp
+                        </a>
+
+                        <span class="header-cart-item-info">
+								<!--카운트 메서드 필요-->
+								{1} x ￦1,870,000
+							</span>
+                    </div>
+                </li>
+
+                <li class="header-cart-item flex-w flex-t m-b-12">
+                    <div class="header-cart-item-img">
+                        <img src="/img/cart/cart3.jpg" alt="IMG">
+                    </div>
+
+                    <div class="header-cart-item-txt p-t-8">
+                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            Sony WH-1000XM5 Black (Korean Ver.)1
+                        </a>
+
+                        <span class="header-cart-item-info">
+								<!--카운트 메서드 필요-->
+								{1} x ￦479,000
+							</span>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="w-full">
+                <div class="header-cart-total w-full p-tb-40">
+                    Total: ￦{0,000} <!--카운트 메서드 필요-->
+                </div>
+
+                <div class="header-cart-buttons flex-w w-full">
+                    <a href="#"
+                       class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+                        장바구니로
+                    </a>
+
+                    <a href="#"
+                       class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
+                        결제하기
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
