@@ -1,9 +1,9 @@
 package com.shop.entity;
 
-import java.time.LocalDateTime;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,10 +21,12 @@ public class Member extends BaseEntity {
 	
 	@Id
 	private String id;
-	private String pw;
+	private String password;
 	private String name;
-	@Id
+	
+	@Column(unique = true)
 	private String email;
-	private LocalDateTime regDate;
-	private LocalDateTime modDate;
+	private String address;
+	private String phoneNumber;
+	private int point;
 }
