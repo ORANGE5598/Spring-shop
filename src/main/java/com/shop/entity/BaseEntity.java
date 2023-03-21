@@ -18,34 +18,28 @@ package com.shop.entity;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
-import javax.persistence.EntityListeners;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import lombok.Getter;
+import lombok.Data;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-@Getter
+@Data
 abstract class BaseEntity {
 	
-	// 컬럼을 생성함. 여기에 생성되는 컬럼은 시간 값을 관리하는 컬럼이고, 
-	// 속성을 이용해서 자동으로 값을 업데이트 할 지 여부를 조정할 수 있음.
-	@CreatedDate
+	//@creationTimestamp는 데이터베이스 엔티티의 생성 시간을 추적하는 데 사용됨
+	@CreationTimestamp
 	@Column(name = "regDate", updatable = false)
 	private LocalDateTime regDate;
 	
-	// 위의 컬럼은 방명록 작성시간을 나타내는 컬럼이고 
-	// 하위는 수정 시간을 나타내는 컬럼을 정의.
-	// 수정시간을 자동으로 생성해주는 어노테이션도 있음.
+	
 	@LastModifiedDate
 	@Column(name = "modDate")
 	private LocalDateTime modDate;
-	
-	
 	
 }
