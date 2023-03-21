@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.shop.dto.MemberFormDTO;
 import com.shop.entity.Member;
 import com.shop.repository.MemberRepository;
 
@@ -43,8 +44,23 @@ public class MemberService implements UserDetailsService{
         return memberRepository.findById(memberId);
     }
     
+//    public Member findEmail(String email) {
+//    	return memberRepository.findByEmailQuery(email);
+//    }
+    
+    public boolean confrimEmail(String email) {
+    	if(findEmail(email) == null) {
+    		return true;
+    	}
+    	return false;
+    }
+    
     public Member findEmail(String email) {
-    	return memberRepository.findByEmailQuery(email);
+    	return memberRepository.findByEmail(email);
+    }
+    
+    public boolean checkEmailDuplicate(String email) {
+    	return memberRepository.existsByEmail(email);
     }
 
 	@Override
