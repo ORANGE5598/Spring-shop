@@ -61,15 +61,11 @@
                      Help & FAQs
     	            </a>
     
-        	        <a id="login-button" th:href="@{/user/login}" class="flex-c-m p-lr-10 trans-04">
+        	        <a id="login-button" sec:authorize="isAnonymous()" th:href="@{/user/login}" class="flex-c-m p-lr-10 trans-04">
                      LOG IN
             	    </a>
-    
-                	<a th:href="@{/signup}" sec:authorize="isAnonymous()" class="flex-c-m p-lr-10 trans-04">
-                     SIGN UP
-            	    </a>
-    
-                	<a id="logout-button" sec:authorize="isAnonymous()" th:href="@{/user/logout}" style="display:none;" class="flex-c-m p-lr-10 trans-04">
+            	    
+                	<a id="logout-button" sec:authorize="isAuthenticated()" th:href="@{/user/logout}" style="display:none;" class="flex-c-m p-lr-10 trans-04">
                      LOG OUT
 	                </a>
     
