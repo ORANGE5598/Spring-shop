@@ -57,17 +57,25 @@
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m trans-04 p-lr-20">
-                        Help & FAQs
+	                <a th:href="@{/help}" class="flex-c-m p-lr-10 trans-04">
+                     Help & FAQs
+    	            </a>
+    
+        	        <a id="login-button" th:href="@{/user/login}" class="flex-c-m p-lr-10 trans-04">
+                     LOG IN
+            	    </a>
+    
+                	<a th:href="@{/signup}" sec:authorize="isAnonymous()" class="flex-c-m p-lr-10 trans-04">
+                     SIGN UP
+            	    </a>
+    
+                	<a id="logout-button" sec:authorize="isAnonymous()" th:href="@{/user/logout}" style="display:none;" class="flex-c-m p-lr-10 trans-04">
+                     LOG OUT
+	                </a>
+    
+                    <a sec:authorize="isAnonymous()" th:href="@{/user/signup}" class="flex-c-m trans-04 p-lr-25">
+                        Register
                     </a>
-
-                    <a href="/auth/login" class="flex-c-m trans-04 p-lr-25">
-                        LOG IN
-                    </a>
-                    <a href="/auth/join" class="flex-c-m trans-04 p-lr-25">
-                        SIGN UP
-                    </a>
-
                 </div>
             </div>
         </div>
@@ -114,7 +122,7 @@
                         </li>
 
                         <li>
-                            <a href="mypage">MYPAGE</a>
+                            <a th:href="@{mypage}">MYPAGE</a>
                         </li>
                     </ul>
                 </div>
