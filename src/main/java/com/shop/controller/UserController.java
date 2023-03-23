@@ -3,13 +3,17 @@ package com.shop.controller;
 import javax.validation.Valid;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shop.dto.UserCreateForm;
+import com.shop.entity.SiteUser;
+import com.shop.entity.UserForm;
 import com.shop.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -60,7 +64,11 @@ public class UserController {
     }
     
     @GetMapping("/mypage")
-    public String mypage() {
-    	return "";
+    public String mypage(Model model, @AuthenticationPrincipal SiteUser currentSiteUser) {
+    	UserForm userForm = new UserForm();
+    	userForm.setEmail(currentSiteUser.getEmail());
+    	
+    	model.addAttribute("userForm", userForm);
+    	return "/mypage";
     }
 }
