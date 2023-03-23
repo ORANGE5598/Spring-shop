@@ -9,8 +9,8 @@ import com.shop.entity.Member;
 import com.shop.entity.MemberForm;
 
 public interface MemberService extends UserDetailsService {
-	Long updateInfo(String username, String newName, String email);
-	Long updatePassword(String username, String newPassword);
+    Long updateInfo(String username, String newName, String email);
+    Long updatePassword(String username, String newPassword);
     Long createMember(MemberForm form);
     void deleteMember(String username);
     Optional<Member> findByUsername(String username);
