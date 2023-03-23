@@ -8,12 +8,17 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-}
+	cursor: url(https://ani.cursors-4u.net/cursors/cur-13/cur1163.ani), 
+		url(https://ani.cursors-4u.net/cursors/cur-13/cur1163.png), auto !important;}
+	
+
+
 
 body, html {
 	font-family: Arial, sans-serif;
 	font-size: 15px;
 	color: #666666;
+	-webkit-font-smoothing: antialiased;
 
 	height: 100%;
 	background-color: #fff;
@@ -53,6 +58,8 @@ button {
 button:focus {outline: none;}
 
 iframe {border: none;}
+
+
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -3132,6 +3139,16 @@ iframe {border: none;}
 .max-h-full {max-height: 100%;}
 .min-w-full {min-width: 100%;}
 .min-h-full {min-height: 100%;}
+.custom-fix {
+	width: 780px;
+	height: 480px;
+	object-fit: cover;
+}
+.custom-fix2 {
+	max-width: 90px; min-width: 90px; 
+	max-height: 90px;	min-height: 90px;
+	object-fit: cover;
+}
 
 
 

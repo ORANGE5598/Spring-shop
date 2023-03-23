@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Home</title>
+    <title>Product | page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="/image/png" href="/img/icons/favicon.png"/>
+    <link rel="icon" type="image/png" href="/img/icons/favicon.png"/>
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -22,7 +22,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendor/select2/nice-select.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
     <!--===============================================================================================-->
@@ -32,13 +32,10 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/owl Carousel/owl.carousel.min.css">
-    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/css/util.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <!--===============================================================================================-->
 </head>
-
 
 <body class="animsition">
 
@@ -269,7 +266,7 @@
             </div>
         </div>
 
-        <div class="header-cart-content flex-w nice-scroll">
+        <div class="header-cart-content flex-w js-pscroll">
             <ul class="header-cart-wrapitem w-full">
                 <li class="header-cart-item flex-w flex-t m-b-12">
                     <div class="header-cart-item-img">
@@ -363,7 +360,7 @@
                                 <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__categories">
-                                            <ul class="nice-scroll">
+                                            <ul class="js-pscroll">
                                                 <li><a href="#">Top(0)</a></li>
                                                 <li><a href="#">Bottom(0)</a></li>
                                                 <li><a href="#">Footwear (0)</a></li>
@@ -385,7 +382,7 @@
                                 <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__brand">
-                                            <ul class="nice-scroll">
+                                            <ul class="js-pscroll">
                                                 <li><a href="#">Louis Vuitton</a></li>
                                                 <li><a href="#">Chanel</a></li>
                                                 <li><a href="#">Prada</a></li>
@@ -440,15 +437,10 @@
 
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__right">
-                                <p>Sort by Price:</p>
+                                <p>정렬 : </p>
                                 <select>
-                                    <option value="high-premium">프리미엄 높은 순
-                                        <!-- <p>발매가 대비 가격이 높은 순서대로 정렬합니다.</p> -->
-                                    </option>
-                                    <option value="row-premium">프리미엄 낮은 순</option>
-                                    <!-- <p>발매가 대비 가격이 낮은 순서대로 정렬합니다.</p> -->
-                                    <option value="buy-now">즉시 구매가</option>
-                                    <!-- <p>즉시 구매가가 낮은 순서대로 정렬합니다.</p> -->
+                                    <option value="">가격 높은 순</option>
+                                    <option value="">가격 낮은 순</option>
                                 </select>
                             </div>
                         </div>
@@ -1037,16 +1029,16 @@
             1
         </p>
     </div>
-    </div>
 </footer>
 
 
-<!-- Back to top -->
+<!-- Back to top ( 위로 올라가는 버튼임 건드리지마세요 )-->
 <div class="btn-back-to-top" id="myBtn">
         <span class="symbol-btn-back-to-top">
             <i class="zmdi zmdi-chevron-up"></i>
         </span>
 </div>
+
 
 <!-- 퀵뷰 -->
 <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
@@ -1213,14 +1205,10 @@
 <script src="/vendor/bootstrap/js/popper.js"></script>
 <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-<script src="/vendor/select2/select2.min.js"></script>
+<script src="/vendor/select2/jquery.nice-select.min.js"></script>
 <script>
-    $(".js-select2").each(function () {
-        $(this).select2({
-            minimumResultsForSearch: 20,
-            dropdownParent: $(this).next('.dropDownSelect2')
-        });
-    })
+    $("select").niceSelect();
+    //가격정렬
 </script>
 <!--===============================================================================================-->
 <script src="/vendor/daterangepicker/moment.min.js"></script>
@@ -1250,43 +1238,6 @@
 <!--===============================================================================================-->
 <script src="/vendor/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-<script src="/vendor/sweetalert/sweetalert.min.js"></script>
-<script>
-    $('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
-        e.preventDefault();
-    });
-
-    $('.js-addwish-b2').each(function () {
-        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-        $(this).on('click', function () {
-            swal(nameProduct, "is added to wishlist !", "success");
-
-            $(this).addClass('js-addedwish-b2');
-            $(this).off('click');
-        });
-    });
-
-    $('.js-addwish-detail').each(function () {
-        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-        $(this).on('click', function () {
-            swal(nameProduct, "is added to wishlist !", "success");
-
-            $(this).addClass('js-addedwish-detail');
-            $(this).off('click');
-        });
-    });
-
-    /*---------------------------------------------*/
-
-    $('.js-addcart-detail').each(function () {
-        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-        $(this).on('click', function () {
-            swal(nameProduct, "is added to cart !", "success");
-        });
-    });
-
-</script>
 <!--===============================================================================================-->
 <script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
@@ -1303,6 +1254,8 @@
             ps.update();
         })
     });
+
+    //스크롤바
 </script>
 <!--===============================================================================================-->
 <script>
@@ -1316,6 +1269,8 @@
         $(this).prev().removeClass('active');
     });
 
+
+    //사이드 메뉴 아코디언기능
 </script>
 
 <!--===============================================================================================-->
