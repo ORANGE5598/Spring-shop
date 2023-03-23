@@ -1,15 +1,13 @@
 package com.shop.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@AllArgsConstructor
 @Getter
-public enum UserRole {
+public enum MemberRole {
 	
 	ADMIN("ROLE_ADMIN"), USER("ROLE_USER");
-	
-	UserRole(String value) {
-		this.value = value;
-	}
 	
 	private String value;
 

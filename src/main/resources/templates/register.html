@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    
+
+<form th:action="@{/register}" method="post">
+    <div class="form-group">
+        <label>e-mail: </label>
+        <input type="email" name="email" id="email" placeholder="email"/>
+    </div>
+    <div class="form-group">
+        <label>닉네임: </label>
+        <input type="text" name="username" id="name" placeholder="아이디"/>
+    </div>
+    <div class="form-group">
+        <label>패스워드: </label>
+        <input type="password" name="password" id="password" placeholder="패스워드"/>
+    </div>
+    <button type="submit">가입</button>
+</form>
+</body>
+</html>
