@@ -3173,6 +3173,11 @@ iframe {border: none;}
 	width: 780px;
 	height: 600px;
 }
+.custom-fix3 {
+	width: 30%;
+	float: none;
+	margin: 0 auto;
+}
 
 
 
