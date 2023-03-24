@@ -1,8 +1,9 @@
 package com.shop.service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -11,10 +12,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 
+import com.shop.dto.MemberDTO;
 import com.shop.entity.Member;
 import com.shop.entity.MemberForm;
 import com.shop.entity.MemberRole;
@@ -28,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberRepository memberRepository;
+	private final PasswordEncoder passwordEncoder;
 	
 	
 	@Override
@@ -65,14 +69,13 @@ public class MemberServiceImpl implements MemberService {
 
     @Transactional
     @Override
-    public Long createMember(MemberForm form) {
-    	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    public Long createMember(MemberDTO form) {
+//    	PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         form.setPassword(passwordEncoder.encode(form.getPassword()));
         return memberRepository.save(
                 Member.builder()
                         .username(form.getUsername())
                         .password(form.getPassword())
-//                        .createDate(LocalDateTime.now())
                         .email(form.getEmail())
                         .build()).getId();
     }
@@ -110,5 +113,37 @@ public class MemberServiceImpl implements MemberService {
     public Member findOne(Long memberId) {
         return memberRepository.getOne(memberId);
     }
+
+	@Override
+	@Transactional
+	public Map<String, String> validateHandling(Errors errors) {
+		Map<String, String> validatorResult = new HashMap<>();
+		
+		for(FieldError error : errors.getFieldErrors()) {
+			String validKeyName = String.format("valid_%s", error.getField());
+			validatorResult.put(validKeyName, error.getDefaultMessage());
+		}
+		
+		return validatorResult;
+	}
+
+	@Override
+	@Transactional
+	public void checkUsernameDuplication(MemberDTO memberDto) {
+		boolean usernameDuplicate = memberRepository.existsByUsername(memberDto.getUsername());
+		if(usernameDuplicate) {
+			throw new IllegalStateException("이미 존재하는 아이디.");
+		}
+		
+	}
+
+	@Override
+	@Transactional
+	public void checkEmailDuplication(MemberDTO memberDto) {
+		boolean emailDuplicate = memberRepository.existsByEmail(memberDto.getEmail());
+		if(emailDuplicate) {
+			throw new IllegalStateException("이미 사용중인 이메일.");
+		}
+	}
 
 }

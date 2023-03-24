@@ -1,20 +1,31 @@
 package com.shop.controller;
 
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.shop.dto.MemberDTO;
 import com.shop.dto.MemberEditDTO;
 import com.shop.dto.PasswordEditDTO;
 import com.shop.entity.Member;
 import com.shop.entity.MemberForm;
 import com.shop.service.MemberService;
+import com.shop.validator.CheckEmailValidator;
+import com.shop.validator.CheckUsernameValidator;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,27 +34,50 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 
 	private final MemberService memberService;
+	private final CheckUsernameValidator checkUsernameValidator;
+	private final CheckEmailValidator checkEmailValidator;
 	private final PasswordEncoder passwordEncoder;
 	
+	@InitBinder
+	public void validatorBinder(WebDataBinder binder) {
+		binder.addValidators(checkUsernameValidator);
+		binder.addValidators(checkEmailValidator);
+	}
+	
 	@GetMapping("/register")
-	public String register(Model model) {
+	public String register() {
 		return "register";
 	}
 	
 	@PostMapping("/register")
-	public String register(MemberForm memberForm) {
-		
-		if(memberService.findByEmail(memberForm.getEmail()).isPresent()) {
-
-			System.out.println("이미 존재하는 이메일입니다.");
-			return "/duplicate";
-		} else if(memberService.findByUsername(memberForm.getUsername()).isPresent()) {
-			System.out.println("이미 존재하는 아이디입니다.");
-			return "/duplicate";
-		} else {
-			memberService.createMember(memberForm);
-			return "redirect:/";
+	public String register(@Valid MemberDTO memberDto, Errors errors, Model model) {
+		if(errors.hasErrors()) {
+			model.addAttribute("memberDto", memberDto);
+			
+			Map<String, String> validatorResult = memberService.validateHandling(errors);
+			for(String key : validatorResult.keySet()) {
+				model.addAttribute(key, validatorResult.get(key));
+			}
+			
+			return "/register";
 		}
+		
+		memberService.checkUsernameDuplication(memberDto);
+		memberService.checkEmailDuplication(memberDto);
+		
+		memberService.createMember(memberDto);
+		return "redirect:/";
+		
+//		if(memberService.findByEmail(memberDto.getEmail()).isPresent()) {
+//			System.out.println("이미 존재하는 이메일입니다.");
+//			return "/duplicate";
+//		} else if(memberService.findByUsername(memberDto.getUsername()).isPresent()) {
+//			System.out.println("이미 존재하는 아이디입니다.");
+//			return "/duplicate";
+//		} else {
+//			memberService.createMember(memberDto);
+//			return "redirect:/";
+//		}
 	}
 	
 	@GetMapping("/login")
