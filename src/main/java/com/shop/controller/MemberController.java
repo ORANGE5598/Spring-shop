@@ -62,8 +62,8 @@ public class MemberController {
 			return "/register";
 		}
 		
-		memberService.checkUsernameDuplication(memberDto);
-		memberService.checkEmailDuplication(memberDto);
+//		memberService.checkUsernameDuplication(memberDto);
+//		memberService.checkEmailDuplication(memberDto);
 		
 		memberService.createMember(memberDto);
 		return "redirect:/";
