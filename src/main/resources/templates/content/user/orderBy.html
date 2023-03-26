@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="UTF-8">
+<html lang="en">
 
 <head>
-    <title>Login</title>
+    <title>Order</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -327,41 +327,148 @@
 </div>
 
 
-<div class="container">
-    <div class="row d-flex justify-content-center">
-        <div class="login-wrapper">
-            <h2>Login</h2>
-            <form method="post" action="서버의url" id="login-form">
-                <input type="text" class="form-control" name="userId" placeholder="ID">
-                <input type="password" class="form-control" name="userPassword" placeholder="Password">
-                <input type="submit" value="Login">
-            </form>
+<!-- breadcrumb -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+            <div class="breadcrumb__text">
+                <h3>Order / Payment</h3>
+                <a href="#" class="stext-109 cl8 hov-cl1 trans-04">
+                    Home
+                    <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+                </a>
 
-            <ul class="login-box">
-                <li class="login-list">
-                    <a href="#" class="login-link trans-04">회원가입</a>
-                </li>
-                <li class="login-list">
-                    <a href="#" class="login-link trans-04"> 아이디 찾기</a>
-                </li>
-                <li class="login-list">
-                    <a href="#" class="login-link trans-04"> 비밀번호 찾기</a>
-                </li>
-            </ul>
+                <a href="#" class="stext-109 cl8 hov-cl1 trans-04">
+                    Shop
+                    <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+                </a>
 
-            <!--sns login (뻥카임..시간남을때 API 구현)-->
-            <div class="sns-login">
-                <p>간편하게 로그인하세요 </p>
-                <button type="button">
-                    <img src="/img/icons/API-kakao.png" class="sns-login-logo">
-                </button>
+                <span class="stext-109 cl4">
+                        Oder
+                    </span>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 
-<!-- Footer -->
+<!-- orderBy Section Begin -->
+<section class="orderBy spad">
+    <div class="container">
+        <div class="orderBy__form">
+            <form action="#">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <h6 class="member_tag"><span class="fa fa-user"></span>
+                            <a href="#">user</a>님은 현재 <strong>일반회원</strong> 입니다.
+                        </h6>
+                        <h6 class="orderBy__title">주문정보</h6>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="orderBy__input">
+                                    <p>이름<span>*</span></p>
+                                    <input type="text" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="orderBy__input">
+                                    <p>Phone<span>*</span></p>
+                                    <input type="text">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- <input type="text" id="sample4_postcode" placeholder="우편번호">
+                        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                        <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+                        <input type="text" id="sample4_jibunAddress" placeholder="지번주소">
+                        <span id="guide" style="color:#999;display:none"></span>
+                        <input type="text" id="sample4_detailAddress" placeholder="상세주소">
+                        <input type="text" id="sample4_extraAddress" placeholder="참고항목">
+                         -->
+
+
+                        <h6 class="orderBy__title m-t-60">배송정보</h6>
+                        <div class="orderBy__input">
+                            <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                            <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+                            <span id="guide" style="color:#999;display:none"></span>
+                            <input type="text" id="sample4_detailAddress" placeholder="상세주소">
+                        </div>
+
+                        <div class="orderBy__input">
+                            <p class="m-t-50">배송메세지</p>
+                            <input type="text" placeholder="배송 시 참고사항">
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="orderBy__order ">
+                            <h4 class="order__title mtext-109">Payment</h4>
+                            <div class="orderBy__order__products">Product <span>Total</span></div>
+                            <ul class="orderBy__total__products">
+                                <li>상품이름 <span>￦가격</span></li>
+                                <li>상품이름 <span>￦가격</span></li>
+                                <li>상품이름 <span>￦가격</span></li>
+                                <li>상품이름 <span>￦가격</span></li>
+                            </ul>
+                            <ul class="orderBy__total__all">
+                                <li>배송비 <span style="color: black;">￦가격</span></li>
+                                <li>총금액 <span>￦가격</span></li>
+                            </ul>
+                            <div class="orderBy__input__checkbox">
+                                <label for="acc-or">
+                                    결제수단과 입력정보를 다음에도 사용
+                                    <input type="checkbox" id="acc-or" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+
+
+                            <div class="form-check">
+                                <label for="credit-card">
+                                    카드결제
+                                    <input class="form-check-input" type="radio"
+                                           name="payment" id="credit-card">
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <label for="deposit">
+                                    무통장입금
+                                    <input class="form-check-input" type="radio"
+                                           name="payment" id="deposit">
+                                </label>
+                            </div>
+
+                            <div class="form-check">
+                                <label for="easy-payment">
+                                    간편결제
+                                    <input class="form-check-input" type="radio"
+                                           name="payment" id="easy-payment">
+                                </label>
+                            </div>
+
+
+                            <button class="flex-c-m stext-101 cl2 size-116 bg8 bor14 hov-btn5 p-lr-15 trans-04 pointer m-t-20"
+                                    type="submit">
+                                결제하기
+                            </button>
+                            <div id="root"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+<!-- orderBy Section End -->
+
+
 <footer class="bg3 p-t-65 p-b-32">
     <div class="container">
         <div class="row">
@@ -515,6 +622,7 @@
 </script>
 <!--===============================================================================================-->
 <script src="/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+
 <!--===============================================================================================-->
 <script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
@@ -543,17 +651,75 @@
     $('.js-remove-item').each(function () {
         var nameProduct = $(this).parent().parent().find('.js-name-item').html();
         $(this).on('click', function () {
-            swal(nameProduct, "장바구니에서 삭제되었습니다 ! ", "success");
+            swal(nameProduct, "삭제되었습니다 ! ", "success");
 
         });
     });
+</script>
+
+<!--===============================================================================================-->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+    function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                    extraRoadAddr += data.bname;
+                }
+                // 건물명이 있고, 공동주택일 경우 추가한다.
+                if (data.buildingName !== '' && data.apartment === 'Y') {
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                if (extraRoadAddr !== '') {
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample4_postcode').value = data.zonecode;
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                if (roadAddr !== '') {
+                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("sample4_extraAddress").value = '';
+                }
+
+                var guideTextBox = document.getElementById("guide");
+                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                if (data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+
+                } else if (data.autoJibunAddress) {
+                    var expJibunAddr = data.autoJibunAddress;
+                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                    guideTextBox.style.display = 'block';
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
+        }).open();
+    }
 </script>
 <!--===============================================================================================-->
 
 <!--===============================================================================================-->
 <script src="/js/main.js"></script>
-
-
 </body>
 
 </html>
