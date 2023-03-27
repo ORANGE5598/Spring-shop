@@ -18,4 +18,10 @@ public class MemberEditDTO {
     @NotEmpty(message = "이메일은 필수항목입니다.")
     @Email
     private String email;
+    
+    @NotEmpty(message = "주소를 입력해주세요.")
+    private String address;
+    
+    @NotEmpty(message = "휴대폰번호를 입력해주세요.")
+    private String phone;
 }

@@ -25,6 +25,10 @@ public class MemberForm {
 	
 	@NotEmpty(message = "이메일입력.")
 	@Email
-	private String email;
+	private String email; 
+	
+	private String address;
+	
+	private String phone;
 
 }

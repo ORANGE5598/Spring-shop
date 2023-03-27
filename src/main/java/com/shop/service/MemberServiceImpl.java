@@ -1,39 +1,117 @@
 package com.shop.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
 import javax.transaction.Transactional;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 
-import com.shop.dto.MemberDTO;
+import com.shop.dto.MemberDTO.RequestDTO;
+import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.Member;
-import com.shop.entity.MemberForm;
-import com.shop.entity.MemberRole;
 import com.shop.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
+@Log4j2
 public class MemberServiceImpl implements MemberService {
 
 	private final MemberRepository memberRepository;
 	private final PasswordEncoder passwordEncoder;
 	
+	@Override
+	/** 회원 가입 **/
+	public void userJoin(RequestDTO memberDTO) {
+		memberDTO.encryptPassword(passwordEncoder.encode(memberDTO.getPassword()));
+		
+		Member member = memberDTO.toEntity();
+		memberRepository.save(member);
+		log.info("회원 가입 멤버 : " + member);
+	}
 	
+	@Override
+	public ResponseDTO getById(Long member_id) {
+		Member member = memberRepository.findById(member_id).orElseThrow(() -> new IllegalArgumentException("해당 사용자 찾을 수 없음."));
+		return new ResponseDTO(member);
+	}
+	
+	@Override
+	public boolean checkNickname(Long member_id, String nickname) {
+		return false;
+	}
+	
+	@Override
+	public boolean checkPassword(Long member_id, String checkPassword) {
+		Member member = memberRepository.findById(member_id).orElseThrow(() -> new IllegalArgumentException("해당 사용자 찾을 수 없음."));
+		
+		String password = member.getPassword();
+		boolean check = passwordEncoder.matches(checkPassword, password);
+		return check;
+	}
+	
+	@Override
+	public void userInfoUpdate(RequestDTO memberDTO) {
+		Member member = memberRepository.findById(memberDTO.toEntity().getId()).orElseThrow(() -> new IllegalArgumentException("해당 사용자 찾을 수 없음."));
+		
+		String encryptPassword = passwordEncoder.encode(memberDTO.getPassword());
+		String name = memberDTO.getName();
+		String email = memberDTO.getEmail();
+		String address1 = memberDTO.getAddress1();
+		String address2 = memberDTO.getAddress2();
+		String phone = memberDTO.getPhone();
+		
+		member.update(encryptPassword, name, email, address1, address2, phone);
+		
+		log.info("회원 정보 수정 : " + member);
+	}
+	
+	@Override
+	public boolean checkEmail(String memberEmail) {
+		return memberRepository.existsByEmail(memberEmail);
+	}
+	
+	@Override
+	public String getTmpPassword() {
+		char[] charSet = new char[]{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+                'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+
+        String pwd = "";
+
+        /* 문자 배열 길이의 값을 랜덤으로 10개를 뽑아 조합 */
+        int idx = 0;
+        for(int i = 0; i < 10; i++){
+            idx = (int) (charSet.length * Math.random());
+            pwd += charSet[idx];
+        }
+
+        log.info("임시 비밀번호 생성");
+
+        return pwd;
+	}
+	
+	@Override
+	public void updatePassword(String tmpPassword, String memberEmail) {
+		String encryptPassword = passwordEncoder.encode(tmpPassword);
+        Member member = memberRepository.findByEmail(memberEmail).orElseThrow(() ->
+                new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+
+        member.updatePassword(encryptPassword);
+        log.info("임시 비밀번호 업데이트");
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+/*
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Member memberEntity = memberRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("회원을 찾을 수 없읍니다."));
@@ -46,7 +124,7 @@ public class MemberServiceImpl implements MemberService {
 			authorities.add(new SimpleGrantedAuthority(MemberRole.USER.getValue()));
 		}
 		
-		return new Member(username, memberEntity.getPassword(), memberEntity.getEmail(), authorities);
+		return new Member(username, memberEntity.getPassword(), memberEntity.getEmail(), memberEntity.getAddress(), memberEntity.getPhone(), authorities);
 	}
 
 	public Long updateInfo(String username, String newName, String email) {
@@ -109,7 +187,8 @@ public class MemberServiceImpl implements MemberService {
         return;
     }
 
-    @Override
+    @SuppressWarnings("deprecation")
+	@Override
     public Member findOne(Long memberId) {
         return memberRepository.getOne(memberId);
     }
@@ -145,5 +224,5 @@ public class MemberServiceImpl implements MemberService {
 			throw new IllegalStateException("이미 사용중인 이메일.");
 		}
 	}
-
+*/
 }

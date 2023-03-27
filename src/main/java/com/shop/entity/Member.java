@@ -1,108 +1,93 @@
 package com.shop.entity;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
 @Entity
-public class Member implements UserDetails {
-
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6238267371824633017L;
+/** DB에 들어갈 회원정보 Entity 정의 **/
+public class Member extends BaseTimeEntity implements Serializable {
+    private static final long serialVersionUID = -588567706409108940L;
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "member_id")
+	/** 회원가입 시 자동으로 부여되는 회원 넘버링 **/
     private Long id;
 
     @Column(nullable = false, unique = true)
+    /** 로그인 ID **/
     private String username;
 
-    @Column(nullable = false)
+    @Column
+    /** 로그인 패스워드 **/
     private String password;
 
+    @Column(nullable = false)
+    /** 회원 이름 **/
+    private String name;
+
     @Column(nullable = false, unique = true)
+    /** 회원 이메일 **/
     private String email;
     
-    @CreatedDate
-	@Column(name = "regDate", updatable = false)
-	private LocalDateTime regDate;
-	
-	@LastModifiedDate
-	@Column(name = "modDate")
-	private LocalDateTime modDate;
+    @Column(nullable = false)
+    /** 회원 주소 1 **/
+    private String address1;
     
-    @Transient
-    private Collection<? extends GrantedAuthority> authorities;
+    @Column(nullable = false)
+    /** 회원 주소 1 **/
+    private String address2;
     
-    public Member(String username, String password, String email, Collection<? extends GrantedAuthority> authorities) {
-    	this.username = username;
-    	this.password = password;
-    	this.email = email;
-    	this.authorities = authorities;
+    @Column(nullable = false)
+    /** 회원 휴대폰번호 **/
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    /** 회원 권한 **/
+    private MemberRole role; // 회원가입하면 무조건 USER로 설정
+    
+    @Column(nullable = false)
+    /** 회원 포인트 **/
+    private int point;
+    
+    
+    /** 회원 정보 업데이트 메서드 **/    
+    public void update(String password, String name, String email, String address1, String address2, String phone) {
+        this.password = password;
+        this.name = name;
+        this.email = email;
+        this.address1 = address1;
+        this.address2 = address2;
+        this.phone = phone;
     }
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return this.authorities;
-	}
-	
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return password;
-	}
+    /** 비밀번호 변경 메서드 **/
+    public void updatePassword(String password){
+        this.password = password;
+    }
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return username;
-	}
+    /** 소셜 로그인 시 이미 등록된 회원인 경우 수정 날짜 업데이트, 기존 데이터는 보존 **/
+    public Member updateUpdatedDate(){
+        this.onPreUpdate(); // 수정 날짜 업데이트
+        return this;
+    }
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
 }

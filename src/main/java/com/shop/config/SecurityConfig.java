@@ -48,7 +48,8 @@ public class SecurityConfig {
 		
 			.and()
 		.exceptionHandling().accessDeniedPage("/denied");
-		
+
+// 		// 중복 로그인 막는 기능인데, 버그있는것 같아서 주석 처리함.
 //			.and()
 //		.sessionManagement()
 //		.maximumSessions(1)

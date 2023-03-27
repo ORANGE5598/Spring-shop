@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.shop.dto.MemberDTO;
 import com.shop.dto.MemberEditDTO;
 import com.shop.dto.PasswordEditDTO;
+import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.entity.Member;
 import com.shop.entity.MemberForm;
 import com.shop.service.MemberService;
@@ -28,12 +31,16 @@ import com.shop.validator.CheckEmailValidator;
 import com.shop.validator.CheckUsernameValidator;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @RequiredArgsConstructor
 @Controller
+@Log4j2
 public class MemberController {
 
 	private final MemberService memberService;
+	
+	/** 중복 체크 유효성 검사 **/
 	private final CheckUsernameValidator checkUsernameValidator;
 	private final CheckEmailValidator checkEmailValidator;
 	private final PasswordEncoder passwordEncoder;
@@ -45,39 +52,37 @@ public class MemberController {
 	}
 	
 	@GetMapping("/register")
-	public String register() {
-		return "register";
+	public String register(Model model) {
+		model.addAttribute("memberDTO", new MemberDTO.RequestDTO());
+		return "member/register";
 	}
 	
-	@PostMapping("/register")
-	public String register(@Valid MemberDTO memberDto, Errors errors, Model model) {
-		if(errors.hasErrors()) {
-			model.addAttribute("memberDto", memberDto);
+	@PostMapping("/member/register")
+	public String register(@ModelAttribute @Valid RequestDTO memberDTO, BindingResult bindingResult, Model model) {
+	
+		if(bindingResult.hasErrors()) {
 			
-			Map<String, String> validatorResult = memberService.validateHandling(errors);
-			for(String key : validatorResult.keySet()) {
-				model.addAttribute(key, validatorResult.get(key));
+			log.info("======== 회원 가입에 예외 있음");
+			
+			model.addAttribute("memberDto", memberDTO);
+			
+			Map<String, String> errorMap = new HashMap<>();
+			
+			for(FieldError error : bindingResult.getFieldErrors()) {
+				errorMap.put("valid_" + error.getField(), error.getDefaultMessage());
+				log.info("회원가입실패. : " + error.getDefaultMessage());
 			}
 			
-			return "/register";
+			for(String key : errorMap.keySet()) {
+				log.info(key);
+				model.addAttribute(key, errorMap.get(key));
+			}
+			
+			return "member/register";
 		}
-		
-//		memberService.checkUsernameDuplication(memberDto);
-//		memberService.checkEmailDuplication(memberDto);
-		
-		memberService.createMember(memberDto);
-		return "redirect:/";
-		
-//		if(memberService.findByEmail(memberDto.getEmail()).isPresent()) {
-//			System.out.println("이미 존재하는 이메일입니다.");
-//			return "/duplicate";
-//		} else if(memberService.findByUsername(memberDto.getUsername()).isPresent()) {
-//			System.out.println("이미 존재하는 아이디입니다.");
-//			return "/duplicate";
-//		} else {
-//			memberService.createMember(memberDto);
-//			return "redirect:/";
-//		}
+
+		memberService.userJoin(memberDTO);
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/login")
@@ -177,7 +182,7 @@ public class MemberController {
         String encodedNewPwd = passwordEncoder.encode(dto.getNewPassword());
         memberService.updatePassword(currentMember.getUsername(), encodedNewPwd);
         currentMember.setPassword(encodedNewPwd);
-        return "redirect:/mypage/me";
+        return "redirect:/mypage";
     }
     
     @GetMapping("/deleteMember")
