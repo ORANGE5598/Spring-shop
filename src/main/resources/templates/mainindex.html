@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/layout}">
+<!-- 최신 SpringBoot 에서는 layout:decorate="~{layout/layout}" 으로 사용
+layout:decorator="~{layout/layout}" 은 기본 레이아웃을 layout/layout.html 파일을 사용하겠다라는 선언하는 것-->
+
+<th:block layout:fragment="content">
+    <section class="section-slide">
+        <div class="wrap-slick1 rs2-slick1">
+            <div class="slick1">
+                <div class="item-slick1 bg-overlay1" style="background-image: url(/img/main/hero1.jpg); ">
+                    <div class="container h-full">
+                        <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeIn" data-delay="500ms">
+								<span class="mtext-110 txt-center cl0 respon2">
+									SECOND PROJECT
+								</span>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeIn" data-delay="500ms">
+                                <h2 class="ltext-201 txt-center cl12 p-t-22 p-b-40 respon1">
+                                    SHOP | SPRING
+                                </h2>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeIn" data-delay="800ms">
+                                <a href="#"
+                                   class="flex-c-m stext-101 cl0 size-101 bg3 bor1 hov-btn3 p-lr-15 trans-04">
+                                    Shop Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-slick1 bg-overlay1" style="background-image: url(/img/main/hero2.jpg);">
+                    <div class="container h-full">
+                        <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeIn" data-delay="500ms">
+								<span class="ltext-101 cl2 respon2">
+									Spring New-Season
+								</span>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeIn" data-delay="500ms">
+                                <h2 class="ltext-201 cl5 p-t-19 p-b-100 respon1">
+                                    TOP & BOTTOM
+                                </h2>
+                            </div>
+
+                            <div class="layer-slick1 animated visible-false" data-appear="fadeIn" data-delay="800ms">
+                                <a href="#"
+                                   class="flex-c-m stext-101 cl0 size-101 bg3 bor1 hov-btn3 p-lr-15 trans-04">
+                                    Shop Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Banner -->
+    <div class="sec-banner bg0 p-t-80 p-b-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+                    <!-- Block1 -->
+                    <div class="block1 wrap-pic-w bor4">
+                        <img src="/img/main/banner/banner1.jpg" alt="IMG-BANNER">
+
+                        <a href="#"
+                           class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3">
+                            <div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									New Trend
+								</span>
+
+                                <span class="block1-info stext-102 trans-04">
+									Spring 2023
+								</span>
+                            </div>
+
+                            <div class="block1-txt-child2 p-b-4 trans-05">
+                                <div class="block1-link stext-101 cl0 trans-09">
+                                    Shop Now
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+                    <!-- Block1 -->
+                    <div class="block1 wrap-pic-w bor4">
+                        <img src="/img/main/banner/banner2.jpg" alt="IMG-BANNER">
+
+                        <a href="#"
+                           class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                            <div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									Best Seller
+								</span>
+
+                                <span class="block1-info stext-102 trans-04">
+									Celebrity Picks
+								</span>
+                            </div>
+
+                            <div class="block1-txt-child2 p-b-4 trans-05">
+                                <div class="block1-link stext-101 cl0 trans-09">
+                                    Shop Now
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+                    <!-- Block1 -->
+                    <div class="block1 wrap-pic-w bor4">
+                        <img src="/img/main/banner/banner3.jpg" alt="IMG-BANNER">
+
+                        <a href="#"
+                           class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-16 p-tb-9 trans-03 respon3">
+                            <div class="block1-txt-child1 flex-col-l">
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									Style
+								</span>
+
+                                <span class="block1-info stext-102 trans-04">
+									TAG YOUR STYLE
+								</span>
+                            </div>
+
+                            <div class="block1-txt-child2 p-b-4 trans-05">
+                                <div class="block1-link stext-101 cl0 trans-09">
+                                    Load page
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Product -->
+    <section class="sec-product bg0 p-t-45 p-b-30">
+        <div class="container">
+            <div class="p-b-32">
+                <h3 class="ltext-106 cl5 txt-center respon1">
+                    Store Overview
+                </h3>
+            </div>
+
+            <!-- Tab01 -->
+            <div class="tab01">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link active" data-toggle="tab" href="#best-seller" role="tab">Best Seller</a>
+                    </li>
+
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link" data-toggle="tab" href="#just-dropped" role="tab">Just Dropped</a>
+                    </li>
+
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link" data-toggle="tab" href="#under-retail" role="tab">Under Retail</a>
+                    </li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content p-t-40">
+                    <!-- best-seller -->
+                    <div class="tab-pane fade show active" id="best-seller" role="tabpanel">
+                        <!-- Slide2 -->
+                        <div class="wrap-slick2">
+                            <div class="slick2">
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-1.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Diesel C-Seymon Treated Denim Baseball Cap Blue White
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦450,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-2.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    New Balance 993 Made in USA Grey - D Standard
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦303,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-3.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple AirPods Pro 2nd Gen (Korean Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦310,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-4.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Diesel J-Blink Biker Jacket in Colour-Block Nylon Black White
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦560,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-5.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple 2022 MacBook Air 13 M2 256GB SSD / 8GB RAM Midnight (Korean
+                                                    Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦1,690,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-6.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Stussy Built Tough T-Shirt White
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦136,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-7.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Gucci GG Marmont Half Moon Shaped Mini Bag Black
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦1,870,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-8.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Arc'teryx Beta Jacket Black
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦783,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- just-dropped -->
+                    <div class="tab-pane fade" id="just-dropped" role="tabpanel">
+                        <!-- Slide2 -->
+                        <div class="wrap-slick2">
+                            <div class="slick2">
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-9.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Stussy Wave Dye Beach Shell Jacket Purple
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦412,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-10.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple iPhone 14 256GB Yellow (Korean Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦1,260,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-11.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Thug Club x MCM Bullet Denim Jacket Blue
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦1,200,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-12.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Nike x Tiffany & Co. Air Force 1 Low SP 1837
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦1,700,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-13.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Emis New Logo Ball Cap Black
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦38,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-14.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Nike x Ambush Air Force 1 Low SP Phantom
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦290,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-15.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Ader Error Sig; TRS Tag T-Shirt 01 Off White
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦189,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-16.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Nieeh Women Square Bag Dark Brown
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦145,600
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- under-retail -->
+                    <div class="tab-pane fade" id="under-retail" role="tabpanel">
+                        <!-- Slide2 -->
+                        <div class="wrap-slick2">
+                            <div class="slick2">
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-17.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Samsung Galaxy S23 Ultra 512GB Graphite (Korean Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦145,600
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-18.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Celine Medium Triomphe Celine Classic Panier in Palm Leaves and
+                                                    Calfskin Tan
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦870,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-20.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    (W) Prada Light Re-Nylon Cropped Jacket Celeste
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦1,024,000
+												</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-3.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple AirPods Pro 2nd Gen (Korean Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦310,000
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-21.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Maison Kitsune Fox Head Patch Ribbed Beanie Wine Lees
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦122,000
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-22.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Our Legacy Third Cut Digital Denim Print
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦358,000
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-23.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple Watch SE 40mm Cellular Space Gray Aluminum Case with Sport
+                                                    Band Midnight (Korean Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦299,000
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="categories spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="categories__text">
+                        <h2>WELCOME <br/> <span>DRAW</span> <br/> EVENT</h2>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="categories__hot__deal">
+                        <img src="/img/product/draw.png" alt="">
+                        <div class="hot__deal__sticker">
+                            <span>진행예정</span>
+                            <h5>100원</h5>
+                            <h6>6명</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 offset-lg-1">
+                    <div class="categories__deal__countdown">
+                        <span>WELCOME DRAW</span>
+                        <h2>Arc'teryx & Stussy Clothing Set</h2>
+                        <div class="categories__deal__countdown__timer" id="countdown">
+                            <div class="cd-item">
+                                <span>3</span>
+                                <p>Days</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>1</span>
+                                <p>Hours</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>50</span>
+                                <p>Minutes</p>
+                            </div>
+                            <div class="cd-item">
+                                <span>18</span>
+                                <p>Seconds</p>
+                            </div>
+                        </div>
+                        <a href="#" class="flex-c-m stext-101 cl0 size-101 bg3 bor1 hov-btn3 p-lr-15 trans-04">Show
+                            now</a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
+
+
+    <!-- Product -->
+    <section class="sec-product bg0 p-t-45">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 class="ltext-106 cl5 txt-center respon1">
+                        Style Picks !
+                    </h3>
+                </div>
+            </div>
+
+
+            <!-- Tab01 -->
+            <div class="tab01 ">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li class="nav-item p-t-15">
+                        <a class="nav-link" data-toggle="tab" href="#popular-user" role="tab">Today's user</a>
+                    </li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content p-t-45 bor1">
+                    <!-- popular-user -->
+                    <div class="tab-pane fade show active" id="popular-user" role="tabpanel">
+                        <!-- Slide2 -->
+                        <div class="wrap-slick4">
+                            <div class="slick4">
+                                <div class="item-slick4 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img1">
+                                            <img src="/img/user/user1.jpg" alt="IMG-USER">
+                                            <a href="#"
+                                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                                    <div class="block1-link stext-101 cl0 trans-09">
+                                                        UserName
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick4 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img1">
+                                            <img src="/img/user/user2.jpg" alt="IMG-USER">
+                                            <a href="#"
+                                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                                    <div class="block1-link stext-101 cl0 trans-09">
+                                                        UserName
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="item-slick4 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img1">
+                                            <img src="/img/user/user3.jpg" alt="IMG-USER">
+                                            <a href="#"
+                                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                                    <div class="block1-link stext-101 cl0 trans-09">
+                                                        UserName
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="item-slick4 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img1">
+                                            <img src="/img/user/user4.jpg" alt="IMG-USER">
+                                            <a href="#"
+                                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                                    <div class="block1-link stext-101 cl0 trans-09">
+                                                        UserName
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="item-slick4 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img1">
+                                            <img src="/img/user/user5.jpg" alt="IMG-USER">
+                                            <a href="#"
+                                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                                    <div class="block1-link stext-101 cl0 trans-09">
+                                                        UserName
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="item-slick4 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img1">
+                                            <img src="/img/user/user6.jpg" alt="IMG-USER">
+                                            <a href="#"
+                                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                                    <div class="block1-link stext-101 cl0 trans-09">
+                                                        UserName
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="item-slick4 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img1">
+                                            <img src="/img/user/user7.jpg" alt="IMG-USER">
+                                            <a href="#"
+                                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                                    <div class="block1-link stext-101 cl0 trans-09">
+                                                        UserName
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="item-slick4p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img1 ">
+                                            <img src="/img/user/user8.jpg" alt="IMG-USER">
+                                            <a href="#"
+                                               class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
+                                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                                    <div class="block1-link stext-101 cl0 trans-09">
+                                                        UserName
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- banner -->
+    <section class="section-slide p-t-50">
+        <div class="wrap-slick1 rs1-slick1">
+            <div class="slick1">
+                <div class="item-slick1" style="background-image: url(/img/banner/banner4.jpg); cursor: pointer;"
+                     onclick="location.href='#';">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Product -->
+    <section class="sec-product bg0 p-t-50 p-b-65">
+        <div class="container">
+            <div class="p-b-25">
+                <h3 class="ltext-106 cl5 txt-center respon1">
+                    Reasonable Price
+                </h3>
+            </div>
+
+            <!-- Tab01 -->
+            <div class="tab01">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item p-b-20">
+                        <a class="nav-link" data-toggle="tab" href="#tech" role="tab">TECH</a>
+                    </li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content p-t-20">
+                    <!-- best-seller -->
+                    <div class="tab-pane fade show active" id="best-seller" role="tabpanel">
+                        <!-- Slide2 -->
+                        <div class="wrap-slick2">
+                            <div class="slick2">
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-3.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple AirPods Pro 2nd Gen (Korean Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦310,000
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-5.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple 2022 MacBook Air 13 M2 256GB SSD / 8GB RAM Midnight (Korean
+                                                    Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦1,690,000
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-10.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple iPhone 14 256GB Yellow (Korean Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦1,260,000
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="/img/product/product-23.jpg" alt="IMG-PRODUCT">
+
+                                            <a href="#"
+                                               class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a>
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="#"
+                                                   class="stext-104 cl4 hov-cl1 trans-04 p-b-6">
+                                                    Apple Watch SE 40mm Cellular Space Gray Aluminum Case with Sport
+                                                    Band Midnight (Korean Ver.)
+                                                </a>
+
+                                                <span class="stext-105 cl3">
+													￦299,000
+												</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</th:block>
+</html>
