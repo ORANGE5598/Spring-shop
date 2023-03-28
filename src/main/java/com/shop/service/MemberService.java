@@ -3,6 +3,7 @@ package com.shop.service;
 import java.util.Optional;
 
 import com.shop.dto.MemberDTO;
+import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.entity.Member;
 
 public interface MemberService { //extends UserDetailsService {
@@ -24,7 +25,7 @@ public interface MemberService { //extends UserDetailsService {
     boolean checkPassword(Long member_id, String checkPassword);
 
     /** 회원 수정 **/
-    void userInfoUpdate(MemberDTO.RequestDTO memberDTO);
+    void userInfoUpdate(RequestDTO memberDTO);
     
     void deleteMember(String username);
 

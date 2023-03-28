@@ -60,6 +60,7 @@ public class SecurityConfig {
 			.and()
 		.logout()
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		.logoutUrl("/logout")
 		.logoutSuccessUrl("/")
 		.invalidateHttpSession(true)
 		.deleteCookies("JSESSIONID")

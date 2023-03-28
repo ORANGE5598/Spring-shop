@@ -27,7 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.MemberDTO;
-import com.shop.dto.MemberEditDTO;
 import com.shop.dto.PasswordEditDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
@@ -87,6 +86,7 @@ public class MemberController {
 			return "register";
 		}
 
+		log.info("회원가입 성공 : " + memberDTO.toString());
 		memberService.userJoin(memberDTO);
 		return "redirect:/login";
 	}
@@ -95,9 +95,10 @@ public class MemberController {
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "exception", required = false) String exception,
 			Model model) {
-
 		/** 에러와 예외가 존재하는 경우우 모델에 담아 view resolv **/
+
 		model.addAttribute("error", error);
+
 		model.addAttribute("exception", exception);
 
 		return "/login";
@@ -139,26 +140,32 @@ public class MemberController {
 
 	//////////////////////////////////////////////////////////////////
 
-	@GetMapping("/mypage")
-	public String myPage(Model model, @AuthenticationPrincipal Member currentMember) {
-
-		MemberEditDTO dto = new MemberEditDTO();
-		dto.setUsername(currentMember.getUsername());
-		dto.setEmail(currentMember.getEmail());
-
-		model.addAttribute(dto);
-		return "mypage";
-	}
-
 	/** 마이페이지 **/
-	@GetMapping("/myPage")
+	@GetMapping("/mypage")
 	public String findByMemberId(@AuthenticationPrincipal UserAdapter user,
 			Model model) {
 
 		Long member_id = user.getMemberDTO().getId();
 		ResponseDTO responseDto = memberService.getById(member_id);
 		model.addAttribute("member", responseDto);
-		return "member/myPage";
+		return "/mypage";
+	}
+
+	@GetMapping("/checkpwd")
+	public String checkPwdView(){
+		return "/check-pwd";
+	}
+
+	@GetMapping("/checkpwd/check")
+	@ResponseBody
+	public boolean checkPassword(@AuthenticationPrincipal UserAdapter user,
+			@RequestParam("checkPassword") String checkPassword,
+			Model model){
+
+		log.info("checkPwd 진입");
+		Long member_id = user.getMemberDTO().getId();
+
+		return memberService.checkPassword(member_id, checkPassword);
 	}
 
 	@PostMapping("/mypage/password")

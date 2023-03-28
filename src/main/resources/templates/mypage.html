@@ -7,21 +7,50 @@
             <div class="fa-user">개인정보 수정</div>
             <form role="form" th:action="@{/mypage}" th:object="${member}" method="post">
             
-                <div class="form-group">
-                    <label th:for="username">닉네임</label>
-                    <input type="text" th:field="*{username}" class="form-control"
-                        placeholder="닉네임을 입력하세요"
-                        th:class="${#fields.hasErrors('username')}? 'form-control fieldError' : 'form-control'">
-                    <p th:if="${#fields.hasErrors('username')}"
-                        th:errors="*{username}">Incorrect input</p>
+				<h5>아이디</h5>
+                <div class="input-group input-group-static mb-4">
+	                <input type="text" th:field="*{username}" th:value="*{username}" class="form-control"
+                    th:id="username" readonly>
                 </div>
                 
-                <div class="form-group">
-                    <label th:for="email">이메일</label>
-                    <input type="email" th:field="*{email}" class="form-control"
-                           placeholder="None">
+                <h5>이름</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{name}" th:value="*{name}" class="form-control"
+                th:id="name" readonly>
                 </div>
-                <button type="submit" class="btn btn-primary">수정</button>
+                
+                
+                <h5>이메일</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{email}" th:value="*{email}" class="form-control"
+                th:id="email" readonly>
+                </div>
+                
+                <h5>도로명주소</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{address1}" th:value="*{address1}" class="form-control"
+                th:id="address1" readonly>
+                </div>
+                
+                <h5>상세주소</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{address2}" th:value="*{address2}" class="form-control"
+                th:id="address2" readonly>
+                </div>
+                
+                <h5>휴대폰</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{phone}" th:value="*{phone}" class="form-control"
+                th:id="phone" readonly>
+                </div>
+                
+                <h5>포인트</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{point}" th:value="*{point}" class="form-control"
+                th:id="point" readonly>
+                </div>
+
+				<a type="button" href="/checkpwd" class="btn bg-gradient-primary">회원 수정하기</a>
             </form>
             <br/>
         </div>
