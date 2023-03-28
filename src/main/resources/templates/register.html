@@ -17,15 +17,39 @@
                 <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호를 입력해주세요"/>
     	        <span id="valid">[[${valid_password}]]</span>
             </div>
-        
+			
+			<div class="form-group">
+                <label>이름</label>
+                <input type="text" name="name" id="name" class="form-control" placeholder="이름을 입력해주세요"/>
+            	<span id="valid">[[${valid_name}]]</span>
+            </div>
+
    		    <div class="form-group">
                 <label>이메일</label>
                 <input type="email" name="email" id="email" class="form-control" placeholder="이메일을 입력해주세요"/>
             	<span id="valid">[[${valid_email}]]</span>
             </div>
+
+			<div class="form-group">
+                <label>주소1</label>
+                <input type="text" name="address1" id="address1" class="form-control" placeholder="주소를 입력해주세요"/>
+            	<span id="valid">[[${valid_address1}]]</span>
+            </div>
+
+			<div class="form-group">
+                <label>주소2</label>
+                <input type="text" name="address2" id="address2" class="form-control" placeholder="상세주소를 입력해주세요"/>
+            	<span id="valid">[[${valid_address2}]]</span>
+            </div>
+
+			<div class="form-group">
+                <label>휴대폰</label>
+                <input type="text" name="phone" id="phone" class="form-control" placeholder="휴대폰번호를 입력해주세요"/>
+            	<span id="valid">[[${valid_phone}]]</span>
+            </div>
  
             <button class="btn btn-primary bi bi-person"> 가입</button>
-            <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 목록</a>
+            <a href="/" role="button" class="btn btn-info bi bi-arrow-return-left"> 홈페이지</a>
         </form>
 </body>
 </html>

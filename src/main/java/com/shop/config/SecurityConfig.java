@@ -10,16 +10,35 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import com.shop.config.auth.CustomUserDetailsService;
+
+import lombok.RequiredArgsConstructor;
+
 @EnableWebSecurity
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
+	
+	private final CustomUserDetailsService customUserDetailsService;
+	
+	private final AuthenticationFailureHandler authenticationFailureHandler;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
+	
+	public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
+        return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
 	}
 	
 	@Bean
@@ -31,11 +50,11 @@ public class SecurityConfig {
 		
 			.and()
 		.formLogin()
-		.loginPage("/login")
-		.loginProcessingUrl("/login")
-		.defaultSuccessUrl("/login/result")
+		.loginPage("/login") // 로그인 페이지 URL
+		.loginProcessingUrl("/loginProc") // 로그인 시도 (버튼 눌렀을때)
+		.defaultSuccessUrl("/") // 로그인 성공했을 경우 연결되는 페이지
 		.passwordParameter("password")
-		.failureUrl("/fail")
+		.failureHandler(authenticationFailureHandler)
 		.permitAll()
 		
 			.and()
@@ -59,13 +78,5 @@ public class SecurityConfig {
 		return http.build();
 	}
 	
-	@Bean
-	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-		return authenticationConfiguration.getAuthenticationManager();
-	}
-	
-	public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
-        return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
-	}
 
 }

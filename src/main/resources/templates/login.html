@@ -339,7 +339,7 @@
         <div class="row d-flex justify-content-center">
             <div class="login-wrapper">
                 <h2>Login</h2>
-                <form action="/login" method="post" id="login-form">
+                <form action="/loginProc" method="post" id="login-form">
              		<input type="hidden" th:name="${_csrf.parameterName}"th:value="${_csrf.token}">
                     <input type="text" class="form-control" name="username" id="username" placeholder="ID">
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">

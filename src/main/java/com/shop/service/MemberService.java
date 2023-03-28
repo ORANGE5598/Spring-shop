@@ -1,6 +1,9 @@
 package com.shop.service;
 
+import java.util.Optional;
+
 import com.shop.dto.MemberDTO;
+import com.shop.entity.Member;
 
 public interface MemberService { //extends UserDetailsService {
 	
@@ -9,6 +12,8 @@ public interface MemberService { //extends UserDetailsService {
 
     /** member_id로 memberDto 반환 **/
     MemberDTO.ResponseDTO getById(Long member_id);
+    
+    Optional<Member> findByUsername(String username);
 
     /** =============== 회원 수정 =============== **/
 
@@ -20,6 +25,8 @@ public interface MemberService { //extends UserDetailsService {
 
     /** 회원 수정 **/
     void userInfoUpdate(MemberDTO.RequestDTO memberDTO);
+    
+    void deleteMember(String username);
 
     /** =============== 비밀번호 찾기 : 임시 비밀번호 전송 =============== **/
 

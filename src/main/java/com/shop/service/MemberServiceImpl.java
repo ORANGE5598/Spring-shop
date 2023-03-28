@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -104,7 +106,17 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
-	
+	@Override
+    @Transactional
+    public void deleteMember(String username) {
+        Member member = memberRepository.findByUsername(username).get();
+        memberRepository.delete(member);
+    }
+
+    @Override
+    public Optional<Member> findByUsername(String username) {
+        return memberRepository.findByUsername(username);
+    }
 	
 	
 	
