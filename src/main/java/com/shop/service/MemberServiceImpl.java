@@ -55,6 +55,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	@Transactional
 	public void userInfoUpdate(RequestDTO memberDTO) {
 		Member member = memberRepository.findById(memberDTO.toEntity().getId()).orElseThrow(() -> new IllegalArgumentException("해당 사용자 찾을 수 없음."));
 		

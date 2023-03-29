@@ -22,8 +22,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.MemberDTO;
@@ -155,17 +158,13 @@ public class MemberController {
 	public String checkPwdView(){
 		return "/check-pwd";
 	}
-
-	@GetMapping("/checkpwd/check")
-	@ResponseBody
-	public boolean checkPassword(@AuthenticationPrincipal UserAdapter user,
-			@RequestParam("checkPassword") String checkPassword,
-			Model model){
-
-		log.info("checkPwd 진입");
-		Long member_id = user.getMemberDTO().getId();
-
-		return memberService.checkPassword(member_id, checkPassword);
+	
+	@GetMapping("/mypage/update")
+	public String MemberUpdate(@AuthenticationPrincipal UserAdapter member, Model model) {
+		Long member_id = member.getMemberDTO().getId();
+		ResponseDTO responseDTO = memberService.getById(member_id);
+		model.addAttribute("member", responseDTO);
+		return "/update";
 	}
 
 	@PostMapping("/mypage/password")
