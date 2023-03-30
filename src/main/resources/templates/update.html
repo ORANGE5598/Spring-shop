@@ -8,17 +8,17 @@
 <div class="col-lg-4">
         <div class="useredit">
             <div class="fa-user">개인정보 수정</div>
-            <form role="form" th:object="${member}" method="post" th:action="@{/confirm}">
+            <form role="form" th:object="${member}" method="post">
             	
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             	
             	<div class="input-group input-group-static mb-4">
-	                <input type="hidden" th:field="*{id}" th:value="*{id}" class="form-control"
+	                <input type="text" th:field="*{id}" th:value="*{id}" class="form-control"
                     th:id="id" readonly>
                 </div>
             	
                 <div class="input-group input-group-static mb-4">
-	                <input type="hidden" th:field="*{username}" th:value="*{username}" class="form-control"
+	                <input type="text" th:field="*{username}" th:value="*{username}" class="form-control"
                     th:id="username" readonly>
                 </div>
                 
@@ -59,15 +59,53 @@
                 <input type="password" th:id="password" th:name="password"
                 placeholder="변경할 비밀번호를 입력하세요." class="form-control" >
                 </div>
-				<button type="submit" id="btn-update" class="btn bg-gradient-primary" >회원 정보 수정</button>
+				<button type="button" id="btn-update" onclick="memberUpdate()" class="btn bg-gradient-primary" >회원 정보 수정</button>
             </form>
             <br/>
         </div>
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
+<script type="text/javascript">
 
+function memberUpdate(){
+    const data = {
+    		id: $('#id').val(),
+    		username: $('#username').val(), 
+			name: $('#name').val(), 
+			email: $('#email').val(), 
+			address1: $('#address1').val(), 
+			address2: $('#address2').val(), 
+			phone: $('#phone').val(),
+			password: $('#password').val()
+    };
+
+
+    const confirmCheck = confirm("수정하시겠읍니까?");
+
+    if(confirmCheck == true){
+        $.ajax({
+            type: 'PUT',
+            url: '/confirm',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+           
+        }).done(function(result){
+            if(result){
+                alert("회원 수정이 완료되었읍니다.");
+                window.location.href="/mypage";
+            } else{
+                alert("이미 사용 중인 이메일입니다. 다시 입력해주세요.");
+                $('#email').focus();
+            }
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+            console.log(JSON.stringify(error));
+        });
+    }
+}
+
+/*
 	function update() {
 		const confirmCheck = confirm("수정하시겠읍니까?")
 		
@@ -75,6 +113,7 @@
 			window.location.href="/confirm";
 		}
 	}
+*/
 </script>
 
 </html>

@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PasswordEditDTO {
+public class PwDTO {
 
 	@NotEmpty(message = "필수입니다.")
     private String password;

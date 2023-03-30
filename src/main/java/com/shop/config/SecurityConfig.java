@@ -44,7 +44,7 @@ public class SecurityConfig {
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests().requestMatchers(new AntPathRequestMatcher("/**")).permitAll();
-		http.csrf().ignoringRequestMatchers(new AntPathRequestMatcher("/css/**"))
+		http.csrf().ignoringRequestMatchers(new AntPathRequestMatcher("/css/**"), new AntPathRequestMatcher("/confirm"), new AntPathRequestMatcher("/mypage/**"))
 
 
 		

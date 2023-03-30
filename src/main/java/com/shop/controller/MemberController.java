@@ -22,12 +22,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.MemberDTO;
-import com.shop.dto.PasswordEditDTO;
+import com.shop.dto.PwDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.Member;
@@ -41,6 +42,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @Controller
 @Log4j2
+@RequestMapping("/")
 public class MemberController {
 
 	private final MemberService memberService;
@@ -55,6 +57,11 @@ public class MemberController {
 		binder.addValidators(checkUsernameValidator);
 		binder.addValidators(checkEmailValidator);
 	}
+	
+//	@GetMapping({"/", " "})
+//	public String index() {
+//		return "index";
+//	}
 
 	@GetMapping("/register")
 	public String register(Model model) {
@@ -164,21 +171,17 @@ public class MemberController {
 		return "/update";
 	}
 	
-	@PostMapping("/confirm")
-	public String update(RequestDTO dto, BindingResult result) {
-		if(result.hasErrors()) {
-			return "redirect:/mypage/update";
-		}
-		
-		memberService.userInfoUpdate(dto);
-		return "redirect:/mypage";
+	@GetMapping("/mypage/password")
+	public String passwordOnly() {
+		return "/passwordOnly";
 	}
 
-	@PostMapping("/mypage/password")
+	@PostMapping("/changepw")
 	public String passwordEdit(Model model,
-			PasswordEditDTO dto,
+			PwDTO dto,
 			BindingResult result,
 			@AuthenticationPrincipal Member currentMember) {
+		
 		if (result.hasErrors()) {
 			return "redirect:/mypage/password";
 		}
@@ -206,14 +209,14 @@ public class MemberController {
 
 	@GetMapping("/deleteMember")
 	public String delMember(Model model, String checkWords){
-		model.addAttribute("passwordForm", new PasswordEditDTO());
+		model.addAttribute("passwordForm", new PwDTO());
 		model.addAttribute("checkWords", checkWords);
 
 		return "mypage/deleteMember";
 	}
 
 	@PostMapping("/deleteMember")
-	public String delMember(PasswordEditDTO dto,
+	public String delMember(PwDTO dto,
 			String checkWords,
 			@AuthenticationPrincipal Member currentMember){
 

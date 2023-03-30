@@ -58,13 +58,17 @@ public class MemberServiceImpl implements MemberService {
 	@Transactional
 	public void userInfoUpdate(RequestDTO memberDTO) {
 		Member member = memberRepository.findById(memberDTO.toEntity().getId()).orElseThrow(() -> new IllegalArgumentException("해당 사용자 찾을 수 없음."));
-		
+		log.info("변경 패스워드 : " + memberDTO.getPassword());
 		String encryptPassword = passwordEncoder.encode(memberDTO.getPassword());
 		String name = memberDTO.getName();
 		String email = memberDTO.getEmail();
 		String address1 = memberDTO.getAddress1();
 		String address2 = memberDTO.getAddress2();
 		String phone = memberDTO.getPhone();
+		
+		log.info(member);
+		
+		log.info("패스워드 일치 여부 : " + passwordEncoder.matches(memberDTO.getPassword(), encryptPassword));
 		
 		member.update(encryptPassword, name, email, address1, address2, phone);
 		

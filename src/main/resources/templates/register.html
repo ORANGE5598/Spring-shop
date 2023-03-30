@@ -371,31 +371,30 @@
                                         <p>ID<span class="m-r-92">*</span></p>
                                         <input type="text" class="form-control" aria-describedby="button-addon2" id="username" name="username" required>
                                         <button type="submit" id="button-addon2"class="btn btn-outline-secondary">check</button>
-                                        <span id="valid">[[${valid_username}]]</span>
+                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_username}"></span>
                                     </div>
                                     
                                     <div class="orderBy__input input-group m-b--2 m-t-30">
                                         <p>Password<span class="m-r-42">*</span></p>
                                         <input type="text" class="form-control" aria-describedby="button-addon2" id="password" name="password" required>
                                         <button type="submit" id="button-addon2"class="btn btn-outline-secondary">check</button>
-                                        <span id="valid">[[${valid_password}]]</span>
+                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_password}"></span>
                                     </div>
 
                                     <div class="orderBy__input input-group m-b--2 m-t-30">
                                         <p>name<span class="m-r-70">*</span></p>
                                         <input type="text" class="form-control" aria-describedby="button-addon2" id="name" name="name" required>
-                                        <span id="valid">[[${valid_name}]]</span>
+                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_name}"></span>
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="row">
                                 <div class="col-lg-8 m-t-20">
                                     <div class="orderBy__input">
                                         <p>Email<span>*</span></p>
                                         <input type="text" class="form-control" id="email" name="email">
-                                        <span id="valid">[[${valid_email}]]</span>
+                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_email}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -404,7 +403,7 @@
                                     <div class="orderBy__input ">
                                         <p>Phone<span>*</span></p>
                                         <input type="text" class="form-control" id="phone" name="phone" required>
-                                        <span id="valid">[[${valid_phone}]]</span>
+                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_phone}"></span>
                                     </div>
                                 </div>
                             </div>
