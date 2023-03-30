@@ -8,7 +8,7 @@
 <div class="col-lg-4">
         <div class="useredit">
             <div class="fa-user">개인정보 수정</div>
-            <form role="form" th:object="${member}">
+            <form role="form" th:object="${member}" method="post" th:action="@{/confirm}">
             	
             	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             	
@@ -59,103 +59,22 @@
                 <input type="password" th:id="password" th:name="password"
                 placeholder="변경할 비밀번호를 입력하세요." class="form-control" >
                 </div>
-				<button type="button" id="btn-update" class="btn bg-gradient-primary" >회원 정보 수정</button>
-            </form> <!-- th:onclick="memberUpdate()" -->
+				<button type="submit" id="btn-update" class="btn bg-gradient-primary" >회원 정보 수정</button>
+            </form>
             <br/>
         </div>
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-	
-	let index = {
-		init: function(){
-			$("#btn-update").on("click",()=>{	//function(){} 대신 ()=>{} : this를 바인딩하기 위해서
-			this.update();
-			});
-	},
-		
-	update: function(){
-		//alert('user의 save함수 호출됨');
-		let data = {
-			id: $('#id').val(),
-			username: $('#username').val(), 
-			name: $('#name').val(), 
-			email: $('#email').val(), 
-			address1: $('#address1').val(), 
-			address2: $('#address2').val(), 
-			phone: $('#phone').val(),
-			password: $('#password').val()
-		};
-			$.ajax({
-			//회원정보 수정 요청
-			type: "PUT",
-			url: "/confirm",
-			data: JSON.stringify(data),		//http body 데이터
-			contentType: "application/json; charset=utf-8",	//body 데이터가 어떤 타입인지(MIME)
-			dataType: "json"	//요청을 서버로 해서 응답이 왔을 때 기본적으로 모든 것이 문자열(String)=>javascript 오브젝트로 변경 
-			//응답 결과가 정상일 때
-		}).done(function(resp){
-			alert("회원수정이 완료되었습니다.");
-			//console.log(resp);
-			location.href="/mypage";
-			//실패일 때
-		}).fail(function(error){
-			alert(JSON.stringify(error));
-			});	
-			
-		}
-	}
 
-index.init();
-
-
-
-
-
-
-
-/*
-	function memberUpdate() {
-		const data = {
-				id: $('#id').val(),
-				username: $('#username').val(), 
-				name: $('#name').val(), 
-				email: $('#email').val(), 
-				address1: $('#address1').val(), 
-				address2: $('#address2').val(), 
-				phone: $('#phone').val(),
-				password: $('#password').val()
-		};
-		
-		
-		const confirmCheck = confirm("수정하겠읍니까?");
+	function update() {
+		const confirmCheck = confirm("수정하시겠읍니까?")
 		
 		if(confirmCheck == true) {
-			$.ajax({
-				type: 'PUT',
-				url: '/confirm', 
-				contentType: 'application/json; charset=UTF-8', 
-				data: JSON.stringify(data),
-				dataType: "JSON", 
-				beforeSend: function(xhr) {
-			        xhr.setRequestHeader('X-HTTP-Method-Override', 'PUT')
-				}
-			}).done(function(result) {
-				if(result) {
-					alert("회원 정보 수정이 완료되었읍니다.");
-					window.location.herf="/mypage";
-				} else if(!result) {
-					alert("이미 사용중인 이메일입니다.")
-					$('#email').focus();
-				}
-			}).fail(function(error) {
-				alert(JSON.stringify(error));
-				console.log(JSON.stringify(error));
-				//window.location.reload();
-			});
+			window.location.href="/confirm";
 		}
-	}*/
+	}
 </script>
 
 </html>

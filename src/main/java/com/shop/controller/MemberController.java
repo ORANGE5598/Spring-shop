@@ -22,11 +22,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.MemberDTO;
@@ -165,6 +162,16 @@ public class MemberController {
 		ResponseDTO responseDTO = memberService.getById(member_id);
 		model.addAttribute("member", responseDTO);
 		return "/update";
+	}
+	
+	@PostMapping("/confirm")
+	public String update(RequestDTO dto, BindingResult result) {
+		if(result.hasErrors()) {
+			return "redirect:/mypage/update";
+		}
+		
+		memberService.userInfoUpdate(dto);
+		return "redirect:/mypage";
 	}
 
 	@PostMapping("/mypage/password")
