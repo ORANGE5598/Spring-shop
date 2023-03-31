@@ -57,11 +57,6 @@ public class MemberController {
 		binder.addValidators(checkUsernameValidator);
 		binder.addValidators(checkEmailValidator);
 	}
-	
-//	@GetMapping({"/", " "})
-//	public String index() {
-//		return "index";
-//	}
 
 	@GetMapping("/register")
 	public String register(Model model) {
