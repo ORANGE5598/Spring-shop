@@ -32,6 +32,7 @@ import com.shop.dto.PwDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.Member;
+import com.shop.service.MailService;
 import com.shop.service.MemberService;
 import com.shop.validator.CheckEmailValidator;
 import com.shop.validator.CheckUsernameValidator;
@@ -46,6 +47,7 @@ import lombok.extern.log4j.Log4j2;
 public class MemberController {
 
 	private final MemberService memberService;
+	private final MailService mailService;
 
 	/** 중복 체크 유효성 검사 **/
 	private final CheckUsernameValidator checkUsernameValidator;
@@ -62,6 +64,11 @@ public class MemberController {
 	public String register(Model model) {
 		model.addAttribute("memberDTO", new MemberDTO.RequestDTO());
 		return "/register";
+	}
+	
+	@GetMapping("/findPassword")
+	public String findPassword() {
+		return "/findPassword";
 	}
 
 	@PostMapping("/register")
@@ -138,6 +145,18 @@ public class MemberController {
 	@GetMapping("admin")
 	public String admin() {
 		return "admin/admin";
+	}
+	
+	@PostMapping("/sendPwd")
+	public String sendPwdEmail(@RequestParam("memberEmail") String memberEmail) throws Exception {
+		log.info("요청된 이메일 : " + memberEmail);
+		
+		String tmpPassword = memberService.getTmpPassword();
+		memberService.updatePassword(tmpPassword, memberEmail);
+		mailService.createMail(tmpPassword, memberEmail);
+		
+		return "/login";
+		
 	}
 
 	//////////////////////////////////////////////////////////////////
