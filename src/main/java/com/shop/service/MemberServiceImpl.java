@@ -95,7 +95,7 @@ public class MemberServiceImpl implements MemberService {
             pwd += charSet[idx];
         }
 
-        log.info("임시 비밀번호 생성");
+        log.info("임시 비밀번호 생성" + pwd);
 
         return pwd;
 	}
@@ -107,7 +107,7 @@ public class MemberServiceImpl implements MemberService {
                 new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
 
         member.updatePassword(encryptPassword);
-        log.info("임시 비밀번호 업데이트");
+        log.info("임시 비밀번호 업데이트" + tmpPassword);
 		
 	}
 	
