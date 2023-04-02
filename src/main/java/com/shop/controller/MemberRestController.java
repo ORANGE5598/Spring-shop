@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.MemberDTO.RequestDTO;
+import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -43,7 +44,7 @@ public class MemberRestController {
 	}
 	
 	@PutMapping("/confirm")
-	public boolean update(@Valid @RequestBody RequestDTO dto, BindingResult result, Model model) {
+	public boolean update(@Valid @RequestBody RequestDTO dto, BindingResult result, Model model, @AuthenticationPrincipal UserAdapter user) {
 
 		if(result.hasErrors()) {
 			model.addAttribute(dto);
@@ -59,11 +60,18 @@ public class MemberRestController {
 			}
 		}
 		
+		Long member_id = user.getMemberDTO().getId();
+		ResponseDTO responseDto = memberService.getById(member_id);
 		
-		if(memberService.checkEmail(dto.getEmail())) {
+		// 이메일은 수정하지 않고 다른 정보만 변경할 경우의 로직 추가.
+		if(dto.getEmail().equals(responseDto.getEmail())) {
+			memberService.userInfoUpdate(dto);
+			return true;
+			
+		} else if(memberService.checkEmail(dto.getEmail())) {
 			return false;
 		}
-		
+//		
 		memberService.userInfoUpdate(dto);
 		return true;
 //		return "redirect:/mypage";

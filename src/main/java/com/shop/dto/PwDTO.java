@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 public class PwDTO {
 
-	@NotEmpty(message = "필수입니다.")
+	@NotEmpty(message = "사용중인 패스워드를 입력하세요.")
     private String password;
-    @NotEmpty(message = "필수입니다.")
+    @NotEmpty(message = "변경할 패스워드를 입력하세요.")
     private String newPassword;
-    @NotEmpty(message = "필수입니다.")
+    @NotEmpty(message = "변경할 패스워드를 입력하세요.")
     private String retype;
 }
