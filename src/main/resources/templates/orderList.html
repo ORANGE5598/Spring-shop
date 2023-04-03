@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
+
+	<th:block th:fragment="content">
+<h2>주문내역 페이지 </h2>
+
+	<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">주문날짜</th>
+			<th scope="col">주문번호</th>
+			<th scope="col">이미지</th>
+			<th scope="col">상품명</th>
+			<th scope="col">최종 가격</th>
+			<th scope="col">주문상세</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="dto : ${orderList.dtoList}">
+			<th>[[${dto.regDate}]]</th>
+			<td scope="row">[[${dto.oNumber}]]</td>
+			<td><img alt="" th:src="${dto.img}"  height="150" width="180"></td>
+			<td>[[${dto.oName}]]</td>
+			<td>[[${dto.oTotalPrice}]]</td>
+			<td><a th:href="@{/orderDetail(oNumber = ${dto.oNumber},
+			page= ${orderList.page},
+            type=${pageRequestDTO.type} ,
+            keyword = ${pageRequestDTO.keyword})}">주문상세></a></td>
+		</tr>
+	</tbody>
+</table>
+		
+		<ul class="pagination h-100 justify-content-center align-items-center">
+
+            <li class="page-item " th:if="${orderList.prev}">
+                <a class="page-link" th:href="@{/orderList(page= ${orderList.start -1},
+                    type=${pageRequestDTO.type} ,
+                    keyword = ${pageRequestDTO.keyword} ) }" tabindex="-1">이전 페이지</a>
+            </li>
+
+            <li th:class=" 'page-item ' + ${orderList.page == page?'active':''} " th:each="page: ${orderList.pageList}">
+                <a class="page-link" th:href="@{/orderList(page = ${page} ,
+                   type=${pageRequestDTO.type} ,
+                   keyword = ${pageRequestDTO.keyword}  )}">
+                    [[${page}]]
+                </a>
+            </li>
+
+            <li class="page-item" th:if="${orderList.next}">
+                <a class="page-link" th:href="@{/orderList(page= ${orderList.end + 1} ,
+                    type=${pageRequestDTO.type} ,
+                    keyword = ${pageRequestDTO.keyword} )}">다음 페이지</a>
+            </li>
+
+        </ul>
+
+
+
+	</th:block>
+
+</th:block>
+</body>
+</html>

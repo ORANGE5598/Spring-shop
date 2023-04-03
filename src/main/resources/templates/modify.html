@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>상품 정보 수정 테스트</title>
+</head>
+<body>
+<h2>상품 정보 수정 테스트</h2>
+
+<form action="/modify" method="post">
+<!-- 바꿀 정보 입력 -->
+기존 이미지<br>
+<img alt="" th:src="${itemDTO.iImg}" height="300"><br><br>
+바꿀 이미지<br>
+<div id="image_container"></div><br>
+카테고리 : <input name="iCategory" type="text" th:value="${itemDTO.iCategory}" readonly="readonly"><br>
+배송비 : <input name="iDeliveryPrice" type="number" th:value="${itemDTO.iDeliveryPrice}"><br>
+상품 정보 : <input name="iInfo" type="text" th:value="${itemDTO.iInfo}"><br>
+재고 : <input name="iInstock" type="number" th:value="${itemDTO.iInstock}"><br>
+상품명 : <input name="iName" type="text" th:value="${itemDTO.iName}" readonly="readonly"><br>
+상품 가격 : <input name="iPrice" type="number" th:value="${itemDTO.iPrice}"><br>
+
+</form>
+
+<!-- 바꿀 새 이미지 -->
+<input type="file" id="image" accept="image/*" onchange="setThumbnail(event);" name="uploadFile"/>
+<button class="modifyBtn">수정</button>
+<button class="cancleBtn">취소</button>
+
+
+<!-- 나중에 js에 몰아넣고 불러오는 방식으로 사용 -->
+<!-- JQUERY CDN 방식으로 import -->
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous">
+</script>
+
+<script type="text/javascript">
+ 	
+	//썸네일 이벤트 등록
+	function setThumbnail(event) {
+		var reader = new FileReader();
+		
+		// 파일을 새로 선택 시 기존 이미지 삭제하고 새로 선택한 이미지 띄우는 코드
+		var imageContainer = document.querySelector("div#image_container");
+	    while (imageContainer.firstChild) {
+	        imageContainer.removeChild(imageContainer.firstChild);
+	    }
+		
+		reader.onload = function(event) {
+			var img = document.createElement("img");
+			img.setAttribute("src", event.target.result);
+			img.setAttribute("height", 300)
+			document.querySelector("div#image_container").appendChild(img);
+	    };
+		reader.readAsDataURL(event.target.files[0]);
+	}	// 썸네일 이벤트 등록 끝
+ 	
+	var actionForm = $("form");
+ 	
+ 	// 수정 버튼 이벤트 등록
+ 	$(".modifyBtn").click(function(){
+ 		var formData = new FormData();
+ 		
+ 	 	var inputFile = $("input[type='file']");
+ 		var files = inputFile[0].files;
+ 		
+ 		// 파일 정보
+ 		var iDeliveryPrice = $("input[name='iDeliveryPrice']").val();
+ 		var iInfo = $("input[name='iInfo']").val();
+ 		var iInstock = $("input[name='iInstock']").val();
+ 		var iPrice = $("input[name='iPrice']").val();
+ 		//
+ 		
+ 		for(var i = 0; i < files.length; i++){
+ 			console.log(files[i]);
+ 			
+ 			formData.append("uploadFiles", files[i]);
+ 			formData.append("iDeliveryPrice", iDeliveryPrice);
+ 			formData.append("iInfo", iInfo);
+ 			formData.append("iInstock", iInstock);
+ 			formData.append("iPrice", iPrice);
+
+ 		}
+ 		
+ 		$.ajax({
+				url : 'modifyItem',
+				processData : false,
+				contentType : false,
+				data : formData,
+				type : 'POST',
+				dataType : 'json',
+				success : function(result){
+					console.log(result);
+					
+				},
+				error : function(jqXHR, textStatus, errThrown){
+					console.log(errThrown);
+				}
+				
+			})	// ajax의 끝
+ 	});	// 업로드 이벤트 등록 끝
+	
+ 	// 취소 버튼 이벤트 등록
+ 	$(".cancleBtn").click(function(){
+ 		
+ 		actionForm.attr("action", "/itemList").attr("method","get").submit();
+ 		
+ 	});	// 취소 이벤트 등록 끝
+ 	
+ 	
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	.dd{
+		width: 500px;
+		heigth: 1000px;
+		margin: 0 auto;
+		 text-align: center;
+	}
+</style>
+<body class="dd">
+	<button onclick="saveReq()">글작성</button>
+	<button onclick="pagingReq()">페이지 목록</button>
+</body>
+<script>
+	const saveReq = () =>{
+		location.href = "/qna/save";
+	}
+	
+	const pagingReq = () =>{
+		location.href = "/qna/paging";
+	}
+</script>
+</html>

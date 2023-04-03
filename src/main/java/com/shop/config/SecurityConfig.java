@@ -43,30 +43,35 @@ public class SecurityConfig {
 	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests().requestMatchers(new AntPathRequestMatcher("/**")).permitAll();
+		//http.authorizeHttpRequests().requestMatchers(new AntPathRequestMatcher("/**")).permitAll();
+		
+		http.csrf().ignoringAntMatchers("/css/**", 
+				"/confirm", 
+				"/mypage/**", 
+				"/findPassword/**", 
+				"/sendPwd/**", 
+				"/update/**", 
+				"/changepw", 
+				"/insertOrder/**", 
+				"/adminProduct/**", 
+				"/addCart/**", 
+				"/insertItem/**", 
+				"/notice/**", 
+				"/review/**", 
+				"/qna/**", 
+				"/reply/**");
 		
 		/** 권한별 접근가능 주소 설정하기 **/
 		
-		/** 권한이 없어도 들어올 수 있는 주소 **/
-		//http.authorizeRequests().antMatchers("/", "/register", "/js/**", "/css/**", "/font/**", "/img/**", "/vendor/**", "/admin/**").permitAll();
-		
-		
-		/** 권한이 있어야 들어올 수 있는 주소 **/
-		http.csrf().ignoringAntMatchers("/css/**", "/confirm", "/mypage/**", "/findPassword/**", "/sendPwd/**", "/update/**", "/changepw");
-		
-//		.and()
-//		.authorizeRequests()
-//		.antMatchers("/").permitAll()
-//		.anyRequest().authenticated();
-		
-//		http.csrf().ignoringRequestMatchers(new AntPathRequestMatcher("/css/**"), 
-//				new AntPathRequestMatcher("/confirm"), 
-//				new AntPathRequestMatcher("/mypage/**"), 
-//				new AntPathRequestMatcher("/findPassword/**"), 
-//				new AntPathRequestMatcher("/sendPwd/**"), 
-//				new AntPathRequestMatcher("/update/**")
-//				)
-
+		http.authorizeHttpRequests((auth -> {
+			
+			/** 권한이 없어도 들어올 수 있는 주소 **/
+			auth.antMatchers("/").permitAll();
+			auth.antMatchers("/findPassword").permitAll();
+			
+			/** 권한이 있어야 들어올 수 있는 주소 **/
+			auth.antMatchers("/mypage").hasAnyRole("USER");
+		}));
 
 		http
 			//.and()

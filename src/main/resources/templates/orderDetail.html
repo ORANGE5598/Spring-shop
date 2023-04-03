@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
+
+	<th:block th:fragment="content">
+
+		<h1 class="mt-4">주문내역 상세페이지</h1>
+
+		<div class="form-group">
+			<label>주문번호</label> <input type="text" class="form-control" name="oNumber"
+				th:value="${dto.oNumber}" readonly>
+		</div>
+		<div class="form-group">
+			<label>주문일</label> <input type="text" class="form-control"
+				name="regDate"
+				th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}"
+				readonly>
+		</div>
+		<div class="form-group">
+			<label>상품번호</label> <input type="text" class="form-control"
+				name="iNumber" th:value="${dto.iNumber}" readonly>
+		</div>
+		<div class="form-group">
+			<label>상품명</label>
+			<textarea class="form-control" rows="5" name="oName" readonly>[[${dto.oName}]]</textarea>
+		</div>
+		<div class="form-group">
+			<label>상품 이미지</label>
+			<div class="form-control" rows="5" name="img" readonly><img alt="" th:src="${dto.img}"  height="150" width="180" contentEditable="true"></div>
+			<!-- <textarea class="form-control" rows="5" name="img" readonly><img alt="" th:src="${dto.img}"  height="150" width="180"></textarea> -->
+		</div>
+		<div class="form-group">
+			<label>주문 갯수</label> <input type="text" class="form-control"
+				name="oCount" th:value="${dto.oCount}" readonly>
+		</div>
+		<div class="form-group">
+			<label>상품금액</label> <input type="text" class="form-control"
+				name="oItemPrice" th:value="${dto.oItemPrice}" readonly>
+		</div>
+		<div class="form-group">
+			<label>배송비</label> <input type="text" class="form-control"
+				name="oDeliveryPrice" th:value="${dto.oDeliveryPrice}" readonly>
+		</div>
+		<div class="form-group">
+			<label>총 금액</label> <input type="text" class="form-control"
+				name="oTotalPrice" th:value="${dto.oTotalPrice}" readonly>
+		</div>
+		<div class="form-group">
+			<label>획득 포인트</label> <input type="text" class="form-control"
+				name="oGetPoint" th:value="${dto.oGetPoint}" readonly>
+		</div>
+		
+		<!-- 아직 수정 기능 안넣음 -->
+		<a
+			th:href="@{/orderDetail(oNumber = ${dto.oNumber}, page=${requestDTO.page}, type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
+			<button type="button" class="btn btn-primary">수정</button>
+		</a>
+
+		<a
+			th:href="@{/orderList(page=${requestDTO.page} , type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
+			<button type="button" class="btn btn-info">목록</button>
+		</a>
+
+	</th:block>
+
+</th:block>

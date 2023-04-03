@@ -4929,6 +4929,7 @@ input.num-product::-webkit-inner-spin-button {
   content: "";
   margin: 0 8px;
 }
+
 /*---------------------------------------------
   [ findPassword ]*/
   
@@ -5000,29 +5001,6 @@ input.num-product::-webkit-inner-spin-button {
   background-color: #cccccc;
   position: absolute;
 }
-
-/*---------------------------------------------
-  [ login ]*/
-
-.login-box li:first-child::before {
-  display: none;
-}
-
-.login-box>li>a {
-  margin: auto;
-  padding: 0 10px;
-  font-family: Poppins-Regular;
-  font-size: 14px;
-  color: #888;
-  line-height: 1.2;
-}
-
-
-.find-box>li>a:hover {
-  color: #333;
-  border-color: #797979;
-}
-
 
 /*---------------------------------------------
   [ login ]*/
