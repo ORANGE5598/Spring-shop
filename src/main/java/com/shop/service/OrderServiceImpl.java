@@ -1,6 +1,8 @@
 package com.shop.service;
 
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -57,7 +59,19 @@ public class OrderServiceImpl implements OrderService {
 		
 		return entity.getONumber();
 	}
-
+	
+	@Override
+	public Long modify(OrderDTO dto) {
+		
+		OrderList entity = dtoToEntity(dto).builder().deliveryStatus(dto.getDeliveryStatus()).build();
+		
+		orderRepository.save(entity);
+		
+		return entity.getONumber();
+		
+	}
+	
+	
 	@Override
 	public PageResultDTO<OrderDTO, OrderList> getList(Long id, PageRequestDTO pageRequestDTO) {
 		
@@ -69,17 +83,27 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public Long afterDeposit(Long id) {
+	public List<OrderDTO> getAllList() {
 		
-		Long result = orderRepository.getAfterDeposit(id);
+		List<OrderList> orderList = orderRepository.findAll();
+		
+		List<OrderDTO> result = orderList.stream().map(order -> entityToDto(order)).collect(Collectors.toList());
 		
 		return result;
 	}
 	
 	@Override
-	public Long Deliverying(Long id) {
+	public Long allStatus(Long id) {
 		
-		Long result = orderRepository.getDeliverying(id);
+		Long result = orderRepository.countAll(id);
+		
+		return result;
+	}
+	
+	@Override
+	public Long deliverying(Long id) {
+		
+		Long result = orderRepository.deliverying(id);
 		
 		return result;
 	}
@@ -87,47 +111,23 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Long afterDelivery(Long id) {
 		
-		Long result = orderRepository.getAfterDelivery(id);
+		Long result = orderRepository.afterDelivery(id);
 		
 		return result;
 	}
 
 	@Override
-	public Long confirmOrder(Long id) {
+	public Long beforeCancle(Long id) {
 		
-		Long result = orderRepository.getconfirmOrder(id);
-		
-		return result;
-	}
-	
-	@Override
-	public Long exchangeStatus(Long id) {
-		
-		Long result = orderRepository.getExchange(id);
-		
-		return result;
-	}
-	
-	@Override
-	public Long afterExchange(Long id) {
-		
-		Long result = orderRepository.getAfterExchange(id);
+		Long result = orderRepository.beforeCancle(id);
 		
 		return result;
 	}
 
 	@Override
-	public Long cancleStatus(Long id) {
+	public Long afterCancle(Long id) {
 		
-		Long result = orderRepository.getCancle(id);
-		
-		return result;
-	}
-
-	@Override
-	public Long afterCancleStatus(Long id) {
-		
-		Long result = orderRepository.getAfterCancle(id);
+		Long result = orderRepository.afterCancle(id);
 		
 		return result;
 	}

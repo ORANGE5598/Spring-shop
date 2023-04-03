@@ -588,13 +588,13 @@ nav.mypage-sidenav {
 
 .img-block {
     display: table-cell;
-    width: 60px;
+    width: 120px;
     position: relative;
     margin-right: 25px;
     cursor: pointer;
 }
 
-.img-block img img {
+.img-block img {
     width: 100%;
 }
 

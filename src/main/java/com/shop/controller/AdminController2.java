@@ -68,7 +68,6 @@ public class AdminController2 {
 				return new ResponseEntity<>(resultDTOList, HttpStatus.OK);
 	}
 	
-	
 	// item DB 수정 메서드(재고 추가, 가격 변동, 이미지 수정)
 	
 	@PostMapping("/modifyItem")

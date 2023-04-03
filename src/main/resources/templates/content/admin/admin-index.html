@@ -86,34 +86,34 @@
                     <div class="menu-desktop ">
                         <ul class="customMenu">
                             <li>
-                                <a href="#">HOME</a>
+                                <a href="/index">HOME</a>
                             </li>
                             <li>
-                                <a href="#">SHOP</a>
+                                <a href="/product">SHOP</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">CLOTHING</a>
+                                    <li><a href="/product">CLOTHING</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">TOP</a></li>
-                                            <li><a href="#">BOTTOM</a></li>
+                                            <li><a href="/product">TOP</a></li>
+                                            <li><a href="/product">BOTTOM</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">FOOTWEAR</a></li>
-                                    <li><a href="#">ACCESSORIES</a>
+                                    <li><a href="/product">FOOTWEAR</a></li>
+                                    <li><a href="/product">ACCESSORIES</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">BAG</a></li>
-                                            <li><a href="#">HAEDWEAR</a></li>
+                                            <li><a href="/product">BAG</a></li>
+                                            <li><a href="/product">HAEDWEAR</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">TECH</a></li>
+                                    <li><a href="/product">TECH</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="#">ABOUT</a>
+                                <a href="/com">COMMUNITY</a>
                             </li>
 
                             <li>
-                                <a href="#">MYPAGE</a>
+                                <a href="/myPage-orderlist">MYPAGE</a>
                             </li>
                         </ul>
                     </div>
@@ -204,26 +204,26 @@
 	
 	        <ul class="main-menu-m">
 	            <li>
-	                <a href="index.html">HOME</a>
+	                <a href="/index">HOME</a>
 	            </li>
 	
 	            <li>
-	                <a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
+	                <a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
 	                <ul class="sub-menu-m">
-	                    <li><a href="#">CLOTHING</a>
+	                    <li><a href="/product">CLOTHING</a>
 	                        <ul class="sub-menu-m">
-	                            <li><a href="#">TOP</a></li>
-	                            <li><a href="#">BOTTOM</a></li>
+	                            <li><a href="/product">TOP</a></li>
+	                            <li><a href="/product">BOTTOM</a></li>
 	                        </ul>
 	                    </li>
-	                    <li><a href="#">FOOTWEAR</a></li>
-	                    <li><a href="#">ACCESSORIES</a>
+	                    <li><a href="/product">FOOTWEAR</a></li>
+	                    <li><a href="/product">ACCESSORIES</a>
 	                        <ul class="sub-menu-m">
-	                            <li><a href="#">BAG</a></li>
-	                            <li><a href="#">HAEDWEAR</a></li>
+	                            <li><a href="/product">BAG</a></li>
+	                            <li><a href="/product">HAEDWEAR</a></li>
 	                        </ul>
 	                    </li>
-	                    <li><a href="#">TECH</a></li>
+	                    <li><a href="/product">TECH</a></li>
 	                </ul>
 	                <span class="arrow-main-menu-m">
 							<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -231,15 +231,11 @@
 	            </li>
 	
 	            <li>
-	                <a th:href="@{/com}">Community</a>
+	                <a href="/com">Community</a>
 	            </li>
 	
 	            <li>
-	                <a href="#">MYPAGE</a>
-	            </li>
-	
-	            <li>
-	                <a href="#">Contact</a>
+	                <a href="/myPage-orderlist">MYPAGE</a>
 	            </li>
 	        </ul>
 	    </div>
@@ -280,7 +276,7 @@
 				<ul class="header-cart-wrapitem w-full">
 					<li class="header-cart-item flex-w flex-t m-b-12" th:each="cart : ${cartList}">
 						<div class="header-cart-item-img">
-							<img th:src="${cart.cImg}" alt="IMG">
+							<img th:src="${cart.cImg}">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -393,8 +389,8 @@
                         </a>
                     </div>
                 </div>
+        	</section>
         </div>
-        </section>
 
         <nav class="mypage-sidenav shop__sidebar__accordion">
             <h2 class="nav-tit">Admin Navigation</h2>
@@ -518,12 +514,12 @@
                     </thead>
 
                     <tbody>
-                        <tr class="table_row">
+                        <tr class="table_row" th:each="list : ${allList}">
                             <!--상품사진-->
                             <td class="column-1">
                                 <div class="img-block">
                                     <a href="#">
-                                        <img src="//image.msscdn.net/images/goods_img/20200423/1417382/1417382_1_100.jpg"
+                                        <img th:src="${list.img}"
                                             alt="방랑자 가방">
                                     </a>
                                 </div>
@@ -562,16 +558,16 @@
 
                             <!--배송상태-->
                             <td class="column-6">
-                                <span id="status" class="badge badge-pill badge-success w-full fs-14">배송완료</span>
+                                <span id="status" class="badge badge-pill badge-success w-full fs-14 dStatus">[[${list.deliveryStatus}]]</span>
                             </td>
 
                             <td class="txt-lighter column-6">
 
                                 <select id="status-select">
-                                    <option>배송중</option>
-                                    <option>배송완료</option>
-                                    <option>반품대기</option>
-                                    <option>반품완료</option>
+                                    <option class="deliveryStatus">배송중</option>
+                                    <option class="deliveryStatus">배송완료</option>
+                                    <option class="deliveryStatus">반품대기</option>
+                                    <option class="deliveryStatus">반품완료</option>
                                 </select>
 
                                 <button type="button" class="btn btn-outline-dark btn-sm" onclick="showConfirm()">
@@ -586,25 +582,12 @@
 
 
 
-
+			<!-- 페이지 수정해야하는 곳/ 페이지 없애고 리스트로 담아서 한줄로 전부 출력해버릴 예정 -->
             <div class="n-paging">
                 <button type="button" class="page is-active" onclick="return false;">1</button>
             </div>
         </section>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!------------------------------------------------------------------------------------------------------------------->
     <!-- Footer -->
@@ -748,6 +731,7 @@
    
    
     <!--===============================================================================================-->
+    <!-- 없는 기능 삭제예정 -->
     <script>
         function goListAjax(type) {
             $.ajax({
@@ -784,7 +768,7 @@
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
     <!--===============================================================================================-->
-    <scrip src="vendor/select2/select2.min.js"></scrip>
+    <script src="vendor/select2/select2.min.js"></script>
     <script>
         //////////////////(미니팝업기능)//////////////////////////////////
         const Toast = Swal.mixin({
@@ -871,7 +855,7 @@
         function showConfirm() {
             const selectedValue = selectElement.value;
 
-            swal({
+            swal.fire({
                 title: '상태 변경',
                 text: `'${selectedValue}'로 상태를 변경하시겠습니까?`,
                 icon: 'warning',
@@ -879,6 +863,37 @@
                 dangerMode: true,
             }).then((confirmed) => {
                 if (confirmed) {
+                	
+                	//
+                	
+                	function modify() {
+                		alert('경로1');
+				 		var formData = new FormData();
+						
+				 		var deliveryStatus = $(".dStatus").val();	// 수정해야함
+						alert(deliveryStatus);
+			 			formData.append("deliveryStatus", deliveryStatus);
+						
+			 			$.ajax({
+							url : 'modifyDeliveryStatus',
+							processData : false,
+							contentType : false,
+							data : formData,
+							type : 'POST',
+							dataType : 'json',
+							success : function(result){
+								alert('성공');
+								console.log(result);
+							},
+							error : function(jqXHR, textStatus, errThrown){
+								console.log(errThrown);
+							}
+							
+						})	// ajax의 끝
+					};
+					modify();
+                	
+                	//
                     spanElement.textContent = selectedValue;
                     selectElement.value = selectedValue;
                     switch (selectedValue) {

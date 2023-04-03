@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.List;
+
 import com.shop.dto.MemberDTO;
 import com.shop.dto.OrderDTO;
 import com.shop.dto.PageRequestDTO;
@@ -16,7 +18,8 @@ public interface OrderService {
 				.iNumber(entity.getINumber()).oCount(entity.getOCount())
 				.oItemPrice(entity.getOItemPrice()).oDeliveryPrice(entity.getODeliveryPrice())
 				.oTotalPrice(entity.getOTotalPrice()).createdDate(entity.getCreatedDate())
-				.oName(entity.getOName()).img(entity.getImg()).updatedDate(entity.getUpdatedDate())
+				.oName(entity.getOName()).img(entity.getImg())
+				.updatedDate(entity.getUpdatedDate()).deliveryStatus(entity.getDeliveryStatus())
 				.build();
 		
 		return dto;
@@ -41,22 +44,20 @@ public interface OrderService {
 	
 	Long order(OrderDTO dto);
 	
+	Long modify(OrderDTO dto);
+	
 	PageResultDTO<OrderDTO, OrderList> getList(Long id, PageRequestDTO pageRequestDTO);
 	
-	Long afterDeposit(Long id);
+	List<OrderDTO> getAllList();
 	
-	Long Deliverying(Long id);
+	Long allStatus(Long id);
+	
+	Long deliverying(Long id);
 	
 	Long afterDelivery(Long id);
 	
-	Long confirmOrder(Long id);
+	Long beforeCancle(Long id);
 	
-	Long exchangeStatus(Long id);
-	
-	Long afterExchange(Long id);
-	
-	Long cancleStatus(Long id);
-	
-	Long afterCancleStatus(Long id);
+	Long afterCancle(Long id);
 	
 }

@@ -53,17 +53,18 @@
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-20">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            LOG IN
-                        </a>
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            SIGN UP
-                        </a>
-
+						<a href="#" class="flex-c-m trans-04 p-lr-20">
+	                        Help & FAQs
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m trans-04 p-lr-25">
+	                        LOG IN
+	                    </a>
+	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m trans-04 p-lr-25">
+	                        LOGOUT
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m trans-04 p-lr-25">
+	                        Register
+	                    </a>
                     </div>
                 </div>
             </div>
@@ -72,7 +73,7 @@
                 <nav class="limiter-menu-desktop container">
 
                     <!-- Logo desktop -->
-                    <a href="#" class="logo">
+                    <a href="/index" class="logo">
                         <img src="img/icons/logo1.png" alt="">
                     </a>
 
@@ -80,34 +81,34 @@
                     <div class="menu-desktop ">
                         <ul class="customMenu">
                             <li>
-                                <a href="#">HOME</a>
+                                <a href="/index">HOME</a>
                             </li>
                             <li>
-                                <a href="#">SHOP</a>
+                                <a href="/product">SHOP</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">CLOTHING</a>
+                                    <li><a href="/product">CLOTHING</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">TOP</a></li>
-                                            <li><a href="#">BOTTOM</a></li>
+                                            <li><a href="/product">TOP</a></li>
+                                            <li><a href="/product">BOTTOM</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">FOOTWEAR</a></li>
-                                    <li><a href="#">ACCESSORIES</a>
+                                    <li><a href="/product">FOOTWEAR</a></li>
+                                    <li><a href="/product">ACCESSORIES</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">BAG</a></li>
-                                            <li><a href="#">HAEDWEAR</a></li>
+                                            <li><a href="/product">BAG</a></li>
+                                            <li><a href="/product">HAEDWEAR</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">TECH</a></li>
+                                    <li><a href="/product">TECH</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="#">ABOUT</a>
+                                <a href="/com">COMMUNITY</a>
                             </li>
 
                             <li>
-                                <a href="#">MYPAGE</a>
+                                <a href="/myPage-orderlist">MYPAGE</a>
                             </li>
                         </ul>
                     </div>
@@ -125,8 +126,6 @@
                             th:data-notify="${count}">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
-
-                        <!----------------------찜하기 기능 (상품 찜하기 버튼 누르면 카운트 메서드 필요)--------------------------->
                     </div>
                 </nav>
             </div>
@@ -139,7 +138,7 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="#"><img src="img/icons/logo1.png" alt="IMG-LOGO"></a>
+                <a href="/index"><img src="img/icons/logo1.png" alt="IMG-LOGO"></a>
             </div>
 
             <!-- Icon header -->
@@ -157,8 +156,6 @@
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
             </div>
-
-
 
             <!-- 카트 버튼 누르면 내가 장바구니 안에 넣은 상품들이 보임. -->
             <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -181,43 +178,44 @@
 
                 <li>
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            LOG IN
-                        </a>
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            SIGN UP
-                        </a>
-
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							Help & FAQs
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m p-lr-10 trans-04">
+	                        LOG IN
+	                    </a>
+	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m p-lr-10 trans-04">
+	                        LOG OUT
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m p-lr-10 trans-04">
+	                        SIGN UP
+	                    </a>
                     </div>
                 </li>
             </ul>
 
             <ul class="main-menu-m">
                 <li>
-                    <a href="#">HOME</a>
+                    <a href="/index">HOME</a>
                 </li>
 
                 <li>
-                    <a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
+                    <a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
                     <ul class="sub-menu-m">
-                        <li><a href="#">CLOTHING</a>
+                        <li><a href="/product">CLOTHING</a>
                             <ul class="sub-menu-m">
-                                <li><a href="#">TOP</a></li>
-                                <li><a href="#">BOTTOM</a></li>
+                                <li><a href="/product">TOP</a></li>
+                                <li><a href="/product">BOTTOM</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">FOOTWEAR</a></li>
-                        <li><a href="#">ACCESSORIES</a>
+                        <li><a href="/product">FOOTWEAR</a></li>
+                        <li><a href="/product">ACCESSORIES</a>
                             <ul class="sub-menu-m">
-                                <li><a href="#">BAG</a></li>
-                                <li><a href="#">HAEDWEAR</a></li>
+                                <li><a href="/product">BAG</a></li>
+                                <li><a href="/product">HAEDWEAR</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">TECH</a></li>
+                        <li><a href="/product">TECH</a></li>
                     </ul>
                     <span class="arrow-main-menu-m">
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -225,11 +223,11 @@
                 </li>
 
                 <li>
-                    <a href="#">ABOUT</a>
+                    <a href="/com">COMMUNITY</a>
                 </li>
 
                 <li>
-                    <a href="#">MYPAGE</a>
+                    <a href="/myPage-orderlist">MYPAGE</a>
                 </li>
 
             </ul>
@@ -251,8 +249,6 @@
             </div>
         </div>
     </header>
-
-
 
     <!-- 장바구니 -->
 	<div class="wrap-header-cart js-panel-cart">
@@ -433,14 +429,11 @@
             <div class="section-title">
                 <h1 class="tit">주문내역 조회</h1>
                 <ul class="state">
-                    <li><a href="javascript:goList('ord_1');">결제완료 [[${count1}]]</a></li>
-                    <li><a href="javascript:goList('ord_2');">배송중 [[${count2}]]</a></li>
-                    <li><a href="javascript:goList('ord_3');">배송완료 [[${count3}]]</a></li>
-                    <li><a href="javascript:goList('ord_4');">구매확정 [[${count4}]]</a></li>
-                    <li><a href="javascript:goList('exchange');">교환 [[${count5}]]</a></li>
-                    <li><a href="javascript:goList('clm_2');">교환완료 [[${count6}]]</a></li>
-                    <li><a href="javascript:goList('clm_3');">환불 [[${count7}]]</a></li>
-                    <li><a href="javascript:goList('clm_4');">환불완료 [[${count8}]]</a></li>
+                    <li><a href="#">전체 [[${count0}]]</a></li>
+                    <li><a href="#">배송중 [[${count1}]]</a></li>
+                    <li><a href="#">배송완료 [[${count2}]]</a></li>
+                    <li><a href="#">반품대기 [[${count3}]]</a></li>
+                    <li><a href="#">반품완료 [[${count4}]]</a></li>
                 </ul>
             </div>
 

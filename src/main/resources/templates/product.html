@@ -54,19 +54,15 @@
 	                    <a href="#" class="flex-c-m trans-04 p-lr-20">
 	                        Help & FAQs
 	                    </a>
-	
 	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m trans-04 p-lr-25">
 	                        LOG IN
 	                    </a>
-	                    
 	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m trans-04 p-lr-25">
 	                        LOGOUT
 	                    </a>
-	                    
 	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m trans-04 p-lr-25">
 	                        Register
 	                    </a>
-
 					</div>
                 </div>
             </div>

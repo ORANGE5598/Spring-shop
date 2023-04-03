@@ -284,14 +284,11 @@ public class IndexController {
 		
 		model.addAttribute("member", member);
 		model.addAttribute("orderList", orderService.getList(id, pageRequestDTO));	// 사용자 id에 따른 전체 목록 출력
-		model.addAttribute("count1", orderService.afterDeposit(id));	// 결제완료 숫자
-		model.addAttribute("count2", orderService.Deliverying(id));		// 배송중 숫자
-		model.addAttribute("count3", orderService.afterDelivery(id));	// 입금확인 숫자
-		model.addAttribute("count4", orderService.confirmOrder(id));	// 배송완료 숫자
-		model.addAttribute("count5", orderService.exchangeStatus(id));	// 환불 숫자
-		model.addAttribute("count6", orderService.afterExchange(id));	// 교환 숫자
-		model.addAttribute("count7", orderService.cancleStatus(id));	// 반품 숫자
-		model.addAttribute("count8", orderService.afterCancleStatus(id));	// 반품 숫자
+		model.addAttribute("count0", orderService.allStatus(id));
+		model.addAttribute("count1", orderService.deliverying(id));
+		model.addAttribute("count2", orderService.afterDelivery(id));
+		model.addAttribute("count3", orderService.beforeCancle(id));
+		model.addAttribute("count4", orderService.afterCancle(id));
 		
 		return "content/user/myPage-orderlist";
 	}

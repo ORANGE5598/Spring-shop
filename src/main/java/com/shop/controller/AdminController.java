@@ -20,6 +20,7 @@ import com.shop.service.CartService;
 import com.shop.service.CategoryService;
 import com.shop.service.ItemService;
 import com.shop.service.MemberService;
+import com.shop.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -30,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 public class AdminController{
 	
 	private final ItemService itemService;
+	private final OrderService orderService;
 	private final MemberService memberService;
 	private final CartService cartService;
 	private final CategoryService categoryService;
@@ -97,7 +99,7 @@ public class AdminController{
 	    model.addAttribute("count", cartCount);
 		
 		model.addAttribute("member", member);
-		model.addAttribute("itemDTO", itemService.getList(pageRequestDTO));
+		model.addAttribute("allList", orderService.getAllList());
 		
 		return "content/admin/admin-index";
 	}
