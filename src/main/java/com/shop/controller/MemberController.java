@@ -22,16 +22,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.MemberDTO;
-import com.shop.dto.MemberEditDTO;
-import com.shop.dto.PasswordEditDTO;
+import com.shop.dto.PwDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.Member;
+import com.shop.service.MailService;
 import com.shop.service.MemberService;
 import com.shop.validator.CheckEmailValidator;
 import com.shop.validator.CheckUsernameValidator;
@@ -42,9 +43,11 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @Controller
 @Log4j2
+@RequestMapping("/")
 public class MemberController {
 
 	private final MemberService memberService;
+	private final MailService mailService;
 
 	/** 중복 체크 유효성 검사 **/
 	private final CheckUsernameValidator checkUsernameValidator;
@@ -57,15 +60,21 @@ public class MemberController {
 		binder.addValidators(checkEmailValidator);
 	}
 
+	@GetMapping("/findPassword")
+	public String findPassword() {
+		return "/findPassword";
+	}
+	
 	@GetMapping("/register")
 	public String register(Model model) {
-		model.addAttribute("memberDTO", new MemberDTO.RequestDTO());
+		model.addAttribute("memberDTO", new RequestDTO());
 		return "/register";
 	}
 
 	@PostMapping("/register")
 	public String register(@ModelAttribute @Valid RequestDTO memberDTO, BindingResult bindingResult, Model model) {
-
+		
+		
 		if(bindingResult.hasErrors()) {
 
 			log.info("======== 회원 가입에 예외 있음");
@@ -73,7 +82,7 @@ public class MemberController {
 			model.addAttribute("memberDto", memberDTO);
 
 			Map<String, String> errorMap = new HashMap<>();
-
+			
 			for(FieldError error : bindingResult.getFieldErrors()) {
 				errorMap.put("valid_" + error.getField(), error.getDefaultMessage());
 				log.info("회원가입실패. : " + error.getDefaultMessage());
@@ -86,18 +95,21 @@ public class MemberController {
 
 			return "register";
 		}
-
+	
+		log.info("회원가입 성공 : " + memberDTO.toString());
 		memberService.userJoin(memberDTO);
 		return "redirect:/login";
+		
 	}
 
 	@GetMapping("/login")
 	public String login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "exception", required = false) String exception,
 			Model model) {
-
 		/** 에러와 예외가 존재하는 경우우 모델에 담아 view resolv **/
+
 		model.addAttribute("error", error);
+
 		model.addAttribute("exception", exception);
 
 		return "/login";
@@ -136,71 +148,91 @@ public class MemberController {
 	public String admin() {
 		return "admin/admin";
 	}
+	
+	@PostMapping("/sendPwd")
+	@ResponseBody
+	public boolean sendPwdEmail(@RequestParam("memberEmail") String memberEmail) throws Exception {
+		log.info("요청된 이메일 : " + memberEmail);
+		
+		if(!memberService.checkEmail(memberEmail)) {
+			return false;
+		}
+		
+		String tmpPassword = memberService.getTmpPassword();
+		memberService.updatePassword(tmpPassword, memberEmail);
+		mailService.createMail(tmpPassword, memberEmail);
+		
+		return true;
+		
+	}
 
 	//////////////////////////////////////////////////////////////////
 
-	@GetMapping("/mypage")
-	public String myPage(Model model, @AuthenticationPrincipal Member currentMember) {
-
-		MemberEditDTO dto = new MemberEditDTO();
-		dto.setUsername(currentMember.getUsername());
-		dto.setEmail(currentMember.getEmail());
-
-		model.addAttribute(dto);
-		return "mypage";
-	}
-
 	/** 마이페이지 **/
-	@GetMapping("/myPage")
+	@GetMapping("/mypage")
 	public String findByMemberId(@AuthenticationPrincipal UserAdapter user,
 			Model model) {
 
 		Long member_id = user.getMemberDTO().getId();
 		ResponseDTO responseDto = memberService.getById(member_id);
 		model.addAttribute("member", responseDto);
-		return "member/myPage";
+		return "/mypage";
 	}
 
-	@PostMapping("/mypage/password")
-	public String passwordEdit(Model model,
-			PasswordEditDTO dto,
-			BindingResult result,
-			@AuthenticationPrincipal Member currentMember) {
-		if (result.hasErrors()) {
-			return "redirect:/mypage/password";
+	@GetMapping("/checkpwd")
+	public String checkPwdView(){
+		return "/check-pwd";
+	}
+	
+	@GetMapping("/update")
+	public String MemberUpdate(@AuthenticationPrincipal UserAdapter member, Model model) {
+		Long member_id = member.getMemberDTO().getId();
+		ResponseDTO responseDTO = memberService.getById(member_id);
+		model.addAttribute("member", responseDTO);
+		return "/update";
+	}
+	
+	@GetMapping("/changepw")
+	public String passwordPage(Model model) {
+		model.addAttribute("PwDTO", new PwDTO());
+		return "passwordOnly";
+	}
+	
+	@PostMapping("/passwordOnly") 
+	public String passwordUpdate(Model model, PwDTO dto, BindingResult result, @AuthenticationPrincipal Member member) {
+		if(result.hasErrors()) {
+			return "redirect:/mypage";
 		}
-
-		if (!passwordEncoder.matches(dto.getPassword(), currentMember.getPassword())) {
-			model.addAttribute("error", "현재 패스워드 불일치");
-			return "mypage/passwordError";
+		
+		if(!passwordEncoder.matches(dto.getPassword(), member.getPassword())) {
+			model.addAttribute("error", "동일한 패스워드입니다.");
 		}
-
-		if(dto.getNewPassword().equals(dto.getPassword())){
-			model.addAttribute("error", "동일한 패스워드");
-			return "mypage/passwordError";
+		
+		if(!dto.getNewPassword().equals(dto.getRetype())) {
+			model.addAttribute("error", "새 패스워드가 일치하지 않습니다.");
 		}
-
-		if (!dto.getNewPassword().equals(dto.getRetype())) {
-			model.addAttribute("error", "새 패스워드 불일치");
-			return "mypage/passwordError";
-		}
-
-		String encodedNewPwd = passwordEncoder.encode(dto.getNewPassword());
-		memberService.updatePassword(currentMember.getUsername(), encodedNewPwd);
-		currentMember.setPassword(encodedNewPwd);
+		
+		String encodeNewPw = passwordEncoder.encode(dto.getNewPassword());
+		memberService.updatePassword(member.getUsername(), encodeNewPw);
+		member.setPassword(encodeNewPw);
 		return "redirect:/mypage";
+		
+		
 	}
+
+	
+	
 
 	@GetMapping("/deleteMember")
 	public String delMember(Model model, String checkWords){
-		model.addAttribute("passwordForm", new PasswordEditDTO());
+		model.addAttribute("passwordForm", new PwDTO());
 		model.addAttribute("checkWords", checkWords);
 
 		return "mypage/deleteMember";
 	}
 
 	@PostMapping("/deleteMember")
-	public String delMember(PasswordEditDTO dto,
+	public String delMember(PwDTO dto,
 			String checkWords,
 			@AuthenticationPrincipal Member currentMember){
 

@@ -43,18 +43,20 @@ public interface OrderService {
 	
 	PageResultDTO<OrderDTO, OrderList> getList(Long id, PageRequestDTO pageRequestDTO);
 	
-	Long beforeDeposit(Long id);
-	
-	Long beforeDelivery(Long id);
+	Long afterDeposit(Long id);
 	
 	Long Deliverying(Long id);
 	
 	Long afterDelivery(Long id);
 	
-	Long cancleStatus(Long id);
+	Long confirmOrder(Long id);
 	
 	Long exchangeStatus(Long id);
 	
-	Long returnStatus(Long id);
+	Long afterExchange(Long id);
+	
+	Long cancleStatus(Long id);
+	
+	Long afterCancleStatus(Long id);
 	
 }

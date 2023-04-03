@@ -122,7 +122,7 @@
 
                         <!---------------------------------장바구니 기능 ( 장바구니에 상품 넣으면 카운트 메서드 필요)---------------------------->
                         <div class="icon-header-item cl8 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                            data-notify="2">
+                            th:data-notify="${count}">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
 
@@ -153,7 +153,7 @@
 
                 <!---------------------------카트아이콘 ( 카운트 메서드 필요)--------------------------->
                 <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                    data-notify="2">
+                    th:data-notify="${count}">
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
             </div>
@@ -294,13 +294,9 @@
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="#"
+						<a href="/shopping-cart"
 							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							장바구니로
-						</a>
-
-						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							바로 결제하기
 						</a>
 					</div>
 				</div>
@@ -408,7 +404,7 @@
                                 후기작성
                                 <i class="fa fa-angle-right"></i>
                             </em>
-                            <strong>0</strong>
+                            <strong>0</strong><!-- review 로직 짜서 id 일치하는 게시글 수 count로 가져오도록 작성해야함 -->
                         </a>
                     </div>
                 </div>
@@ -437,15 +433,14 @@
             <div class="section-title">
                 <h1 class="tit">주문내역 조회</h1>
                 <ul class="state">
-                    <li><a href="javascript:goList('ord_1');">결제 0aaa</a></li>
-                    <li><a href="javascript:goList('ord_2');">배송중 [[${count3}]]</a></li>
-                    <li><a href="javascript:goList('ord_3');">배송완료 [[${count4}]]</a></li>
-                    <li><a href="javascript:goList('ord_4');">구매확정 0aaa</a></li>
-                    <!--[D]환불 교환-->
-                    <li><a href="javascript:goList('exchange');">교환 [[${count6}]]</a></li>
-                    <li><a href="javascript:goList('clm_2');">교환완료 0aaa</a></li>
+                    <li><a href="javascript:goList('ord_1');">결제완료 [[${count1}]]</a></li>
+                    <li><a href="javascript:goList('ord_2');">배송중 [[${count2}]]</a></li>
+                    <li><a href="javascript:goList('ord_3');">배송완료 [[${count3}]]</a></li>
+                    <li><a href="javascript:goList('ord_4');">구매확정 [[${count4}]]</a></li>
+                    <li><a href="javascript:goList('exchange');">교환 [[${count5}]]</a></li>
+                    <li><a href="javascript:goList('clm_2');">교환완료 [[${count6}]]</a></li>
                     <li><a href="javascript:goList('clm_3');">환불 [[${count7}]]</a></li>
-                    <li><a href="javascript:goList('clm_4');">환불완료 0aaa</a></li>
+                    <li><a href="javascript:goList('clm_4');">환불완료 [[${count8}]]</a></li>
                 </ul>
             </div>
 
@@ -527,12 +522,12 @@
                     </thead>
 
                     <tbody>
-                        <tr class="table_row" th:each="list : ${orderList}">
+                        <tr class="table_row" th:each="list : ${orderList.dtoList}">
                             <!--상품사진-->
                             <td class="column-1">
                                 <div class="img-block">
                                     <a href="#">
-                                        <img th:src="${list.img}" alt="방랑자 가방">
+                                        <img th:src="${list.img}" alt="방랑자 가방" width="200">
                                     </a>
                                 </div>
                             </td>

@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import com.shop.entity.Notice;
 
-
-
 @Repository
 public interface NoticeRepository extends JpaRepository<Notice, Long> {
 

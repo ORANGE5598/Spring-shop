@@ -11,7 +11,6 @@ import com.shop.entity.MemberRole;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +32,7 @@ public class MemberDTO implements Serializable{
 		private Long id;
 
 		@NotBlank(message = "아이디입력.")
+		@Pattern(regexp = "^[a-z0-9]{4,20}$", message = "아이디는 영어 소문자와 숫자만 사용하여 4~20자리여야 합니다.")
 		private String username;
 
 		@NotBlank(message = "패스워드입력.")
@@ -42,7 +42,7 @@ public class MemberDTO implements Serializable{
 		private String name;
 
 		@NotBlank(message = "이메일입력.")
-		@Email
+		@Email(message = "이메일 형식이 올바르지 않습니다.")
 		@Pattern(regexp = "^(?:\\w+\\.?)*\\w+@(?:\\w+\\.)+\\w+$", message = "이메일 형식이 올바르지 않습니다.")
 		private String email;
 
@@ -53,16 +53,17 @@ public class MemberDTO implements Serializable{
 		private String address2;
 
 		@NotBlank(message = "휴대폰 입력.")
+		@Pattern(regexp = "\\d{3}-\\d{4}-\\d{4}", message = "올바른 형식으로 입력해주세요. ex) 666-6666-6666")
 		private String phone;
 
 		private MemberRole role;
 		
 		private int point;
-		
+
 		public void encryptPassword(String password) {
 			this.password = password;
 		}
-		
+
 		public Member toEntity() {
 			@SuppressWarnings("static-access")
 			Member member = Member.builder()

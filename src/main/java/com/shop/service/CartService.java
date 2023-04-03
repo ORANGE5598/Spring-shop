@@ -10,11 +10,11 @@ import com.shop.entity.Cart;
 
 public interface CartService {
 	
-default Cart dtoToEntity(CartDTO dto, @AuthenticationPrincipal UserAdapter user) {
+	default Cart dtoToEntity(CartDTO dto, @AuthenticationPrincipal UserAdapter user) {
 	
-	Long id = user.getMemberDTO().getId();
-	
-	Cart cart = Cart.builder()
+		Long id = user.getMemberDTO().getId();
+		
+		Cart cart = Cart.builder()
 				.cImg(dto.getCImg()).cInfo(dto.getCInfo())
 				.cName(dto.getCName()).cPrice(dto.getCPrice())
 				.mId(id).count(dto.getCount())
@@ -37,4 +37,7 @@ default Cart dtoToEntity(CartDTO dto, @AuthenticationPrincipal UserAdapter user)
 	List<CartDTO> getCartList(Long id);
 	
 	void saveCart(CartDTO dto, @AuthenticationPrincipal UserAdapter user);
+	
+	Long getCartCount(Long id);
+	
 }

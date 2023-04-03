@@ -69,17 +69,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public Long beforeDeposit(Long id) {
+	public Long afterDeposit(Long id) {
 		
-		Long result = orderRepository.getBeforeDeposit(id);
-		
-		return result;
-	}
-	
-	@Override
-	public Long beforeDelivery(Long id) {
-		
-		Long result = orderRepository.getBeforeDelivery(id);
+		Long result = orderRepository.getAfterDeposit(id);
 		
 		return result;
 	}
@@ -101,6 +93,30 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	public Long confirmOrder(Long id) {
+		
+		Long result = orderRepository.getconfirmOrder(id);
+		
+		return result;
+	}
+	
+	@Override
+	public Long exchangeStatus(Long id) {
+		
+		Long result = orderRepository.getExchange(id);
+		
+		return result;
+	}
+	
+	@Override
+	public Long afterExchange(Long id) {
+		
+		Long result = orderRepository.getAfterExchange(id);
+		
+		return result;
+	}
+
+	@Override
 	public Long cancleStatus(Long id) {
 		
 		Long result = orderRepository.getCancle(id);
@@ -109,17 +125,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public Long exchangeStatus(Long id) {
+	public Long afterCancleStatus(Long id) {
 		
-		Long result = orderRepository.getExchange(id);
-		
-		return result;
-	}
-
-	@Override
-	public Long returnStatus(Long id) {
-		
-		Long result = orderRepository.getReturn(id);
+		Long result = orderRepository.getAfterCancle(id);
 		
 		return result;
 	}

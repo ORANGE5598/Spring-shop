@@ -15,11 +15,12 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class CartController {
 	
-	private final MemberService memberService;
 	private final CartService cartService;
 	
 	@PostMapping("/addCart")
 	public void addCart(CartDTO dto, @AuthenticationPrincipal UserAdapter user) {
+		
+		
 		cartService.saveCart(dto, user);
 	}
 }

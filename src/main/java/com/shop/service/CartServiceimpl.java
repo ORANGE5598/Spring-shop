@@ -31,13 +31,20 @@ public class CartServiceimpl implements CartService {
 		return result;
 	}
 	
-	@Transactional
 	@Override
 	public void saveCart(CartDTO dto, @AuthenticationPrincipal UserAdapter user) {
 		
 		Cart entity = dtoToEntity(dto, user);
 		
 		cartRepository.save(entity);
+	}
+	
+	@Override
+	public Long getCartCount(Long id) {
+		
+		Long result = cartRepository.getCartCount(id);
+		
+		return result;
 	}
 	
 }

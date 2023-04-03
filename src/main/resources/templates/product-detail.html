@@ -123,7 +123,7 @@
 						</div>
 
 						<div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-							data-notify="2">
+							th:data-notify="${count}">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 					</div>
@@ -145,14 +145,9 @@
 				</div>
 
 				<div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-					data-notify="2">
+					th:data-notify="${count}">
 					<i class="zmdi zmdi-shopping-cart"></i>
 				</div>
-
-				<a href="#" class="dis-block icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti"
-					data-notify="0">
-					<i class="zmdi zmdi-favorite-outline"></i>
-				</a>
 			</div>
 
 			<!-- Button show menu -->
@@ -176,16 +171,17 @@
 				<li>
 					<div class="right-top-bar flex-w h-full">
 						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							LOG IN
-						</a>
-
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							SIGN UP
-						</a>
+                        Help & FAQs
+                    </a>
+                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m p-lr-10 trans-04">
+                        LOG IN
+                    </a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m p-lr-10 trans-04">
+                        LOG OUT
+                    </a>
+                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m p-lr-10 trans-04">
+                        SIGN UP
+                    </a>
 					</div>
 				</li>
 			</ul>
@@ -285,17 +281,13 @@
 
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: ￦[[${#vars.totalPrice}]]<input type="hidden" th:value="${#vars.totalPrice}" />
+						Total: ￦[[${totalPrice}]]<input type="hidden" th:value="${totalPrice}" />
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="#"
+						<a href="/shopping-cart"
 							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
 							장바구니로
-						</a>
-
-						<a href="#" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							바로 결제하기
 						</a>
 					</div>
 				</div>
@@ -394,7 +386,7 @@
 										</div>
 
 										<input class="mtext-104 cl3 txt-center num-product" type="number"
-											name="num-product" value="1"><!-- 수정필요 -->
+											name="num-product" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
@@ -569,7 +561,7 @@
 					<h4 class="stext-301 cl0 p-b-30">
 						Categories
 					</h4>
-
+					
 					<ul>
 						<li class="p-b-10">
 							<a href="producttop" class="stext-107 cl7 hov-cl1 trans-04">
@@ -724,43 +716,6 @@
 	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
-	<script>
-		$('.js-addwish-b2').on('click', function (e) {
-			e.preventDefault();
-		});
-
-		$('.js-addwish-b2').each(function () {
-			var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
-			$(this).on('click', function () {
-				swal(nameProduct, "위시리스트에 추가되었습니다 ! ", "success");
-
-				$(this).addClass('js-addedwish-b2');
-				$(this).off('click');
-			});
-		});
-
-		$('.js-addwish-detail').each(function () {
-			//var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
-
-			$(this).on('click', function () {
-				//swal(nameProduct, "위시리스트에서 제거되었습니다 ! ", "success");
-
-				//$(this).addClass('js-addedwish-detail');
-				//$(this).off('click');
-			});
-		});
-
-		/*---------------------------------------------*/
-
-		$('.js-addcart-detail').each(function () {
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function () {
-				// 장바구니로 데이터 넘기기
-				swal(nameProduct, "장바구니에 담겼습니다 !", "success");
-			});
-		});
-
-	</script>
 	<!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -778,7 +733,6 @@
 			})
 		});
 	</script>
-
 	<!--===============================================================================================-->
 	<script>
 		function show() {
@@ -819,14 +773,14 @@
 			var cName = $("input[name='cName']").val();
 			var cInfo = $("input[name='cInfo']").val();
 			var cPrice = $("input[name='cPrice']").val();
-			var count = $("input.count").val();//수정필요
-			alert("count : " + count)//수정필요
+			var count = $("input[name='num-product']").val();
+			
 			formData.append("mId", mId);
 			formData.append("cImg", cImg);
 			formData.append("cName", cName);
 			formData.append("cInfo", cInfo);
 			formData.append("cPrice", cPrice);
-			formData.append("count", count);//수정필요
+			formData.append("count", count);
 			
 			$.ajax({
 				url : 'addCart',
@@ -836,12 +790,14 @@
 				type : 'POST',
 				dataType : 'json',
 				success : function(result){
-					swal(nameProduct, "위시리스트에서 제거되었습니다 ! ", "success");
-					window.location.href = '/shopping-cart';
+					swal(nameProduct, "1장바구니에 담았습니다 ! ", "success").then(function() {
+						   window.location.href = '/shopping-cart';
+					});
 				},
 				error : function(jqXHR, textStatus, errThrown){
-					swal(nameProduct, "위시리스트에서 제거되었습니다 ! ", "success");
-					window.location.href = '/shopping-cart';
+					swal(nameProduct, "2장바구니에 담았습니다 ! ", "success").then(function() {
+						   window.location.href = '/shopping-cart';
+					});
 				}
 				
 			})

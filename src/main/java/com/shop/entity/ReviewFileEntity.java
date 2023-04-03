@@ -32,4 +32,3 @@ public class ReviewFileEntity extends BaseEntity {
         return reviewFileEntity;
     }
 }
-

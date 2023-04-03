@@ -317,20 +317,18 @@
 						
 						
 						
+			
 						
 						<div class="p-b-63" th:each="review : ${reviewList}">
+					
+						<div th:if="${review.fileAttached == 1}">
+		<div class="mb-3">
+			<img th:src="@{|/upload/${review.storedFileName}|}" alt="">
+		</div>
+	</div>		
+					
+								
 						
-						<th>---여기는 이미지가들어와야되는데 왜안들어오지----</th>
-								<div class="mb-3" th:if="${review.fileAttached == 1}">
-							<img class="img-fluid" th:src="${review.storedFileName}" alt="">
-						</div>
-								
-								
-								
-								
-								<!--  <tr th:if="${review.fileAttached == 1}"> 
-								<img th:src="@{|/upload/${review.storedFileName}|}"alt=""></td>
-								</tr><br>-->
 						
 						
 						
@@ -345,8 +343,8 @@
 									</p>
 								<div class="flex-w flex-sb-m p-t-18">
 									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span><span class="cl4">ID : [[${review.reviewWriter}]]</span> <!-- <span th:text="${review.reviewWriter}"></span>-->
-											<span class="cl12 m-l-4 m-r-6">|</span></span> <span><span
+										<span><span class="cl4">아이디 들어가야할곳</span> <!-- <span th:text="${review.reviewWriter}"></span>-->
+											<span class="cl12 m-l-4 m-r-6"></span></span> <span><span
 											class="cl4">별점 </span> <span th:text="${review.reviewRating}"></span></span>
 									</span> <span
 										th:text="${#temporals.format(review.regDate, 'yyyy-MM-dd HH:mm:ss')}"></span>

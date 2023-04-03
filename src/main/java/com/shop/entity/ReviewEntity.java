@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,6 +20,7 @@ import lombok.Data;
 	@Entity
 	@Table(name = "review_table")
 	@Data
+
 	public class ReviewEntity extends BaseEntity {
 	    
 	    @javax.persistence.Id
@@ -32,9 +35,10 @@ import lombok.Data;
 	    @Column(columnDefinition = "TEXT")
 	    private String reviewContent;
 	
-	    private String reviewWriter;
-	
 	    private int reviewRating;
+	    
+	    @Column
+	    private String storedFileName;
 	    
 	   
 	    
@@ -42,13 +46,16 @@ import lombok.Data;
 	    private List<ReviewFileEntity> reviewFileEntityList = new ArrayList<>();
 	    
 	    public static ReviewEntity toSaveEntity(ReviewDTO reviewDTO) {
-	    	ReviewEntity reviewEntity = new ReviewEntity();
-	    	reviewEntity.setReviewTitle(reviewDTO.getReviewTitle());
-	    	reviewEntity.setReviewContent(reviewDTO.getReviewContent());
-	    	reviewEntity.setReviewRating(reviewDTO.getReviewRating());
-	    	reviewEntity.setFileAttached(0); // 파일 없음.
-	        return reviewEntity;
-	    }
+	    	  ReviewEntity reviewEntity = new ReviewEntity();
+	    	    reviewEntity.setReviewTitle(reviewDTO.getReviewTitle());
+	    	    reviewEntity.setReviewContent(reviewDTO.getReviewContent());
+	    	    reviewEntity.setReviewRating(reviewDTO.getReviewRating());
+	    	    reviewEntity.setFileAttached(0); // 파일 없음.
+	    	    
+	    	    return reviewEntity;
+	    }    	    
+	    
+	 
 	    
 	    public static ReviewEntity toSaveFileEntity(ReviewDTO reviewDTO) {
 	    	ReviewEntity reviewEntity = new ReviewEntity();
@@ -56,8 +63,13 @@ import lombok.Data;
 	    	reviewEntity.setReviewContent(reviewDTO.getReviewContent());
 	    	reviewEntity.setReviewRating(reviewDTO.getReviewRating());
 	        reviewEntity.setFileAttached(1); // 파일 있음.
+	      
+	        
+	       
+	        
 	        return reviewEntity;
 	    }
+	    
 	    
 	    
 	    

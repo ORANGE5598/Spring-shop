@@ -22,6 +22,7 @@ public class NoticeController {
 
 	@GetMapping("/notice")
 	public String noticeList(Model model) {
+		
 	    model.addAttribute("notices", noticeService.getAllNotices());
 	    
 	    // 현재 인증 정보에서 아이디 추출

@@ -4,7 +4,9 @@ import java.time.LocalDateTime;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shop.entity.Member;
 import com.shop.entity.ReviewEntity;
+import com.shop.entity.ReviewFileEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,12 +25,14 @@ public class ReviewDTO {
 	    private int reviewRating;
 	    private LocalDateTime regDate;
 	    private LocalDateTime modDate;
-	    private String reviewWriter;
+
+
 
 	    private MultipartFile reviewFile;
 	    private String originalFileName; //원본파일 이름
 	    private String storedFileName;
 	    private int fileAttached;
+
 	    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ추가ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -39,31 +43,38 @@ public class ReviewDTO {
 	        reviewDTO.setReviewContent(reviewEntity.getReviewContent());
 	        reviewDTO.setReviewRating(reviewEntity.getReviewRating());
 	        reviewDTO.setRegDate(reviewEntity.getRegDate());
-
-	        if (reviewEntity.getFileAttached()==0) {
-	        	reviewDTO.setFileAttached(reviewEntity.getFileAttached()); // 0
-	        } else {
-
-	        	reviewDTO.setFileAttached(reviewEntity.getFileAttached()); // 1
-	           
-	      reviewDTO.setOriginalFileName(reviewEntity.getReviewFileEntityList().get(0).getOriginalFileName());
-	      reviewDTO.setStoredFileName(reviewEntity.getReviewFileEntityList().get(0).getStoredFileName());	
-	        
-	      }
-	        return reviewDTO;
-
-	        }
 	       
+	        
+	        if (reviewEntity.getFileAttached() == 1) {
+	            reviewDTO.setFileAttached(1);
 
-		public ReviewDTO(String reviewTitle, String reviewWriter, String reviewContent, int reviewRating, LocalDateTime regDate) {
-			this.reviewTitle = reviewTitle;
-			this.reviewWriter = reviewWriter;
-			this.reviewContent = reviewContent;
-			this.reviewRating = reviewRating;
-			this.regDate = regDate;
-		}
+	            ReviewFileEntity reviewFileEntity = reviewEntity.getReviewFileEntityList().get(0);
+	            reviewDTO.setOriginalFileName(reviewFileEntity.getOriginalFileName());
+	            reviewDTO.setStoredFileName(reviewFileEntity.getStoredFileName());
+	        } else {
+	            reviewDTO.setFileAttached(0);
+	        }
+
+	        return reviewDTO;
+	    }
 		
-	}
-	    
-	    
-//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+		public ReviewDTO(String reviewTitle, String reviewContent, int reviewRating, LocalDateTime regDate, String originalFileName, String storedFileName, int fileAttached) {
+		    this.reviewTitle = reviewTitle;
+		    this.reviewContent = reviewContent;
+		    this.reviewRating = reviewRating;
+		    this.regDate = regDate;
+
+		    if (fileAttached == 1) {
+		        this.originalFileName = originalFileName;
+		        this.storedFileName = storedFileName;
+		        this.fileAttached = fileAttached;
+		    } else {
+		        this.originalFileName = null;
+		        this.storedFileName = null;
+		        this.fileAttached = 0;
+		    }
+		 
+		}}
+
+	
+	
