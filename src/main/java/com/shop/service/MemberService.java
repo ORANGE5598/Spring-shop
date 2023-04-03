@@ -15,6 +15,8 @@ public interface MemberService { //extends UserDetailsService {
     MemberDTO.ResponseDTO getById(Long member_id);
     
     Optional<Member> findByUsername(String username);
+    
+    void changePoint(RequestDTO dto, Long id);
 
     /** =============== 회원 수정 =============== **/
 

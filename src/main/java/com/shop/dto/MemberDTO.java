@@ -55,6 +55,8 @@ public class MemberDTO implements Serializable{
 		private String phone;
 
 		private MemberRole role;
+		
+		private int point;
 
 		public void encryptPassword(String password) {
 			this.password = password;

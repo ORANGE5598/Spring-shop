@@ -5,6 +5,9 @@
     <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="images/icons/favicon.png" />
     <!--===============================================================================================-->
@@ -315,12 +318,12 @@
                     </div>
 
                     <div class="header-cart-buttons flex-w w-full">
-                        <a href="shoping-cart.html"
+                        <a href="shopping-cart.html"
                             class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
                             장바구니로
                         </a>
 
-                        <a href="shoping-cart.html"
+                        <a href="shopping-cart.html"
                             class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
                             바로 결제하기
                         </a>
@@ -345,7 +348,7 @@
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     	<div th:if="error">
 	                    <p id="valid" style="color: red; font-size:12px;"><a th:text="${exception}"></a></p>
-                    </div>
+             	       </div>
                     <input type="submit" value="Login">
                 </form>
 

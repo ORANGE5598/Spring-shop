@@ -10,6 +10,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 	/** DB Username check **/
 	Optional<Member> findByUsername(String username);
 	
+	
 	/** OAuth 로그인 시 중복 체크 **/
 	Optional<Member> findByEmail(String email);
 	

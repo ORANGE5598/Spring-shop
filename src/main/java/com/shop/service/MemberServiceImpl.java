@@ -122,6 +122,13 @@ public class MemberServiceImpl implements MemberService {
     public Optional<Member> findByUsername(String username) {
         return memberRepository.findByUsername(username);
     }
+
+	@Override
+	public void changePoint(RequestDTO dto, Long id) {
+		Member entity = memberRepository.getById(id);
+		entity.changePoint(dto.getPoint());
+		memberRepository.save(entity);
+	}
 	
 	
 	

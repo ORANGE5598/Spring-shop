@@ -83,6 +83,10 @@ public class Member extends BaseTimeEntity implements Serializable {
     public void updatePassword(String password){
         this.password = password;
     }
+    
+    public void changePoint(int point) {
+    	this.point = point;
+    }
 
     /** 소셜 로그인 시 이미 등록된 회원인 경우 수정 날짜 업데이트, 기존 데이터는 보존 **/
     public Member updateUpdatedDate(){

@@ -52,7 +52,7 @@ public class SecurityConfig {
 		
 		
 		/** 권한이 있어야 들어올 수 있는 주소 **/
-		http.csrf().ignoringAntMatchers("/css/**", "/confirm", "/mypage/**", "/findPassword/**", "/sendPwd/**", "/update/**");
+		http.csrf().ignoringAntMatchers("/css/**", "/confirm", "/mypage/**", "/findPassword/**", "/sendPwd/**", "/update/**", "/changepw");
 		
 //		.and()
 //		.authorizeRequests()
