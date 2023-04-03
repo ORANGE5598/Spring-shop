@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extra/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="col-lg-4">
+        <div class="useredit">
+            <div class="fa-user">개인정보 수정</div>
+            <form role="form" th:object="${member}" method="post">
+            	
+            	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            	
+            	<div class="input-group input-group-static mb-4">
+	                <input type="text" th:field="*{id}" th:value="*{id}" class="form-control"
+                    th:id="id" readonly>
+                </div>
+            	
+                <div class="input-group input-group-static mb-4">
+	                <input type="text" th:field="*{username}" th:value="*{username}" class="form-control"
+                    th:id="username" readonly>
+                </div>
+                
+                <h5>이름</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{name}" th:value="*{name}" class="form-control"
+                th:id="name">
+                </div>
+                
+                
+                <h5>이메일</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{email}" th:value="*{email}" class="form-control"
+                th:id="email">
+                </div>
+                
+                <h5>도로명주소</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{address1}" th:value="*{address1}" class="form-control"
+                th:id="address1">
+                </div>
+                
+                <h5>상세주소</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{address2}" th:value="*{address2}" class="form-control"
+                th:id="address2">
+                </div>
+                
+                <h5>휴대폰</h5>
+                <div class="input-group input-group-static mb-4">
+                <input type="text" th:field="*{phone}" th:value="*{phone}" class="form-control"
+                th:id="phone">
+                </div>
+                
+                <h3>비밀번호 변경</h3>
+                <div class="input-group input-group-static mb-4">
+                <label style="font-weight: bold" th:for="password">변경할 비밀번호 입력</label>
+                <input type="password" th:id="password" th:name="password"
+                placeholder="변경할 비밀번호를 입력하세요." class="form-control">
+                </div>
+				<button type="button" id="btn-update" onclick="memberUpdate()" class="btn bg-gradient-primary" >회원 정보 수정</button>
+            </form>
+            <br/>
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+function memberUpdate(){
+    const data = {
+    		id: $('#id').val(),
+    		username: $('#username').val(), 
+			name: $('#name').val(), 
+			email: $('#email').val(), 
+			address1: $('#address1').val(), 
+			address2: $('#address2').val(), 
+			phone: $('#phone').val(),
+			password: $('#password').val()
+    };
+
+
+    const confirmCheck = confirm("수정하시겠읍니까?");
+
+    if(confirmCheck == true){
+        $.ajax({
+            type: 'PUT',
+            url: '/confirm',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+           
+        }).done(function(result){
+            if(result){
+                alert("회원 수정이 완료되었읍니다.");
+                window.location.href="/mypage";
+            } else{
+                alert("이미 사용 중인 이메일입니다. 다시 입력해주세요.");
+                $('#email').focus();
+            }
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+            console.log(JSON.stringify(error));
+        });
+    }
+}
+
+/*
+	function update() {
+		const confirmCheck = confirm("수정하시겠읍니까?")
+		
+		if(confirmCheck == true) {
+			window.location.href="/confirm";
+		}
+	}
+*/
+</script>
+
+</html>

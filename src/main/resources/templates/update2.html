@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>회원정보변경 - 마이페이지</title>
@@ -352,7 +352,8 @@
     <main class="content">
         <div id="userMypage">
             <section class="mypage-sc">
-            <form th:object="${member}">
+            <form th:object="${member}" method="post">
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <h1 class="mypage-title">
                     mypage
                 </h1>
@@ -366,7 +367,7 @@
                     <div class="mypage-top">
                         <div class="user-nickname">
                             <strong>[[${member.name}]]</strong>
-                            <a href="#">회원정보변경</a>
+                            
                         </div>
 
                         <div class="user-name">
@@ -537,7 +538,10 @@
                                 아이디
                             </th>
                             <td colspan="2">
-                                <strong>[[${member.username}]]</strong>
+                                <input type="hidden" th:field="*{id}" th:value="*{id}" class="form-control"
+                    th:id="id" readonly>
+                    			<input type="text" th:field="*{username}" th:value="*{username}" class="form-control"
+                    th:id="username" readonly>
                             </td>
                         </tr>
 
@@ -546,7 +550,8 @@
                                 비밀번호
                             </th>
                             <td>
-                                <strong>********</strong>
+                                <input type="password" th:id="password" th:name="password"
+                placeholder="변경할 비밀번호를 입력하세요." class="form-control">
                             </td>
                             <td>
                                 <button type="button" class="btn btn-outline-dark" id="change-password-btn">
@@ -560,7 +565,8 @@
                                 이름(실명)
                             </th>
                             <td>
-                                <strong>[[${member.name}]]</strong>
+                                <input type="text" th:field="*{name}" th:value="*{name}" class="form-control"
+                th:id="name">
                             </td>
                         </tr>
 
@@ -577,20 +583,38 @@
                         <tr id="email-area">
                             <th scope="row">이메일</th>
                             <td>
-                                <strong id="currentEmail">
-                                    [[${member.email}]]</strong>
+                                <input type="text" th:field="*{email}" th:value="*{email}" class="form-control"
+                th:id="email">
+                            </td>
+                            
+                        </tr>
+                        
+                        <tr id="addr1-area">
+                            <th scope="row">도로명주소</th>
+                            <td>
+                                <input type="text" th:field="*{address1}" th:value="*{address1}" class="form-control"
+                th:id="address1">
+                            </td>
+                            
+                        </tr>
+                        
+                        <tr id="email-area">
+                            <th scope="row">상세주소</th>
+                            <td>
+                                <input type="text" th:field="*{address2}" th:value="*{address2}" class="form-control"
+                th:id="address2">
                             </td>
                             
                         </tr>
                         
                         <tr id="mobile-area">
                             <th scope="row">휴대전화</th>
-                            <td><strong>[[${member.phone}]]</strong>
+                            <td>
+                            	<input type="text" th:field="*{phone}" th:value="*{phone}" class="form-control"
+                th:id="phone">
                             </td>
                             <td>
-                            <a type="button" href="/update" class="btn btn-outline-dark" id="change-infomation">
-                                    회원정보 변경하기
-                                </a>
+                            <button type="button" id="btn-update" onclick="memberUpdate()" class="btn bg-gradient-primary" >정보 수정하기</button>
                             </td>
                         </tr>
                     </tbody>
@@ -857,7 +881,48 @@
     <!--==============================================================================================-->
     <!--==============================================================================================-->
     <script src="js/main.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<script type="text/javascript">
+
+function memberUpdate(){
+    const data = {
+    		id: $('#id').val(),
+    		username: $('#username').val(), 
+			name: $('#name').val(), 
+			email: $('#email').val(), 
+			address1: $('#address1').val(), 
+			address2: $('#address2').val(), 
+			phone: $('#phone').val(),
+			password: $('#password').val()
+    };
+
+
+    const confirmCheck = confirm("수정하시겠읍니까?");
+
+    if(confirmCheck == true){
+        $.ajax({
+            type: 'PUT',
+            url: '/confirm',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+           
+        }).done(function(result){
+            if(result){
+                alert("회원 수정이 완료되었읍니다.");
+                window.location.href="/mypage";
+            } else{
+                alert("이미 사용 중인 이메일입니다. 다시 입력해주세요.");
+                $('#email').focus();
+            }
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+            console.log(JSON.stringify(error));
+        });
+    }
+}
+</script>
 </body>
 
 </html>

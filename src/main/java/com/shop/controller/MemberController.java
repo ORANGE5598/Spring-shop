@@ -148,14 +148,19 @@ public class MemberController {
 	}
 	
 	@PostMapping("/sendPwd")
-	public String sendPwdEmail(@RequestParam("memberEmail") String memberEmail) throws Exception {
+	@ResponseBody
+	public boolean sendPwdEmail(@RequestParam("memberEmail") String memberEmail) throws Exception {
 		log.info("요청된 이메일 : " + memberEmail);
+		
+		if(!memberService.checkEmail(memberEmail)) {
+			return false;
+		}
 		
 		String tmpPassword = memberService.getTmpPassword();
 		memberService.updatePassword(tmpPassword, memberEmail);
 		mailService.createMail(tmpPassword, memberEmail);
 		
-		return "/login";
+		return true;
 		
 	}
 
@@ -177,7 +182,7 @@ public class MemberController {
 		return "/check-pwd";
 	}
 	
-	@GetMapping("/mypage/update")
+	@GetMapping("/update")
 	public String MemberUpdate(@AuthenticationPrincipal UserAdapter member, Model model) {
 		Long member_id = member.getMemberDTO().getId();
 		ResponseDTO responseDTO = memberService.getById(member_id);
@@ -185,41 +190,36 @@ public class MemberController {
 		return "/update";
 	}
 	
-	@GetMapping("/mypage/password")
-	public String passwordOnly() {
-		return "/passwordOnly";
+	@GetMapping("/changepw")
+	public String passwordPage(Model model) {
+		model.addAttribute("PwDTO", new PwDTO());
+		return "passwordOnly";
 	}
-
-	@PostMapping("/changepw")
-	public String passwordEdit(Model model,
-			PwDTO dto,
-			BindingResult result,
-			@AuthenticationPrincipal Member currentMember) {
+	
+	@PostMapping("/passwordOnly") 
+	public String passwordUpdate(Model model, PwDTO dto, BindingResult result, @AuthenticationPrincipal Member member) {
+		if(result.hasErrors()) {
+			return "redirect:/mypage";
+		}
 		
-		if (result.hasErrors()) {
-			return "redirect:/mypage/password";
+		if(!passwordEncoder.matches(dto.getPassword(), member.getPassword())) {
+			model.addAttribute("error", "동일한 패스워드입니다.");
 		}
-
-		if (!passwordEncoder.matches(dto.getPassword(), currentMember.getPassword())) {
-			model.addAttribute("error", "현재 패스워드 불일치");
-			return "mypage/passwordError";
+		
+		if(!dto.getNewPassword().equals(dto.getRetype())) {
+			model.addAttribute("error", "새 패스워드가 일치하지 않습니다.");
 		}
-
-		if(dto.getNewPassword().equals(dto.getPassword())){
-			model.addAttribute("error", "동일한 패스워드");
-			return "mypage/passwordError";
-		}
-
-		if (!dto.getNewPassword().equals(dto.getRetype())) {
-			model.addAttribute("error", "새 패스워드 불일치");
-			return "mypage/passwordError";
-		}
-
-		String encodedNewPwd = passwordEncoder.encode(dto.getNewPassword());
-		memberService.updatePassword(currentMember.getUsername(), encodedNewPwd);
-		currentMember.setPassword(encodedNewPwd);
+		
+		String encodeNewPw = passwordEncoder.encode(dto.getNewPassword());
+		memberService.updatePassword(member.getUsername(), encodeNewPw);
+		member.setPassword(encodeNewPw);
 		return "redirect:/mypage";
+		
+		
 	}
+
+	
+	
 
 	@GetMapping("/deleteMember")
 	public String delMember(Model model, String checkWords){

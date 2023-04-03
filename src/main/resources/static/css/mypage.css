@@ -1,0 +1,723 @@
+/* [font] */
+
+@font-face {
+    font-family: musinsa-Light;
+    src: url('../fonts/musinsa/musinsa-Light.ttf');
+}
+
+@font-face {
+    font-family: musinsa-Medium;
+    src: url('../fonts/musinsa/musinsa-Medium.ttf');
+}
+
+@font-face {
+    font-family: musinsa-Bold;
+    src: url('../fonts/musinsa/musinsa-Bold.ttf');
+}
+
+/*-------------------------------
+[my page - head] */
+
+
+main.content {
+    overflow: hidden;
+    width: auto;
+    margin: 0 40px;
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+main.content a{
+color: #000;
+}
+
+.mypage-sc {
+    position: relative;
+    padding: 0px 0px 44px;
+    margin: 0 40px;
+    color: rgb(0, 0, 0);
+    background-color: #000;
+}
+
+  
+
+.mypage-sc .mypage-title {
+    padding: 20px 0px 24px;
+    background: rgb(0, 0, 0);
+    display: inline-block;
+    font-family: musinsa-Bold, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    color: rgb(0, 0, 0);
+    line-height: 52px;
+}
+
+.user-info {
+    overflow: hidden;
+    padding-left: 40px;
+}
+
+.user-img img {
+    float: left;
+    width: 160px;
+    height: 160px;
+    border-radius: 100%;
+}
+
+.mypage-top {
+    float: left;
+    min-width: calc(100% - 970px);
+    min-height: 148px;
+    padding-left: 50px;
+    box-sizing: border-box;
+}
+
+.user-nickname {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: baseline;
+    line-height: 60px;
+}
+
+.user-nickname strong {
+    display: inline-block;
+    font-size: 58px;
+    line-height: 87px;
+    color: rgb(255, 255, 255);
+}
+
+.user-nickname a {
+    display: inline-block;
+    padding: 4px;
+    margin: 32px 0px 0px 4px;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(180, 180, 180);
+}
+
+.user-name {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.user-name em {
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+    color: rgb(255, 255, 255);
+    font-style: normal;
+}
+
+.user-name span {
+    display: inline-flex;
+    margin: 4px 0px 0px 8px;
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 17px;
+    line-height: 21px;
+    color: rgb(195, 194, 194);
+}
+
+.admin-msg {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgb(191, 190, 190);
+}
+
+.user-bankbook {
+    display: flex;
+    float: left;
+    padding: 40px 0px 0px 50px;
+}
+
+.user-bankbook a {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    margin-right: 10px;
+    color: #ffffff;
+}
+
+.user-bankbook a>em {
+    display: block;
+    margin: 8px 0px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #ccc;
+}
+
+.user-bankbook a>strong {
+    display: block;
+    font-size: 30px;
+    line-height: 45px;
+    color: #ccc;
+}
+
+
+/*-------------------------------
+  [my page - side nav] */
+
+nav.mypage-sidenav {
+    width: 170px;
+    float: left;
+    margin: 52px 40px 0px 0px;
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 14px;
+
+}
+
+.mypage-sidenav .nav-tit {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    clip: rect(0px, 0px, 0px, 0px);
+}
+
+.mypage-sidenav a:visited {
+    text-decoration: none;
+}
+
+.mypage-sidenav a {
+    display: flex;
+    margin-top: 2px;
+    font-size: 16px;
+    line-height: 40px;
+    color: rgb(110, 110, 110) !important;
+}
+
+.my-account {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+}
+
+.my-account h3 {
+    padding: 13px 0px 2px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 40px;
+    color: #000;
+}
+
+.my-board {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    padding-top: 12px;
+}
+
+.my-board h3 {
+    padding: 13px 0px 2px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 40px;
+}
+
+/*-------------------------------
+  [my page - order list] */
+
+.mypage-cont {
+    width: calc(100% - 210px);
+    padding: 0;
+    float: right;
+}
+
+
+.section-title {
+    border-bottom: 3px solid #000000;
+    padding-bottom: 14px;
+    margin-top: 48px;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    position: relative;
+}
+
+.section-title .tit {
+    display: inline-block;
+    font-size: 24px;
+    font-family: musinsa-Medium, sans-serif !important;
+    font-weight: normal;
+}
+
+.mypage-cont .section-title .state {
+    padding: 14px 0 10px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: musinsa-Medium, sans-serif !important;
+}
+
+.mypage-cont .section-title .state li {
+    display: inline-block;
+    color: #ccc;
+    margin-right: 16px;
+}
+
+.mypage-cont .section-title .state a {
+    display: block;
+    color: #ccc;
+}
+
+.mypage-cont .section-title .state a:active {
+    color: #000;
+}
+
+
+.mypage-cont .section-title .state a:hover {
+    color: #7d7d7d;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+
+}
+
+.info-txt {
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    padding-top: 20px;
+}
+
+.info-txt li {
+    margin-top: 5px;
+    color: #777777;
+    padding-left: 8px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.info-txt>li:first-of-type {
+    margin-top: 0;
+}
+
+.info-txt>li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 3px;
+    height: 3px;
+    background: #777777;
+    border-radius: 100%;
+}
+.table .table-hover .table-col .state{
+    display: inline-block;
+    margin: 2px 0;
+}
+
+/** contents **/
+.mypage-cont .info-txt+.btn-change-info {
+    padding-top: 14px;
+    color: #000000;
+}
+
+.mypage-cont .btn-change-info i {
+    margin: 1px 4px 0 0;
+    vertical-align: top;
+    width: 22px;
+    height: 22px;
+    padding-top: 10px;
+    font-size: 22px !important;
+}
+
+.mypage-cont .btn-change-info span {
+    display: inline-block;
+    padding-top: 11px;
+    vertical-align: top;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.orderListSearchForm input {
+    vertical-align: middle;
+}
+
+.order-filter {
+    display: flex;
+    align-items: center;
+    margin: 48px 0 24px;
+}
+
+.mypage-cont .order-filter-period {
+    display: flex;
+    align-items: center;
+}
+
+.mypage-cont .order-filter-period__tab__button--active {
+    background-color: #0078ff;
+    color: #ffffff;
+}
+
+.mypage-cont .order-filter-period__tab__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    width: 61px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #f3f3f3;
+    font-size: 13px;
+    color: #6e6e6e;
+}
+
+.mypage-cont .order-filter-period__tab {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.mypage-cont .order-filter-period__date {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 276px;
+}
+
+.mypage-cont .order-filter-period__input-wrap {
+    position: relative;
+    width: 130px;
+    height: 32px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.mypage-cont .order-filter-period__input {
+    position: relative;
+    padding: 0 10px;
+    width: 128px;
+    height: 30px;
+    font-size: 13px;
+    color: #6e6e6e;
+    text-align: left;
+    appearance: none;
+    z-index: 10;
+}
+
+/**search***/
+.mypage-cont .order-filter-search__input-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    width: 180px;
+    height: 30px;
+    margin-right: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.mypage-cont .order-filter-search__input {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+    color: #6e6e6e;
+    text-align: left;
+    font-family: musinsa-Medium;
+}
+
+.mypage-cont .order-filter-search {
+    padding: 0 8px;
+    text-indent: 3px;
+}
+
+.mypage-cont .order-filter-confirm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 105px;
+    height: 30px;
+    border-radius: 4px;
+    background: #f3f3f3;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: 700;
+    color: #b3b3b3;
+}
+
+
+/*----------------------------
+  [my page - order table] */
+
+.table.table-hover.table-col {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 680px;
+}
+
+.table.table-hover.table-col tr {
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.table.table-hover.table-col th {
+    height: 52px;
+    border-bottom: 1px solid #000000;
+    vertical-align: middle;
+    text-transform: uppercase;
+    line-height: 1.6;
+    padding-right: 15px;
+}
+
+.table.table-hover.table-col td {
+    height: 70px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+    vertical-align: middle;
+    word-break: break-all;
+    padding-bottom: 20px;
+}
+.table.table-hover.table-col td > a{
+    display: inline-block;
+    word-break: break-all;
+}
+
+
+.table.table-hover.table-col .table_row {
+    height: 165px;
+}
+
+.table.table-hover.table-col .column-1 {
+    width: 133px;
+    padding-left: 20px;
+}
+
+.table.table-hover.table-col .column-2 {
+    width: 220px;
+    padding-right: 25px;
+}
+
+.table.table-hover.table-col .column-3 {
+    width: 148px;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.table.table-hover.table-col .column-4 {
+    width: 180px;
+    padding-right: 25px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+
+.table.table-hover.table-col .column-5 {
+    width: 195px;
+    padding-left: 15px;
+    padding-right: 5px;
+    text-align: center;
+}
+
+.table.table-hover.table-col .column-6 {
+    width: 170px;
+    padding-right: 30px;
+    text-align: center;
+}
+.img-block{
+    display: table-cell;
+    width: 60px;
+    position: relative;
+    margin-right: 25px;
+    cursor: pointer;
+}
+.img-block img img{
+    width: 100%;
+}
+
+.product_row{
+    display: table;
+    table-layout: fixed;
+    line-height: 1.5;
+    text-align: left;
+    position: relative;
+}
+.product_row .info {
+    display: table-cell;
+    vertical-align: middle;
+    margin-right: 70px;
+}
+.product_row .info li{
+    font-size: 14px;
+    line-height: 22px;
+}
+.product_row .info .brand{
+    font-weight: 300;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.product_row .info .name{
+    display: inline-block;
+    max-height: 44px;
+    font-weight: bold;
+    overflow: hidden;
+    color: #000;
+}
+.product_row .info .option{
+font-weight: 300;
+color: #777777;
+}
+
+
+
+/*--버튼---*/
+
+.n-paging {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 90px;
+    clear: both;
+}
+
+.n-paging .page {
+    display: inline-block;
+    width: 28px;
+    line-height: 22px;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif !important;
+    font-size: 16px;
+    color: #dadada;
+    vertical-align: top;
+    margin: 5px 0;
+    border: 0;
+    padding: 0;
+    background: none;
+}
+
+.n-paging .page.is-active {
+    font-weight: bold;
+    color: #000000;
+}
+
+
+/*마이페이지 주문배송조회*/
+.step_pop {
+    right: 200px;
+    top: 110px;
+}
+
+.step_pop .box_title {
+    margin-bottom: 10px;
+}
+
+.step_pop .close {
+    float: right;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.step_pop .box_info_cell ul {
+    width: 100%;
+    box-sizing: border-box;
+    border-left: none;
+    text-align: center;
+}
+
+.step_pop .box_info_cell ul:first-child {
+    border-top: 1px solid #ddd;
+}
+
+.step_pop .box_info_cell li {
+    float: none;
+    border-top: none;
+}
+
+.step_pop .box_info_cell li {
+    width: 155px;
+}
+
+.step_pop .popup_info_title {
+    border-left: 1px solid #ddd;
+}
+
+.title-box .korSub {
+    line-height: 15px;
+    margin-left: 5px;
+}
+
+
+em {
+    font-style: normal;
+}
+
+svg {
+    width: 38;
+    height: 38;
+    fill: none;
+}
+
+svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+
+g {
+    stroke: none;
+    stroke-width: 1;
+    fill: none;
+    fill-rule: evenodd;
+}
+
+colgroup {
+    display: table-column-group;
+}
+
+col {
+    display: table-column;
+}
+
+
+
+
+/*회원정보수정*/
+
+
+.mypage-cont .info_views-area {
+    display: flex;
+    align-items: center;
+    
+  }
+  .mypage-cont .info_views-area > button {
+    padding: 0 15.5px;
+    margin-left: 15px;
+  }
+
+.mypage-cont.table{
+    overflow: hidden;
+}
+
+.table tr.my-info-img th{
+    padding-top: 29px;
+}
+.table tr.my-info-img .img {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 10px 0 0 -6px;
+    background: url(#) no-repeat 50% 50%;
+    background-size: cover;
+    border-radius: 100%;
+    overflow: hidden;
+  }
+  .table tr.my-info-img .txt{
+    margin: 13px 0 9px 0;
+  }
+
+  .table + .user-info {
+    border-top: 1px solid #f1f1f1;
+  }
