@@ -40,13 +40,15 @@ import lombok.Data;
 	    @Column
 	    private String storedFileName;
 	    
-	   
+	    @Column
+	    private String reviewWriter;
 	    
 	    @OneToMany(mappedBy = "reviewEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
 	    private List<ReviewFileEntity> reviewFileEntityList = new ArrayList<>();
 	    
 	    public static ReviewEntity toSaveEntity(ReviewDTO reviewDTO) {
 	    	  ReviewEntity reviewEntity = new ReviewEntity();
+	    	    reviewEntity.setReviewWriter(reviewDTO.getReviewWriter());
 	    	    reviewEntity.setReviewTitle(reviewDTO.getReviewTitle());
 	    	    reviewEntity.setReviewContent(reviewDTO.getReviewContent());
 	    	    reviewEntity.setReviewRating(reviewDTO.getReviewRating());
@@ -59,6 +61,7 @@ import lombok.Data;
 	    
 	    public static ReviewEntity toSaveFileEntity(ReviewDTO reviewDTO) {
 	    	ReviewEntity reviewEntity = new ReviewEntity();
+	    	reviewEntity.setReviewWriter(reviewDTO.getReviewWriter());
 	    	reviewEntity.setReviewTitle(reviewDTO.getReviewTitle());
 	    	reviewEntity.setReviewContent(reviewDTO.getReviewContent());
 	    	reviewEntity.setReviewRating(reviewDTO.getReviewRating());

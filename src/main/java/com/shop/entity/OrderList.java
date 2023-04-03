@@ -40,5 +40,6 @@ public class OrderList extends BaseTimeEntity {
 	private String phoneNumber;
 	private String roadAddress;
 	private String deliveryStatus;
+	private String oSize;
 
 }

@@ -52,7 +52,7 @@ public class Member extends BaseTimeEntity implements Serializable {
     private String address1;
     
     @Column(nullable = false)
-    /** 회원 주소 1 **/
+    /** 회원 주소 2 **/
     private String address2;
     
     @Column(nullable = false)

@@ -47,16 +47,17 @@
 
                     <div class="right-top-bar flex-w h-full">
                         <a href="#" class="flex-c-m trans-04 p-lr-20">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            LOG IN
-                        </a>
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            SIGN UP
-                        </a>
-
+	                        Help & FAQs
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m trans-04 p-lr-25">
+	                        LOG IN
+	                    </a>
+	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m trans-04 p-lr-25">
+	                        LOGOUT
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m trans-04 p-lr-25">
+	                        Register
+	                    </a>
                     </div>
                 </div>
             </div>
@@ -172,17 +173,18 @@
 
                 <li>
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            LOG IN
-                        </a>
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            SIGN UP
-                        </a>
-
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+	                        Help & FAQs
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m p-lr-10 trans-04">
+	                        LOG IN
+	                    </a>
+	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m p-lr-10 trans-04">
+	                        LOG OUT
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m p-lr-10 trans-04">
+	                        SIGN UP
+	                    </a>
                     </div>
                 </li>
             </ul>
@@ -244,94 +246,53 @@
 
     <!-- 카트이모티콘 눌렀을때 나오는 메뉴창 -->
     <div class="wrap-header-cart js-panel-cart">
-        <div class="s-full js-hide-cart"></div>
+		<div class="s-full js-hide-cart"></div>
 
-        <div class="header-cart flex-col-l p-l-65 p-r-25 js-cart-item">
-            <div class="header-cart-title flex-w flex-sb-m p-b-8">
-                <span class="mtext-103 cl2">
-                    Your Cart
-                </span>
+		<div class="header-cart flex-col-l p-l-65 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Your Cart
+				</span>
 
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
 
+			<div class="header-cart-content flex-w js-pscroll">
+				<ul class="header-cart-wrapitem w-full">
+					<li class="header-cart-item flex-w flex-t m-b-12" th:each="cart : ${cartList}">
+						<div class="header-cart-item-img">
+							<img th:src="${cart.cImg}" alt="IMG">
+						</div>
 
-                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-                    <i class="zmdi zmdi-close"></i>
-                </div>
-            </div>
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								[[${cart.cName}]]
+							</a>
 
-            <div class="header-cart-content flex-w js-pscroll">
-                <ul class="header-cart-wrapitem w-full">
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img js-remove-item">
-                            <img src="images/cart/cart1.jpg" alt="IMG">
-                        </div>
+							<span class="header-cart-item-info">
+								{[[${cart.count}]]} x ￦[[${cart.cPrice}]]
+							</span>
+						</div>
+					</li>
+				</ul>
 
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-name-item">
-                                Nike x Tiffany & Co. Air Force 1 Low SP 1837
-                            </a>
+				<div class="w-full">
+					<div class="header-cart-total w-full p-tb-40">
+						Total: ￦[[${totalPrice}]]<input type="hidden" th:value="${totalPrice}" />
+					</div>
 
-                            <span class="header-cart-item-info">
-                                {1} x ￦1,700,000
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img js-remove-item">
-                            <img src="images/cart/cart2.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-name-item">
-                                Gucci GG Marmont Half Moon Shaped Mini Bag Blackp
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                {1} x ￦1,870,000
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img js-remove-item">
-                            <img src="images/cart/cart3.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-name-item">
-                                Sony WH-1000XM5 Black (Korean Ver.)
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                {1} x ￦479,000
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
-                        Total: ￦{0,000}
-                    </div>
-
-                    <div class="header-cart-buttons flex-w w-full">
-                        <a href="shoping-cart.html"
-                            class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                            장바구니로
-                        </a>
-
-                        <a href="shoping-cart.html"
-                            class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-                            바로 결제하기
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+					<div class="header-cart-buttons flex-w w-full">
+						<a href="/shopping-cart"
+							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							장바구니로
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
     <!-- breadcrumb -->
     <section class="breadcrumb-option">

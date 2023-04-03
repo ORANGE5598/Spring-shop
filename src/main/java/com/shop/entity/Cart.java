@@ -30,4 +30,5 @@ public class Cart {
 	private String cImg;
 	private Long mId;
 	private Long count;
+	private Long cNumber;
 }

@@ -25,7 +25,7 @@ public class ReviewDTO {
 	    private int reviewRating;
 	    private LocalDateTime regDate;
 	    private LocalDateTime modDate;
-
+	    private String reviewWriter;
 
 
 	    private MultipartFile reviewFile;
@@ -36,14 +36,14 @@ public class ReviewDTO {
 	    //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ추가ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		
 //ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
-		public static ReviewDTO toReviewDTO(ReviewEntity reviewEntity) {
-	        ReviewDTO reviewDTO = new ReviewDTO();
+	    public static ReviewDTO toReviewDTO(ReviewEntity reviewEntity) {
+	    	ReviewDTO reviewDTO = new ReviewDTO();
 	        reviewDTO.setId(reviewEntity.getId());
 	        reviewDTO.setReviewTitle(reviewEntity.getReviewTitle());
 	        reviewDTO.setReviewContent(reviewEntity.getReviewContent());
 	        reviewDTO.setReviewRating(reviewEntity.getReviewRating());
 	        reviewDTO.setRegDate(reviewEntity.getRegDate());
-	       
+	        reviewDTO.setReviewWriter(reviewEntity.getReviewWriter());
 	        
 	        if (reviewEntity.getFileAttached() == 1) {
 	            reviewDTO.setFileAttached(1);
@@ -58,11 +58,12 @@ public class ReviewDTO {
 	        return reviewDTO;
 	    }
 		
-		public ReviewDTO(String reviewTitle, String reviewContent, int reviewRating, LocalDateTime regDate, String originalFileName, String storedFileName, int fileAttached) {
+		public ReviewDTO(String reviewTitle, String reviewContent, int reviewRating, LocalDateTime regDate, String reviewWriter, String originalFileName, String storedFileName, int fileAttached) {
 		    this.reviewTitle = reviewTitle;
 		    this.reviewContent = reviewContent;
 		    this.reviewRating = reviewRating;
 		    this.regDate = regDate;
+		    this.reviewWriter = reviewWriter;
 
 		    if (fileAttached == 1) {
 		        this.originalFileName = originalFileName;

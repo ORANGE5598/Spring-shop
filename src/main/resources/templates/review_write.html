@@ -9,6 +9,7 @@
     <h1>상품후기 남기기!</h1>
 
     <form action="/review/write" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="reviewWriter" id="writer" th:value="${member.username}" readonly="readonly">
         <div>
             <label for="title">제목:</label>
             <input type="text" name="reviewTitle" id="title" required>

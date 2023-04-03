@@ -3,8 +3,6 @@ package com.shop.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
@@ -47,4 +45,11 @@ public class CartServiceimpl implements CartService {
 		return result;
 	}
 	
+	@Override
+	public CartDTO order(Long cNumber) {
+		
+		Cart result = cartRepository.getCartByNumber(cNumber);
+		
+		return EntityToDto(result);
+	}
 }
