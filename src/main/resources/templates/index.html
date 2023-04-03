@@ -63,19 +63,15 @@
                     <a href="#" class="flex-c-m trans-04 p-lr-20">
                         Help & FAQs
                     </a>
-
                     <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m trans-04 p-lr-25">
                         LOG IN
                     </a>
-                    
                     <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m trans-04 p-lr-25">
                         LOGOUT
                     </a>
-                    
                     <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m trans-04 p-lr-25">
                         Register
                     </a>
-
                 </div>
             </div>
         </div>
@@ -118,11 +114,11 @@
                         </li>
 
                         <li>
-                            <a th:href="@{/com}">COMMUNITY</a>
+                            <a href="/com">COMMUNITY</a>
                         </li>
 
                         <li>
-                            <a th:href="@{/myPage-orderlist}">MYPAGE</a>
+                            <a href="/myPage-orderlist">MYPAGE</a>
                         </li>
                     </ul>
                 </div>
@@ -186,7 +182,6 @@
     <!-- 반응형 메뉴바, 안건들여도 되는 부분-->
     <div class="menu-mobile">
         <ul class="topbar-mobile">
-
             <li>
                 <div class="left-top-bar">
                     100% genuine ! The safest way to buy limited edition!
@@ -213,26 +208,26 @@
 
         <ul class="main-menu-m">
             <li>
-                <a href="index.html">HOME</a>
+                <a href="/index">HOME</a>
             </li>
 
             <li>
-                <a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
+                <a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
                 <ul class="sub-menu-m">
-                    <li><a href="#">CLOTHING</a>
+                    <li><a href="/product">CLOTHING</a>
                         <ul class="sub-menu-m">
-                            <li><a href="#">TOP</a></li>
-                            <li><a href="#">BOTTOM</a></li>
+                            <li><a href="/product">TOP</a></li>
+                            <li><a href="/product">BOTTOM</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">FOOTWEAR</a></li>
-                    <li><a href="#">ACCESSORIES</a>
+                    <li><a href="/product">FOOTWEAR</a></li>
+                    <li><a href="/product">ACCESSORIES</a>
                         <ul class="sub-menu-m">
-                            <li><a href="#">BAG</a></li>
-                            <li><a href="#">HAEDWEAR</a></li>
+                            <li><a href="/product">BAG</a></li>
+                            <li><a href="/product">HAEDWEAR</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">TECH</a></li>
+                    <li><a href="/product">TECH</a></li>
                 </ul>
                 <span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -240,15 +235,11 @@
             </li>
 
             <li>
-                <a th:href="@{/com}">Community</a>
+                <a href="/com">Community</a>
             </li>
 
             <li>
-                <a href="#">MYPAGE</a>
-            </li>
-
-            <li>
-                <a href="#">Contact</a>
+                <a href="/myPage-orderlist">MYPAGE</a>
             </li>
         </ul>
     </div>

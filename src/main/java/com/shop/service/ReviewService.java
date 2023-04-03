@@ -110,7 +110,7 @@ public void save(ReviewDTO reviewDTO) throws IOException {
 	            originalFileName = review.getReviewFileEntityList().get(0).getOriginalFileName();
 	            storedFileName = review.getReviewFileEntityList().get(0).getStoredFileName();
 	        }
-	        return new ReviewDTO(review.getReviewTitle(), review.getReviewContent(), review.getReviewRating(), review.getRegDate(), originalFileName, storedFileName, fileAttached);
+	        return new ReviewDTO(review.getReviewTitle(), review.getReviewContent(), review.getReviewRating(), review.getRegDate(), review.getReviewWriter(), originalFileName, storedFileName, fileAttached);
 	    });
 	    return reviewDTOS;
 	}

@@ -2,14 +2,11 @@ package com.shop.controller;
 
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.BrandDTO;
@@ -18,7 +15,6 @@ import com.shop.dto.CategoryDTO;
 import com.shop.dto.ItemDTO;
 import com.shop.dto.PageRequestDTO;
 import com.shop.dto.PageRequestDTO2;
-import com.shop.entity.Cart;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.service.BrandService;
 import com.shop.service.CartService;
@@ -28,7 +24,6 @@ import com.shop.service.MemberService;
 import com.shop.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 @RequiredArgsConstructor
 @Controller
@@ -41,28 +36,32 @@ public class IndexController {
 	private final BrandService brandService;
 	private final OrderService orderService;
 	
-	@GetMapping("/")
+	@GetMapping({"/","/index"})
 	public String goIndex(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		if(user == null) {
 			ItemDTO itemDTO = itemService.read(1L);
 			model.addAttribute("itemDTO", itemDTO);
+		}else {
 			
-			return "/index";
-			
-		} else {
 			Long id = user.getMemberDTO().getId();
 			
 			ItemDTO itemDTO = itemService.read(1L);
 			
 			Long cartCount = cartService.getCartCount(id);
+			List<CartDTO> cartDTOList = cartService.getCartList(id);
 			
-		    model.addAttribute("count", cartCount);
+			int totalPrice = 0;
+			for (CartDTO cart : cartDTOList) {
+				totalPrice += cart.getCPrice() * cart.getCount();
+			}
+			model.addAttribute("totalPrice", totalPrice);
+			model.addAttribute("cartList", cartDTOList);
+			model.addAttribute("count", cartCount);
 			model.addAttribute("itemDTO", itemDTO);
-			return "/index";
+			
 		}
-		
-		
+		return "/index";
 	}
 	
 	@GetMapping("/product")
@@ -207,22 +206,26 @@ public class IndexController {
 	*/
 	
 	@GetMapping("/shopping-cart")
-	public String cart(Model model, @AuthenticationPrincipal UserAdapter user) {
+	public String cart(Long cNumber, Long oCount, Long dPrice, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
 		
 		List<CartDTO> cartDTOList = cartService.getCartList(id);
 		
-		model.addAttribute("cartList", cartDTOList);
+//		CartDTO dto = cartService.order(cNumber);
+//		Long cPrice = dto.getCPrice();
+//		Long totalPrice = cPrice * oCount + dPrice;
 		
 		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
-		int totalPrice = 0;
+		int totalPrice2 = 0;
 	    for (CartDTO cart : cartList) {
-	        totalPrice += cart.getCPrice() * cart.getCount();
+	        totalPrice2 += cart.getCPrice() * cart.getCount();
 	    }
-	    model.addAttribute("totalPrice", totalPrice);
-		
 	    Long cartCount = cartService.getCartCount(id);
+		
+	    model.addAttribute("totalPrice", totalPrice2);
+	    model.addAttribute("cartList", cartDTOList);
+//	    model.addAttribute("total", totalPrice);
 	    model.addAttribute("count", cartCount);
 		return "content/cart/shopping-cart";
 	}

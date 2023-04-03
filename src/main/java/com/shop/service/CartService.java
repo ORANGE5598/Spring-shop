@@ -18,6 +18,7 @@ public interface CartService {
 				.cImg(dto.getCImg()).cInfo(dto.getCInfo())
 				.cName(dto.getCName()).cPrice(dto.getCPrice())
 				.mId(id).count(dto.getCount())
+				.cNumber(dto.getCNumber())
 				.build();
 	
 		return cart;
@@ -29,6 +30,7 @@ public interface CartService {
 				.id(cEntity.getId()).cImg(cEntity.getCImg())
 				.cInfo(cEntity.getCInfo()).cName(cEntity.getCName())
 				.cPrice(cEntity.getCPrice()).count(cEntity.getCount())
+				.cNumber(cEntity.getCNumber()).mId(cEntity.getMId())
 				.build();
 		
 		return cartDTO;
@@ -39,5 +41,7 @@ public interface CartService {
 	void saveCart(CartDTO dto, @AuthenticationPrincipal UserAdapter user);
 	
 	Long getCartCount(Long id);
+	
+	CartDTO order(Long cNumber);
 	
 }

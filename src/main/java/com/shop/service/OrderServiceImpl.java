@@ -48,9 +48,9 @@ public class OrderServiceImpl implements OrderService {
 				.img(dto.getImg()).mId(dto.getMId()).mName(dto.getMName())
 				.oCount(dto.getOCount()).oDeliveryPrice(dto.getODeliveryPrice())
 				.oItemPrice(dto.getOItemPrice()).oTotalPrice(dto.getOTotalPrice())
-				.oName(dto.getOName()).iNumber(dto.getINumber())
+				.oName(dto.getOName()).iNumber(dto.getINumber()).oSize(dto.getOSize())
 				.paymentMethod(dto.getPaymentMethod()).phoneNumber(dto.getPhoneNumber())
-				.roadAddress(dto.getRoadAddress()).deliveryStatus("배송준비중")
+				.roadAddress(dto.getRoadAddress()).deliveryStatus("결제완료")
 				.build();
 		
 		orderRepository.save(entity);

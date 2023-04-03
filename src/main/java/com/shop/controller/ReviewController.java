@@ -3,7 +3,6 @@ package com.shop.controller;
 
 
 import java.io.IOException;
-import java.security.Principal;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,38 +13,39 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.shop.config.auth.UserAdapter;
 import com.shop.dto.ReviewDTO;
-import com.shop.entity.Member;
+import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.ReviewEntity;
-import com.shop.repository.MemberRepository;
+import com.shop.service.MemberService;
 import com.shop.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j2;
 
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 @Controller
 @RequiredArgsConstructor
-@Log4j2
 public class ReviewController {
 
 
     private final ReviewService reviewService;
-    private MemberRepository memberRepository;
+    private final MemberService memberService;
 
 
    
     @GetMapping("/com")
-	public String paging(@PageableDefault(page = 1) Pageable pageable, Model model) {
+	public String paging(@PageableDefault(page = 1) Pageable pageable, Model model, @AuthenticationPrincipal UserAdapter user) {
 		Page<ReviewDTO> reviewList = reviewService.paging(pageable);
 		int blockLimit = 3;
 		int startPage = (((int) (Math.ceil((double) pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; 																									// ~~
 		int endPage = ((startPage + blockLimit - 1) < reviewList.getTotalPages()) ? startPage + blockLimit - 1
 				: reviewList.getTotalPages();
 		
-
-
+//		Long id = user.getMemberDTO().getId();
+//		ResponseDTO responseDto = memberService.getById(id);
+//		
+//		model.addAttribute("member", responseDto);
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -56,7 +56,12 @@ public class ReviewController {
     }
 
     @GetMapping("/review/write")
-    public String write(Model model) {
+    public String write(Model model, @AuthenticationPrincipal UserAdapter user) {
+    	
+    	Long id = user.getMemberDTO().getId();
+    	ResponseDTO responseDto = memberService.getById(id);
+    	
+    	model.addAttribute("member", responseDto);
         model.addAttribute("review", new ReviewEntity());
         return "review_write";
     }

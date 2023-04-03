@@ -52,7 +52,7 @@ public class Member extends BaseTimeEntity implements Serializable {
     private String address1;
     
     @Column(nullable = false)
-    /** 회원 주소 1 **/
+    /** 회원 주소 2 **/
     private String address2;
     
     @Column(nullable = false)
@@ -78,14 +78,14 @@ public class Member extends BaseTimeEntity implements Serializable {
         this.address2 = address2;
         this.phone = phone;
     }
-
-    /** 비밀번호 변경 메서드 **/
-    public void updatePassword(String password){
-        this.password = password;
-    }
     
     public void changePoint(int point) {
     	this.point = point;
+    }
+    
+    /** 비밀번호 변경 메서드 **/
+    public void updatePassword(String password){
+        this.password = password;
     }
 
     /** 소셜 로그인 시 이미 등록된 회원인 경우 수정 날짜 업데이트, 기존 데이터는 보존 **/

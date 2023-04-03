@@ -31,7 +31,7 @@ public interface OrderService {
 				.oItemPrice(dto.getOItemPrice()).oTotalPrice(dto.getOTotalPrice())
 				.oName(dto.getOName()).iNumber(dto.getINumber())
 				.paymentMethod(dto.getPaymentMethod()).phoneNumber(dto.getPhoneNumber())
-				.roadAddress(dto.getRoadAddress())
+				.roadAddress(dto.getRoadAddress()).oSize(dto.getOSize())
 				.build();
 		
 		return order;
