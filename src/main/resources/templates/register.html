@@ -369,23 +369,23 @@
                                     
                                     <div class="orderBy__input input-group m-b--2">
                                         <p>ID<span class="m-r-92">*</span></p>
-                                        <input type="text" class="form-control" aria-describedby="button-addon2" id="username" name="username" required>
-                                        <button type="submit" id="button-addon2"class="btn btn-outline-secondary">check</button>
-                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_username}"></span>
+                                        <input type="text" class="form-control" aria-describedby="button-addon2" th:field="*{username}" placeholder="소문자/숫자만 사용 4~20자리" required>
+                                        <button type="button" id="button-addon2" class="btn btn-outline-secondary">check</button>
                                     </div>
+                                    <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_username}"></span>
                                     
                                     <div class="orderBy__input input-group m-b--2 m-t-30">
                                         <p>Password<span class="m-r-42">*</span></p>
-                                        <input type="text" class="form-control" aria-describedby="button-addon2" id="password" name="password" required>
-                                        <button type="submit" id="button-addon2"class="btn btn-outline-secondary">check</button>
-                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_password}"></span>
+                                        <input type="password" class="form-control" aria-describedby="button-addon2" th:field="*{password}" required>
                                     </div>
+                                    <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_password}"></span>
+                                    
 
                                     <div class="orderBy__input input-group m-b--2 m-t-30">
                                         <p>name<span class="m-r-70">*</span></p>
-                                        <input type="text" class="form-control" aria-describedby="button-addon2" id="name" name="name" required>
-                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_name}"></span>
+                                        <input type="text" class="form-control" aria-describedby="button-addon2" th:field="*{name}" required>
                                     </div>
+                                    <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_name}"></span>
                                 </div>
                             </div>
 
@@ -393,18 +393,18 @@
                                 <div class="col-lg-8 m-t-20">
                                     <div class="orderBy__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" class="form-control" id="email" name="email">
-                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_email}"></span>
-                                    </div>
+                                        <input type="text" class="form-control" th:field="*{email}">
+                                    </div>	
+                                    <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_email}"></span>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-8">
                                     <div class="orderBy__input ">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" class="form-control" id="phone" name="phone" required>
-                                        <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_phone}"></span>
+                                        <input type="text" class="form-control" th:field="*{phone}" placeholder="000-0000-0000" required>
                                     </div>
+                                    <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_phone}"></span>
                                 </div>
                             </div>
 
@@ -424,9 +424,9 @@
                             <h6 class="orderBy__title m-t-40">배송정보</h6>
                             <div class="orderBy__input">
                                 <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-                                <input type="text" id="address1" name="address1" placeholder="도로명주소">
+                                <input type="text" th:field="*{address1}" placeholder="도로명주소">
                                 <span id="guide" style="color:#999;display:none"></span>
-                                <input type="text" id="address2" name="address2" placeholder="상세주소">
+                                <input type="text" th:field="*{address2}" placeholder="상세주소">
                             </div>
                             
                             

@@ -60,20 +60,21 @@ public class MemberController {
 		binder.addValidators(checkEmailValidator);
 	}
 
-	@GetMapping("/register")
-	public String register(Model model) {
-		model.addAttribute("memberDTO", new MemberDTO.RequestDTO());
-		return "/register";
-	}
-	
 	@GetMapping("/findPassword")
 	public String findPassword() {
 		return "/findPassword";
 	}
+	
+	@GetMapping("/register")
+	public String register(Model model) {
+		model.addAttribute("memberDTO", new RequestDTO());
+		return "/register";
+	}
 
 	@PostMapping("/register")
 	public String register(@ModelAttribute @Valid RequestDTO memberDTO, BindingResult bindingResult, Model model) {
-
+		
+		
 		if(bindingResult.hasErrors()) {
 
 			log.info("======== 회원 가입에 예외 있음");
@@ -81,7 +82,7 @@ public class MemberController {
 			model.addAttribute("memberDto", memberDTO);
 
 			Map<String, String> errorMap = new HashMap<>();
-
+			
 			for(FieldError error : bindingResult.getFieldErrors()) {
 				errorMap.put("valid_" + error.getField(), error.getDefaultMessage());
 				log.info("회원가입실패. : " + error.getDefaultMessage());
@@ -94,10 +95,11 @@ public class MemberController {
 
 			return "register";
 		}
-
+	
 		log.info("회원가입 성공 : " + memberDTO.toString());
 		memberService.userJoin(memberDTO);
 		return "redirect:/login";
+		
 	}
 
 	@GetMapping("/login")

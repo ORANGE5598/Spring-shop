@@ -18,7 +18,7 @@ public class CheckUsernameValidator extends AbstractValidator<MemberDTO.RequestD
 	@Override
 	protected void doValidate(RequestDTO dto, Errors errors) {
 		if(memberRepository.existsByUsername(dto.getUsername())) {
-			errors.rejectValue("username", "아이디 중복 에러", "이미 사용중인 아이디");
+			errors.rejectValue("username", "아이디 중복 에러", "이미 사용중인 아이디입니다. 다른 아이디를 사용하세요.");
 		}
 	}
 }
