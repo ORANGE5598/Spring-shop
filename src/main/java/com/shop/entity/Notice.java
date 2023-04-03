@@ -1,30 +1,26 @@
 package com.shop.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
-@Builder
-@Getter
-@Setter
-public class Notice extends BaseEntity{
+import java.time.LocalDateTime;
 
-	@Id
-	private Long nno; 
-	
-	private String nTitle;
-	private String nContent;
-	private String nWriter;
-	
-	public void changeNoticeTitle(String nTitle) {
-		this.nTitle = nTitle;
-	}
-	
-	public void changeNoticeContent(String nContent) {
-		this.nContent = nContent;
-	}
+@Entity
+@Data
+public class Notice extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+
+    private String content;
+
+    private String createdBy;
+
+
 }

@@ -7,6 +7,8 @@ import org.springframework.data.repository.query.Param;
 
 import com.shop.entity.QnaEntity;
 
+
+
 public interface QnaRepository extends JpaRepository<QnaEntity, Long> {
 	
 	@Modifying

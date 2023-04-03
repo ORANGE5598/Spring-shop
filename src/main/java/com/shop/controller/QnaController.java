@@ -27,17 +27,20 @@ public class QnaController {
 	private final QnaService qnaService;
 	private final ReplyService replyService;
 
+	@GetMapping("/home")
+	public String index() {
+		return "qna_index";
+	}
 	@GetMapping("/save")
 	public String saveForm() {
-		return "save";
+		return "qna_save";
 	}
 
 	@PostMapping("/save")
 	public String save(@ModelAttribute QnaDTO qnaDTO) {
-		System.out.println(qnaDTO);
 		qnaService.save(qnaDTO);
 
-		return "index";
+		return "qna_index";
 	}
 
 	@GetMapping("/")
@@ -46,7 +49,7 @@ public class QnaController {
 		// db에서 전체게시글데이터가져와서 list.html에 보여주기
 		List<QnaDTO> qnaDTOList = qnaService.findAll();
 		model.addAttribute("qnaList", qnaDTOList);
-		return "list";
+		return "qna_list";
 	}
 
 	@GetMapping("/{id}")
@@ -55,25 +58,27 @@ public class QnaController {
 
 		qnaService.updateHits(id);
 		QnaDTO qnaDTO = qnaService.findById(id);
+		
 		List<ReplyDTO> replyDTOList = replyService.findAll(id);
 		model.addAttribute("replyList", replyDTOList);
+		
 		model.addAttribute("qna", qnaDTO);
 		model.addAttribute("page",pageable.getPageNumber());
-		return "detail";
+		return "qna_detail";
 	}
 
 	@GetMapping("update/{id}")
 	public String updateForm(@PathVariable Long id, Model model) {
 		QnaDTO qnaDTO = qnaService.findById(id);
 		model.addAttribute("qnaUpdate", qnaDTO);
-		return "update";
+		return "qna_update";
 	}
 
 	@PostMapping("/update")
 	public String update(@ModelAttribute QnaDTO qnaDTO, Model model) {
 		QnaDTO qna = qnaService.update(qnaDTO);
 		model.addAttribute("qna", qna);
-		return "detail";
+		return "qna_detail";
 
 	}
 
@@ -104,7 +109,7 @@ public class QnaController {
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		return "paging";
+		return "qna_paging";
 
 	}
 }
