@@ -328,7 +328,7 @@
 
               <tr class="table_row" th:each="list : ${cartList}">
                 <td class="p-l-40">
-                	<input type="radio" name="selectedItem" checked="checked">
+                	<input type="radio" th:value="${list.id}" name="selectedItem">
                 </td>
                 <td class="column-1">
                   <div class="how-itemcart1">
@@ -660,15 +660,17 @@ function orderWithDelivery(element) {
 }
 
 function orderWithCount(element) {
-	var tr = $(".table_row").closest("tr");
-	var count = tr.find(".count").val();
+
+	var selectedRow = $("input[name='selectedItem']:checked").closest("tr");
+	var count = selectedRow.find("input[name='num-product1']").val();
 	element.href = element.href.replace('countX', count);
 }
 
 function orderWithINumber(element) {
-	var tr = $(".table_row").closest("tr");
-	var iNumber = tr.find("input[name='cNumber']").val();
+	var selectedRow = $("input[name='selectedItem']:checked").closest("tr");
+	var iNumber = selectedRow.find("input[name='cNumber']").val();
 	element.href = element.href.replace('iNumberX', iNumber);
+	
 }
 </script>
 <!--===============================================================================================-->
