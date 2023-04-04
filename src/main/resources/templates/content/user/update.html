@@ -419,14 +419,14 @@
             <h2 class="nav-tit">My page Navigation</h2>
             <div class="my-account">
                 <h3>나의 쇼핑 활동</h3>
-                <a href="#" class="order_list">주문 내역 조회</a>
-                <a href="#" class="product_reviews">구매후기</a>
-                <a href="#" class="product_inquiry">상품문의</a>
+                <a href="/orderlist" class="order_list">주문 내역 조회</a>
+                <a href="/review" class="product_reviews">구매후기</a>
+                <a href="/com" class="product_inquiry">상품문의</a>
             </div>
 
             <div class="my-board">
                 <h3>커뮤니티</h3>
-                <a href="#" class="board-list">게시물 / 스크랩 / 댓글</a>
+                <a href="/com" class="board-list">게시물 / 스크랩 / 댓글</a>
             </div>
         </nav>
 
@@ -525,12 +525,12 @@
                             </td>
                         </tr>
 
-                        <tr id="nickName-area">
+                        <tr id="gender-area">
                             <th scope="row">
-                                닉네임
+                                성별
                             </th>
                             <td>
-                                <strong>[[${member.name}]]</strong>
+                                <strong>[[${member.gender}]]</strong>
                             </td>
                             
                         </tr>
@@ -591,7 +591,7 @@
                     <h1 class="tit">
                         추가 회원정보
                         <span style="color: #aaaaaa;">
-                            선택
+                            
                         </span>
                     </h1>
                 </div>
@@ -602,17 +602,12 @@
                     <tbody>
                         <tr></tr>
                         <tr>
-                            <th scope="row">생년월일</th>
-                            <td><strong>2023.03.31</strong></td>
+                            <th scope="row">가입일</th>
+                            <td><strong>[[${member.createdDate}]]</strong></td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
-                            <th scope="row">성별</th>
-                            <td>
-                                <div>
-                                    <strong>여자</strong>
-                                </div>
-                            </td>
+                            
                         </tr>
                         <td></td>
                     </tbody>
