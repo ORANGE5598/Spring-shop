@@ -51,7 +51,7 @@ public class ReviewController {
 		model.addAttribute("endPage", endPage);
 		
 		
-		return "community";
+		return "/board/community";
   
     }
 
@@ -63,7 +63,7 @@ public class ReviewController {
     	
     	model.addAttribute("member", responseDto);
         model.addAttribute("review", new ReviewEntity());
-        return "review_write";
+        return "/board/review/review_write";
     }
 
     @PostMapping("/review/write")
