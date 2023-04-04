@@ -14,7 +14,6 @@ import com.shop.dto.CartDTO;
 import com.shop.dto.CategoryDTO;
 import com.shop.dto.ItemDTO;
 import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageRequestDTO2;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.service.BrandService;
 import com.shop.service.CartService;
@@ -65,15 +64,12 @@ public class IndexController {
 	}
 	
 	@GetMapping("/product")
-	public void product(PageRequestDTO pageRequestDTO, PageRequestDTO2 pageRequestDTO2, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public void product(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
 		List<BrandDTO> brandDTOList = brandService.getBrandList();
 		
 		model.addAttribute("itemDTO", itemService.getList(pageRequestDTO));
-//		model.addAttribute("topDTO", itemService.getTopList(pageRequestDTO));
-//		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-//		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
 		model.addAttribute("count", itemService.readAll());
 		model.addAttribute("categoryDTOList", categoryDTOList);
 		model.addAttribute("brandDTOList", brandDTOList);
@@ -93,117 +89,6 @@ public class IndexController {
 		model.addAttribute("count", cartCount);
 	}
 	
-	/*
-	@GetMapping("/productPriceAsc")
-	public void productAsc(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productPriceDesc")
-	public void productDesc(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/producttop")
-	public void productTop(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getTopList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productbottom")
-	public void productBottom(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getBottomList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productfootwear")
-	public void productFootwear(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getFootwearList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productbag")
-	public void productBag(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getBagList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productheadwear")
-	public void productHeadwear(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getHeadwearList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/producttech")
-	public void productTech(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getTechList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	*/
 	
 	@GetMapping("/shopping-cart")
 	public String cart(Long cNumber, Long oCount, Long dPrice, Model model, @AuthenticationPrincipal UserAdapter user) {
@@ -225,13 +110,12 @@ public class IndexController {
 		
 	    model.addAttribute("totalPrice", totalPrice2);
 	    model.addAttribute("cartList", cartDTOList);
-//	    model.addAttribute("total", totalPrice);
 	    model.addAttribute("count", cartCount);
 		return "content/cart/shopping-cart";
 	}
 	
 	@GetMapping("/product-detail")
-	public void detail(Long iNumber, PageRequestDTO pageRequestDTO, PageRequestDTO2 pageRequestDTO2, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public void detail(Long iNumber, PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long member_id = user.getMemberDTO().getId();
 		ResponseDTO responseDto = memberService.getById(member_id);
@@ -250,7 +134,6 @@ public class IndexController {
 		model.addAttribute("recommend3", itemService.read(random3));
 		model.addAttribute("recommend4", itemService.read(random4));
 		model.addAttribute("item", itemDTO);
-		model.addAttribute("limitDTO", itemService.getLimitList(pageRequestDTO2));
 		
 		Long id = user.getMemberDTO().getId();
 		

@@ -4,9 +4,7 @@ import java.util.List;
 
 import com.shop.dto.BrandDTO;
 import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageRequestDTO2;
 import com.shop.dto.PageResultDTO;
-import com.shop.dto.PageResultDTO2;
 import com.shop.entity.Brand;
 
 public interface BrandService {

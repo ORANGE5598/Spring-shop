@@ -79,28 +79,25 @@
                     <div class="menu-desktop">
                         <ul class="customMenu expanded">
                             <li>
-                                <a href="#">HOME</a>
-                            </li>
-                            <li>
-                                <a href="#">STYLE</a>
+                                <a href="/index">HOME</a>
                             </li>
                             <li class="active-menu">
-                                <a href="#">SHOP</a>
+                                <a href="/product">SHOP</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">CLOTHING</a>
+                                    <li><a href="/product">CLOTHING</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#" data-category="1" onclick="categoryClicked(event)">TOP</a></li>
-                                            <li><a href="#" data-category="2" onclick="categoryClicked(event)">BOTTOM</a></li>
+                                            <li><a href="/product" data-category="1" onclick="categoryClicked(event)">TOP</a></li>
+                                            <li><a href="/product" data-category="2" onclick="categoryClicked(event)">BOTTOM</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#" data-category="3" onclick="categoryClicked(event)">FOOTWEAR</a></li>
-                                    <li><a href="#">ACCESSORIES</a>
+                                    <li><a href="/product" data-category="3" onclick="categoryClicked(event)">FOOTWEAR</a></li>
+                                    <li><a href="/product">ACCESSORIES</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#" data-category="4" onclick="categoryClicked(event)">BAG</a></li>
-                                            <li><a href="#" data-category="5" onclick="categoryClicked(event)">HAEDWEAR</a></li>
+                                            <li><a href="/product" data-category="4" onclick="categoryClicked(event)">BAG</a></li>
+                                            <li><a href="/product" data-category="5" onclick="categoryClicked(event)">HAEDWEAR</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#" data-category="6" onclick="categoryClicked(event)">TECH</a></li>
+                                    <li><a href="/product" data-category="6" onclick="categoryClicked(event)">TECH</a></li>
                                 </ul>
                             </li>
 
@@ -336,7 +333,6 @@
                                                 <ul class="nice-scroll" th:each="category : ${categoryDTOList}">
                                                     <li><a th:href="@{/product{categoryName}(categoryName = ${category.engName}, iCategory = ${category.categoryNumber})}" 
                                                     th:data-category="${category.categoryNumber}" onclick="categoryClicked(event)">[[${category.categoryName}]]</a></li>
-                                                    <li><button></button></li>
                                                 </ul>
                                             </div>
                                         </div>

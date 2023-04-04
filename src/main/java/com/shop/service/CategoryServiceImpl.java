@@ -10,9 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.shop.dto.CategoryDTO;
 import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageRequestDTO2;
 import com.shop.dto.PageResultDTO;
-import com.shop.dto.PageResultDTO2;
 import com.shop.entity.Category;
 import com.shop.repository.CategoryRepository;
 import com.shop.repository.ItemRepository;

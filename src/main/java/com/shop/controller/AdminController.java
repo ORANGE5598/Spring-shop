@@ -17,7 +17,6 @@ import com.shop.dto.CategoryDTO;
 import com.shop.dto.ItemDTO;
 import com.shop.dto.OrderDTO;
 import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageRequestDTO2;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.service.AdminService;

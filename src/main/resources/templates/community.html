@@ -54,18 +54,13 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-20">
-	                        Help & FAQs
-	                    </a>
-	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m trans-04 p-lr-25">
-	                        LOG IN
-	                    </a>
-	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m trans-04 p-lr-25">
-	                        LOGOUT
-	                    </a>
-	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m trans-04 p-lr-25">
-	                        Register
-	                    </a>
+						<a href="#" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+							sec:authorize="isAnonymous()" th:href="@{/login}"
+							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
+							sec:authorize="isAuthenticated()" th:href="@{/logout}"
+							class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
+							sec:authorize="isAnonymous()" th:href="@{/register}"
+							class="flex-c-m trans-04 p-lr-25"> Register </a>
 					</div>
 				</div>
 			</div>
@@ -173,18 +168,13 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-	                        Help & FAQs
-	                    </a>
-	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m p-lr-10 trans-04">
-	                        LOG IN
-	                    </a>
-	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m p-lr-10 trans-04">
-	                        LOG OUT
-	                    </a>
-	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m p-lr-10 trans-04">
-	                        SIGN UP
-	                    </a>
+						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+							sec:authorize="isAnonymous()" th:href="@{/login}"
+							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
+							sec:authorize="isAuthenticated()" th:href="@{/logout}"
+							class="flex-c-m p-lr-10 trans-04"> LOG OUT </a> <a
+							sec:authorize="isAnonymous()" th:href="@{/register}"
+							class="flex-c-m p-lr-10 trans-04"> SIGN UP </a>
 					</div>
 				</li>
 			</ul>
@@ -206,18 +196,12 @@
 								<li><a href="/product">HAEDWEAR</a></li>
 							</ul></li>
 						<li><a href="/product">TECH</a></li>
-					</ul>
-					<span class="arrow-main-menu-m"> <i
+					</ul> <span class="arrow-main-menu-m"> <i
 						class="fa fa-angle-right" aria-hidden="true"></i>
-					</span>
-				</li>
-				<li>
-					<a href="/com">Community</a>
-				</li>
+				</span></li>
+				<li><a href="/com">Community</a></li>
 
-				<li>
-					<a href="/myPage-orderlist">MYPAGE</a>
-				</li>
+				<li><a href="/myPage-orderlist">MYPAGE</a></li>
 			</ul>
 		</div>
 
@@ -247,99 +231,86 @@
 
 		<div class="header-cart flex-col-l p-l-65 p-r-25">
 			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Your Cart
-				</span>
+				<span class="mtext-103 cl2"> Your Cart </span>
 
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+				<div
+					class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
 					<i class="zmdi zmdi-close"></i>
 				</div>
 			</div>
 
 			<div class="header-cart-content flex-w js-pscroll">
 				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12" th:each="cart : ${cartList}">
+					<li class="header-cart-item flex-w flex-t m-b-12"
+						th:each="cart : ${cartList}">
 						<div class="header-cart-item-img">
 							<img th:src="${cart.cImg}" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
 							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								[[${cart.cName}]]
-							</a>
-
-							<span class="header-cart-item-info">
-								{[[${cart.count}]]} x ￦[[${cart.cPrice}]]
-							</span>
+								[[${cart.cName}]] </a> <span class="header-cart-item-info">
+								{[[${cart.count}]]} x ￦[[${cart.cPrice}]] </span>
 						</div>
 					</li>
 				</ul>
 
 				<div class="w-full">
 					<div class="header-cart-total w-full p-tb-40">
-						Total: ￦[[${totalPrice}]]<input type="hidden" th:value="${totalPrice}" />
+						Total: ￦[[${totalPrice}]]<input type="hidden"
+							th:value="${totalPrice}" />
 					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
 						<a href="/shopping-cart"
 							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							장바구니로
-						</a>
+							장바구니로 </a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
+	<!-- 장바구니 끝 -->
 
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92"
-		style="background-image: url('img/main/hero4.jpg');">
+		style="background-image: url('img/main/hero1.jpg');">
 		<h2 class="ltext-201 cl0 txt-center">ABOUT</h2>
 	</section>
 
-
-	-----------------------------경계선 ---------------------------------->
-
-	<!--최신 뉴스/ 이벤트 소식등을 가져다 보여줄수 있도록 해주세요?????????-->
-	<!-- 뷰 -->
 	<!-- Content page -->
 	<section class="bg0 p-t-62 p-b-60">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-lg-9 p-b-80">
 					<div class="p-r-45 p-r-0-lg">
-						
-						
-						
-			
-						
 						<div class="p-b-63" th:each="review : ${reviewList}">
-					
-						<div th:if="${review.fileAttached == 1}">
-		<div class="mb-3">
-			<img th:src="@{|/upload/${review.storedFileName}|}" alt="">
-		</div>
-	</div>		
-					
-								
-						
-						
-						
-						
+							<div th:if="${review.fileAttached == 1}">
+								<!-- <div class="mb-3"> -->
+								<a href="#" class="hov-img0 how-pos5-parent"> <img
+									src="img/product/product-12.jpg"
+									class="custom-fix"><!-- th:src="@{|/upload/${review.storedFileName}|}" -->
+									<!----------------------날짜------------------->
+									<div class="flex-col-c-m size-123 bg9 how-pos5">
+										<span class="ltext-107 cl2 txt-center"> 17 </span>
+										<span class="stext-109 cl3 txt-center"> 03 2023 </span>
+									</div>
+									<!------------------------------------------>
+								</a>
+								<!-- </div> -->
+							</div>
 							<div class="flex-col-c-m p-l-15 p-r-15">
-								<h4 class="p-b-15" th:text="${review.reviewTitle}">
-									
-								</h4>
-								
-						
-								
+								<h4 class="p-b-15" th:text="${review.reviewTitle}"></h4>
+
+
+
 								<p class="stext-117 cl6" th:text="${review.reviewContent}">
-									</p>
+								</p>
 								<div class="flex-w flex-sb-m p-t-18">
 									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span><span class="cl4">[[${review.reviewWriter}]]</span> <!-- <span th:text="${review.reviewWriter}"></span>-->
-											<span class="cl12 m-l-4 m-r-6"></span></span> <span><span
+										<span><span class="cl4">[[${review.reviewWriter}]]</span>
+											<!-- <span th:text="${review.reviewWriter}"></span>--> <span
+											class="cl12 m-l-4 m-r-6"></span></span> <span><span
 											class="cl4">별점 </span> <span th:text="${review.reviewRating}"></span></span>
 									</span> <span
 										th:text="${#temporals.format(review.regDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
@@ -384,7 +355,7 @@
 					</div>
 				</div>
 
-				
+
 
 
 				<!--검색창입니다-->
@@ -440,38 +411,44 @@
 							<h4 class="mtext-112 cl2 p-b-33">For You</h4>
 
 							<ul>
-								<li class="flex-w flex-t p-b-30"><a href="#"
+								<li class="flex-w flex-t p-b-30"><a th:href="@{/product-detail(iNumber = ${recommend1.iNumber})}"
 									class="wrao-pic-w size-214 hov-ovelay1 m-r-20"> <img
-										src="img/product/product-1.jpg" alt="PRODUCT"
+										th:src="${recommend1.iImg}" alt="PRODUCT" class="size-126">
+								</a>
+
+									<div class="size-215 flex-col-t p-t-8">
+										<a th:href="@{/product-detail(iNumber = ${recommend1.iNumber})}" class="stext-116 cl8 hov-cl1 trans-04">
+										[[${recommend1.iName}]]</a> <span
+											class="stext-116 cl6 p-t-20"> ￦[[${recommend1.iPrice}]] </span>
+									</div></li>
+
+
+
+
+								<li class="flex-w flex-t p-b-30"><a th:href="@{/product-detail(iNumber = ${recommend2.iNumber})}"
+									class="wrao-pic-w size-214 hov-ovelay1 m-r-20"> <img
+										th:src="${recommend2.iImg}" alt="PRODUCT"
 										class="size-126">
 								</a>
 
 									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04"> Diesel
-											C-Seymon Treated Denim Baseball Cap Blue White </a> <span
-											class="stext-116 cl6 p-t-20"> ￦가격 </span>
+										<a th:href="@{/product-detail(iNumber = ${recommend2.iNumber})}" class="stext-116 cl8 hov-cl1 trans-04">
+										[[${recommend2.iName}]]</a> <span
+											class="stext-116 cl6 p-t-20"> ￦[[${recommend2.iPrice}]] </span>
 									</div></li>
 
-								<li class="flex-w flex-t p-b-30"><a href="#"
-									class="wrao-pic-w size-214 hov-ovelay1 m-r-20"> <img
-										src="img/product/product-12.jpg" alt="PRODUCT"
-										class="size-126">
-								</a>
 
-									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04"> 상품 </a> <span
-											class="stext-116 cl6 p-t-20"> ￦가격 </span>
-									</div></li>
 
-								<li class="flex-w flex-t p-b-30"><a href="#"
+
+								<li class="flex-w flex-t p-b-30"><a th:href="@{/product-detail(iNumber = ${recommend3.iNumber})}"
 									class="size-214 hov-ovelay1 m-r-20"> <img
-										src="img/product/product-5.jpg" alt="PRODUCT"
-										class="size-126">
+										th:src="${recommend3.iImg}" alt="PRODUCT" class="size-126">
 								</a>
 
 									<div class="size-215 flex-col-t p-t-8">
-										<a href="#" class="stext-116 cl8 hov-cl1 trans-04"> 상품 </a> <span
-											class="stext-116 cl6 p-t-20"> ￦가격 </span>
+										<a th:href="@{/product-detail(iNumber = ${recommend3.iNumber})}" class="stext-116 cl8 hov-cl1 trans-04">
+										[[${recommend3.iName}]]</a> <span
+											class="stext-116 cl6 p-t-20"> ￦[[${recommend3.iPrice}]] </span>
 									</div></li>
 							</ul>
 						</div>
