@@ -146,8 +146,6 @@ public class IndexController {
 	    for (CartDTO cart : cartList) {
 	        totalPrice += cart.getCPrice()*cart.getCount();
 	    }
-	    model.addAttribute("totalPrice", totalPrice);
-	    
 	    model.addAttribute("cartList", cartList);
 	    model.addAttribute("totalPrice", totalPrice);
 		
@@ -164,6 +162,14 @@ public class IndexController {
 		
 		Long cartCount = cartService.getCartCount(id);
 		model.addAttribute("count", cartCount);
+		
+		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
+		int totalPrice = 0;
+	    for (CartDTO cart : cartList) {
+	        totalPrice += cart.getCPrice()*cart.getCount();
+	    }
+	    model.addAttribute("cartList", cartList);
+	    model.addAttribute("totalPrice", totalPrice);
 		
 		model.addAttribute("member", member);
 		model.addAttribute("orderList", orderService.getList(id, pageRequestDTO));	// 사용자 id에 따른 전체 목록 출력

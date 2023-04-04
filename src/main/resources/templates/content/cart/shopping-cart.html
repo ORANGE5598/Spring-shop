@@ -380,8 +380,8 @@
             </div>
 
             <div class="size-209">
-								<span class="mtext-110 cl2">
-									 ￦[[${#vars.totalPrice}]]
+								<span class="mtext-110 cl2" id="total-price2">
+									 [[${#vars.totalPrice}]]
 								</span>
             </div>
           </div>
@@ -416,7 +416,7 @@
 					</div>
 					<div class="p-t-20">
 					<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-						<select class="js-select2" name="delivery">
+						<select class="js-select2" name="delivery" onchange="updateTotalPrice()">
 							<option class="deliveryPrice" id="delivery-fast" value="5000">빠른배송</option>
 							<option class="deliveryPrice" id="delivery-standard" value="3000" selected="selected">일반배송</option>
 						</select>
@@ -440,9 +440,9 @@
 					Total:
 				</span>
 			</div>
-			<div class="size-209 p-t-1" id="total-price">
-				<span class="mtext-110 cl2">
-					￦[[${#vars.totalPrice}]]<!-- 수정해야함 -->
+			<div class="size-209 p-t-1">
+				<span class="mtext-110 cl2" id="total-price">
+					[[${#vars.totalPrice + 3000}]]
 				</span>
 			</div>
 		</div>
@@ -672,6 +672,21 @@ function orderWithINumber(element) {
 	element.href = element.href.replace('iNumberX', iNumber);
 	
 }
+</script>
+<!--===============================================================================================-->
+<script>
+	deliverySelect.addEventListener('change', updateTotalPrice);
+
+	function updateTotalPrice() {
+		  const deliverySelect = document.querySelector('.js-select2');
+		  const totalPrice = document.getElementById('total-price'); // 수정된 부분
+		  const totalPrice2 = document.getElementById('total-price2');
+		  const selectedOption = deliverySelect.options[deliverySelect.selectedIndex];
+		  const deliveryPrice = Number(selectedOption.value);
+		  const currentTotalPrice = Number(totalPrice2.textContent.trim()); // 수정된 부분
+		  const newTotalPrice = currentTotalPrice + deliveryPrice;
+		  totalPrice.textContent = `${newTotalPrice}`;
+		}
 </script>
 <!--===============================================================================================-->
 <script src="/js/main.js"></script>
