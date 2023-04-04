@@ -43,8 +43,8 @@ public class SecurityConfig {
 	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		//http.authorizeHttpRequests().requestMatchers(new AntPathRequestMatcher("/**")).permitAll();
 		
+		/** csrf 예외 처리 URL **/
 		http.csrf().ignoringAntMatchers("/css/**", "/confirm", "/mypage/**", "/findPassword/**", "/sendPwd/**", "/update/**", "/insertOrder/**", "/adminProduct/**", "/modifyItem/**", "/addCart/**", "/insertItem/**", "/modifyDeliveryStatus/**", "/notice/**", "/review/**", "/qna/**", "/reply/**");
 		
 		/** 권한별 접근가능 주소 설정하기 **/
@@ -54,9 +54,18 @@ public class SecurityConfig {
 			/** 권한이 없어도 들어올 수 있는 주소 **/
 			auth.antMatchers("/").permitAll();
 			auth.antMatchers("/findPassword").permitAll();
+			auth.antMatchers("/login").permitAll();
+			auth.antMatchers("/register").permitAll();
 			
 			/** 권한이 있어야 들어올 수 있는 주소 **/
-			auth.antMatchers("/mypage").hasAnyRole("USER");
+			auth.antMatchers("/mypage").hasAnyRole("USER", "ADMIN");
+			auth.antMatchers("/update").hasAnyRole("USER", "ADMIN");
+			auth.antMatchers("/orderBy").hasAnyRole("USER", "ADMIN");
+			auth.antMatchers("/review/**").hasAnyRole("USER", "ADMIN");
+			auth.antMatchers("/reply").hasAnyRole("USER", "ADMIN");
+			
+			/** 관리자 권한이 있어야 들어올 수 있는 주소 **/
+			auth.antMatchers("/admin/**").hasAnyRole("ADMIN");
 		}));
 
 		http

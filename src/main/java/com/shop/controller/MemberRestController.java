@@ -71,7 +71,7 @@ public class MemberRestController {
 		} else if(memberService.checkEmail(dto.getEmail())) {
 			return false;
 		}
-
+		
 		memberService.userInfoUpdate(dto);
 		return true;
 
