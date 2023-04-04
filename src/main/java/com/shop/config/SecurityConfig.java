@@ -4,6 +4,7 @@ import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -15,6 +16,7 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.shop.config.auth.CustomUserDetailsService;
+import com.shop.config.oauth.CustomOAuth2UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,6 +29,8 @@ public class SecurityConfig {
 	
 	private final AuthenticationFailureHandler authenticationFailureHandler;
 	
+	private final CustomOAuth2UserService customOAuth2UserService;
+	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -36,6 +40,8 @@ public class SecurityConfig {
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
+	
+	
 	
 	public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
         return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
@@ -49,7 +55,7 @@ public class SecurityConfig {
 		
 		/** 권한별 접근가능 주소 설정하기 **/
 		
-		http.authorizeHttpRequests((auth -> {
+		http.authorizeHttpRequests((auth -> { 
 			
 			/** 권한이 없어도 들어올 수 있는 주소 **/
 			auth.antMatchers("/").permitAll();
@@ -58,11 +64,11 @@ public class SecurityConfig {
 			auth.antMatchers("/register").permitAll();
 			
 			/** 권한이 있어야 들어올 수 있는 주소 **/
-			auth.antMatchers("/mypage").hasAnyRole("USER", "ADMIN");
-			auth.antMatchers("/update").hasAnyRole("USER", "ADMIN");
-			auth.antMatchers("/orderBy").hasAnyRole("USER", "ADMIN");
-			auth.antMatchers("/review/**").hasAnyRole("USER", "ADMIN");
-			auth.antMatchers("/reply").hasAnyRole("USER", "ADMIN");
+			auth.antMatchers("/mypage").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/update").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/orderBy").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/review/**").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/reply").hasAnyRole("USER", "ADMIN", "SOCIAL");
 			
 			/** 관리자 권한이 있어야 들어올 수 있는 주소 **/
 			auth.antMatchers("/admin/**").hasAnyRole("ADMIN");
@@ -88,7 +94,15 @@ public class SecurityConfig {
 		.clearAuthentication(true)
 		
 			.and()
-		.exceptionHandling().accessDeniedPage("/denied");
+		.exceptionHandling().accessDeniedPage("/denied")
+		
+			.and()
+		.oauth2Login()
+		.loginPage("/login")
+		.defaultSuccessUrl("/")
+		.failureHandler(authenticationFailureHandler)
+		.userInfoEndpoint()
+		.userService(customOAuth2UserService);
 
 // 		// 중복 로그인 막는 기능인데, 버그있는것 같아서 주석 처리함.
 //			.and()

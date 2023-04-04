@@ -42,7 +42,7 @@ public class IndexController {
 		if(user == null) {
 			ItemDTO itemDTO = itemService.read(1L);
 			model.addAttribute("itemDTO", itemDTO);
-		}else {
+		} else {
 			
 			Long id = user.getMemberDTO().getId();
 			
@@ -94,6 +94,11 @@ public class IndexController {
 		model.addAttribute("count", cartCount);
 		
 		return "/content/product";
+	}
+	
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
 	}
 	
 	
