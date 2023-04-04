@@ -31,7 +31,7 @@ public class NoticeController {
 
 	    // 아이디가 admin인 경우에만 isAdmin 변수를 true로 설정
 	    model.addAttribute("isAdmin", "admin".equals(username));
-	    return "notice_list";
+	    return "/board/notice/notice_list";
 	}
 
 	@PostMapping("/notice/new")
@@ -50,7 +50,7 @@ public class NoticeController {
     @GetMapping("/notice/{id}")
     public String noticeDetail(@PathVariable Long id, Model model) {
         model.addAttribute("notice", noticeService.getNoticeById(id));
-        return "notice_detail";
+        return "/board/notice/notice_detail";
     }
     
     

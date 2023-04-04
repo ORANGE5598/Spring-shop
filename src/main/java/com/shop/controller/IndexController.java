@@ -65,7 +65,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/product")
-	public void product(PageRequestDTO pageRequestDTO, PageRequestDTO2 pageRequestDTO2, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public String product(PageRequestDTO pageRequestDTO, PageRequestDTO2 pageRequestDTO2, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
 		List<BrandDTO> brandDTOList = brandService.getBrandList();
@@ -91,6 +91,8 @@ public class IndexController {
 		//
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
+		
+		return "/content/product";
 	}
 	
 	/*

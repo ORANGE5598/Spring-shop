@@ -9,7 +9,7 @@ import com.shop.entity.Member;
 public interface MemberService { //extends UserDetailsService {
 	
 	/** 회원가입 **/
-    void userJoin(MemberDTO.RequestDTO memberDTO);
+    void userJoin(RequestDTO memberDTO);
 
     /** member_id로 memberDto 반환 **/
     MemberDTO.ResponseDTO getById(Long member_id);
