@@ -17,6 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.shop.config.auth.CustomUserDetailsService;
 import com.shop.config.oauth.CustomOAuth2UserService;
+import com.siot.IamportRestClient.IamportClient;
 
 import lombok.RequiredArgsConstructor;
 

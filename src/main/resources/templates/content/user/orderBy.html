@@ -413,7 +413,7 @@
 
 
                             <button class="flex-c-m stext-101 cl2 size-116 bg8 bor14 hov-btn5 p-lr-15 trans-04 pointer m-t-20 paymentBtn"
-                                    type="submit">
+                                    type="button" onclick="requestPay()">
                                 결제하기
                             </button>
                             <div id="root"></div>
@@ -643,8 +643,88 @@
     }
 </script>
 <!--===============================================================================================-->
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <script>
+	const header = $("meta[name='_csrf_header']").attr('content');
+	const token = $("meta[name='_csrf']").attr('content');
 	
+	var formData = new FormData();
+	
+	var iNumber = $("input[name='iNumber']").val();
+	var img = $("input[name='img']").val();
+	var mId = $("input[name='mId']").val();
+	var mName = $("input[name='mName']").val();
+	var oCount = $("input[name='oCount']").val()
+	var oDeliveryPrice = $("input[name='dPrice']").val();
+	var oItemPrice = $("input[name='iPrice']").val();
+	var oGetPoint = Math.floor($("input[name='totalPrice']").val() / 100);
+	var oName = $("input[name='iName']").val();
+	var oTotalPrice = $("input[name='totalPrice']").val();
+	var firPoint = $("input[name='firPoint']").val();
+	var oUsePoint = $("input[name='oUsePoint']").val();
+	var phoneNumber = $("input[name='phoneNumber']").val()
+	var roadAddress = $("input[name='roadAddress']").val();
+	var detailAddress = $("input[name='detailAddress']").val();
+	var deliveryMessage = $("input[name='deliveryMessage']").val();
+	var oSize = $("input[name='oSize']").val();
+	var paymentMethod = $(":input:radio[name='payment']:checked").val();
+	
+	const priceAmount = $("input[name='totalPrice']").val();
+	const buyerMemberEmail = "1@ruu.kr";
+	const buyerMemberName = $("input[name='mName']").val();
+
+    console.log(priceAmount);
+    console.log(buyerMemberName);
+    console.log(buyerMemberEmail);
+    
+    const IMP = window.IMP;
+    IMP.init('imp99053400');
+
+    function requestPay() {
+        // IMP.request_pay(param, callback) 결제창 호출
+        IMP.request_pay({ // param
+            pg: "kakaopay.TC0ONETIME",
+            pay_method: "card",
+            merchant_uid: 'cart_' + new Date().getTime(),
+            name: "${ordering.iName}",
+            amount: priceAmount,
+            buyer_email: buyerMemberEmail,
+            buyer_name: buyerMemberName,
+
+        }, function (rsp) { // callback
+
+            /** 결제 검증 **/
+            $.ajax({
+                type: 'POST',
+                url: '/verifyIamport/'+rsp.imp_uid,
+                beforeSend: function(xhr){
+                    xhr.setRequestHeader(header, token);
+                }
+            }).done(function(result){
+
+                // rsp.paid_amount와 result.response.amount(서버 검증) 비교 후 로직 실행
+                if(rsp.paid_amount === result.response.amount){
+                    alert("결제가 완료되었습니다.");
+                    $.ajax({
+                        type:'POST',
+                        url:'/lecture/payment',
+                        beforeSend: function(xhr){
+                            xhr.setRequestHeader(header, token);
+                        }
+                    }).done(function() {
+                        window.location.reload();
+                    }).fail(function(error){
+                            alert(JSON.stringify(error));
+                    })
+                } else{
+                    alert("결제에 실패했습니다."+"에러코드 : "+rsp.error_code+"에러 메시지 : "+rsp.error_message);
+
+                }
+            })
+        });
+    };
+	/*
 	$(".paymentBtn").click(function(){
 		var formData = new FormData();
 		
@@ -711,7 +791,7 @@
 			}
 			
 		})	// ajax의 끝
-	});
+	}); */
 </script>
 <!--===============================================================================================-->
 <script src="/js/main.js"></script>
