@@ -45,6 +45,18 @@ public interface ItemService {
 	ItemDTO getImg(Long number);
 	
 	PageResultDTO<ItemDTO, Item> getList(PageRequestDTO pageRequestDTO);
+	
+	// 테스트
+	List<ItemDTO> getListTest();
+	
+	// 테스트1
+	List<ItemDTO> getTopListTest();
+	
+	// 테스트4
+	List<ItemDTO> getBagListTest();
+	
+	// 테스트6
+	List<ItemDTO> getTechListTest();
 
 	PageResultDTO<ItemDTO, Item> getListByPriceAsc(PageRequestDTO pageRequestDTO);
 

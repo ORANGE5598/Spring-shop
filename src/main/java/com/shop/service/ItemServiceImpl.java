@@ -1,8 +1,10 @@
 package com.shop.service;
 
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
@@ -71,6 +73,42 @@ public class ItemServiceImpl implements ItemService {
 		
 		
 		return new PageResultDTO<>(result, fn);
+	}
+	
+	//테스트
+	@Override
+	public List<ItemDTO> getListTest() {
+		
+		List<ItemDTO> result = itemRepository.getList().stream().map(item -> entityToDto(item)).collect(Collectors.toList());
+		
+		return result;
+	}
+	
+	//테스트1
+	@Override
+	public List<ItemDTO> getTopListTest() {
+		
+		List<ItemDTO> result = itemRepository.getTopList().stream().map(item -> entityToDto(item)).collect(Collectors.toList());
+		
+		return result;
+	}
+	
+	//테스트4
+	@Override
+	public List<ItemDTO> getBagListTest() {
+		
+		List<ItemDTO> result = itemRepository.getBagList().stream().map(item -> entityToDto(item)).collect(Collectors.toList());
+		
+		return result;
+	}
+	
+	//테스트6
+	@Override
+	public List<ItemDTO> getTechListTest() {
+		
+		List<ItemDTO> result = itemRepository.getTechList().stream().map(item -> entityToDto(item)).collect(Collectors.toList());
+		
+		return result;
 	}
 	
 	@Override

@@ -58,7 +58,11 @@ public class IndexController {
 			model.addAttribute("cartList", cartDTOList);
 			model.addAttribute("count", cartCount);
 			model.addAttribute("itemDTO", itemDTO);
-			
+//			model.addAttribute("list", itemService.getList(pageRequestDTO));
+//			model.addAttribute("list", itemService.getListTest());
+			model.addAttribute("list1", itemService.getTopListTest());
+			model.addAttribute("list4", itemService.getBagListTest());
+			model.addAttribute("list6", itemService.getTechListTest());
 		}
 		return "/index";
 	}

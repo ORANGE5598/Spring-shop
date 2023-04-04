@@ -1,5 +1,7 @@
 package com.shop.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,6 +19,22 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 	// Item 상품 전체를 리턴
 	@Query(value = "SELECT * FROM Item WHERE i_number > 0 ORDER BY i_number ASC", nativeQuery = true)
 	Page<Item> getItem(Pageable pageable);
+	
+	// 테스트중
+	@Query(value = "SELECT * FROM Item WHERE i_number > 0 ORDER BY i_number ASC", nativeQuery = true)
+	List<Item> getList();
+	
+	// 테스트중1
+	@Query(value = "SELECT * FROM Item WHERE i_number > 0 AND i_category=1 ORDER BY i_number ASC", nativeQuery = true)
+	List<Item> getTopList();
+	
+	// 테스트중4
+	@Query(value = "SELECT * FROM Item WHERE i_number > 0 AND i_category=4 ORDER BY i_number ASC", nativeQuery = true)
+	List<Item> getBagList();
+	
+	// 테스트중6
+	@Query(value = "SELECT * FROM Item WHERE i_number > 0 AND i_category=6 ORDER BY i_number ASC", nativeQuery = true)
+	List<Item> getTechList();
 	
 	// 상품 총 갯수 리턴
 	@Query(value = "SELECT count(*) FROM Item", nativeQuery = true)
