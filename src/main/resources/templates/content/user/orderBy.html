@@ -334,6 +334,7 @@
                                 <div class="orderBy__input">
                                     <p>이름<span>*</span></p><!-- Member 완성되면 member.name 등으로 완성시켜야 함 -->
                                     <input type="hidden" name="mId" th:value="${member.id}">
+                                    <input type="hidden" name="mEmail" th:value="${member.email}">
                                     <input type="text" name="mName" class="form-control" th:value="${member.name}" readonly="readonly" required>
                                 </div>
                             </div>
@@ -648,30 +649,9 @@
 <script>
 	const header = $("meta[name='_csrf_header']").attr('content');
 	const token = $("meta[name='_csrf']").attr('content');
-	
-	var formData = new FormData();
-	
-	var iNumber = $("input[name='iNumber']").val();
-	var img = $("input[name='img']").val();
-	var mId = $("input[name='mId']").val();
-	var mName = $("input[name='mName']").val();
-	var oCount = $("input[name='oCount']").val()
-	var oDeliveryPrice = $("input[name='dPrice']").val();
-	var oItemPrice = $("input[name='iPrice']").val();
-	var oGetPoint = Math.floor($("input[name='totalPrice']").val() / 100);
-	var oName = $("input[name='iName']").val();
-	var oTotalPrice = $("input[name='totalPrice']").val();
-	var firPoint = $("input[name='firPoint']").val();
-	var oUsePoint = $("input[name='oUsePoint']").val();
-	var phoneNumber = $("input[name='phoneNumber']").val()
-	var roadAddress = $("input[name='roadAddress']").val();
-	var detailAddress = $("input[name='detailAddress']").val();
-	var deliveryMessage = $("input[name='deliveryMessage']").val();
-	var oSize = $("input[name='oSize']").val();
-	var paymentMethod = $(":input:radio[name='payment']:checked").val();
-	
+		
 	const priceAmount = $("input[name='totalPrice']").val();
-	const buyerMemberEmail = "1@ruu.kr";
+	const buyerMemberEmail = $("input[name='mEmail']").val();
 	const buyerMemberName = $("input[name='mName']").val();
 
     console.log(priceAmount);
@@ -682,6 +662,28 @@
     IMP.init('imp99053400');
 
     function requestPay() {
+
+    	var formData = new FormData();
+    	
+    	var iNumber = $("input[name='iNumber']").val();
+    	var img = $("input[name='img']").val();
+    	var mId = $("input[name='mId']").val();
+    	var mName = $("input[name='mName']").val();
+    	var oCount = $("input[name='oCount']").val()
+    	var oDeliveryPrice = $("input[name='dPrice']").val();
+    	var oItemPrice = $("input[name='iPrice']").val();
+    	var oGetPoint = Math.floor($("input[name='totalPrice']").val() / 100);
+    	var oName = $("input[name='iName']").val();
+    	var oTotalPrice = $("input[name='totalPrice']").val();
+    	var firPoint = $("input[name='firPoint']").val();
+    	var oUsePoint = $("input[name='oUsePoint']").val();
+    	var phoneNumber = $("input[name='phoneNumber']").val()
+    	var roadAddress = $("input[name='roadAddress']").val();
+    	var detailAddress = $("input[name='detailAddress']").val();
+    	var deliveryMessage = $("input[name='deliveryMessage']").val();
+    	var oSize = $("input[name='oSize']").val();
+    	var paymentMethod = $(":input:radio[name='payment']:checked").val();
+    	
         // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({ // param
             pg: "kakaopay.TC0ONETIME",
@@ -708,7 +710,20 @@
                     alert("결제가 완료되었습니다.");
                     $.ajax({
                         type:'POST',
-                        url:'/lecture/payment',
+                        url:'insertOrder',
+                        processData : false,
+            			contentType : false,
+            			data : formData,
+            			type : 'POST',
+            			dataType : 'json',
+            			success : function(result){
+            				alert('성공');
+            				console.log(result);
+            			},
+            			error : function(jqXHR, textStatus, errThrown){
+            				alert('실패');
+            				console.log(errThrown)
+            			},
                         beforeSend: function(xhr){
                             xhr.setRequestHeader(header, token);
                         }
