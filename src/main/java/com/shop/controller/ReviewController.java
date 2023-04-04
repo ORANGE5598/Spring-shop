@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.CartDTO;
+import com.shop.dto.PageRequestDTO;
 import com.shop.dto.ReviewDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.ReviewEntity;
@@ -98,10 +99,20 @@ public class ReviewController {
     }
     
     @GetMapping("/reviewList")
-    public String reviewList() {
-    	
-    	
-    	
+    public String reviewList(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+    	Long id = user.getMemberDTO().getId();
+		Long cartCount = cartService.getCartCount(id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+		model.addAttribute("count", cartCount);
+		
     	return "board/review/review-list";
     }
 
