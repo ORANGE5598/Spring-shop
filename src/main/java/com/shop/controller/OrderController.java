@@ -31,12 +31,6 @@ public class OrderController {
 	private final MemberService memberService;
 	private final CartService cartService;
 	
-//	@GetMapping("/orderList")
-//	public void orderList(PageRequestDTO pageRequestDTO, Model model) {
-//		
-//		model.addAttribute("orderList", orderService.getList(pageRequestDTO));
-//	}
-	
 	@GetMapping("/orderDetail")
 	public void orderDetail(Long oNumber, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model) {
 		OrderDTO dto = orderService.read(oNumber);

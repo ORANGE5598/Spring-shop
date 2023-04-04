@@ -75,13 +75,11 @@ public class OrderServiceImpl implements OrderService {
 	
 	
 	@Override
-	public PageResultDTO<OrderDTO, OrderList> getList(Long id, PageRequestDTO pageRequestDTO) {
+	public List<OrderDTO> getList(Long id) {
 		
-		Function<OrderList, OrderDTO> fn = (en -> entityToDto(en));
+		List<OrderDTO> result = orderRepository.getOrderById(id).stream().map(order -> entityToDto(order)).collect(Collectors.toList());
 		
-		Page<OrderList> result = orderRepository.getOrderById(id, pageRequestDTO.getPageable(Sort.by("updatedDate").ascending()));
-		
-		return new PageResultDTO<>(result, fn);
+		return result;
 	}
 	
 	@Override

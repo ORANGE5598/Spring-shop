@@ -176,7 +176,7 @@ public class IndexController {
 	    model.addAttribute("totalPrice", totalPrice);
 		
 		model.addAttribute("member", member);
-		model.addAttribute("orderList", orderService.getList(id, pageRequestDTO));	// 사용자 id에 따른 전체 목록 출력
+		model.addAttribute("orderList", orderService.getList(id));	// 사용자 id에 따른 전체 목록 출력
 		model.addAttribute("count0", orderService.allStatus(id));
 		model.addAttribute("count1", orderService.deliverying(id));
 		model.addAttribute("count2", orderService.afterDelivery(id));

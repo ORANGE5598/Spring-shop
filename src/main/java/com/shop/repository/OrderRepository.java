@@ -1,5 +1,7 @@
 package com.shop.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,7 +16,7 @@ public interface OrderRepository extends JpaRepository<OrderList, Long> {
 	OrderList getOrderByNumber(@Param("oNumber") Long oNumber);
 	
 	@Query("SELECT o FROM OrderList o WHERE o.mId =:id")
-	Page<OrderList> getOrderById(@Param("id") Long oNumber, Pageable pageable);
+	List<OrderList> getOrderById(@Param("id") Long oNumber);
 	
 	@Query("SELECT count(o) FROM OrderList o WHERE o.mId =:id")
 	Long countAll(@Param("id") Long oNumber);

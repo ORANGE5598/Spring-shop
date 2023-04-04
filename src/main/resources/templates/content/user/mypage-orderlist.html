@@ -515,12 +515,12 @@
                     </thead>
 
                     <tbody>
-                        <tr class="table_row" th:each="list : ${orderList.dtoList}">
+                        <tr class="table_row" th:each="list : ${orderList}">
                             <!--상품사진-->
                             <td class="column-1">
                                 <div class="img-block">
                                     <a href="#">
-                                        <img th:src="${list.img}" alt="방랑자 가방" width="200">
+                                        <img th:src="${list.img}" width="200">
                                     </a>
                                 </div>
                             </td>
@@ -529,11 +529,9 @@
                             <td class="column-2">
                                 <div class="product_row">
                                     <ul class="info">
-                                        <li class="brand"><a href="#">쎄르페</a></li>
-                                        <li class="name"><a href="#">방랑자 가방</a>
-                                        </li>
+                                        <li class="name">[[${list.oName}]]</li>
                                         <li class="option">
-                                            옵션 : M
+                                            사이즈 : [[${list.oSize}]]
                                         </li>
                                     </ul>
                                 </div>
@@ -541,89 +539,36 @@
 
                             <!--주문일자-->
                             <td class="column-3">
-                                2023.03.31
+                                [[${list.createdDate}]]
                             </td>
 
                             <!--주문번호--->
                             <td class="column-4 ">
-                                <a href="#">12345678</a>    
+                                [[${list.oNumber}]]  
                             </td>
 
                             <!--가격,갯수-->
-                            <td class="column-5">40,010원 <br>
+                            <td class="column-5">[[${list.oTotalPrice}]]원 <br>
                                 <span class="txt-default">
-                                    1개
+                                    [[${list.oCount}]]개
                                 </span>
                             </td>
 
                             <!--배송상태-->
                             <td class="column-6">
-                                    <a href="#">
-                                        <span class="label label-primary">구매확정</span> 
-                                        <!--??왜 부트스트랩 라벨안먹지???-->
-                                        </a>
-                                    <br>
-                                    <a href="#" class="btn btn-default">배송조회</a>
-                                    <!--??왜 부트스트랩 라벨안먹지???-->
+                                <span class="badge badge-pill badge-primary w-full fs-14 dStatus">[[${list.deliveryStatus}]]</span>
+                                <br>
+
                             </td>
 
-<!-- 
-                            <div class="popup_info step_pop" id="delivery_step_154576635" style="display:none;">
-                                <p class="box_title">
-                                    <span class="title-box font-mss">Step <span class="korSub">주문단계</span></span><span
-                                        class="btn_close_pop"
-                                        onclick="deliveryStepHide('step',154576635); return false;">닫기</span>
-                                </p>
-                                <div class="box_info_cell">
-                                    <ul>
-                                        <li class="popup_info_title">일자</li>
-                                        <li class="popup_info_title">처리내역</li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-30 21:25</li>
-                                        <li class="popup_info_detail"> 주문 일시</li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-30 21:25</li>
-                                        <li class="popup_info_detail">
-                                            입금 확인
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-30 21:25</li>
-                                        <li class="popup_info_detail"> 출고 요청</li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-31 12:10</li>
-                                        <li class="popup_info_detail">
-                                            출고 처리 중
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-31 12:35</li>
-                                        <li class="popup_info_detail">
-                                            출고 완료
-                                        </li>
-                                    </ul>
-                                    </ul>
-                                </div>
-                            </div> 
-                        
-                        팝업창 기능...좀,,,,기다려봐...요,,,,,제발,,-->
-
-
                             <td class="txt-lighter column-6">
-                                    <button type="button" class="btn btn-primary">
-                                        후기 작성하기 
-                                    </button>
+								<button type="button" class="btn btn-outline-dark">
+									후기 작성하기 
+								</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                
-                <div class="n-paging">
-                    <button type="button" class="page is-active" onclick="return false;">1</button>
-                </div>
             </div>
         </section>
     </main>
@@ -843,9 +788,30 @@
         });
     </script>
     <!--==============================================================================================-->
+<script>
+	
+	const spanElements = document.querySelectorAll('.dStatus');
+	
+	spanElements.forEach(function(spanElement) {
+	    const deliveryStatus = spanElement.textContent.trim();
+	    switch (deliveryStatus) {
+	        case '배송중':
+	        	spanElement.classList.remove('badge-success', 'badge-warning', 'badge-danger');
+	            spanElement.classList.add('badge-primary');
+	            break;
+	        case '배송완료':
+	            spanElement.classList.add('badge-success');
+	            break;
+	        case '반품대기':
+	            spanElement.classList.add('badge-warning');
+	            break;
+	        case '반품완료':
+	            spanElement.classList.add('badge-danger');
+	            break;
+	    }
+	});
 
-
-    <!--==============================================================================================-->
+    </script>
     <!--==============================================================================================-->
     <script src="js/main.js"></script>
 

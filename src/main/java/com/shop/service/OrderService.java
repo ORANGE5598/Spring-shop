@@ -44,7 +44,7 @@ public interface OrderService {
 	
 	Long modify(OrderDTO dto, Long oNumber);	// 수정 필요
 	
-	PageResultDTO<OrderDTO, OrderList> getList(Long id, PageRequestDTO pageRequestDTO);
+	List<OrderDTO> getList(Long id);
 	
 	List<OrderDTO> getAllList();
 	

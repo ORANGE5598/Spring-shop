@@ -92,6 +92,26 @@ public class AdminController{
 		return "content/admin/admin-product";
 	}
 	
+	@GetMapping("/adminNotice")
+	public String adminNotice(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		Long id = user.getMemberDTO().getId();
+		ResponseDTO member = memberService.getById(id);
+		Long cartCount = cartService.getCartCount(id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+		model.addAttribute("count", cartCount);
+		model.addAttribute("member", member);
+		
+		return "content/admin/admin-notice";
+	}
+	
 	@GetMapping("/adminModify")
 	public String adminModify(Long iNumber, PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
