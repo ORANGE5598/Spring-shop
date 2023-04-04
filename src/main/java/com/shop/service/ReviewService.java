@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,16 +30,21 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReviewService {
 
-	private final ReviewRepository reviewRepository;
-
-	private final ReviewFileRepository reviewFileRepository;
-	
-	MemberRepository memberRepository;
+	 @Autowired
+	    private ReviewRepository reviewRepository;
+	    
+	    @Autowired
+	    private ReviewFileRepository reviewFileRepository;
+	    
+	    @Autowired
+	    private MemberRepository memberRepository;
 
 	
 	
 public void save(ReviewDTO reviewDTO) throws IOException {
 		
+	 //Member member = memberRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
+	
 		String fName = "C:\\springboot_img";
 		File folder = new File(fName);
 		
@@ -48,8 +54,13 @@ public void save(ReviewDTO reviewDTO) throws IOException {
 		// 파일 첨부 여부에 따라 로직 분리
 		if (reviewDTO.getReviewFile().isEmpty()) {
 			// 첨부 파일 없음.
+			
 			ReviewEntity reviewEntity = ReviewEntity.toSaveEntity(reviewDTO);
 			reviewRepository.save(reviewEntity);
+//			 ReviewEntity reviewEntity = ReviewEntity.toSaveEntity(reviewDTO, member);
+//		     reviewRepository.save(reviewEntity);
+	
+		     
 		} else {
 			// 첨부 파일 있음
 				MultipartFile reviewFile = reviewDTO.getReviewFile();//1.dto에 담긴파일꺼냄
@@ -105,14 +116,18 @@ public void save(ReviewDTO reviewDTO) throws IOException {
 	        String originalFileName = null;
 	        String storedFileName = null;
 	        int fileAttached = review.getFileAttached();
-	       
+	        
+	        //추가
+	       // String username = review.getMember().getUsername(); // 회원 아이디를 가져옵니다.
+	        
 	        if (fileAttached == 1) {
 	            originalFileName = review.getReviewFileEntityList().get(0).getOriginalFileName();
 	            storedFileName = review.getReviewFileEntityList().get(0).getStoredFileName();
 	        }
-	        return new ReviewDTO(review.getReviewTitle(), review.getReviewContent(), review.getReviewRating(), review.getRegDate(), originalFileName, storedFileName, fileAttached);
+	        return new ReviewDTO(review.getReviewTitle(), review.getReviewContent(), review.getReviewRating(), review.getRegDate(), review.getReviewWriter(), originalFileName, storedFileName, fileAttached);
 	    });
 	    return reviewDTOS;
+	}
 	}
 	
 	//ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -130,4 +145,4 @@ public void save(ReviewDTO reviewDTO) throws IOException {
 //		return reviewDTOS;
 //	}
 
-}
+

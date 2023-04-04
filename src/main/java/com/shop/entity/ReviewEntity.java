@@ -40,6 +40,12 @@ import lombok.Data;
 	    @Column
 	    private String storedFileName;
 	    
+	    @Column
+	    private String reviewWriter;
+	    
+//	    @ManyToOne(fetch = FetchType.EAGER)
+//	    @JoinColumn(name = "member_id")
+//	    private Member member;
 	   
 	    
 	    @OneToMany(mappedBy = "reviewEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
@@ -47,10 +53,14 @@ import lombok.Data;
 	    
 	    public static ReviewEntity toSaveEntity(ReviewDTO reviewDTO) {
 	    	  ReviewEntity reviewEntity = new ReviewEntity();
+	    	  reviewEntity.setReviewWriter(reviewDTO.getReviewWriter());
 	    	    reviewEntity.setReviewTitle(reviewDTO.getReviewTitle());
 	    	    reviewEntity.setReviewContent(reviewDTO.getReviewContent());
 	    	    reviewEntity.setReviewRating(reviewDTO.getReviewRating());
 	    	    reviewEntity.setFileAttached(0); // 파일 없음.
+	    	    
+	    	    //추가
+	    	    //reviewEntity.setMember(member);
 	    	    
 	    	    return reviewEntity;
 	    }    	    
@@ -59,6 +69,7 @@ import lombok.Data;
 	    
 	    public static ReviewEntity toSaveFileEntity(ReviewDTO reviewDTO) {
 	    	ReviewEntity reviewEntity = new ReviewEntity();
+	    	reviewEntity.setReviewWriter(reviewDTO.getReviewWriter());
 	    	reviewEntity.setReviewTitle(reviewDTO.getReviewTitle());
 	    	reviewEntity.setReviewContent(reviewDTO.getReviewContent());
 	    	reviewEntity.setReviewRating(reviewDTO.getReviewRating());
