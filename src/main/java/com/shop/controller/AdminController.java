@@ -12,7 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.BrandDTO;
+import com.shop.dto.CartDTO;
 import com.shop.dto.CategoryDTO;
+import com.shop.dto.ItemDTO;
 import com.shop.dto.OrderDTO;
 import com.shop.dto.PageRequestDTO;
 import com.shop.dto.PageRequestDTO2;
@@ -43,21 +45,75 @@ public class AdminController{
 	private final AdminService adminService;
 	
 	@GetMapping("/adminList")
-	public void adminList(PageRequestDTO pageRequestDTO, PageRequestDTO2 pageRequestDTO2, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public String adminList(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
+		Long id = user.getMemberDTO().getId();
+		ResponseDTO member = memberService.getById(id);
+		
+		Long cartCount = cartService.getCartCount(id);
 		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
 		List<BrandDTO> brandDTOList = brandService.getBrandList();
 		
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		
+	    model.addAttribute("cartCount", cartCount);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+		model.addAttribute("member", member);
 		model.addAttribute("itemDTO", itemService.getList(pageRequestDTO));
 		model.addAttribute("count", itemService.readAll());
 		model.addAttribute("categoryDTOList", categoryDTOList);
 		model.addAttribute("brandDTOList", brandDTOList);
+		
+		return "content/admin/adminList";
 	}
 	
 	@GetMapping("/adminProduct")
-	public String adminProduct(PageRequestDTO pageRequestDTO, PageRequestDTO2 pageRequestDTO2, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public String adminProduct(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		Long id = user.getMemberDTO().getId();
+		ResponseDTO member = memberService.getById(id);
+		Long cartCount = cartService.getCartCount(id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+	    model.addAttribute("count", cartCount);
+		model.addAttribute("member", member);
 		
 		return "content/admin/admin-product";
+	}
+	
+	@GetMapping("/adminModify")
+	public String adminModify(Long iNumber, PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		Long id = user.getMemberDTO().getId();
+		ResponseDTO member = memberService.getById(id);
+		Long cartCount = cartService.getCartCount(id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		ItemDTO itemDTO = itemService.read(iNumber);
+		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		
+		model.addAttribute("item", itemDTO);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+	    model.addAttribute("count", cartCount);
+		model.addAttribute("member", member);
+		
+		return "content/admin/admin-modify";
 	}
 	
 	@GetMapping("/adminIndex")
@@ -67,12 +123,17 @@ public class AdminController{
 		ResponseDTO member = memberService.getById(id);
 		
 		Long cartCount = cartService.getCartCount(id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
 		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
 	    model.addAttribute("count", cartCount);
 		model.addAttribute("member", member);
 		model.addAttribute("allList", orderService.getAllList());
-//		model.addAttribute("item", itemService.read(iNumber));
-		
 		model.addAttribute("listCount", orderService.getAllCount());
 		model.addAttribute("count1", adminService.deliverying());
 		model.addAttribute("count2", adminService.afterDelivery());

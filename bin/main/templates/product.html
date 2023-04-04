@@ -334,9 +334,9 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__categories">
                                                 <ul class="nice-scroll" th:each="category : ${categoryDTOList}">
-                                                    <!-- <li><a th:href="@{/product{categoryName}(categoryName = ${category.engName}, iCategory = ${category.categoryNumber})}">[[${category.categoryName}]]</a></li> -->
                                                     <li><a th:href="@{/product{categoryName}(categoryName = ${category.engName}, iCategory = ${category.categoryNumber})}" 
                                                     th:data-category="${category.categoryNumber}" onclick="categoryClicked(event)">[[${category.categoryName}]]</a></li>
+                                                    <li><button></button></li>
                                                 </ul>
                                             </div>
                                         </div>

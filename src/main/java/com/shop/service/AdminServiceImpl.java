@@ -21,26 +21,25 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private AdminRepository adminRepository;
-	private ItemRepository itemRepository;
-	
 	
 	// 상품 이미지 변경하는 메서드
 	@Override
 	public void modifyAll(ItemDTO dto, MultipartFile file) {
 		
-		Item entity = adminRepository.getById(1L);	// 테스트용으로 iNumber 1로 직접 줌
-//		Item entity = adminRepository.getById(dto.getINumber());	// dto에 저장된 iNumber 읽어오기
+		Item entity = adminRepository.getById(dto.getINumber());	// dto에 저장된 iNumber 읽어오기
 		
 		String orginName = file.getOriginalFilename();
 		
 		String savedImg = path + orginName;
 		
+		entity.changeIName(dto.getIName());
+		entity.changeBrand(dto.getBrand());
+		entity.changeICategory(dto.getICategory());
 		entity.changeImg(savedImg);
 		entity.changePrice(dto.getIPrice());
 		entity.changeInstock(dto.getIInstock());
 		entity.changeInfo(dto.getIInfo());
 		entity.changeSize(dto.getISize());
-//		entity.changeDeliveryPrice(dto.getIDeliveryPrice());
 		
 		adminRepository.save(entity);
 		
