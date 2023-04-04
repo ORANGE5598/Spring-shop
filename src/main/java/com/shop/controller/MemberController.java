@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,10 +26,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.config.auth.UserAdapter;
+import com.shop.dto.CartDTO;
+import com.shop.dto.PageRequestDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
+import com.shop.service.CartService;
 import com.shop.service.MailService;
 import com.shop.service.MemberService;
+import com.shop.service.OrderService;
 import com.shop.validator.CheckEmailValidator;
 import com.shop.validator.CheckUsernameValidator;
 
@@ -44,6 +49,9 @@ public class MemberController {
 	/** 서비스 **/
 	private final MemberService memberService;
 	private final MailService mailService;
+	private final CartService cartService;
+	private final OrderService orderService;
+	
 
 	/** 중복 체크 유효성 검사 **/
 	private final CheckUsernameValidator checkUsernameValidator;
@@ -60,7 +68,7 @@ public class MemberController {
 	@GetMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("memberDto", new RequestDTO());
-		return "/member/register";
+		return "/content/user/register";
 	}
 
 	/** 회원가입 요청 처리 **/
@@ -83,7 +91,7 @@ public class MemberController {
 				model.addAttribute(key, errorMap.get(key));
 			}
 
-			return "member/register";
+			return "content/user/register";
 		}
 	
 		log.info("회원가입 성공 : " + memberDTO.toString());
@@ -102,7 +110,7 @@ public class MemberController {
 
 		model.addAttribute("exception", exception);
 
-		return "/member/login";
+		return "/content/user/login";
 	}
 
 	/** 로그아웃 **/
@@ -124,7 +132,7 @@ public class MemberController {
 	/** 패스워드 찾기 페이지 **/
 	@GetMapping("/findPassword")
 	public String findPassword() {
-		return "/member/findPassword";
+		return "/content/user/findPassword";
 	}
 
 	/** 패스워드 찾기 요청 시 이메일 보내주기 **/
@@ -154,8 +162,15 @@ public class MemberController {
 
 		Long member_id = user.getMemberDTO().getId();
 		ResponseDTO responseDto = memberService.getById(member_id);
+		
+		
+		List<CartDTO> cartDTOList = cartService.getCartList(member_id);
+		Long cartCount = cartService.getCartCount(member_id);
+		
+		model.addAttribute("cartList", cartDTOList);
+		model.addAttribute("count", cartCount);
 		model.addAttribute("member", responseDto);
-		return "/member/mypage";
+		return "/content/user/mypage";
 	}
 
 	/** 회원정보 수정 페이지 **/
@@ -164,6 +179,34 @@ public class MemberController {
 		Long member_id = member.getMemberDTO().getId();
 		ResponseDTO responseDTO = memberService.getById(member_id);
 		model.addAttribute("member", responseDTO);
-		return "/member/update";
+		return "/content/user/update";
+	}
+	
+	@GetMapping("/orderlist")
+	public String myPage(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+		Long id = user.getMemberDTO().getId();
+		
+		ResponseDTO member = memberService.getById(id);
+		
+		Long cartCount = cartService.getCartCount(id);
+		model.addAttribute("count", cartCount);
+		
+		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
+		int totalPrice = 0;
+	    for (CartDTO cart : cartList) {
+	        totalPrice += cart.getCPrice()*cart.getCount();
+	    }
+	    model.addAttribute("cartList", cartList);
+	    model.addAttribute("totalPrice", totalPrice);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("orderList", orderService.getList(id));	// 사용자 id에 따른 전체 목록 출력
+		model.addAttribute("count0", orderService.allStatus(id));
+		model.addAttribute("count1", orderService.deliverying(id));
+		model.addAttribute("count2", orderService.afterDelivery(id));
+		model.addAttribute("count3", orderService.beforeCancle(id));
+		model.addAttribute("count4", orderService.afterCancle(id));
+		
+		return "content/user/mypage-orderlist";
 	}
 }

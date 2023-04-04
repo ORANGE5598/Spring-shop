@@ -45,21 +45,7 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		//http.authorizeHttpRequests().requestMatchers(new AntPathRequestMatcher("/**")).permitAll();
 		
-		http.csrf().ignoringAntMatchers("/css/**", 
-				"/confirm", 
-				"/mypage/**", 
-				"/findPassword/**", 
-				"/sendPwd/**", 
-				"/update/**", 
-				"/changepw", 
-				"/insertOrder/**", 
-				"/adminProduct/**", 
-				"/addCart/**", 
-				"/insertItem/**", 
-				"/notice/**", 
-				"/review/**", 
-				"/qna/**", 
-				"/reply/**");
+		http.csrf().ignoringAntMatchers("/css/**", "/confirm", "/mypage/**", "/findPassword/**", "/sendPwd/**", "/update/**", "/insertOrder/**", "/adminProduct/**", "/modifyItem/**", "/addCart/**", "/insertItem/**", "/modifyDeliveryStatus/**", "/notice/**", "/review/**", "/qna/**", "/reply/**");
 		
 		/** 권한별 접근가능 주소 설정하기 **/
 		

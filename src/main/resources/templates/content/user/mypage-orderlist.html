@@ -16,7 +16,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
     <!--===============================================================================================-->
@@ -53,17 +53,18 @@
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-20">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            LOG IN
-                        </a>
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            SIGN UP
-                        </a>
-
+						<a href="#" class="flex-c-m trans-04 p-lr-20">
+	                        Help & FAQs
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m trans-04 p-lr-25">
+	                        LOG IN
+	                    </a>
+	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m trans-04 p-lr-25">
+	                        LOGOUT
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m trans-04 p-lr-25">
+	                        Register
+	                    </a>
                     </div>
                 </div>
             </div>
@@ -72,7 +73,7 @@
                 <nav class="limiter-menu-desktop container">
 
                     <!-- Logo desktop -->
-                    <a href="#" class="logo">
+                    <a href="/index" class="logo">
                         <img src="img/icons/logo1.png" alt="">
                     </a>
 
@@ -80,34 +81,34 @@
                     <div class="menu-desktop ">
                         <ul class="customMenu">
                             <li>
-                                <a href="#">HOME</a>
+                                <a href="/index">HOME</a>
                             </li>
                             <li>
-                                <a href="#">SHOP</a>
+                                <a href="/product">SHOP</a>
                                 <ul class="sub-menu">
-                                    <li><a href="#">CLOTHING</a>
+                                    <li><a href="/product">CLOTHING</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">TOP</a></li>
-                                            <li><a href="#">BOTTOM</a></li>
+                                            <li><a href="/product">TOP</a></li>
+                                            <li><a href="/product">BOTTOM</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">FOOTWEAR</a></li>
-                                    <li><a href="#">ACCESSORIES</a>
+                                    <li><a href="/product">FOOTWEAR</a></li>
+                                    <li><a href="/product">ACCESSORIES</a>
                                         <ul class="sub-menu">
-                                            <li><a href="#">BAG</a></li>
-                                            <li><a href="#">HAEDWEAR</a></li>
+                                            <li><a href="/product">BAG</a></li>
+                                            <li><a href="/product">HAEDWEAR</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">TECH</a></li>
+                                    <li><a href="/product">TECH</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="#">ABOUT</a>
+                                <a href="/com">COMMUNITY</a>
                             </li>
 
                             <li>
-                                <a href="#">MYPAGE</a>
+                                <a href="/myPage-orderlist">MYPAGE</a>
                             </li>
                         </ul>
                     </div>
@@ -125,8 +126,6 @@
                             th:data-notify="${count}">
                             <i class="zmdi zmdi-shopping-cart"></i>
                         </div>
-
-                        <!----------------------찜하기 기능 (상품 찜하기 버튼 누르면 카운트 메서드 필요)--------------------------->
                     </div>
                 </nav>
             </div>
@@ -139,7 +138,7 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="#"><img src="img/icons/logo1.png" alt="IMG-LOGO"></a>
+                <a href="/index"><img src="img/icons/logo1.png" alt="IMG-LOGO"></a>
             </div>
 
             <!-- Icon header -->
@@ -157,8 +156,6 @@
                     <i class="zmdi zmdi-shopping-cart"></i>
                 </div>
             </div>
-
-
 
             <!-- 카트 버튼 누르면 내가 장바구니 안에 넣은 상품들이 보임. -->
             <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -181,43 +178,44 @@
 
                 <li>
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            LOG IN
-                        </a>
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            SIGN UP
-                        </a>
-
+						<a href="#" class="flex-c-m p-lr-10 trans-04">
+							Help & FAQs
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m p-lr-10 trans-04">
+	                        LOG IN
+	                    </a>
+	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m p-lr-10 trans-04">
+	                        LOG OUT
+	                    </a>
+	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m p-lr-10 trans-04">
+	                        SIGN UP
+	                    </a>
                     </div>
                 </li>
             </ul>
 
             <ul class="main-menu-m">
                 <li>
-                    <a href="#">HOME</a>
+                    <a href="/index">HOME</a>
                 </li>
 
                 <li>
-                    <a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
+                    <a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
                     <ul class="sub-menu-m">
-                        <li><a href="#">CLOTHING</a>
+                        <li><a href="/product">CLOTHING</a>
                             <ul class="sub-menu-m">
-                                <li><a href="#">TOP</a></li>
-                                <li><a href="#">BOTTOM</a></li>
+                                <li><a href="/product">TOP</a></li>
+                                <li><a href="/product">BOTTOM</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">FOOTWEAR</a></li>
-                        <li><a href="#">ACCESSORIES</a>
+                        <li><a href="/product">FOOTWEAR</a></li>
+                        <li><a href="/product">ACCESSORIES</a>
                             <ul class="sub-menu-m">
-                                <li><a href="#">BAG</a></li>
-                                <li><a href="#">HAEDWEAR</a></li>
+                                <li><a href="/product">BAG</a></li>
+                                <li><a href="/product">HAEDWEAR</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">TECH</a></li>
+                        <li><a href="/product">TECH</a></li>
                     </ul>
                     <span class="arrow-main-menu-m">
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -225,11 +223,11 @@
                 </li>
 
                 <li>
-                    <a href="#">ABOUT</a>
+                    <a href="/com">COMMUNITY</a>
                 </li>
 
                 <li>
-                    <a href="#">MYPAGE</a>
+                    <a href="/myPage-orderlist">MYPAGE</a>
                 </li>
 
             </ul>
@@ -251,8 +249,6 @@
             </div>
         </div>
     </header>
-
-
 
     <!-- 장바구니 -->
 	<div class="wrap-header-cart js-panel-cart">
@@ -415,14 +411,14 @@
             <h2 class="nav-tit">My page Navigation</h2>
             <div class="my-account">
                 <h3>나의 쇼핑 활동</h3>
-                <a href="#" class="order_list">주문 내역 조회</a>
-                <a href="#" class="product_reviews">구매후기</a>
-                <a href="#" class="product_inquiry">상품문의</a>
+                <a href="/orderlist" class="order_list">주문 내역 조회</a>
+                <a href="/review" class="product_reviews">구매후기</a>
+                <a href="/com" class="product_inquiry">상품문의</a>
             </div>
 
             <div class="my-board">
                 <h3>커뮤니티</h3>
-                <a href="#" class="board-list">게시물 / 스크랩 / 댓글</a>
+                <a href="/com" class="board-list">게시물 / 스크랩 / 댓글</a>
             </div>
         </nav>
 
@@ -433,14 +429,11 @@
             <div class="section-title">
                 <h1 class="tit">주문내역 조회</h1>
                 <ul class="state">
-                    <li><a href="javascript:goList('ord_1');">결제완료 [[${count1}]]</a></li>
-                    <li><a href="javascript:goList('ord_2');">배송중 [[${count2}]]</a></li>
-                    <li><a href="javascript:goList('ord_3');">배송완료 [[${count3}]]</a></li>
-                    <li><a href="javascript:goList('ord_4');">구매확정 [[${count4}]]</a></li>
-                    <li><a href="javascript:goList('exchange');">교환 [[${count5}]]</a></li>
-                    <li><a href="javascript:goList('clm_2');">교환완료 [[${count6}]]</a></li>
-                    <li><a href="javascript:goList('clm_3');">환불 [[${count7}]]</a></li>
-                    <li><a href="javascript:goList('clm_4');">환불완료 [[${count8}]]</a></li>
+                    <li><a href="#">전체 [[${count0}]]</a></li>
+                    <li><a href="#">배송중 [[${count1}]]</a></li>
+                    <li><a href="#">배송완료 [[${count2}]]</a></li>
+                    <li><a href="#">반품대기 [[${count3}]]</a></li>
+                    <li><a href="#">반품완료 [[${count4}]]</a></li>
                 </ul>
             </div>
 
@@ -522,12 +515,12 @@
                     </thead>
 
                     <tbody>
-                        <tr class="table_row" th:each="list : ${orderList.dtoList}">
+                        <tr class="table_row" th:each="list : ${orderList}">
                             <!--상품사진-->
                             <td class="column-1">
                                 <div class="img-block">
                                     <a href="#">
-                                        <img th:src="${list.img}" alt="방랑자 가방" width="200">
+                                        <img th:src="${list.img}" width="200">
                                     </a>
                                 </div>
                             </td>
@@ -536,11 +529,9 @@
                             <td class="column-2">
                                 <div class="product_row">
                                     <ul class="info">
-                                        <li class="brand"><a href="#">쎄르페</a></li>
-                                        <li class="name"><a href="#">방랑자 가방</a>
-                                        </li>
+                                        <li class="name">[[${list.oName}]]</li>
                                         <li class="option">
-                                            옵션 : M
+                                            사이즈 : [[${list.oSize}]]
                                         </li>
                                     </ul>
                                 </div>
@@ -548,89 +539,36 @@
 
                             <!--주문일자-->
                             <td class="column-3">
-                                2023.03.31
+                                [[${list.createdDate}]]
                             </td>
 
                             <!--주문번호--->
                             <td class="column-4 ">
-                                <a href="#">12345678</a>    
+                                [[${list.oNumber}]]  
                             </td>
 
                             <!--가격,갯수-->
-                            <td class="column-5">40,010원 <br>
+                            <td class="column-5">[[${list.oTotalPrice}]]원 <br>
                                 <span class="txt-default">
-                                    1개
+                                    [[${list.oCount}]]개
                                 </span>
                             </td>
 
                             <!--배송상태-->
                             <td class="column-6">
-                                    <a href="#">
-                                        <span class="label label-primary">구매확정</span> 
-                                        <!--??왜 부트스트랩 라벨안먹지???-->
-                                        </a>
-                                    <br>
-                                    <a href="#" class="btn btn-default">배송조회</a>
-                                    <!--??왜 부트스트랩 라벨안먹지???-->
+                                <span class="badge badge-pill badge-primary w-full fs-14 dStatus">[[${list.deliveryStatus}]]</span>
+                                <br>
+
                             </td>
 
-<!-- 
-                            <div class="popup_info step_pop" id="delivery_step_154576635" style="display:none;">
-                                <p class="box_title">
-                                    <span class="title-box font-mss">Step <span class="korSub">주문단계</span></span><span
-                                        class="btn_close_pop"
-                                        onclick="deliveryStepHide('step',154576635); return false;">닫기</span>
-                                </p>
-                                <div class="box_info_cell">
-                                    <ul>
-                                        <li class="popup_info_title">일자</li>
-                                        <li class="popup_info_title">처리내역</li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-30 21:25</li>
-                                        <li class="popup_info_detail"> 주문 일시</li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-30 21:25</li>
-                                        <li class="popup_info_detail">
-                                            입금 확인
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-30 21:25</li>
-                                        <li class="popup_info_detail"> 출고 요청</li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-31 12:10</li>
-                                        <li class="popup_info_detail">
-                                            출고 처리 중
-                                        </li>
-                                    </ul>
-                                    <ul>
-                                        <li class="popup_info_detail">2023-03-31 12:35</li>
-                                        <li class="popup_info_detail">
-                                            출고 완료
-                                        </li>
-                                    </ul>
-                                    </ul>
-                                </div>
-                            </div> 
-                        
-                        팝업창 기능...좀,,,,기다려봐...요,,,,,제발,,-->
-
-
                             <td class="txt-lighter column-6">
-                                    <button type="button" class="btn btn-primary">
-                                        후기 작성하기 
-                                    </button>
+								<button type="button" class="btn btn-outline-dark">
+									후기 작성하기 
+								</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                
-                <div class="n-paging">
-                    <button type="button" class="page is-active" onclick="return false;">1</button>
-                </div>
             </div>
         </section>
     </main>
@@ -795,6 +733,8 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
     <script>
         //////////////////(미니팝업기능)//////////////////////////////////
         const Toast = Swal.mixin({
@@ -817,7 +757,6 @@
         })
     </script>
     <!--===============================================================================================-->
-    <script src="vendor/sweetalert/sweetalert.min.js"></script>
     <script>
 
         $('.js-remove-item').on('click', function (e) {
@@ -850,9 +789,30 @@
         });
     </script>
     <!--==============================================================================================-->
+<script>
+	
+	const spanElements = document.querySelectorAll('.dStatus');
+	
+	spanElements.forEach(function(spanElement) {
+	    const deliveryStatus = spanElement.textContent.trim();
+	    switch (deliveryStatus) {
+	        case '배송중':
+	        	spanElement.classList.remove('badge-success', 'badge-warning', 'badge-danger');
+	            spanElement.classList.add('badge-primary');
+	            break;
+	        case '배송완료':
+	            spanElement.classList.add('badge-success');
+	            break;
+	        case '반품대기':
+	            spanElement.classList.add('badge-warning');
+	            break;
+	        case '반품완료':
+	            spanElement.classList.add('badge-danger');
+	            break;
+	    }
+	});
 
-
-    <!--==============================================================================================-->
+    </script>
     <!--==============================================================================================-->
     <script src="js/main.js"></script>
 

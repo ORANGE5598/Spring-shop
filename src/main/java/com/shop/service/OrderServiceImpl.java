@@ -1,16 +1,11 @@
 package com.shop.service;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.shop.dto.OrderDTO;
-import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageResultDTO;
 import com.shop.entity.OrderList;
 import com.shop.repository.OrderRepository;
 

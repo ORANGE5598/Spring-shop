@@ -160,32 +160,4 @@ public class IndexController {
 	    
 	}
 	
-	@GetMapping("/myPage-orderlist")
-	public String myPage(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
-		Long id = user.getMemberDTO().getId();
-		
-		ResponseDTO member = memberService.getById(id);
-		
-		Long cartCount = cartService.getCartCount(id);
-		model.addAttribute("count", cartCount);
-		
-		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
-		int totalPrice = 0;
-	    for (CartDTO cart : cartList) {
-	        totalPrice += cart.getCPrice()*cart.getCount();
-	    }
-	    model.addAttribute("cartList", cartList);
-	    model.addAttribute("totalPrice", totalPrice);
-		
-		model.addAttribute("member", member);
-		model.addAttribute("orderList", orderService.getList(id));	// 사용자 id에 따른 전체 목록 출력
-		model.addAttribute("count0", orderService.allStatus(id));
-		model.addAttribute("count1", orderService.deliverying(id));
-		model.addAttribute("count2", orderService.afterDelivery(id));
-		model.addAttribute("count3", orderService.beforeCancle(id));
-		model.addAttribute("count4", orderService.afterCancle(id));
-		
-		return "content/user/myPage-orderlist";
-	}
-	
 }

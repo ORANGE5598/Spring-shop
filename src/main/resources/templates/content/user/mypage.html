@@ -2,11 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>SignIn</title>
+    <title>회원정보변경 - 마이페이지</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <link rel="icon" type="image/png" href="img/icons/favicon.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -15,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
     <!--===============================================================================================-->
@@ -28,459 +33,579 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap-form-custom.css">
+    <link rel="stylesheet" type="text/css" href="css/mypage.css">
     <!--===============================================================================================-->
+
+
 </head>
 
-<body class="animsition">
-
-    <!-- Header -->
-    <header class="header-v4">
-        <!-- Header desktop -->
-        <div class="container-menu-desktop">
-            <!-- Topbar -->
-            <div class="top-bar">
-                <div class="content-topbar flex-sb-m h-full container">
-                    <div class="left-top-bar">
-                        100% 정품 ! 한정판을 구매하는 가장 안전한 방법!
-                    </div>
-
-                    <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-20">
-                            Help & FAQs
-                        </a>
-
-                        <a href="login" class="flex-c-m trans-04 p-lr-25">
-                            LOG IN
-                        </a>
-                        <a href="register" class="flex-c-m trans-04 p-lr-25">
-                            SIGN UP
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="wrap-menu-desktop">
-                <nav class="limiter-menu-desktop container">
-
-
-
-                    <div class="col-md-4 col-xs-12 col-sm-4">
-                        <!-- Site Logo -->
-                        <div class="logo text-center">
-                            <a href="index.html">
-                                <!-- replace logo here -->
-                                <svg width="135px" height="29px" viewBox="0 0 155 29" version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"
-                                        font-size="40" font-family="AustinBold, Austin" font-weight="bold">
-                                        <g id="Group" transform="translate(-108.000000, -297.000000)" fill="#000000">
-                                            <text id="AVIATO">
-                                                <tspan x="108.94" y="325">SPRING</tspan>
-                                            </text>
-                                        </g>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+<body class="animsition mypage_body">
 
 
 
 
-                    <!-- Menu desktop -->
-                    <div class="menu-desktop">
-                        <ul class="customMenu gnb expanded">
-                            <li class="active-menu">
-                                <a href="#">HOME</a>
-                            </li>
-                            <li>
-                                <a href="#">SHOP</a>
-                                <ul class="sub-menu">
-                                    <li><a href="#">CLOTHING</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="#">TOP</a></li>
-                                            <li><a href="#">BOTTOM</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">FOOTWEAR</a></li>
-                                    <li><a href="#">ACCESSORIES</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="#">BAG</a></li>
-                                            <li><a href="#">HAEDWEAR</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">TECH</a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a href="#">ABOUT</a>
-                            </li>
-
-                            <li>
-                                <a href="#">MYPAGE</a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Icon header -->
-
-                    <!--------------------검색창 (클릭 시 따로 열리는 속성)----------------------->
-                    <div class="wrap-icon-header flex-w flex-r-m">
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
-                            <i class="zmdi zmdi-search"></i>
-                        </div>
-
-                        <!---------------------------------장바구니 기능 ( 장바구니에 상품 넣으면 카운트 메서드 필요)---------------------------->
-                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                            data-notify="2">
-                            <i class="zmdi zmdi-shopping-cart"></i>
-                        </div>
-
-                    </div>
-                </nav>
-            </div>
+<!-- Header -->
+<header class="header-v4">
+  <!-- Header desktop -->
+  <div class="container-menu-desktop">
+    <!-- Topbar -->
+    <div class="top-bar">
+      <div class="content-topbar flex-sb-m h-full container">
+        <div class="left-top-bar">
+          100% 정품 ! 한정판을 구매하는 가장 안전한 방법!
         </div>
 
+        <div class="right-top-bar flex-w h-full">
+			<a href="#" class="flex-c-m trans-04 p-lr-20">
+				Help & FAQs
+			</a>
+				
+			<a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m trans-04 p-lr-25">
+				LOG IN
+			</a>
+				                    
+			<a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m trans-04 p-lr-25">
+				LOGOUT
+			</a>
+				                    
+			<a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m trans-04 p-lr-25">
+				Register
+			</a>
 
-
-
-
-        <!-- 반응형용 아이콘임, 이건 메서드 추가해야함... -->
-        <div class="wrap-header-mobile">
-            <!-- Logo moblie -->
-            <div class="logo-mobile">
-                <a href="#"><img src="images/icons/logo1.png" alt="IMG-LOGO"></a>
-            </div>
-
-            <!-- Icon header -->
-            <div class="wrap-icon-header flex-w flex-r-m m-r-15">
-                <!---------------------------------검색창아이콘------------------------->
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
-                    <i class="zmdi zmdi-search"></i>
-                </div>
-
-
-                <!---------------------------카트아이콘 ( 카운트 메서드 필요)--------------------------->
-                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-                    data-notify="2">
-                    <i class="zmdi zmdi-shopping-cart"></i>
-                </div>
-
-            </div>
-
-            <!-- 카트 버튼 누르면 내가 장바구니 안에 넣은 상품들이 보임. -->
-            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
-                <span class="hamburger-box">
-                    <span class="hamburger-inner"></span>
-                </span>
-            </div>
         </div>
-
-
-        <!-- 반응형 메뉴바, 안건드려도 되는 부분-->
-        <div class="menu-mobile">
-            <ul class="topbar-mobile">
-
-                <li>
-                    <div class="left-top-bar">
-                        100% genuine ! The safest way to buy limited edition!
-                    </div>
-                </li>
-
-                <li>
-                    <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            LOG IN
-                        </a>
-                        <a href="#" class="flex-c-m p-lr-10 trans-04">
-                            SIGN UP
-                        </a>
-
-                    </div>
-                </li>
-            </ul>
-
-            <ul class="main-menu-m">
-                <li>
-                    <a href="#">HOME</a>
-                </li>
-
-                <li>
-                    <a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
-                    <ul class="sub-menu-m">
-                        <li><a href="#">CLOTHING</a>
-                            <ul class="sub-menu-m">
-                                <li><a href="#">TOP</a></li>
-                                <li><a href="#">BOTTOM</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">FOOTWEAR</a></li>
-                        <li><a href="#">ACCESSORIES</a>
-                            <ul class="sub-menu-m">
-                                <li><a href="#">BAG</a></li>
-                                <li><a href="#">HAEDWEAR</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">TECH</a></li>
-                    </ul>
-                    <span class="arrow-main-menu-m">
-                        <i class="fa fa-angle-right" aria-hidden="true"></i>
-                    </span>
-                </li>
-
-                <li>
-                    <a href="#">ABOUT</a>
-                </li>
-
-                <li>
-                    <a href="#">MYPAGE</a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Modal Search -->
-        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
-            <div class="container-search-header">
-                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="images/icons/icon-close2.png" alt="CLOSE">
-                </button>
-
-                <form class="wrap-search-header flex-w p-l-15">
-                    <button class="flex-c-m trans-04">
-                        <i class="zmdi zmdi-search"></i>
-                    </button>
-                    <input class="plh3" type="text" name="search" placeholder="Search...">
-                </form>
-            </div>
-        </div>
-    </header>
-
-    <!-- 카트이모티콘 눌렀을때 나오는 메뉴창 -->
-    <div class="wrap-header-cart js-panel-cart">
-        <div class="s-full js-hide-cart"></div>
-
-        <div class="header-cart flex-col-l p-l-65 p-r-25 js-cart-item">
-            <div class="header-cart-title flex-w flex-sb-m p-b-8">
-                <span class="mtext-103 cl2">
-                    Your Cart
-                </span>
-
-
-
-                <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-                    <i class="zmdi zmdi-close"></i>
-                </div>
-            </div>
-
-            <div class="header-cart-content flex-w js-pscroll">
-                <ul class="header-cart-wrapitem w-full">
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img js-remove-item">
-                            <img src="images/cart/cart1.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-name-item">
-                                Nike x Tiffany & Co. Air Force 1 Low SP 1837
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                {1} x ￦1,700,000
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img js-remove-item">
-                            <img src="images/cart/cart2.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-name-item">
-                                Gucci GG Marmont Half Moon Shaped Mini Bag Blackp
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                {1} x ￦1,870,000
-                            </span>
-                        </div>
-                    </li>
-
-                    <li class="header-cart-item flex-w flex-t m-b-12">
-                        <div class="header-cart-item-img js-remove-item">
-                            <img src="images/cart/cart3.jpg" alt="IMG">
-                        </div>
-
-                        <div class="header-cart-item-txt p-t-8">
-                            <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04 js-name-item">
-                                Sony WH-1000XM5 Black (Korean Ver.)
-                            </a>
-
-                            <span class="header-cart-item-info">
-                                {1} x ￦479,000
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-
-                <div class="w-full">
-                    <div class="header-cart-total w-full p-tb-40">
-                        Total: ￦{0,000}
-                    </div>
-
-                    <div class="header-cart-buttons flex-w w-full">
-                        <a href="shopping-cart.html"
-                            class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                            장바구니로
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
 
+    <div class="wrap-menu-desktop how-shadow1">
+      <nav class="limiter-menu-desktop container">
 
-    <section class="page-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="content">
-                        <h1 class="page-name">Dashboard</h1>
-                        <ol class="breadcrumb">
-                            <a href="#" class="stext-109 cl8 hov-cl1 trans-04">
-                                Home
-                                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-                            </a>
+        <!-- Logo desktop -->
+        <a href="/index" class="logo">
+          <img src="/img/icons/logo1.png" alt="IMG-LOGO">
+        </a>
 
-                            <a href="#" class="stext-109 cl8 hov-cl1 trans-04">
-                                My Page
-                            </a>
-                        </ol>
-                    </div>
-                </div>
-            </div>
+
+        <!-- Menu desktop -->
+        <div class="menu-desktop">
+          <ul class="customMenu expanded">
+            <li class="active-menu">
+              <a href="/index">HOME</a>
+            </li>
+            <li>
+              <a href="#">STYLE</a>
+            </li>
+            <li>
+              <a href="/product">SHOP</a>
+              <ul class="sub-menu">
+                <li><a href="/product">CLOTHING</a>
+                  <ul class="sub-menu">
+                    <li><a href="/product">TOP</a></li>
+                    <li><a href="/product">BOTTOM</a></li>
+                  </ul>
+                </li>
+                <li><a href="/product">FOOTWEAR</a></li>
+                <li><a href="/product">ACCESSORIES</a>
+                  <ul class="sub-menu">
+                    <li><a href="/product">BAG</a></li>
+                    <li><a href="/product">HAEDWEAR</a></li>
+                  </ul>
+                </li>
+                <li><a href="/product">TECH</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/com">COMMUNITY</a>
+            </li>
+
+            <li>
+              <a href="/mypage">MYPAGE</a>
+            </li>
+          </ul>
         </div>
-    </section>
 
-    <section class="user-dashboard page-wrapper">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="list-inline dashboard-menu text-center flex-c-m">
-                        <li><a class="active" href="#">Dashboard</a></li>
-                        <li><a href="#">Orders</a></li>
-                        <li><a href="#">Address</a></li>
-                        <li><a href="#">Profile Details</a></li>
-                    </ul>
-                    <div class="dashboard-wrapper user-dashboard">
+        <!-- Icon header -->
+        <div class="wrap-icon-header flex-w flex-r-m">
+          <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+            <i class="zmdi zmdi-search"></i>
+          </div>
+
+          <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+               th:data-notify="${count}">
+            <i class="zmdi zmdi-shopping-cart"></i>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Header Mobile -->
+  <div class="wrap-header-mobile">
+    <!-- Logo moblie -->
+    <div class="logo-mobile">
+      <a href="/index"><img src="/img/icons/logo1.png" alt="IMG-LOGO"></a>
+    </div>
+
+    <!-- Icon header -->
+    <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+      <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+        <i class="zmdi zmdi-search"></i>
+      </div>
+
+      <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+           th:data-notify="${count}">
+        <i class="zmdi zmdi-shopping-cart"></i>
+      </div>
+    </div>
+
+    <!-- Button show menu -->
+    <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+    </div>
+  </div>
 
 
-                        <div class="media">
-                            <div class="media-body">
-                                <h3 class="media-heading text-center">
-                                    나의 주문 처리 현황
-                                    <span>(최근 <em>3개월</em> 기준)</span>
-                                </h3>
-                                <ul class="my_order">
-                                    <li>
-                                        <strong>배송준비중</strong>
-                                        <a href="#" class="count"><span id="standby_count">[[${count2}]]</span></a>
-                                    </li>
-                                    <li>
-                                        <strong>배송중</strong>
-                                        <a href="#" class="count"><span id="begin_count">[[${count3}]]</span></a>
-                                    </li>
-                                    <li>
-                                        <strong>배송완료</strong>
-                                        <a href="#" class="count"><span id="complate_count">[[${count4}]]</span></a>
-                                    </li>
-                                </ul>
+  <!-- Menu Mobile -->
+  <div class="menu-mobile">
+    <ul class="topbar-mobile">
+      <li>
+        <div class="left-top-bar">
+          Free shipping for standard order over $100
+        </div>
+      </li>
 
-                                <ul class="cs">
-                                    <li>
-                                        <span class="">취소 :</span>
-                                        <a href="#" class="count"><span id="cancle_count">[[${count5}]]</span></a>
-                                    </li>
-                                </ul>
-                            </div>
+      <li>
+        <div class="right-top-bar flex-w h-full">
+			<a href="#" class="flex-c-m p-lr-10 trans-04">
+				Help & FAQs
+			</a>
+			<a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m p-lr-10 trans-04">
+				LOG IN
+			</a>
+			<a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m p-lr-10 trans-04">
+				LOG OUT
+			</a>
+			<a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m p-lr-10 trans-04">
+				SIGN UP
+			</a>
+        </div>
+      </li>
+    </ul>
+
+    <ul class="main-menu-m">
+      <li>
+        <a href="/index">HOME</a>
+      </li>
+
+      <li>
+        <a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
+        <ul class="sub-menu-m">
+          <li><a href="/product">CLOTHING</a>
+            <ul class="sub-menu-m">
+              <li><a href="/product">TOP</a></li>
+              <li><a href="/product">BOTTOM</a></li>
+            </ul>
+          </li>
+          <li><a href="/product">FOOTWEAR</a></li>
+          <li><a href="/product">ACCESSORIES</a>
+            <ul class="sub-menu-m">
+              <li><a href="/product">BAG</a></li>
+              <li><a href="/product">HAEDWEAR</a></li>
+            </ul>
+          </li>
+          <li><a href="/product">TECH</a></li>
+        </ul>
+        <span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+      </li>
+
+      <li>
+        <a href="/com">Community</a>
+      </li>
+
+      <li>
+        <a href="/myPage-orderlist">MYPAGE</a>
+      </li>
+
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Modal Search -->
+  <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+    <div class="container-search-header">
+      <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+        <img src="/img/icons/icon-close2.png" alt="CLOSE">
+      </button>
+
+      <form class="wrap-search-header flex-w p-l-15">
+        <button class="flex-c-m trans-04">
+          <i class="zmdi zmdi-search"></i>
+        </button>
+        <input class="plh3" type="text" name="search" placeholder="Search...">
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- 장바구니 -->
+	<div class="wrap-header-cart js-panel-cart">
+		<div class="s-full js-hide-cart"></div>
+
+		<div class="header-cart flex-col-l p-l-65 p-r-25">
+			<div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					Your Cart
+				</span>
+
+				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+					<i class="zmdi zmdi-close"></i>
+				</div>
+			</div>
+
+			<div class="header-cart-content flex-w js-pscroll">
+				<ul class="header-cart-wrapitem w-full">
+					<li class="header-cart-item flex-w flex-t m-b-12" th:each="cart : ${cartList}">
+						<div class="header-cart-item-img">
+							<img th:src="${cart.cImg}" alt="IMG">
+						</div>
+
+						<div class="header-cart-item-txt p-t-8">
+							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+								[[${cart.cName}]]
+							</a>
+
+							<span class="header-cart-item-info">
+								{[[${cart.count}]]} x ￦[[${cart.cPrice}]]
+							</span>
+						</div>
+					</li>
+				</ul>
+
+				<div class="w-full">
+					<div class="header-cart-total w-full p-tb-40">
+						Total: ￦[[${totalPrice}]]<input type="hidden" th:value="${totalPrice}" />
+					</div>
+
+					<div class="header-cart-buttons flex-w w-full">
+						<a href="/shopping-cart"
+							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
+							장바구니로
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 장바구니 끝 -->
+    <!------------------------------------------------------------------------------------------------------------------->
+
+    <main class="content">
+        <div id="userMypage">
+            <section class="mypage-sc">
+            <form th:object="${member}">
+                <h1 class="mypage-title">
+                    mypage
+                </h1>
+
+                <div class="user-info">
+
+                    <div class="user-img">
+                        <img src="img/user/user2.jpg">
+                    </div>
+
+                    <div class="mypage-top">
+                        <div class="user-nickname">
+                            <strong>[[${member.name}]]</strong>
+                            <a href="#">회원정보변경</a>
                         </div>
+
+                        <div class="user-name">
+                            <em>[[${member.name}]]</em>
+                            <span>
+                                가입일 :
+                                [[${member.createdDate}]]
+                            </span>
+                            <p class="admin-msg">
+                                [[${member.name}]]
+                                님 반갑습니다.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="user-bankbook">
+                        <a href="#">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.6667 15.0667L16.4667 23.8555L19.0001 17.2639L21.5334 23.8555L25.3334 15.0667"
+                                    stroke="white"></path>
+                                <path d="M11.3999 18.8333H26.5999" stroke="white"></path>
+                                <path
+                                    d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
+                                    stroke="white"></path>
+                            </svg>
+                            <em>
+                                적립금
+                                <i class="fa fa-angle-right"></i>
+                            </em>
+                            <strong>3,000</strong>
+                        </a>
+
+                        <a href="#">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.7834 25.7389L16.7834 13.8111H20.2369C21.8274 13.8111 23.1168 15.1005 23.1168 16.691V16.691C23.1168 18.2815 21.8274 19.5708 20.2369 19.5708H16.7834"
+                                    stroke="white"></path>
+                                <path
+                                    d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
+                                    stroke="white"></path>
+                            </svg>
+                            <em>
+                                포인트
+                                <i class="fa fa-angle-right"></i>
+                            </em>
+                            <strong>[[${member.point}]]</strong>
+                        </a>
+
+                        <a href="#">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.06665 28.8778H4.56665V29.3778H5.06665V28.8778ZM32.9333 28.8778V29.3778H33.4333V28.8778H32.9333ZM32.9333 21.3444H33.4333V20.8444H32.9333V21.3444ZM32.9333 16.3222V16.8222H33.4333V16.3222H32.9333ZM32.9333 8.78888L33.4333 8.78888V8.28888H32.9333V8.78888ZM5.06665 8.78888V8.28888H4.56665V8.78888H5.06665ZM5.06665 16.3222H4.56665V16.8222H5.06665V16.3222ZM5.06665 21.3444V20.8444H4.56665V21.3444H5.06665ZM25.3333 28.3778H5.06665V29.3778H25.3333V28.3778ZM32.9333 28.3778H25.3333V29.3778H32.9333V28.3778ZM32.4333 21.3444L32.4333 28.8778H33.4333L33.4333 21.3444H32.4333ZM32.9333 20.8444C31.8062 20.8444 30.9 19.9399 30.9 18.8333H29.9C29.9 20.5005 31.2622 21.8444 32.9333 21.8444V20.8444ZM30.9 18.8333C30.9 17.7268 31.8062 16.8222 32.9333 16.8222V15.8222C31.2622 15.8222 29.9 17.1662 29.9 18.8333H30.9ZM32.4333 8.78888L32.4333 16.3222H33.4333L33.4333 8.78888L32.4333 8.78888ZM25.3333 9.28888H32.9333V8.28888H25.3333V9.28888ZM5.06665 9.28888H25.3333V8.28888H5.06665V9.28888ZM5.56665 16.3222V8.78888H4.56665V16.3222H5.56665ZM8.09998 18.8333C8.09998 17.1662 6.73775 15.8222 5.06665 15.8222V16.8222C6.19379 16.8222 7.09998 17.7268 7.09998 18.8333H8.09998ZM5.06665 21.8444C6.73775 21.8444 8.09998 20.5005 8.09998 18.8333H7.09998C7.09998 19.9399 6.19379 20.8444 5.06665 20.8444V21.8444ZM5.56665 28.8778V21.3444H4.56665V28.8778H5.56665ZM24.8333 8.78888V11.3H25.8333V8.78888H24.8333ZM25.8333 28.8778V26.3667H24.8333V28.8778H25.8333Z"
+                                    fill="white"></path>
+                                <path
+                                    d="M19.6333 15.0667H17.7C15.6197 15.0667 13.9333 16.753 13.9333 18.8333V18.8333C13.9333 20.9136 15.6197 22.6 17.7 22.6H19.6333"
+                                    stroke="white"></path>
+                                <path d="M25.3333 13.8111L25.3333 17.5778" stroke="white"></path>
+                                <path d="M25.3333 20.0889L25.3333 23.8555" stroke="white"></path>
+                            </svg>
+                            <em>
+                                쿠폰
+                                <i class="fa fa-angle-right"></i>
+                            </em>
+                            <strong>0</strong>
+                        </a>
+
+                        <a href="#">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M31.6666 31.3889H17.7333M6.33325 24.4617L24.6781 6.27777L31.6666 13.205L13.3218 31.3889H6.33325V24.4617Z"
+                                    stroke="white"></path>
+                            </svg>
+                            <em>
+                                후기작성
+                                <i class="fa fa-angle-right"></i>
+                            </em>
+                            <strong>0</strong>
+                        </a>
                     </div>
                 </div>
-            </div>
+        </form>
         </div>
-    </section>
+        
+        </section>
 
+        <nav class="mypage-sidenav">
+            <h2 class="nav-tit">My page Navigation</h2>
+            <div class="my-account">
+                <h3>나의 쇼핑 활동</h3>
+                <a href="/orderlist" class="order_list">주문 내역 조회</a>
+                <a href="/review" class="product_reviews">구매후기</a>
+                <a href="/com" class="product_inquiry">상품문의</a>
+            </div>
 
+            <div class="my-board">
+                <h3>커뮤니티</h3>
+                <a href="/com" class="board-list">게시물 / 스크랩 / 댓글</a>
+            </div>
+        </nav>
 
+        <section class="mypage-cont my-info-modify">
+            <header class="info_views-area">
+                <div class="section-title">
+                    <h1 class="tit">회원 정보 변경</h1>
+                </div>
+            </header>
 
-    <section>
-        <div class="total-order m-t-20">
-            <h4>Order List</h4>
             <div class="table-responsive">
                 <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Date</th>
-                            <th>Img</th>
-                            <th>Items</th>
-                            <th>Total Price</th>
-                            <th></th>
-                        </tr>
-                    </thead>
                     <tbody>
-                        <tr th:each="dto : ${list.dtoList}">
-                            <td><a href="#!">[[${dto.oNumber}]]</a></td>
-                            <td>[[${dto.createdDate}]]</td>
-                            <td><img th:src="${dto.img}" height="100"></td>
-                            <td>1</td>
-                            <td>₩[[${dto.oTotalPrice}]]</td>
+                        <tr></tr>
+                        <tr class="my-info-img" id="profile-img-area">
+                            <th scope="row">사진</th>
+                            <td>
+                                <div>
+                                    <div class="img"
+                                        style="background-image: url(https://image.msscdn.net/mfile_s01/_simbols/d/4c391c7e90894bc19feebe1c2d98cd8a_20221021162247.jpg)">
+                                    </div>
+                                    <p class="txt">
+                                        회원님을 알릴 수 있는 사진을 등록해 주세요
+                                        <br>
+                                        등록된 사진은 회원님의 게시물이나 댓글들에 사용됩니다.
+                                    </p>
+                            </td>
+                            <td class="va-b">
+                                <button type="button" class="btn btn-outline-dark" id="change-profile-image-btn">
+                                    사진변경
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!----------------------사진수정------------------------------------>
+                        <tr class="my-info-img" style="display:none;" id="change-profile-imge-area">
+                            <th scope="row">사진</th>
+                            <td>
+                                <div>
+                                    <div class="img"
+                                        style="background-image: url(https://image.msscdn.net/mfile_s01/_simbols/d/4c391c7e90894bc19feebe1c2d98cd8a_20221021162247.jpg)">
+                                    </div>
+                                    <p class="txt">
+                                        회원님을 알릴 수 있는 사진을 등록해 주세요
+                                        <br>
+                                        등록된 사진은 회원님의 게시물이나 댓글들에 사용됩니다.
+                                    </p>
+
+                                    <div class="d-grid gap-2 d-md-block">
+                                        <button class="btn btn-outline-dark" type="button">사진 선택</button>
+                                        <button class="btn btn-primary" type="button">기본 이미지로 변경</button>
+                                    </div>
+                            </td>
+
+                            <td class="va-b d-grid gap-2 d-md-block">
+                                <button class="btn btn-outline-dark" type="button"
+                                    id="change-profile-image-cancel-btn">취소</button>
+                                <button class="btn btn-primary" type="button"
+                                    id="change-profile-image-finish-btn">완료</button>
+                            </td>
+                        </tr>
+                        <!--------------------------------------------------------------->
+                        <tr>
+                            <th scope="row">
+                                아이디
+                            </th>
+                            <td colspan="2">
+                                <strong>[[${member.username}]]</strong>
+                            </td>
+                        </tr>
+
+                        <tr id="password-area">
+                            <th scope="row">
+                                비밀번호
+                            </th>
+                            <td>
+                                <strong>********</strong>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <th scope="row">
+                                이름(실명)
+                            </th>
+                            <td>
+                                <strong>[[${member.name}]]</strong>
+                            </td>
+                        </tr>
+
+                        <tr id="nickName-area">
+                            <th scope="row">
+                                닉네임
+                            </th>
+                            <td>
+                                <strong>[[${member.name}]]</strong>
+                            </td>
+                            
+                        </tr>
+                        
+                        <tr id="email-area">
+                            <th scope="row">이메일</th>
+                            <td>
+                                <strong id="currentEmail">
+                                    [[${member.email}]]</strong>
+                            </td>
+                            
+                        </tr>
+                        
+                        <tr id="mobile-area">
+                            <th scope="row">휴대전화</th>
+                            <td><strong>[[${member.phone}]]</strong>
+                            </td>
+                            <td>
+                            <a type="button" href="/update" class="btn btn-outline-dark" id="change-infomation">
+                                    회원정보 변경하기
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
-                <!--페이징 구간.....입니다만... 잘 처리해주시죠.. ㅎㅎ..-->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="product__pagination">
-                                
-                                <div class="pagination h-100 justify-content-center align-items-center">
-
-						            <div class="product__pagination " th:if="${list.prev}">
-						                <a class="page-link" th:href="@{/myPage2(page= ${list.start -1})}" tabindex="-1">이전 페이지</a>
-						            </div>
-						
-						            <div th:class=" 'product__pagination ' + ${list.page == page?'active':''} " th:each="page: ${list.pageList}">
-						                <a class="page-link" th:href="@{/myPage2(page = ${page})}">
-						                    [[${page}]]
-						                </a>
-						            </div>
-						
-						            <div class="product__pagination" th:if="${list.next}">
-						                <a class="page-link" th:href="@{/myPage2(page= ${list.end + 1})}">다음 페이지</a>
-						            </div>
-						
-						        </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!------------------페이징끝------------------------->
             </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
-    </section>
+            <ul class="info-txt">
+            </ul>
+        </section>
+        <!-- //기본 회원정보 -->
+
+        <!-- 추가 회원정보 -->
+        <section class="mypage-cont my-info-modify">
+            <header class="info_views-area">
+                <div class="section-title">
+                    <h1 class="tit">
+                        추가 회원정보
+                        <span style="color: #aaaaaa;">
+                            선택
+                        </span>
+                    </h1>
+                </div>
+            </header>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr></tr>
+                        <tr>
+                            <th scope="row">가입일</th>
+                            <td><strong>[[${member.createdDate}]]</strong></td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">성별</th>
+                            <td>
+                                <div>
+                                    <strong>[[${member.gender}]]</strong>
+                                </div>
+                            </td>
+                        </tr>
+                        <td></td>
+                    </tbody>
+                </table>
+                <ul class="info-txt">
+                </ul>
+            </div>
+        </section>
+    </main>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+    <!------------------------------------------------------------------------------------------------------------------->
+    <!-- Footer -->
     <footer class="bg3 p-t-65 p-b-32">
         <div class="container">
             <div class="row">
@@ -497,19 +622,19 @@
                         </li>
 
                         <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl2 trans-04">
+                            <a href="#" class="stext-107 cl7 hov-cl trans-04">
                                 Footwear
                             </a>
                         </li>
 
                         <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl2 trans-04">
-                                Accessories
+                            <a href="#" class="stext-107 cl7 hov-cl trans-04">
+                                Accessorie
                             </a>
                         </li>
 
                         <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl2 trans-04">
+                            <a href="#" class="stext-107 cl7 hov-cl trans-04">
                                 Tech
                             </a>
                         </li>
@@ -523,25 +648,25 @@
 
                     <ul>
                         <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl2 trans-04">
+                            <a href="#" class="stext-107 cl7 hov-cl trans-04">
                                 Track Order
                             </a>
                         </li>
 
                         <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl2 trans-04">
+                            <a href="#" class="stext-107 cl7 hov-cl trans-04">
                                 Returns
                             </a>
                         </li>
 
                         <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl2 trans-04">
+                            <a href="#" class="stext-107 cl7 hov-cl trans-04">
                                 Shipping
                             </a>
                         </li>
 
                         <li class="p-b-10">
-                            <a href="#" class="stext-107 cl7 hov-cl2 trans-04">
+                            <a href="#" class="stext-107 cl7 hov-cl trans-04">
                                 FAQs
                             </a>
                         </li>
@@ -602,7 +727,8 @@
                     document.write(new Date().getFullYear());
                 </script>
                 All rights reserved | This template is made with
-                <i class="fa fa-heart-o" aria-hidden="true" style="color: #fa4251;"></i> by Team 1</a>
+                <i class="fa fa-heart-o" aria-hidden="true" style="color: #fa4251;"></i> by Team
+                1
             </p>
         </div>
     </footer>
@@ -625,7 +751,21 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/select2/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
+        //////////////////(미니팝업기능)//////////////////////////////////
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'center-center',
+            showConfirmButton: false,
+            timer: 1500,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        ////////////////////////////////////////////////////////////
+
         $(".js-select2").each(function () {
             $(this).select2({
                 minimumResultsForSearch: 20,
@@ -634,8 +774,22 @@
         })
     </script>
     <!--===============================================================================================-->
-    <script src="vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+    <script src="vendor/sweetalert/sweetalert.min.js"></script>
+    
+    <script>
 
+        $('.js-remove-item').on('click', function (e) {
+            e.preventDefault();
+        });
+
+        $('.js-remove-item').each(function () {
+            var nameProduct = $(this).parent().parent().find('.js-name-item').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "장바구니에서 삭제되었습니다 ! ", "success");
+
+            });
+        });
+    </script>
     <!--===============================================================================================-->
     <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script>
@@ -653,86 +807,10 @@
             })
         });
     </script>
-    <!--===============================================================================================-->
-    <script src="vendor/sweetalert/sweetalert.min.js"></script>
-    <script>
-
-        $('.js-remove-item').on('click', function (e) {
-            e.preventDefault();
-        });
-
-        $('.js-remove-item').each(function () {
-            var nameProduct = $(this).parent().parent().find('.js-name-item').html();
-            $(this).on('click', function () {
-                swal(nameProduct, "삭제되었습니다 ! ", "success");
-
-            });
-        });
-    </script>
-
-    <!--===============================================================================================-->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
-        //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-        function sample4_execDaumPostcode() {
-            new daum.Postcode({
-                oncomplete: function (data) {
-                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
-                    // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-                    var roadAddr = data.roadAddress; // 도로명 주소 변수
-                    var extraRoadAddr = ''; // 참고 항목 변수
-
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-                        extraRoadAddr += data.bname;
-                    }
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    if (data.buildingName !== '' && data.apartment === 'Y') {
-                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    if (extraRoadAddr !== '') {
-                        extraRoadAddr = ' (' + extraRoadAddr + ')';
-                    }
-
-                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                    document.getElementById('sample4_postcode').value = data.zonecode;
-                    document.getElementById("sample4_roadAddress").value = roadAddr;
-                    document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-
-                    // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                    if (roadAddr !== '') {
-                        document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                    } else {
-                        document.getElementById("sample4_extraAddress").value = '';
-                    }
-
-                    var guideTextBox = document.getElementById("guide");
-                    // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                    if (data.autoRoadAddress) {
-                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                        guideTextBox.style.display = 'block';
-
-                    } else if (data.autoJibunAddress) {
-                        var expJibunAddr = data.autoJibunAddress;
-                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                        guideTextBox.style.display = 'block';
-                    } else {
-                        guideTextBox.innerHTML = '';
-                        guideTextBox.style.display = 'none';
-                    }
-                }
-            }).open();
-        }
-    </script>
-    <!--===============================================================================================-->
-
-    <!--===============================================================================================-->
+    <!--==============================================================================================-->
+    <!--==============================================================================================-->
     <script src="js/main.js"></script>
+
 </body>
 
 </html>

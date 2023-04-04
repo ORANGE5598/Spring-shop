@@ -31,5 +31,4 @@ public class OrderController2 {
 		return "content/user/orderBy";
 	}
 	
-	
 }

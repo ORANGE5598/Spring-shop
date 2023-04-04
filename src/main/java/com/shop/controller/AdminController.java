@@ -173,7 +173,7 @@ public class AdminController{
 		orderService.modify(dto, oNumber);
 		
 		redirectAttributes.addFlashAttribute("message", "주문 정보 수정이 완료되었습니다.");
-	    return "redirect:/adminIndex";
+	    return "redirect:/Index";
 	}
 	
 	@GetMapping("/userlist")

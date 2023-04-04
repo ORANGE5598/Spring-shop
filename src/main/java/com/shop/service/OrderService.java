@@ -3,8 +3,6 @@ package com.shop.service;
 import java.util.List;
 
 import com.shop.dto.OrderDTO;
-import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageResultDTO;
 import com.shop.entity.OrderList;
 
 public interface OrderService {
