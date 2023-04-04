@@ -1,11 +1,18 @@
 package com.shop.service;
 
+import java.util.function.Function;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.ItemDTO;
+import com.shop.dto.PageRequestDTO;
+import com.shop.dto.PageResultDTO;
+import com.shop.dto.MemberDTO.RequestDTO;
+import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.Item;
+import com.shop.entity.Member;
 import com.shop.repository.AdminRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -86,5 +93,6 @@ public class AdminServiceImpl implements AdminService {
 		
 		return entity.getINumber();
 	}
-	
+
+		
 }

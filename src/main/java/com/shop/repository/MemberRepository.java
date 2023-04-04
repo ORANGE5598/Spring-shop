@@ -1,5 +1,6 @@
 package com.shop.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +14,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 	
 	/** OAuth 로그인 시 중복 체크 **/
 	Optional<Member> findByEmail(String email);
+	
+	/** 전체 화원 가져오기 **/
+	List<Member> findAll();
 	
 	////////////////////////////////////////////////////
 	/** 유효성 검사 메서드 **/

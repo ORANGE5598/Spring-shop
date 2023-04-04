@@ -58,6 +58,9 @@ public class Member extends BaseTimeEntity implements Serializable {
     @Column(nullable = false)
     /** 회원 휴대폰번호 **/
     private String phone;
+    
+    @Column(nullable = false)
+    private String gender;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

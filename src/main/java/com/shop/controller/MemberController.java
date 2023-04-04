@@ -60,7 +60,7 @@ public class MemberController {
 	@GetMapping("/register")
 	public String register(Model model) {
 		model.addAttribute("memberDto", new RequestDTO());
-		return "/register";
+		return "/member/register";
 	}
 
 	/** 회원가입 요청 처리 **/

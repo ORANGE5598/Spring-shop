@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.shop.dto.MemberDTO;
@@ -17,6 +18,9 @@ public interface MemberService { //extends UserDetailsService {
     Optional<Member> findByUsername(String username);
     
     void changePoint(RequestDTO dto, Long id);
+    
+    List<Member> findMembers();
+    
 
     /** =============== 회원 수정 =============== **/
 

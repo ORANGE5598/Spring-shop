@@ -347,6 +347,12 @@
                                         <input type="text" class="form-control" aria-describedby="button-addon2" th:field="*{name}" required>
                                     </div>
                                     <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_name}"></span>
+                                    
+                                    <div class="orderBy__input input-group m-b--2 m-t-30">
+                                        <p>gender<span class="m-r-70">*</span></p>
+                                        <input type="text" class="form-control" aria-describedby="button-addon2" th:field="*{gender}" required>
+                                    </div>
+                                    <span th:class="fieldError" style="color: red; font-size:12px;" th:text="${valid_gender}"></span>
                                 </div>
                             </div>
 

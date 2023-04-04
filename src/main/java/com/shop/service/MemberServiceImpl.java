@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -125,12 +126,16 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void changePoint(RequestDTO dto, Long id) {
+		@SuppressWarnings("deprecation")
 		Member entity = memberRepository.getById(id);
 		entity.changePoint(dto.getPoint());
 		memberRepository.save(entity);
 	}
 	
-	
+	@Override
+	public List<Member> findMembers() {
+		return memberRepository.findAll();
+	}
 	
 	
 	

@@ -2,19 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>주문내역 조회 - 관리자페이지</title>
+    <title>회원목록 조회 - 관리자페이지</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <link rel="icon" type="image/png" href="../img/icons/favicon.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.3/sweetalert2.min.css"
-        integrity="sha512-qCn1nYgWV7vPzLZPd7OGJrVyq+G40TUDydUJdAEU6yYF6wMEa6MkU6Z/dzodP8aAhWQ+ff1ygb5m5oivFJ31Ow=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
@@ -59,18 +56,17 @@
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-20">
-	                        Help & FAQs
-	                    </a>
-	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m trans-04 p-lr-25">
-	                        LOG IN
-	                    </a>
-	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m trans-04 p-lr-25">
-	                        LOGOUT
-	                    </a>
-	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m trans-04 p-lr-25">
-	                        Register
-	                    </a>
+                        <a href="#" class="flex-c-m trans-04 p-lr-20">
+                            Help & FAQs
+                        </a>
+
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            LOG IN
+                        </a>
+                        <a href="#" class="flex-c-m trans-04 p-lr-25">
+                            SIGN UP
+                        </a>
+
                     </div>
                 </div>
             </div>
@@ -118,6 +114,23 @@
                             </li>
                         </ul>
                     </div>
+
+                    <!-- Icon header -->
+
+                    <!--------------------검색창 (클릭 시 따로 열리는 속성)----------------------->
+                    <div class="wrap-icon-header flex-w flex-r-m">
+                        <div class="icon-header-item cl8 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                            <i class="zmdi zmdi-search"></i>
+                        </div>
+
+                        <!---------------------------------장바구니 기능 ( 장바구니에 상품 넣으면 카운트 메서드 필요)---------------------------->
+                        <div class="icon-header-item cl8 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+                            data-notify="2">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </div>
+
+                        <!----------------------찜하기 기능 (상품 찜하기 버튼 누르면 카운트 메서드 필요)--------------------------->
+                    </div>
                 </nav>
             </div>
         </div>
@@ -130,6 +143,33 @@
             <!-- Logo moblie -->
             <div class="logo-mobile">
                 <a href="#"><img src="../img/icons/logo1.png" alt="IMG-LOGO"></a>
+            </div>
+
+            <!-- Icon header -->
+            <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+                <!---------------------------------검색창아이콘------------------------->
+                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+                    <i class="zmdi zmdi-search"></i>
+                </div>
+
+
+
+                <!---------------------------카트아이콘 ( 카운트 메서드 필요)--------------------------->
+                <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+                    data-notify="2">
+                    <i class="zmdi zmdi-shopping-cart"></i>
+
+                </div>
+                <!---------------찜하기 아이콘 ( 카운트 메서드 필요 ) ------------------------->
+            </div>
+
+
+
+            <!-- 카트 버튼 누르면 내가 장바구니 안에 넣은 상품들이 보임. -->
+            <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
             </div>
         </div>
         <!----------------------------------------------------------------->
@@ -146,18 +186,17 @@
 
                 <li>
                     <div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04">
-							Help & FAQs
-	                    </a>
-	                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m p-lr-10 trans-04">
-	                        LOG IN
-	                    </a>
-	                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m p-lr-10 trans-04">
-	                        LOG OUT
-	                    </a>
-	                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m p-lr-10 trans-04">
-	                        SIGN UP
-	                    </a>
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">
+                            Help & FAQs
+                        </a>
+
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">
+                            LOG IN
+                        </a>
+                        <a href="#" class="flex-c-m p-lr-10 trans-04">
+                            SIGN UP
+                        </a>
+
                     </div>
                 </li>
             </ul>
@@ -200,7 +239,25 @@
 
             </ul>
         </div>
+
+        <!-- Modal Search -->
+        <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+            <div class="container-search-header">
+                <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                    <img src="../img/icons/icon-close2.png" alt="CLOSE">
+                </button>
+
+                <form class="wrap-search-header flex-w p-l-15">
+                    <button class="flex-c-m trans-04">
+                        <i class="zmdi zmdi-search"></i>
+                    </button>
+                    <input class="plh3" type="text" name="search" placeholder="Search...">
+                </form>
+            </div>
+        </div>
     </header>
+
+
 
     <!------------------------------------------------------------------------------------------------------------------->
 
@@ -214,7 +271,7 @@
                 <div class="user-info">
 
                     <div class="user-img">
-                        <img src="../img/icons/adminicon.png">
+                        <img src="../img/icons/admin.png">
                     </div>
 
                     <div class="mypage-top">
@@ -225,7 +282,26 @@
 
 
                     <div class="user-bankbook">
-                        <a href="/adminList">
+                        <a href="#">
+                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12.6667 15.0667L16.4667 23.8555L19.0001 17.2639L21.5334 23.8555L25.3334 15.0667"
+                                    stroke="white"></path>
+                                <path d="M11.3999 18.8333H26.5999" stroke="white"></path>
+                                <path
+                                    d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
+                                    stroke="white"></path>
+                            </svg>
+                            <em>
+                                매출관리
+                                <i class="fa fa-angle-right"></i>
+                            </em>
+                            <strong style="font-size: 25px;">
+                                판매수익</strong>
+                        </a>
+
+                        <a href="#">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -333,6 +409,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="my-board">
+                        <a href="#">
+                            <h3>로그아웃</h3>
+                        </a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -340,98 +421,76 @@
 
         <section class="mypage-cont mypage-order_list">
             <div class="section-title">
-                <h1 class="tit">상품등록</h1>
+                <h1 class="tit">전체 회원 목록</h1>
             </div>
 
-            <div class="m-lr-auto m-b-50 table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">작성자</th>
-                            <td>
-                                <input class="form-label bg-body-secondary" value="admin" disabled readonly>
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <th scope="col">상품명</th>
-                            <td>
-                                <input class="form-control-label bg-body-secondary" name="iName" type="text">
-                            </td>
-                        </tr>
+            <form name="admin-search" id="admin-search" method="post" action="#">
+                <input type="hidden" name="page" value="1" />
+                <input type="hidden" name="user_gender" value="" />
+                <input type="hidden" name="user_name" value="" />
 
-                        <tr>
-                            <th scope="col">가격</th>
-                            <td>
-                                <input class="form-control-label bg-body-secondary" name="iPrice" type="text">
-                            </td>
-                        </tr>
 
-                        <tr>
-                            <th scope="col">브랜드</th>
-                            <td>
-                                <input class="form-control-label bg-body-secondary" name="brand" type="text">
-                            </td>
-                        </tr>
+                <div class="order-filter">
+                    <div class="flex-c-m">
+                        <div class="d-grid gap-2 d-md-block m-r-8">
+                            <button type="button" class="btn btn-dark btn__tab"
+                                onClick="OrderFilter.setPeriod('allMem');">전체</button>
+                            <button type="button" class="btn btn btn-dark btn__tab"
+                                onClick="OrderFilter.setPeriod('mem_female');">여성</button>
+                            <button type="button" class="btn btn btn-dark btn__tab"
+                                onClick="OrderFilter.setPeriod('mem_male');">남성</button>
+                        </div>
 
-                        <tr>
-                            <th scope="col">사이즈</th>
-                            <td>
-                                <input class="form-control-label bg-body-secondary" name="iSize" type="text">
-                                <!-- 
-                                <input type="hidden" name="iInfo" value="aaaa">
-                                <input type="hidden" name="iCategory" value="1">
-                                 -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="col">재고</th>
-                            <td class="flex-w">
-                                <div class="btn-num-product-down cl8 hov-btn6 trans-04 flex-c-m">
-                                    <i class="fs-16 zmdi zmdi-minus"></i>
-                                </div>
+                    </div>
 
-                                <input class="cl3 txt-center" type="number" name="iInstock" value="1">
+                    <div class="order-filter-search m-l-20">
+                        <div class="order-filter-search__input-wrap">
+                            <input type="text" class="order-filter-search__input " name="keyword" value=""
+                                placeholder="회원이름으로 검색" onchange="activateSearchButton();">
+                        </div>
+                    </div>
+                    <button type="button" class="user_state-confirm" onclick="search();">조회하기</button>
+                </div>
+            </form>
 
-                                <div class="btn-num-product-up cl8 hov-btn6 trans-04 flex-c-m">
-                                    <i class="fs-16 zmdi zmdi-plus"></i>
-                                </div>
-                            </td>
-                        </tr>
+            <form name="f1" id="f1" method="get" action="#">
+                <input type="hidden" name="page" value="1" />
+                <input type="hidden" name="user_gender" value="" />
+                <input type="hidden" name="user_name" value="" />
+
+                <!-- //filter -->
+            </form>
+
+            <div class="table-responsive user-list_Mem">
+                <table class="table table-hover">
+                    <thead class="table">
                         <tr>
-                            <th scope="col">사진</th>
-                            <td>
-                                <input class="form-control" type="file" id="formFileMultiple" multiple>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="col"></th>
-                            <td>
-                                <div class="form-group">
-                                    <label for="board_content">내용</label>
-                                    <textarea name="iInfo" id="board_content"></textarea>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="col">카테고리</th>
-                            <td>
-                                <select class="form-select" aria-label="Categories">
-                                    <option class="iCategory" value="1">상의</option>
-                                    <option class="iCategory" value="2">하의</option>
-                                    <option class="iCategory" value="3">신발</option>
-                                    <option class="iCategory" value="4">가방</option>
-                                    <option class="iCategory" value="5">모자</option>
-                                    <option class="iCategory" value="6">테크</option>
-                                </select>
-                            </td>
+                            <th></th>
+                            <th>회원아이디</th>
+                            <th>회원이름</th>
+                            <th>회원성별</th>
+                            <th colspan="2">회원가입날짜</th>
                         </tr>
                     </thead>
+
+                    <tbody>
+                        <tr th:each="member : ${members}">
+                            <td></td>
+                            <td th:text="${member.username}"></td>
+                            <td th:text="${member.name}"></td>
+                            <td th:text="${member.gender}"></td>
+                            <td th:text="${member.createdDate}"></td>
+                        </tr>
+                    </tbody>
                 </table>
-                <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-dark" type="submit" id="itemupdate">상품올리기</button>
-                    <button class="btn btn-danger" type="button" id="cancle">취소</button>
-                </div>
+            </div>
+
+
+
+
+            <div class="n-paging">
+                <button type="button" class="page is-active" onclick="return false;">1</button>
             </div>
         </section>
     </main>
@@ -591,6 +650,41 @@
 
 
     <!--===============================================================================================-->
+    <script>
+
+        // 검색 버튼 클릭 시 실행될 search 함수 정의
+        function search() {
+            // form 요소 가져오기
+            const form = document.getElementById('admin-search');
+
+            // form 요소에 있는 input 요소 가져오기
+            const pageInput = form.querySelector('input[name="page"]');
+            const genderInput = form.querySelector('input[name="user_gender"]');
+            const nameInput = form.querySelector('input[name="user_name"]');
+            const keywordInput = form.querySelector('input[name="keyword"]');
+
+            // input 요소의 값을 설정
+            pageInput.value = 1;
+            genderInput.value = '';
+            nameInput.value = '';
+            keywordInput.value = keywordInput.value.trim(); // 검색어의 앞뒤 공백 제거
+
+            // OrderFilter와 activateSearchButton 함수 호출
+            OrderFilter.setPeriod(period);
+            activateSearchButton();
+
+            // form 제출
+            form.submit();
+        }
+
+
+
+
+
+
+
+    </script>
+    <!--===============================================================================================-->
     <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
     <script src="../vendor/animsition/js/animsition.min.js"></script>
@@ -600,14 +694,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
     <!--===============================================================================================-->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-
-
-
+    <scrip src="../vendor/select2/select2.min.js"></scrip>
+    <!--===============================================================================================-->
+    <script src="../vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+    <!--===============================================================================================-->
     <script>
         //////////////////(미니팝업기능)//////////////////////////////////
         const Toast = Swal.mixin({
@@ -621,7 +713,6 @@
             }
         })
     </script>
-    <!--===============================================================================================-->
     <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script>
         $('.js-pscroll').each(function () {
@@ -638,111 +729,10 @@
             })
         });
     </script>
-
     <!--==============================================================================================-->
     <script>
-       document.getElementById('itemupdate').addEventListener('click', function () {
-    Swal.fire({
-        title: '상품을 올리시겠습니까?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '확인',
-        cancelButtonText: '취소'
-    }).then((result) => {
-        if (result.isConfirmed) {
-        	//
-        	function uploadFiles() {
-		 		var formData = new FormData();
-				
-		 	 	var inputFile = $("input[type='file']");
-		 		var files = inputFile[0].files;
-		
-		 		var iCategory = $("select.form-select option:selected").val();
-		 		var iInfo = $("textarea[name='iInfo']").val().replace(/<\/?p>/g, '');
-		 		var iInstock = $("input[name='iInstock']").val();
-		 		var iName = $("input[name='iName']").val();
-		 		var iPrice = $("input[name='iPrice']").val();
-		 		var brand = $("input[name='brand']").val();
-		 		var iSize = $("input[name='iSize']").val();
-				
-		 		for(var i = 0; i < files.length; i++){
-					
-		 			formData.append("uploadFiles", files[i]);
-		 			formData.append("iCategory", iCategory);
-		 			formData.append("iInfo", iInfo);
-		 			formData.append("iInstock", iInstock);
-		 			formData.append("iName", iName);
-		 			formData.append("iPrice", iPrice);
-		 			formData.append("brand", brand);
-		 			formData.append("iSize", iSize);
-		 		}
-		 		$.ajax({
-					url : 'insertItem',
-					processData : false,
-					contentType : false,
-					data : formData,
-					type : 'POST',
-					dataType : 'json',
-					success : function(result){
-						console.log(result);
-					},
-					error : function(jqXHR, textStatus, errThrown){
-						console.log(errThrown);
-					}
-					
-				})	// ajax의 끝
-			};
-			uploadFiles();
-			
-        	//
-            Swal.fire({
-                title: '상품을 올리는 중입니다.',
-                html: '<div class="progress" style="height: 20px;"><div class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div></div>',
-                timerProgressBar: true,
-                didOpen: () => {
-                    Swal.showLoading();
-                    const progress = Swal.getHtmlContainer().querySelector('.progress-bar');
-                    const interval = setInterval(() => {
-                        const value = parseInt(progress.getAttribute('aria-valuenow'));
-                        if (value < 100) {
-                            progress.style.width = (value + 10) + '%';
-                            progress.setAttribute('aria-valuenow', value + 10);
-                        } else {
-                            clearInterval(interval);
-                            setTimeout(() => {
-                                Swal.fire('업로드 완료!', '', 'success');
-                            }, 0);
-                        }
-                    }, 500);
-                },
-                didClose: () => {}
-            });
-        }
-    });
-});
-
-
-
     </script>
-    <!--==============================================================================================-->
-    <script>
-        $(function () {
-            $('#board_content').summernote({
-                placeholder: '상품 상세설명을 작성해주세요.',
-                height: 300,
-                lang: 'ko-KR',
-                callbacks: {
-                    onImageUpload: function (files, editor, welEditable) {
-                        for (var i = files.length - 1; i >= 0; i--) {
-                            sendFile(files[i], this);
-                        }
-                    }
-                }
-            });
-        });
-    </script>
+
     <!--==============================================================================================-->
     <script>
         //Accordin Active

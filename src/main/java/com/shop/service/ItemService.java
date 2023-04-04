@@ -1,14 +1,10 @@
 package com.shop.service;
 
-import java.util.List;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.ItemDTO;
 import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageRequestDTO2;
 import com.shop.dto.PageResultDTO;
-import com.shop.dto.PageResultDTO2;
 import com.shop.entity.Item;
 
 public interface ItemService {
@@ -71,6 +67,6 @@ public interface ItemService {
 	
 	PageResultDTO<ItemDTO, Item> getTechList(PageRequestDTO pageRequestDTO);
 	
-	PageResultDTO2<ItemDTO, Item> getLimitList(PageRequestDTO2 pageRequestDTO2);
+	
 	
 }

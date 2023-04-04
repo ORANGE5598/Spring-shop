@@ -14,7 +14,6 @@ import com.shop.dto.CartDTO;
 import com.shop.dto.CategoryDTO;
 import com.shop.dto.ItemDTO;
 import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageRequestDTO2;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.service.BrandService;
 import com.shop.service.CartService;
@@ -65,7 +64,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/product")
-	public String product(PageRequestDTO pageRequestDTO, PageRequestDTO2 pageRequestDTO2, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public String product(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
 		List<BrandDTO> brandDTOList = brandService.getBrandList();
@@ -233,7 +232,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/product-detail")
-	public void detail(Long iNumber, PageRequestDTO pageRequestDTO, PageRequestDTO2 pageRequestDTO2, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public void detail(Long iNumber, PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long member_id = user.getMemberDTO().getId();
 		ResponseDTO responseDto = memberService.getById(member_id);
@@ -252,7 +251,7 @@ public class IndexController {
 		model.addAttribute("recommend3", itemService.read(random3));
 		model.addAttribute("recommend4", itemService.read(random4));
 		model.addAttribute("item", itemDTO);
-		model.addAttribute("limitDTO", itemService.getLimitList(pageRequestDTO2));
+		
 		
 		Long id = user.getMemberDTO().getId();
 		

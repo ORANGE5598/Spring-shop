@@ -17,6 +17,7 @@ public interface AdminService {
 	
 	Long remove(ItemDTO dto);
 	
+	
 	default Item dtoToEntity(ItemDTO dto) {
 		
 		Item item = Item.builder().iCategory(dto.getICategory())
