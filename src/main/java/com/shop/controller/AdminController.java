@@ -166,14 +166,14 @@ public class AdminController{
 	}
 	
 	@PostMapping("/modifyDeliveryStatus")
-	public String  modifyDeliveryStatus2(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
+	public String modifyDeliveryStatus2(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
 		
 		Long oNumber = dto.getONumber();
 		
 		orderService.modify(dto, oNumber);
 		
 		redirectAttributes.addFlashAttribute("message", "주문 정보 수정이 완료되었습니다.");
-	    return "redirect:/Index";
+	    return "redirect:/admin/Index";
 	}
 	
 	@GetMapping("/userlist")
