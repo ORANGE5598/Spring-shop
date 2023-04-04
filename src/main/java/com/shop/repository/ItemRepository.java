@@ -48,28 +48,21 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 	@Query(value = "SELECT * FROM Item WHERE i_number > 0 ORDER BY i_price DESC, i_number ASC", nativeQuery = true)
 	Page<Item> getItemPriceDesc(Pageable pageable);
 	
-	// iCategory=1인 상품 전체 리턴
-	@Query("SELECT i FROM Item i WHERE i.iCategory = 1")
-	Page<Item> getTop(Pageable pageable);
 	
-	// iCategory=2인 상품 전체 리턴
-	@Query("SELECT i FROM Item i WHERE i.iCategory = 2")
-	Page<Item> getBottom(Pageable pageable);
+	// 카테고리에 따른 정렬
+	@Query("SELECT i FROM Item i WHERE i.iCategory =:iCategory")
+	Page<Item> sortCategory(Pageable pageable, @Param("iCategory") Long iCategory);
 	
-	// iCategory=3인 상품 전체 리턴
-	@Query("SELECT i FROM Item i WHERE i.iCategory = 3")
-	Page<Item> getFootwear(Pageable pageable);
+	// 브랜드에 따른 정렬
+	@Query("SELECT i FROM Item i WHERE i.brandNumber =:brandNumber")
+	Page<Item> sortBrand(Pageable pageable, @Param("brandNumber") Long brandNumber);
 	
-	// iCategory=4인 상품 전체 리턴
-	@Query("SELECT i FROM Item i WHERE i.iCategory = 4")
-	Page<Item> getBag(Pageable pageable);
+	// 가격 오름차순에 따른 정렬
+	@Query("SELECT i FROM Item i ORDER BY i_price ASC, i_number ASC")
+	Page<Item> sortPriceAsc(Pageable pageable);
 	
-	// iCategory=5인 상품 전체 리턴
-	@Query("SELECT i FROM Item i WHERE i.iCategory = 5")
-	Page<Item> getHeadwear(Pageable pageable);
-	
-	// iCategory=6인 상품 전체 리턴
-	@Query("SELECT i FROM Item i WHERE i.iCategory = 6")
-	Page<Item> getTech(Pageable pageable);
+	// 가격 내림차순에 따른 정렬
+	@Query("SELECT i FROM Item i ORDER BY i_price DESC, i_number ASC")
+	Page<Item> sortPriceDesc(Pageable pageable);
 	
 }

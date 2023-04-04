@@ -447,9 +447,9 @@
 			</div>
 		</div>
 
-          <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-            <a th:href="@{/orderBy(dPrice = deliveryX, iNumber = iNumberX, oCount = countX)}" onclick="orderWithCount(this); orderWithINumber(this); orderWithDelivery(this)">구매하기</a>
-          </button>
+            <a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" th:href="@{/orderBy(dPrice = deliveryX, iNumber = iNumberX, oCount = countX)}" onclick="orderWithCount(this); orderWithINumber(this); orderWithDelivery(this)">구매하기</a>
+          <!-- <button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
+          </button> -->
         </div>
       </div>
     </div>
@@ -675,10 +675,10 @@ function orderWithINumber(element) {
 </script>
 <!--===============================================================================================-->
 <script>
+	const deliverySelect = document.querySelector('.js-select2');
 	deliverySelect.addEventListener('change', updateTotalPrice);
 
 	function updateTotalPrice() {
-		  const deliverySelect = document.querySelector('.js-select2');
 		  const totalPrice = document.getElementById('total-price'); // 수정된 부분
 		  const totalPrice2 = document.getElementById('total-price2');
 		  const selectedOption = deliverySelect.options[deliverySelect.selectedIndex];

@@ -97,5 +97,12 @@ public class ReviewController {
         return "redirect:/com";
     }
     
+    @GetMapping("/reviewList")
+    public String reviewList() {
+    	
+    	
+    	
+    	return "board/review/review-list";
+    }
 
 }
