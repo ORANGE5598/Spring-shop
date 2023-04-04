@@ -58,7 +58,11 @@ public class IndexController {
 			model.addAttribute("cartList", cartDTOList);
 			model.addAttribute("count", cartCount);
 			model.addAttribute("itemDTO", itemDTO);
-			
+//			model.addAttribute("list", itemService.getList(pageRequestDTO));
+//			model.addAttribute("list", itemService.getListTest());
+			model.addAttribute("list1", itemService.getTopListTest());
+			model.addAttribute("list4", itemService.getBagListTest());
+			model.addAttribute("list6", itemService.getTechListTest());
 		}
 		return "/index";
 	}
@@ -70,9 +74,6 @@ public class IndexController {
 		List<BrandDTO> brandDTOList = brandService.getBrandList();
 		
 		model.addAttribute("itemDTO", itemService.getList(pageRequestDTO));
-//		model.addAttribute("topDTO", itemService.getTopList(pageRequestDTO));
-//		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-//		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
 		model.addAttribute("count", itemService.readAll());
 		model.addAttribute("categoryDTOList", categoryDTOList);
 		model.addAttribute("brandDTOList", brandDTOList);
@@ -94,117 +95,6 @@ public class IndexController {
 		return "/content/product";
 	}
 	
-	/*
-	@GetMapping("/productPriceAsc")
-	public void productAsc(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productPriceDesc")
-	public void productDesc(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/producttop")
-	public void productTop(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getTopList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productbottom")
-	public void productBottom(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getBottomList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productfootwear")
-	public void productFootwear(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getFootwearList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productbag")
-	public void productBag(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getBagList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/productheadwear")
-	public void productHeadwear(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getHeadwearList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	
-	@GetMapping("/producttech")
-	public void productTech(PageRequestDTO pageRequestDTO, Model model) {
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		
-		model.addAttribute("itemDTO", itemService.getTechList(pageRequestDTO));
-		model.addAttribute("itemAsc", itemService.getListByPriceAsc(pageRequestDTO));
-		model.addAttribute("itemDesc", itemService.getListByPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-	}
-	*/
 	
 	@GetMapping("/shopping-cart")
 	public String cart(Long cNumber, Long oCount, Long dPrice, Model model, @AuthenticationPrincipal UserAdapter user) {
@@ -226,7 +116,6 @@ public class IndexController {
 		
 	    model.addAttribute("totalPrice", totalPrice2);
 	    model.addAttribute("cartList", cartDTOList);
-//	    model.addAttribute("total", totalPrice);
 	    model.addAttribute("count", cartCount);
 		return "content/cart/shopping-cart";
 	}
@@ -252,7 +141,6 @@ public class IndexController {
 		model.addAttribute("recommend4", itemService.read(random4));
 		model.addAttribute("item", itemDTO);
 		
-		
 		Long id = user.getMemberDTO().getId();
 		
 		List<CartDTO> cartDTOList = cartService.getCartList(id);
@@ -264,8 +152,6 @@ public class IndexController {
 	    for (CartDTO cart : cartList) {
 	        totalPrice += cart.getCPrice()*cart.getCount();
 	    }
-	    model.addAttribute("totalPrice", totalPrice);
-	    
 	    model.addAttribute("cartList", cartList);
 	    model.addAttribute("totalPrice", totalPrice);
 		
@@ -283,16 +169,21 @@ public class IndexController {
 		Long cartCount = cartService.getCartCount(id);
 		model.addAttribute("count", cartCount);
 		
+		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
+		int totalPrice = 0;
+	    for (CartDTO cart : cartList) {
+	        totalPrice += cart.getCPrice()*cart.getCount();
+	    }
+	    model.addAttribute("cartList", cartList);
+	    model.addAttribute("totalPrice", totalPrice);
+		
 		model.addAttribute("member", member);
-		model.addAttribute("orderList", orderService.getList(id, pageRequestDTO));	// 사용자 id에 따른 전체 목록 출력
-		model.addAttribute("count1", orderService.afterDeposit(id));	// 결제완료 숫자
-		model.addAttribute("count2", orderService.Deliverying(id));		// 배송중 숫자
-		model.addAttribute("count3", orderService.afterDelivery(id));	// 입금확인 숫자
-		model.addAttribute("count4", orderService.confirmOrder(id));	// 배송완료 숫자
-		model.addAttribute("count5", orderService.exchangeStatus(id));	// 환불 숫자
-		model.addAttribute("count6", orderService.afterExchange(id));	// 교환 숫자
-		model.addAttribute("count7", orderService.cancleStatus(id));	// 반품 숫자
-		model.addAttribute("count8", orderService.afterCancleStatus(id));	// 반품 숫자
+		model.addAttribute("orderList", orderService.getList(id));	// 사용자 id에 따른 전체 목록 출력
+		model.addAttribute("count0", orderService.allStatus(id));
+		model.addAttribute("count1", orderService.deliverying(id));
+		model.addAttribute("count2", orderService.afterDelivery(id));
+		model.addAttribute("count3", orderService.beforeCancle(id));
+		model.addAttribute("count4", orderService.afterCancle(id));
 		
 		return "content/user/myPage-orderlist";
 	}

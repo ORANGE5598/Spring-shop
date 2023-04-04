@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.ItemDTO;
@@ -9,14 +11,7 @@ public interface AdminService {
 	
 	void modifyAll(ItemDTO dto, MultipartFile file);
 	
-//	void modifyPrice(ItemDTO dto);
-//	
-//	void modifyInstock(ItemDTO dto);
-//	
-//	void modifyInfo(ItemDTO dto);
-	
 	Long remove(ItemDTO dto);
-	
 	
 	default Item dtoToEntity(ItemDTO dto) {
 		
@@ -30,5 +25,13 @@ public interface AdminService {
 		System.out.println(item);	// iImg가 null로 들어옴
 		return item;
 	}
+	
+	Long deliverying();
+	
+	Long afterDelivery();
+	
+	Long beforeCancle();
+	
+	Long afterCancle();
 	
 }

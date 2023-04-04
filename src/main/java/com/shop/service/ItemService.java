@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.ItemDTO;
@@ -43,6 +45,18 @@ public interface ItemService {
 	ItemDTO getImg(Long number);
 	
 	PageResultDTO<ItemDTO, Item> getList(PageRequestDTO pageRequestDTO);
+	
+	// 테스트
+	List<ItemDTO> getListTest();
+	
+	// 테스트1
+	List<ItemDTO> getTopListTest();
+	
+	// 테스트4
+	List<ItemDTO> getBagListTest();
+	
+	// 테스트6
+	List<ItemDTO> getTechListTest();
 
 	PageResultDTO<ItemDTO, Item> getListByPriceAsc(PageRequestDTO pageRequestDTO);
 
@@ -66,7 +80,5 @@ public interface ItemService {
 	PageResultDTO<ItemDTO, Item> getHeadwearList(PageRequestDTO pageRequestDTO);
 	
 	PageResultDTO<ItemDTO, Item> getTechList(PageRequestDTO pageRequestDTO);
-	
-	
 	
 }

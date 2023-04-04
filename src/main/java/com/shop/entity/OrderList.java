@@ -41,5 +41,9 @@ public class OrderList extends BaseTimeEntity {
 	private String roadAddress;
 	private String deliveryStatus;
 	private String oSize;
-
+	
+	public void changeDeliveryStatus(String deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
+	}
+	
 }

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <title>회원정보변경 - 마이페이지</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="images/icons/favicon.png" />
     <!--===============================================================================================-->
@@ -53,15 +56,17 @@
                     </div>
 
                     <div class="right-top-bar flex-w h-full">
-                        <a href="#" class="flex-c-m trans-04 p-lr-20">
-                            Help & FAQs
-                        </a>
-
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            LOG IN
-                        </a>
-                        <a href="#" class="flex-c-m trans-04 p-lr-25">
-                            SIGN UP
+                    <a href="#" class="flex-c-m p-lr-10 trans-04">
+                        Help & FAQs
+                    </a>
+                    <a sec:authorize="isAnonymous()" th:href="@{/login}" class="flex-c-m p-lr-10 trans-04">
+                        LOG IN
+                    </a>
+                    <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="flex-c-m p-lr-10 trans-04">
+                        LOG OUT
+                    </a>
+                    <a sec:authorize="isAnonymous()" th:href="@{/register}" class="flex-c-m p-lr-10 trans-04">
+                        SIGN UP
                         </a>
 
                     </div>
