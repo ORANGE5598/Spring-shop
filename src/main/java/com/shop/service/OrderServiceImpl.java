@@ -60,10 +60,12 @@ public class OrderServiceImpl implements OrderService {
 		return entity.getONumber();
 	}
 	
+	// 수정 필요
 	@Override
-	public Long modify(OrderDTO dto) {
+	public Long modify(OrderDTO dto, Long oNumber) {
 		
-		OrderList entity = dtoToEntity(dto).builder().deliveryStatus(dto.getDeliveryStatus()).build();
+		OrderList entity = orderRepository.getById(oNumber);
+		entity.changeDeliveryStatus(dto.getDeliveryStatus());
 		
 		orderRepository.save(entity);
 		
@@ -88,6 +90,15 @@ public class OrderServiceImpl implements OrderService {
 		List<OrderList> orderList = orderRepository.findAll();
 		
 		List<OrderDTO> result = orderList.stream().map(order -> entityToDto(order)).collect(Collectors.toList());
+		
+		return result;
+	}
+	
+	@Override
+	public Long getAllCount() {
+		
+		Long result = orderRepository.count();
+		
 		
 		return result;
 	}

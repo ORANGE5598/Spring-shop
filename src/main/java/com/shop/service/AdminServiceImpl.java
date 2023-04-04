@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -7,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shop.dto.ItemDTO;
 import com.shop.entity.Item;
 import com.shop.repository.AdminRepository;
+import com.shop.repository.ItemRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +21,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private AdminRepository adminRepository;
+	private ItemRepository itemRepository;
 	
 	
 	// 상품 이미지 변경하는 메서드
@@ -42,40 +46,6 @@ public class AdminServiceImpl implements AdminService {
 		
 	}
 	
-//	// 상품 가격 변경하는 메서드
-//	@Override
-//	public void modifyPrice(ItemDTO dto) {
-//		Item price = adminRepository.getById(1L);
-////		Item price = adminRepository.getById(dto.getINumber());
-//		
-//		price.changePrice(dto.getIPrice());
-//		
-//		adminRepository.save(price);		
-//	}
-//	
-//	// 상품 재고 조절하는 메서드
-//	@Override
-//	public void modifyInstock(ItemDTO dto) {
-//		
-//		Item item = adminRepository.getById(1L);
-////		Item item = adminRepository.getById(dto.getINumber());
-//		
-//		item.getIInstock();
-//	}
-//	
-//	// 상품 정보 수정하는 메서드
-//	@Override
-//	public void modifyInfo(ItemDTO dto) {
-//		
-//		Item info = adminRepository.getById(1L);
-////		Item info = adminRepository.getById(dto.getINumber());
-//		
-//		info.changeInfo(dto.getIInfo());
-//		
-//		adminRepository.save(info);
-//		
-//	}
-	
 	// 상품을 삭제하는 메서드
 	@Override
 	public Long remove(ItemDTO dto) {
@@ -87,4 +57,36 @@ public class AdminServiceImpl implements AdminService {
 		return entity.getINumber();
 	}
 	
+	@Override
+	public Long deliverying() {
+		
+		Long result = adminRepository.deliverying();
+		
+		return result;
+	}
+	
+	@Override
+	public Long afterDelivery() {
+		
+		Long result = adminRepository.afterDelivery();
+		
+		return result;
+	}
+
+	@Override
+	public Long beforeCancle() {
+		
+		Long result = adminRepository.beforeCancle();
+		
+		return result;
+	}
+
+	@Override
+	public Long afterCancle() {
+		
+		Long result = adminRepository.afterCancle();
+		
+		return result;
+	}
+
 }

@@ -102,7 +102,7 @@ public class ItemServiceImpl implements ItemService {
 	public ItemDTO read(Long iNumber) {
 		
 		Item result = itemRepository.getItemByNumber(iNumber);
-		
+		System.out.println("++++++++++"+result);
 		return entityToDto(result);
 	}
 	

@@ -31,14 +31,4 @@ public class OrderController2 {
 		return "content/user/orderBy";
 	}
 	
-	@PostMapping("/modifyDeliveryStatus")
-	public String  modifyDeliveryStatus(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
-		
-		Long oNumber = orderService.modify(dto);
-		
-		redirectAttributes.addFlashAttribute(oNumber);
-		
-		return "content/admin/admin-index";
-	}
-	
 }

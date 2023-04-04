@@ -5,8 +5,11 @@
     <title>주문내역 조회 - 관리자페이지</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <link rel="icon" type="image/png" href="img/icons/favicon.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -79,7 +82,7 @@
 
                     <!-- Logo desktop -->
                     <a href="#" class="logo">
-                        <img src="images/icons/logo1.png" alt="">
+                        <img src="img/icons/logo1.png" alt="">
                     </a>
 
                     <!-- Menu desktop -->
@@ -153,8 +156,6 @@
                 <i class="zmdi zmdi-search"></i>
             </div>
 
-
-
             <!---------------------------카트아이콘 ( 카운트 메서드 필요)--------------------------->
             <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
                  th:data-notify="${count}">
@@ -162,8 +163,6 @@
 
             </div>
         </div>
-
-
 
         <!-- 카트 버튼 누르면 내가 장바구니 안에 넣은 상품들이 보임. -->
         <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -244,7 +243,7 @@
         <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
             <div class="container-search-header">
                 <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="images/icons/icon-close2.png" alt="CLOSE">
+                    <img src="img/icons/icon-close2.png" alt="CLOSE">
                 </button>
 
                 <form class="wrap-search-header flex-w p-l-15">
@@ -335,7 +334,7 @@
                     <div class="user-bankbook">
                         
 
-                        <a href="#">
+                        <a href="/adminList">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -404,8 +403,8 @@
                         <div class="card-body">
                             <div class="my-board">
                                 <ul>
-                                    <li><a href="#">상품등록</a></li>
-                                    <li><a href="#">상품목록</a></li>
+                                    <li><a href="/adminProduct">상품등록</a></li>
+                                    <li><a href="/adminList">상품목록</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -420,7 +419,7 @@
                         <div class="card-body">
                             <div class="my-board">
                                 <ul>
-                                    <li><a href="#">주문확인</a></li>
+                                    <li><a href="/adminIndex">주문확인</a></li>
                                     <li><a href="#">전체회원목록</a></li>
                                 </ul>
                             </div>
@@ -452,17 +451,16 @@
             <div class="section-title">
                 <h1 class="tit">주문 목록</h1>
                 <ul class="state">
-                    <li><a href="javascript:void(0);" onclick="goListAjax('ord_1');">전체 0</a></li>
-                    <li><a href="javascript:void(0);" onclick="goListAjax('ord_2');">배송중 0</a></li>
-                    <li><a href="javascript:void(0);" onclick="goListAjax('ord_3');">배송완료 0</a></li>
-                    <!--[D]환불 교환-->
-                    <li><a href="javascript:void(0);" onclick="goListAjax('clm_1');">반품대기 0</a></li>
-                    <li><a href="javascript:void(0);" onclick="goListAjax('clm_2');">반품완료 0</a></li>
+                    <li><a href="javascript:void(0);">전체 [[${listCount}]]</a></li>
+                    <li><a href="javascript:void(0);">배송중 [[${count1}]]</a></li>
+                    <li><a href="javascript:void(0);">배송완료 [[${count2}]]</a></li>
+                    <li><a href="javascript:void(0);">반품대기 [[${count3}]]</a></li>
+                    <li><a href="javascript:void(0);">반품완료 [[${count4}]]</a></li>
                 </ul>
             </div>
 
 
-            <form name="admin-search" id="admin-search" method="post" action="#">
+            <form name="admin-search" id="admin-search" method="get" action="#">
                 <input type="hidden" name="page" value="1" />
                 <input type="hidden" name="delivery_status" value="" />
                 <input type="hidden" name="user_state" value="" />
@@ -471,14 +469,11 @@
                 <div class="order-filter">
                     <div class="flex-c-m">
                         <div class="d-grid gap-2 d-md-block m-r-8">
-                            <button type="button" class="btn btn-dark btn__tab"
-                                onClick="OrderFilter.setPeriod('shipping');">배송중</button>
-                            <button type="button" class="btn btn btn-dark btn__tab"
-                                onClick="OrderFilter.setPeriod('shipping_completed');">배송완료</button>
-                            <button type="button" class="btn btn btn-dark btn__tab"
-                                onClick="OrderFilter.setPeriod('shipping_return');">반품대기</button>
-                            <button type="button" class="btn btn btn-dark btn__tab"
-                                onClick="OrderFilter.setPeriod('return_completed');">반품완료</button>
+                            <button type="button" class="btn btn-dark btn__tab" onClick="statusClicked(event)" data-status="전체">전체</button>
+							<button type="button" class="btn btn-dark btn__tab" onClick="statusClicked(event)" data-status="배송중">배송중</button>
+							<button type="button" class="btn btn btn-dark btn__tab" onClick="statusClicked(event)" data-status="배송완료">배송완료</button>
+							<button type="button" class="btn btn btn-dark btn__tab" onClick="statusClicked(event)" data-status="반품대기">반품대기</button>
+							<button type="button" class="btn btn btn-dark btn__tab" onClick="statusClicked(event)" data-status="반품완료">반품완료</button>
                         </div>
 
                     </div>
@@ -514,7 +509,7 @@
                     </thead>
 
                     <tbody>
-                        <tr class="table_row" th:each="list : ${allList}">
+                        <tr class="table_row" th:each="list : ${allList}" th:id="${list.oNumber}">
                             <!--상품사진-->
                             <td class="column-1">
                                 <div class="img-block">
@@ -529,30 +524,27 @@
                             <td class="column-2">
                                 <div class="product_row">
                                     <ul class="info">
-                                        <li class="brand"><a href="#">쎄르페</a></li>
-                                        <li class="name"><a href="#">방랑자 가방</a>
-                                        </li>
-                                        <li class="option">
-                                            옵션 : M
-                                        </li>
+                                        <li class="mName"><a href="#">[[${list.mName}]]</a></li>
+                                        <li class="oName">[[${list.oName}]]</li>
+                                        <li class="oSize">사이즈 : [[${list.oSize}]]</li>
                                     </ul>
                                 </div>
                             </td>
 
                             <!--주문일자-->
                             <td class="column-3">
-                                2023.03.31
+                                [[${list.createdDate}]]
                             </td>
 
                             <!--주문번호--->
-                            <td class="column-4 ">
-                                <a href="#">12345678</a>
+                            <td class="column-4 oNumber">
+                                <a href="#">[[${list.oNumber}]]</a>
                             </td>
 
                             <!--가격,갯수-->
-                            <td class="column-5">40,010원 <br>
+                            <td class="column-5">[[${list.oTotalPrice}]]원 <br>
                                 <span class="txt-default">
-                                    1개
+                                    [[${list.oCount}]]개
                                 </span>
                             </td>
 
@@ -563,28 +555,22 @@
 
                             <td class="txt-lighter column-6">
 
-                                <select id="status-select">
-                                    <option class="deliveryStatus">배송중</option>
-                                    <option class="deliveryStatus">배송완료</option>
-                                    <option class="deliveryStatus">반품대기</option>
-                                    <option class="deliveryStatus">반품완료</option>
+                                <form method="post" th:action="@{/modifyDeliveryStatus}">
+                                <select id="status-select" name="deliveryStatus">
+                                    <option class="deliveryStatus" value="배송중">배송중</option>
+                                    <option class="deliveryStatus" value="배송완료">배송완료</option>
+                                    <option class="deliveryStatus" value="반품대기">반품대기</option>
+                                    <option class="deliveryStatus" value="반품완료">반품완료</option>
                                 </select>
-
-                                <button type="button" class="btn btn-outline-dark btn-sm" onclick="showConfirm()">
+								<input type="hidden" name="oNumber" th:value="${list.oNumber}">
+                                <button type="submit" class="btn btn-outline-dark btn-sm">
                                     수정
-                                </button>
+                                </button></form>
 
                             </td>
                         </tr>
                     </tbody>
                 </table>
-            </div>
-
-
-
-			<!-- 페이지 수정해야하는 곳/ 페이지 없애고 리스트로 담아서 한줄로 전부 출력해버릴 예정 -->
-            <div class="n-paging">
-                <button type="button" class="page is-active" onclick="return false;">1</button>
             </div>
         </section>
     </main>
@@ -728,35 +714,6 @@
     </div>
 
    
-   
-   
-    <!--===============================================================================================-->
-    <!-- 없는 기능 삭제예정 -->
-    <script>
-        function goListAjax(type) {
-            $.ajax({
-                url: '주문상태조회.ajax.php',
-                type: 'post',
-                data: {
-                    'mode': 'ajax',
-                    'type': type
-                },
-                dataType: 'json',
-                success: function (data) {
-                    // 성공적으로 응답을 받았을 때 실행할 코드
-                    console.log(data); // 받은 데이터를 콘솔에 출력
-                },
-                error: function (xhr, status, error) {
-                    // 에러 발생 시 실행할 코드
-                    console.error(xhr.responseText); // 에러 메시지를 콘솔에 출력
-                }
-            });
-        }
-
-
-
-
-    </script>
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->
@@ -801,10 +758,6 @@
             })
         });
     </script>
-    <!--==============================================================================================-->
-    <script>
-    </script>
-
     <!--==============================================================================================-->
     <script>
         //Accordin Active
@@ -866,32 +819,6 @@
                 	
                 	//
                 	
-                	function modify() {
-                		alert('경로1');
-				 		var formData = new FormData();
-						
-				 		var deliveryStatus = $(".dStatus").val();	// 수정해야함
-						alert(deliveryStatus);
-			 			formData.append("deliveryStatus", deliveryStatus);
-						
-			 			$.ajax({
-							url : 'modifyDeliveryStatus',
-							processData : false,
-							contentType : false,
-							data : formData,
-							type : 'POST',
-							dataType : 'json',
-							success : function(result){
-								alert('성공');
-								console.log(result);
-							},
-							error : function(jqXHR, textStatus, errThrown){
-								console.log(errThrown);
-							}
-							
-						})	// ajax의 끝
-					};
-					modify();
                 	
                 	//
                     spanElement.textContent = selectedValue;
@@ -921,6 +848,46 @@
 
 
     </script>
+    <!--==============================================================================================-->
+    <script>
+		function statusClicked(event) {
+			event.preventDefault(); // 기본 동작 중단
+			
+			const deliveryStatus = event.target.getAttribute('data-status'); // 클릭한 배송상태
+	
+			const rows = document.querySelectorAll('.table_row'); // 모든 주문 row 가져오기
+	
+			// 각 row를 순회하면서 해당 배송상태에 속하는지 확인
+			rows.forEach((row) => {
+				const rowDeliveryStatus = row.querySelector('.dStatus').textContent; // 해당 row의 배송상태
+	
+				if (rowDeliveryStatus !== deliveryStatus && deliveryStatus !== '전체') { // 다른 배송상태에 속하는 경우
+					row.style.display = 'none'; // 숨김 처리
+				} else { // 해당 배송상태에 속하는 경우
+					row.style.display = 'table-row'; // 보이게 처리
+				}
+			});
+		}
+	</script>
+    <!--==============================================================================================-->
+    <script>
+	    function search() {
+	        const keyword = document.getElementsByName("keyword")[0].value;
+			
+	        const rows = document.querySelectorAll(".table_row");
+	
+			rows.forEach((row) => {
+				const oNumber = row.querySelector('.oNumber a').textContent.trim();
+				const mName = row.querySelector('.mName a').textContent.trim();
+				
+				if (oNumber !== keyword && !mName.includes(keyword)) {
+					row.style.display = 'none'; // 숨김 처리
+				} else {
+					row.style.display = 'table-row'; // 보이게 처리
+				}
+			});
+	    }
+	</script>
     <!--==============================================================================================-->
     <script src="js/main.js"></script>
 
