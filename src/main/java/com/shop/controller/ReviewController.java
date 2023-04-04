@@ -17,6 +17,7 @@ import com.shop.config.auth.UserAdapter;
 import com.shop.dto.ReviewDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.ReviewEntity;
+import com.shop.service.ItemService;
 import com.shop.service.MemberService;
 import com.shop.service.ReviewService;
 
@@ -31,6 +32,7 @@ public class ReviewController {
 
     private final ReviewService reviewService;
     private final MemberService memberService;
+    private final ItemService itemService;
 
 
    
@@ -41,6 +43,15 @@ public class ReviewController {
 		int startPage = (((int) (Math.ceil((double) pageable.getPageNumber() / blockLimit))) - 1) * blockLimit + 1; 																									// ~~
 		int endPage = ((startPage + blockLimit - 1) < reviewList.getTotalPages()) ? startPage + blockLimit - 1
 				: reviewList.getTotalPages();
+		
+		Long x = itemService.readAll();
+		Long random1 = Math.round(Math.random() * (x-1)) + 1;
+		Long random2 = Math.round(Math.random() * (x-1)) + 1;
+		Long random3 = Math.round(Math.random() * (x-1)) + 1;
+		
+		model.addAttribute("recommend1", itemService.read(random1));
+		model.addAttribute("recommend2", itemService.read(random2));
+		model.addAttribute("recommend3", itemService.read(random3));
 		
 //		Long id = user.getMemberDTO().getId();
 //		ResponseDTO responseDto = memberService.getById(id);
