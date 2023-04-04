@@ -9,7 +9,7 @@
     <!-- default header name is X-CSRF-TOKEN -->
     <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <link rel="icon" type="image/png" href="img/icons/favicon.png" />
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
@@ -19,7 +19,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
     <!--===============================================================================================-->
@@ -78,7 +78,7 @@
 
                     <!-- Logo desktop -->
                     <a href="#" class="logo">
-                        <img src="images/icons/logo1.png" alt="">
+                        <img src="img/icons/logo1.png" alt="">
                     </a>
 
                     <!-- Menu desktop -->
@@ -144,7 +144,7 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="#"><img src="images/icons/logo1.png" alt="IMG-LOGO"></a>
+                <a href="#"><img src="img/icons/logo1.png" alt="IMG-LOGO"></a>
             </div>
 
             <!-- Icon header -->
@@ -246,7 +246,7 @@
         <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
             <div class="container-search-header">
                 <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                    <img src="images/icons/icon-close2.png" alt="CLOSE">
+                    <img src="img/icons/icon-close2.png" alt="CLOSE">
                 </button>
 
                 <form class="wrap-search-header flex-w p-l-15">
@@ -283,7 +283,7 @@
                 <ul class="header-cart-wrapitem w-full">
                     <li class="header-cart-item flex-w flex-t m-b-12">
                         <div class="header-cart-item-img js-remove-item"> <!--이미지 마우스 오버시 삭제기능 추가해야합니다 ( 알림창넣어뒀음 )-->
-                            <img src="images/cart/cart1.jpg" alt="IMG">
+                            <img src="img/cart/cart1.jpg" alt="IMG">
                         </div>
 
                         <div class="header-cart-item-txt p-t-8">
@@ -299,7 +299,7 @@
 
                     <li class="header-cart-item flex-w flex-t m-b-12">
                         <div class="header-cart-item-img js-remove-item">
-                            <img src="images/cart/cart2.jpg" alt="IMG">
+                            <img src="img/cart/cart2.jpg" alt="IMG">
                         </div>
 
                         <div class="header-cart-item-txt p-t-8">
@@ -316,7 +316,7 @@
 
                     <li class="header-cart-item flex-w flex-t m-b-12">
                         <div class="header-cart-item-img js-remove-item">
-                            <img src="images/cart/cart3.jpg" alt="IMG">
+                            <img src="img/cart/cart3.jpg" alt="IMG">
                         </div>
 
                         <div class="header-cart-item-txt p-t-8">
@@ -360,7 +360,7 @@
                 <div class="user-info">
 
                     <div class="user-img">
-                        <img src="images/user/user2.jpg">
+                        <img src="img/user/user2.jpg">
                     </div>
 
                     <div class="mypage-top">
@@ -826,6 +826,8 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
         //////////////////(미니팝업기능)//////////////////////////////////
         const Toast = Swal.mixin({
@@ -848,7 +850,6 @@
         })
     </script>
     <!--===============================================================================================-->
-    <script src="vendor/sweetalert/sweetalert.min.js"></script>
     <script>
 
         $('.js-remove-item').on('click', function (e) {
