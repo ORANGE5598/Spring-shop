@@ -20,9 +20,8 @@ public interface ItemService {
 	default Item dtoToEntity(ItemDTO dto) {
 		
 		Item item = Item.builder()
-				.iCategory(dto.getICategory())
-//				.iDeliveryPrice(dto.getIDeliveryPrice())
-				.iImg(dto.getIImg())
+				.iCategory(dto.getICategory()).brand(dto.getBrand())
+				.iImg(dto.getIImg()).brandNumber(dto.getBrandNumber())
 				.iInfo(dto.getIInfo()).iInstock(dto.getIInstock())
 				.iName(dto.getIName()).iPrice(dto.getIPrice())
 				.build();
@@ -33,7 +32,7 @@ public interface ItemService {
 		
 		ItemDTO boardDTO = ItemDTO.builder()
 				.iNumber(iEntity.getINumber()).iCategory(iEntity.getICategory())
-//				.iDeliveryPrice(iEntity.getIDeliveryPrice())
+				.brand(iEntity.getBrand()).brandNumber(iEntity.getBrandNumber())
 				.iInfo(iEntity.getIInfo()).iInstock(iEntity.getIInstock())
 				.iImg(iEntity.getIImg()).brand(iEntity.getBrand())
 				.iName(iEntity.getIName()).iPrice(iEntity.getIPrice())
@@ -69,16 +68,12 @@ public interface ItemService {
 	
 	ItemDTO order(Long iNumber);
 	
-	PageResultDTO<ItemDTO, Item> getTopList(PageRequestDTO pageRequestDTO);
+	PageResultDTO<ItemDTO, Item> getCategorySort(PageRequestDTO pageRequestDTO, Long iCategory);
 	
-	PageResultDTO<ItemDTO, Item> getBottomList(PageRequestDTO pageRequestDTO);
+	PageResultDTO<ItemDTO, Item> getBrandSort(PageRequestDTO pageRequestDTO, Long brandNumber);
 	
-	PageResultDTO<ItemDTO, Item> getFootwearList(PageRequestDTO pageRequestDTO);
+	PageResultDTO<ItemDTO, Item> getPriceAsc(PageRequestDTO pageRequestDTO);
 	
-	PageResultDTO<ItemDTO, Item> getBagList(PageRequestDTO pageRequestDTO);
-	
-	PageResultDTO<ItemDTO, Item> getHeadwearList(PageRequestDTO pageRequestDTO);
-	
-	PageResultDTO<ItemDTO, Item> getTechList(PageRequestDTO pageRequestDTO);
+	PageResultDTO<ItemDTO, Item> getPriceDesc(PageRequestDTO pageRequestDTO);
 	
 }

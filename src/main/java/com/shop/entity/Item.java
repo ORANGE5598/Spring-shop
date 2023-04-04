@@ -25,6 +25,7 @@ public class Item extends BaseTimeEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long iNumber;
 	private String iName;
+	private Long brandNumber;
 	private String brand;
 	private Long iCategory;
 	private Long iPrice;
@@ -36,6 +37,10 @@ public class Item extends BaseTimeEntity {
 	
 	public void changeIName(String iName) {
 		this.iName = iName;
+	}
+	
+	public void changeBrandNumber(Long brandNumber) {
+		this.brandNumber = brandNumber;
 	}
 	
 	public void changeBrand(String brand) {
