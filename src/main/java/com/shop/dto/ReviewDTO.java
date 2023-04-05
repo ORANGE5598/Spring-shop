@@ -46,6 +46,7 @@ public class ReviewDTO {
 	        reviewDTO.setReviewRating(reviewEntity.getReviewRating());
 	        reviewDTO.setRegDate(reviewEntity.getRegDate());
 	        reviewDTO.setReviewWriter(reviewEntity.getReviewWriter());
+	        reviewDTO.setImg(reviewEntity.getImg());
 	        
 	        if (reviewEntity.getFileAttached() == 1) {
 	            reviewDTO.setFileAttached(1);
