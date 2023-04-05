@@ -40,15 +40,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 	@Query(value = "SELECT count(*) FROM Item", nativeQuery = true)
 	Long getAll();
 	
-	// 가격 오름차순에 따른 정렬
-	@Query(value = "SELECT * FROM Item WHERE i_number > 0 ORDER BY i_price ASC, i_number ASC", nativeQuery = true)
-	Page<Item> getItemPriceAsc(Pageable pageable);
-	
-	// 가격 내림차순에 따른 정렬
-	@Query(value = "SELECT * FROM Item WHERE i_number > 0 ORDER BY i_price DESC, i_number ASC", nativeQuery = true)
-	Page<Item> getItemPriceDesc(Pageable pageable);
-	
-	
 	// 카테고리에 따른 정렬
 	@Query("SELECT i FROM Item i WHERE i.iCategory =:iCategory")
 	Page<Item> sortCategory(Pageable pageable, @Param("iCategory") Long iCategory);

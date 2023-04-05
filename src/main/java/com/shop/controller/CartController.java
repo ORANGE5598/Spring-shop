@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.CartDTO;
 import com.shop.service.CartService;
-import com.shop.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 

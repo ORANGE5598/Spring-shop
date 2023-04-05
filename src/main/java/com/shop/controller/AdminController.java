@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.config.auth.UserAdapter;
@@ -17,6 +18,7 @@ import com.shop.dto.CategoryDTO;
 import com.shop.dto.ItemDTO;
 import com.shop.dto.OrderDTO;
 import com.shop.dto.PageRequestDTO;
+import com.shop.entity.Member;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.service.AdminService;
@@ -33,6 +35,7 @@ import lombok.RequiredArgsConstructor;
 //한 클래스에 넣어두면 작동이 안됨
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/admin")
 public class AdminController{
 	
 	private final ItemService itemService;
@@ -43,7 +46,7 @@ public class AdminController{
 	private final BrandService brandService;
 	private final AdminService adminService;
 	
-	@GetMapping("/adminList")
+	@GetMapping("/List")
 	public String adminList(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -92,7 +95,7 @@ public class AdminController{
 		return "content/admin/admin-product";
 	}
 	
-	@GetMapping("/adminNotice")
+	@GetMapping("/noticeWrite")
 	public String adminNotice(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -109,10 +112,10 @@ public class AdminController{
 		model.addAttribute("count", cartCount);
 		model.addAttribute("member", member);
 		
-		return "content/admin/admin-notice";
+		return "content/admin/admin-notice-write";
 	}
 	
-	@GetMapping("/adminModify")
+	@GetMapping("/Modify")
 	public String adminModify(Long iNumber, PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -135,7 +138,7 @@ public class AdminController{
 		return "content/admin/admin-modify";
 	}
 	
-	@GetMapping("/adminIndex")
+	@GetMapping("/Index")
 	public String adminIndex(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -163,14 +166,21 @@ public class AdminController{
 	}
 	
 	@PostMapping("/modifyDeliveryStatus")
-	public String  modifyDeliveryStatus2(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
+	public String modifyDeliveryStatus2(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
 		
 		Long oNumber = dto.getONumber();
 		
 		orderService.modify(dto, oNumber);
 		
 		redirectAttributes.addFlashAttribute("message", "주문 정보 수정이 완료되었습니다.");
-	    return "redirect:/adminIndex";
+	    return "redirect:/admin/Index";
+	}
+	
+	@GetMapping("/userlist")
+	public String adminUserlist(Model model) {
+		List<Member> members = memberService.findMembers();
+		model.addAttribute("members", members);
+		return "content/admin/admin-userlist";
 	}
 	
 }

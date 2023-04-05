@@ -29,18 +29,18 @@ public class QnaController {
 
 	@GetMapping("/home")
 	public String index() {
-		return "qna_index";
+		return "/board/qna/qna_index";
 	}
 	@GetMapping("/save")
 	public String saveForm() {
-		return "qna_save";
+		return "/board/qna/qna_save";
 	}
 
 	@PostMapping("/save")
 	public String save(@ModelAttribute QnaDTO qnaDTO) {
 		qnaService.save(qnaDTO);
 
-		return "qna_index";
+		return "/board/qna/qna_index";
 	}
 
 	@GetMapping("/")
@@ -49,7 +49,7 @@ public class QnaController {
 		// db에서 전체게시글데이터가져와서 list.html에 보여주기
 		List<QnaDTO> qnaDTOList = qnaService.findAll();
 		model.addAttribute("qnaList", qnaDTOList);
-		return "qna_list";
+		return "/board/qna/qna_list";
 	}
 
 	@GetMapping("/{id}")
@@ -64,21 +64,21 @@ public class QnaController {
 		
 		model.addAttribute("qna", qnaDTO);
 		model.addAttribute("page",pageable.getPageNumber());
-		return "qna_detail";
+		return "/board/qna/qna_detail";
 	}
 
 	@GetMapping("update/{id}")
 	public String updateForm(@PathVariable Long id, Model model) {
 		QnaDTO qnaDTO = qnaService.findById(id);
 		model.addAttribute("qnaUpdate", qnaDTO);
-		return "qna_update";
+		return "/board/qna/qna_update";
 	}
 
 	@PostMapping("/update")
 	public String update(@ModelAttribute QnaDTO qnaDTO, Model model) {
 		QnaDTO qna = qnaService.update(qnaDTO);
 		model.addAttribute("qna", qna);
-		return "qna_detail";
+		return "/board/qna/qna_detail";
 
 	}
 
@@ -109,7 +109,7 @@ public class QnaController {
 		model.addAttribute("qnaList", qnaList);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
-		return "qna_paging";
+		return "/board/qna/qna_paging";
 
 	}
 }

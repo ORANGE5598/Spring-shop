@@ -32,7 +32,6 @@ public class MemberRestController {
 	private final MemberService memberService;
 	
 	@GetMapping("/checkpwd/check")
-	//@ResponseBody
 	public boolean checkPassword(@AuthenticationPrincipal UserAdapter user,
 			@RequestParam("checkPassword") String checkPassword,
 			Model model){
@@ -43,6 +42,7 @@ public class MemberRestController {
 		return memberService.checkPassword(member_id, checkPassword);
 	}
 	
+	/** 회원정보 수정 요청 처리 **/
 	@PutMapping("/confirm")
 	public boolean update(@Valid @RequestBody RequestDTO dto, BindingResult result, Model model, @AuthenticationPrincipal UserAdapter user) {
 
@@ -71,10 +71,10 @@ public class MemberRestController {
 		} else if(memberService.checkEmail(dto.getEmail())) {
 			return false;
 		}
-//		
+		
 		memberService.userInfoUpdate(dto);
 		return true;
-//		return "redirect:/mypage";
+
 	}
 
 }

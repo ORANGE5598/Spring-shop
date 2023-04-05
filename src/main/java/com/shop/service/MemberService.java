@@ -1,21 +1,26 @@
 package com.shop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.shop.dto.MemberDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
-import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.Member;
 
 public interface MemberService { //extends UserDetailsService {
 	
 	/** 회원가입 **/
-    void userJoin(MemberDTO.RequestDTO memberDTO);
+    void userJoin(RequestDTO memberDTO);
 
     /** member_id로 memberDto 반환 **/
     MemberDTO.ResponseDTO getById(Long member_id);
     
     Optional<Member> findByUsername(String username);
+    
+    void changePoint(RequestDTO dto, Long id);
+    
+    List<Member> findMembers();
+    
 
     /** =============== 회원 수정 =============== **/
 
@@ -26,7 +31,7 @@ public interface MemberService { //extends UserDetailsService {
     boolean checkPassword(Long member_id, String checkPassword);
 
     /** 회원 수정 **/
-    void userInfoUpdate(MemberDTO.RequestDTO memberDTO);
+    void userInfoUpdate(RequestDTO memberDTO);
     
     void deleteMember(String username);
 
@@ -41,7 +46,6 @@ public interface MemberService { //extends UserDetailsService {
     /** 임시 비밀번호로 업데이트 **/
     void updatePassword(String tmpPassword, String memberEmail);
 	
-    void changePoint(RequestDTO dto, Long id);
 	
 //    Long updateInfo(String username, String newName, String email);
 //    Long updatePassword(String username, String newPassword);

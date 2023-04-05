@@ -2,8 +2,6 @@ package com.shop.repository;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -33,5 +31,6 @@ public interface OrderRepository extends JpaRepository<OrderList, Long> {
 	@Query("SELECT count(o) FROM OrderList o WHERE o.deliveryStatus = '반품완료' AND o.mId =:id")
 	Long afterCancle(@Param("id") Long oNumber);
 	
-	
+	@Query("SELECT o.img FROM OrderList o WHERE o.mId =:id")
+	List<String> getImgById(@Param("id") Long id);
 }

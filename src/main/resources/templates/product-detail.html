@@ -89,29 +89,29 @@
 							<li>
 								<a th:href="@{/product}">SHOP</a>
 								<ul class="sub-menu">
-									<li><a href="#">CLOTHING</a>
+									<li><a href="@{/product}">CLOTHING</a>
 										<ul class="sub-menu">
-											<li><a href="#">TOP</a></li>
-											<li><a href="#">BOTTOM</a></li>
+											<li><a href="@{/product}">TOP</a></li>
+											<li><a href="@{/product}">BOTTOM</a></li>
 										</ul>
 									</li>
-									<li><a href="#">FOOTWEAR</a></li>
+									<li><a href="@{/product}">FOOTWEAR</a></li>
 									<li><a href="#">ACCESSORIES</a>
 										<ul class="sub-menu">
-											<li><a href="#">BAG</a></li>
-											<li><a href="#">HAEDWEAR</a></li>
+											<li><a href="@{/product}">BAG</a></li>
+											<li><a href="@{/product}">HAEDWEAR</a></li>
 										</ul>
 									</li>
-									<li><a href="#">TECH</a></li>
+									<li><a href="@{/product}">TECH</a></li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="com">커뮤니티</a>
+								<a href="com">COMMUNITY</a>
 							</li>
 
 							<li>
-								<a href="#">MYPAGE</a>
+								<a href="/mypage">MYPAGE</a>
 							</li>
 						</ul>
 					</div>
@@ -192,22 +192,22 @@
 				</li>
 
 				<li>
-					<a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
+					<a href="@{/product}" class="label1 rs1" data-label1="hot">SHOP</a>
 					<ul class="sub-menu-m">
-						<li><a href="#">CLOTHING</a>
+						<li><a href="@{/product}">CLOTHING</a>
 							<ul class="sub-menu-m">
-								<li><a href="#">TOP</a></li>
-								<li><a href="#">BOTTOM</a></li>
+								<li><a href="@{/product}">TOP</a></li>
+								<li><a href="@{/product}">BOTTOM</a></li>
 							</ul>
 						</li>
-						<li><a href="#">FOOTWEAR</a></li>
-						<li><a href="#">ACCESSORIES</a>
+						<li><a href="@{/product}">FOOTWEAR</a></li>
+						<li><a href="@{/product}">ACCESSORIES</a>
 							<ul class="sub-menu-m">
-								<li><a href="#">BAG</a></li>
-								<li><a href="#">HAEDWEAR</a></li>
+								<li><a href="@{/product}">BAG</a></li>
+								<li><a href="@{/product}">HAEDWEAR</a></li>
 							</ul>
 						</li>
-						<li><a href="#">TECH</a></li>
+						<li><a href="@{/product}">TECH</a></li>
 					</ul>
 					<span class="arrow-main-menu-m">
 						<i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -215,11 +215,11 @@
 				</li>
 
 				<li>
-					<a href="#">Community</a>
+					<a href="/com">Community</a>
 				</li>
 
 				<li>
-					<a href="#">MYPAGE</a>
+					<a href="/mypage">MYPAGE</a>
 				</li>
 
 				<li>
@@ -403,10 +403,10 @@
 										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail addCart" type="submit">
 										장바구니 담기
 									</button>
-									<button
-										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-										<a th:href="@{/orderBy(iNumber = ${item.iNumber}, oCount=countX, dPrice=deliveryX)}" onclick="orderWithCount(this); orderWithDelivery(this)">구매하기</a>
-									</button>
+									
+										
+										<a class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04" th:href="@{/orderBy(iNumber = ${item.iNumber}, oCount=countX, dPrice=deliveryX)}" onclick="orderWithCount(this); orderWithDelivery(this)">구매하기</a>
+									
 								</div>
 							</div>
 						</div>
@@ -715,7 +715,9 @@
 	<!--===============================================================================================-->
 	<script src="vendor/isotope/isotope.pkgd.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="vendor/sweetalert/sweetalert.min.js"></script>
+	<script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
@@ -735,6 +737,10 @@
 	</script>
 	<!--===============================================================================================-->
 	<script>
+
+		document.querySelector("#show").addEventListener("click", show);
+		document.querySelector("#close").addEventListener("click", close);
+
 		function show() {
 			document.querySelector(".background").className = "background show";
 		}
@@ -742,10 +748,6 @@
 		function close() {
 			document.querySelector(".background").className = "background";
 		}
-
-		document.querySelector("#show").addEventListener("click", show);
-		document.querySelector("#close").addEventListener("click", close);
-
 	</script>
 	<!--===============================================================================================-->
 	<script>
@@ -763,6 +765,7 @@
 	<!--===============================================================================================-->
 	<script>
 		$(".addCart").click(function(){
+			alert('경로1');
 			var formData = new FormData();
 			
 			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
@@ -782,7 +785,7 @@
 			formData.append("cInfo", cInfo);
 			formData.append("cPrice", cPrice);
 			formData.append("count", count);
-			
+			alert('경로2');
 			$.ajax({
 				url : 'addCart',
 				processData : false,
@@ -791,12 +794,12 @@
 				type : 'POST',
 				dataType : 'json',
 				success : function(result){
-					swal(nameProduct, "1장바구니에 담았습니다 ! ", "success").then(function() {
+					swal.fire(nameProduct, "장바구니에 담았습니다 ! ", "success").then(function() {
 						   window.location.href = '/shopping-cart';
 					});
 				},
 				error : function(jqXHR, textStatus, errThrown){
-					swal(nameProduct, "2장바구니에 담았습니다 ! ", "success").then(function() {
+					swal.fire(nameProduct, "장바구니에 담았습니다 ! ", "success").then(function() {
 						   window.location.href = '/shopping-cart';
 					});
 				}

@@ -31,13 +31,6 @@ public class OrderController {
 	private final MemberService memberService;
 	private final CartService cartService;
 	
-	@GetMapping("/orderDetail")
-	public void orderDetail(Long oNumber, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model) {
-		OrderDTO dto = orderService.read(oNumber);
-		
-		model.addAttribute("dto", dto);
-	}
-	
 	@GetMapping("/orderBy")
 	public String orderBy(Long iNumber, Long oCount, Long dPrice, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		

@@ -16,7 +16,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
     <!--===============================================================================================-->
@@ -108,7 +108,7 @@
                             </li>
 
                             <li>
-                                <a href="/myPage-orderlist">MYPAGE</a>
+                                <a href="/mypage">MYPAGE</a>
                             </li>
                         </ul>
                     </div>
@@ -411,14 +411,14 @@
             <h2 class="nav-tit">My page Navigation</h2>
             <div class="my-account">
                 <h3>나의 쇼핑 활동</h3>
-                <a href="#" class="order_list">주문 내역 조회</a>
-                <a href="#" class="product_reviews">구매후기</a>
-                <a href="#" class="product_inquiry">상품문의</a>
+                <a href="/orderlist" class="order_list">주문 내역 조회</a>
+                <a href="/review" class="product_reviews">구매후기</a>
+                <a href="/com" class="product_inquiry">상품문의</a>
             </div>
 
             <div class="my-board">
                 <h3>커뮤니티</h3>
-                <a href="#" class="board-list">게시물 / 스크랩 / 댓글</a>
+                <a href="/com" class="board-list">게시물 / 스크랩 / 댓글</a>
             </div>
         </nav>
 
@@ -733,6 +733,8 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <!--===============================================================================================-->
     <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/sweetalert/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
     <script>
         //////////////////(미니팝업기능)//////////////////////////////////
         const Toast = Swal.mixin({
@@ -755,7 +757,6 @@
         })
     </script>
     <!--===============================================================================================-->
-    <script src="vendor/sweetalert/sweetalert.min.js"></script>
     <script>
 
         $('.js-remove-item').on('click', function (e) {

@@ -57,11 +57,6 @@ public interface ItemService {
 	// 테스트6
 	List<ItemDTO> getTechListTest();
 
-	PageResultDTO<ItemDTO, Item> getListByPriceAsc(PageRequestDTO pageRequestDTO);
-
-	PageResultDTO<ItemDTO, Item> getListByPriceDesc(PageRequestDTO pageRequestDTO);
-	
-	
 	ItemDTO read(Long iNumber);
 	
 	Long readAll();

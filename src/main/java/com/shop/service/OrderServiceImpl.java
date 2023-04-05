@@ -1,16 +1,11 @@
 package com.shop.service;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.shop.dto.OrderDTO;
-import com.shop.dto.PageRequestDTO;
-import com.shop.dto.PageResultDTO;
 import com.shop.entity.OrderList;
 import com.shop.repository.OrderRepository;
 
@@ -21,18 +16,6 @@ import lombok.RequiredArgsConstructor;
 public class OrderServiceImpl implements OrderService {
 
 	private final OrderRepository orderRepository;
-	
-//	@Override
-//	public PageResultDTO<OrderDTO, OrderList> getList(PageRequestDTO pageRequestDTO) {
-//
-//		Function<OrderList, OrderDTO> fn = (en -> entityToDto(en));
-//		
-//		String id = "user10";
-//		
-//		Page<OrderList> result = orderRepository.getListById(id, pageRequestDTO.getPageable(Sort.by("regDate").ascending()));
-//		
-//		return new PageResultDTO<>(result, fn);
-//	}
 	
 	@Override
 	public OrderDTO read(Long oNumber) {
@@ -72,7 +55,6 @@ public class OrderServiceImpl implements OrderService {
 		return entity.getONumber();
 		
 	}
-	
 	
 	@Override
 	public List<OrderDTO> getList(Long id) {
@@ -141,4 +123,11 @@ public class OrderServiceImpl implements OrderService {
 		return result;
 	}
 	
+	@Override
+	public List<String> getImgList(Long id) {
+		
+		List<String> result = orderRepository.getImgById(id);
+		System.out.println("+++++++ : " + result);
+		return result;
+	}
 }

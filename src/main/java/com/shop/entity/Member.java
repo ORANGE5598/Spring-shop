@@ -39,7 +39,7 @@ public class Member extends BaseTimeEntity implements Serializable {
     /** 로그인 패스워드 **/
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     /** 회원 이름 **/
     private String name;
 
@@ -47,24 +47,27 @@ public class Member extends BaseTimeEntity implements Serializable {
     /** 회원 이메일 **/
     private String email;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     /** 회원 주소 1 **/
     private String address1;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     /** 회원 주소 2 **/
     private String address2;
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     /** 회원 휴대폰번호 **/
     private String phone;
+    
+    @Column(nullable = true)
+    private String gender;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     /** 회원 권한 **/
     private MemberRole role; // 회원가입하면 무조건 USER로 설정
     
-    @Column(nullable = false)
+    @Column(nullable = true)
     /** 회원 포인트 **/
     private int point;
     

@@ -113,29 +113,6 @@ public class ItemServiceImpl implements ItemService {
 	}
 	
 	@Override
-	public PageResultDTO<ItemDTO, Item> getListByPriceAsc(PageRequestDTO pageRequestDTO) {
-		
-		Function<Item, ItemDTO> fn = (en -> entityToDto(en));
-		
-		Page<Item> result = itemRepository.getItemPriceAsc(pageRequestDTO.getPageable(Sort.by("i_price").ascending()));
-		
-		
-		return new PageResultDTO<>(result, fn);
-	}
-	
-	@Override
-	public PageResultDTO<ItemDTO, Item> getListByPriceDesc(PageRequestDTO pageRequestDTO) {
-		
-		Function<Item, ItemDTO> fn = (en -> entityToDto(en));
-		
-		Page<Item> result = itemRepository.getItemPriceDesc(pageRequestDTO.getPageable(Sort.by("i_price").descending()));
-		
-		
-		return new PageResultDTO<>(result, fn);
-	}
-	
-	
-	@Override
 	public ItemDTO read(Long iNumber) {
 		
 		Item result = itemRepository.getItemByNumber(iNumber);

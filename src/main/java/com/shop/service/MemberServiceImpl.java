@@ -1,5 +1,6 @@
 package com.shop.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -7,7 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.shop.dto.MemberDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.entity.Member;
@@ -56,15 +56,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
+	@Transactional
 	public void userInfoUpdate(RequestDTO memberDTO) {
 		Member member = memberRepository.findById(memberDTO.toEntity().getId()).orElseThrow(() -> new IllegalArgumentException("해당 사용자 찾을 수 없음."));
-		
+		log.info("변경 패스워드 : " + memberDTO.getPassword());
 		String encryptPassword = passwordEncoder.encode(memberDTO.getPassword());
 		String name = memberDTO.getName();
 		String email = memberDTO.getEmail();
 		String address1 = memberDTO.getAddress1();
 		String address2 = memberDTO.getAddress2();
 		String phone = memberDTO.getPhone();
+		
+		log.info(member);
+		
+		log.info("패스워드 일치 여부 : " + passwordEncoder.matches(memberDTO.getPassword(), encryptPassword));
 		
 		member.update(encryptPassword, name, email, address1, address2, phone);
 		
@@ -91,7 +96,7 @@ public class MemberServiceImpl implements MemberService {
             pwd += charSet[idx];
         }
 
-        log.info("임시 비밀번호 생성");
+        log.info("임시 비밀번호 생성" + pwd);
 
         return pwd;
 	}
@@ -103,7 +108,7 @@ public class MemberServiceImpl implements MemberService {
                 new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
 
         member.updatePassword(encryptPassword);
-        log.info("임시 비밀번호 업데이트");
+        log.info("임시 비밀번호 업데이트" + tmpPassword);
 		
 	}
 	
@@ -121,13 +126,18 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void changePoint(RequestDTO dto, Long id) {
-		
+		@SuppressWarnings("deprecation")
 		Member entity = memberRepository.getById(id);
 		
 		entity.changePoint(dto.getPoint());
-		
 		memberRepository.save(entity);
 	}
+	
+	@Override
+	public List<Member> findMembers() {
+		return memberRepository.findAll();
+	}
+	
 	
 	
 	

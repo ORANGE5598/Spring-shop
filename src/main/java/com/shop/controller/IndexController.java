@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shop.config.auth.UserAdapter;
@@ -43,7 +42,7 @@ public class IndexController {
 		if(user == null) {
 			ItemDTO itemDTO = itemService.read(1L);
 			model.addAttribute("itemDTO", itemDTO);
-		}else {
+		} else {
 			
 			Long id = user.getMemberDTO().getId();
 			
@@ -60,6 +59,8 @@ public class IndexController {
 			model.addAttribute("cartList", cartDTOList);
 			model.addAttribute("count", cartCount);
 			model.addAttribute("itemDTO", itemDTO);
+//			model.addAttribute("list", itemService.getList(pageRequestDTO));
+//			model.addAttribute("list", itemService.getListTest());
 			model.addAttribute("list1", itemService.getTopListTest());
 			model.addAttribute("list4", itemService.getBagListTest());
 			model.addAttribute("list6", itemService.getTechListTest());
@@ -68,157 +69,60 @@ public class IndexController {
 	}
 	
 	@GetMapping("/product")
-	public void product(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
-		
-		Long id = user.getMemberDTO().getId();
-		Long cartCount = cartService.getCartCount(id);
+	public String product(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
 		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		List<CartDTO> cartDTOList = cartService.getCartList(id);
-		
-		int totalPrice = 0;
-		for (CartDTO cart : cartDTOList) {
-			totalPrice += cart.getCPrice() * cart.getCount();
-		}
 		
 		model.addAttribute("itemDTO", itemService.getList(pageRequestDTO));
 		model.addAttribute("count", itemService.readAll());
 		model.addAttribute("categoryDTOList", categoryDTOList);
 		model.addAttribute("brandDTOList", brandDTOList);
-		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("cartList", cartDTOList);
-		model.addAttribute("count", cartCount);
-	}
-	
-	// 테스트
-	@GetMapping("/productCategory")
-	public String productByCategory(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user,
-	        @RequestParam("iCategory") Long iCategory) {
-
-	    Long id = user.getMemberDTO().getId();
-	    Long cartCount = cartService.getCartCount(id);
-
-	    List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-	    List<BrandDTO> brandDTOList = brandService.getBrandList();
-	    List<CartDTO> cartDTOList = cartService.getCartList(id);
-
-	    int totalPrice = 0;
-	    for (CartDTO cart : cartDTOList) {
-	        totalPrice += cart.getCPrice() * cart.getCount();
-	    }
-
-	    model.addAttribute("itemDTO", itemService.getCategorySort(pageRequestDTO, iCategory));
-	    model.addAttribute("count", itemService.readAll());
-	    model.addAttribute("categoryDTOList", categoryDTOList);
-	    model.addAttribute("brandDTOList", brandDTOList);
-	    model.addAttribute("totalPrice", totalPrice);
-	    model.addAttribute("cartList", cartDTOList);
-	    model.addAttribute("count", cartCount);
-	    
-	    return "product";
-	}
-	
-	// 테스트
-	@GetMapping("/productBrand")
-	public String productByBrand(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user,
-			@RequestParam("brandNumber") Long brandNumber) {
 		
 		Long id = user.getMemberDTO().getId();
-		Long cartCount = cartService.getCartCount(id);
 		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
 		List<CartDTO> cartDTOList = cartService.getCartList(id);
-		
+		Long cartCount = cartService.getCartCount(id);
+		//
 		int totalPrice = 0;
 		for (CartDTO cart : cartDTOList) {
 			totalPrice += cart.getCPrice() * cart.getCount();
 		}
-		
-		model.addAttribute("itemDTO", itemService.getBrandSort(pageRequestDTO, brandNumber));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
 		model.addAttribute("totalPrice", totalPrice);
+		//
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
 		
-		return "product";
+		return "/content/product";
 	}
 	
-	// 테스트
-	@GetMapping("/productSortAsc")
-	public String productSortAsc(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
-		
-		Long id = user.getMemberDTO().getId();
-		Long cartCount = cartService.getCartCount(id);
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		List<CartDTO> cartDTOList = cartService.getCartList(id);
-		
-		int totalPrice = 0;
-		for (CartDTO cart : cartDTOList) {
-			totalPrice += cart.getCPrice() * cart.getCount();
-		}
-		
-		model.addAttribute("itemDTO", itemService.getPriceAsc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("cartList", cartDTOList);
-		model.addAttribute("count", cartCount);
-		
-		return "product";
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
 	}
 	
-	// 테스트
-	@GetMapping("/productSortDesc")
-	public String productSortDesc(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
-		
-		Long id = user.getMemberDTO().getId();
-		Long cartCount = cartService.getCartCount(id);
-		
-		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
-		List<BrandDTO> brandDTOList = brandService.getBrandList();
-		List<CartDTO> cartDTOList = cartService.getCartList(id);
-		
-		int totalPrice = 0;
-		for (CartDTO cart : cartDTOList) {
-			totalPrice += cart.getCPrice() * cart.getCount();
-		}
-		
-		model.addAttribute("itemDTO", itemService.getPriceDesc(pageRequestDTO));
-		model.addAttribute("count", itemService.readAll());
-		model.addAttribute("categoryDTOList", categoryDTOList);
-		model.addAttribute("brandDTOList", brandDTOList);
-		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("cartList", cartDTOList);
-		model.addAttribute("count", cartCount);
-		
-		return "product";
-	}
 	
 	@GetMapping("/shopping-cart")
 	public String cart(Long cNumber, Long oCount, Long dPrice, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
-		Long cartCount = cartService.getCartCount(id);
 		
 		List<CartDTO> cartDTOList = cartService.getCartList(id);
-		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
 		
+//		CartDTO dto = cartService.order(cNumber);
+//		Long cPrice = dto.getCPrice();
+//		Long totalPrice = cPrice * oCount + dPrice;
+		
+		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
 		int totalPrice2 = 0;
 	    for (CartDTO cart : cartList) {
 	        totalPrice2 += cart.getCPrice() * cart.getCount();
 	    }
+	    Long cartCount = cartService.getCartCount(id);
 		
 	    model.addAttribute("totalPrice", totalPrice2);
 	    model.addAttribute("cartList", cartDTOList);
 	    model.addAttribute("count", cartCount);
-	    
 		return "content/cart/shopping-cart";
 	}
 	
@@ -262,32 +166,110 @@ public class IndexController {
 	    
 	}
 	
-	@GetMapping("/myPage-orderlist")
-	public String myPage(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+	@GetMapping("/productCategory")
+	public String productByCategory(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user,
+	        @RequestParam("iCategory") Long iCategory) {
+
+	    Long id = user.getMemberDTO().getId();
+	    Long cartCount = cartService.getCartCount(id);
+
+	    List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
+	    List<BrandDTO> brandDTOList = brandService.getBrandList();
+	    List<CartDTO> cartDTOList = cartService.getCartList(id);
+
+	    int totalPrice = 0;
+	    for (CartDTO cart : cartDTOList) {
+	        totalPrice += cart.getCPrice() * cart.getCount();
+	    }
+
+	    model.addAttribute("itemDTO", itemService.getCategorySort(pageRequestDTO, iCategory));
+	    model.addAttribute("count", itemService.readAll());
+	    model.addAttribute("categoryDTOList", categoryDTOList);
+	    model.addAttribute("brandDTOList", brandDTOList);
+	    model.addAttribute("totalPrice", totalPrice);
+	    model.addAttribute("cartList", cartDTOList);
+	    model.addAttribute("count", cartCount);
+	    
+	    return "content/product";
+	}
+	
+	@GetMapping("/productBrand")
+	public String productByBrand(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user,
+			@RequestParam("brandNumber") Long brandNumber) {
+		
 		Long id = user.getMemberDTO().getId();
-		
-		ResponseDTO member = memberService.getById(id);
-		
 		Long cartCount = cartService.getCartCount(id);
+		
+		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
+		List<BrandDTO> brandDTOList = brandService.getBrandList();
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		
+		model.addAttribute("itemDTO", itemService.getBrandSort(pageRequestDTO, brandNumber));
+		model.addAttribute("count", itemService.readAll());
+		model.addAttribute("categoryDTOList", categoryDTOList);
+		model.addAttribute("brandDTOList", brandDTOList);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
 		
-		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
+		return "content/product";
+	}
+	
+	@GetMapping("/productSortAsc")
+	public String productSortAsc(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		Long id = user.getMemberDTO().getId();
+		Long cartCount = cartService.getCartCount(id);
+		
+		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
+		List<BrandDTO> brandDTOList = brandService.getBrandList();
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		
 		int totalPrice = 0;
-	    for (CartDTO cart : cartList) {
-	        totalPrice += cart.getCPrice()*cart.getCount();
-	    }
-	    model.addAttribute("cartList", cartList);
-	    model.addAttribute("totalPrice", totalPrice);
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
 		
-		model.addAttribute("member", member);
-		model.addAttribute("orderList", orderService.getList(id));	// 사용자 id에 따른 전체 목록 출력
-		model.addAttribute("count0", orderService.allStatus(id));
-		model.addAttribute("count1", orderService.deliverying(id));
-		model.addAttribute("count2", orderService.afterDelivery(id));
-		model.addAttribute("count3", orderService.beforeCancle(id));
-		model.addAttribute("count4", orderService.afterCancle(id));
+		model.addAttribute("itemDTO", itemService.getPriceAsc(pageRequestDTO));
+		model.addAttribute("count", itemService.readAll());
+		model.addAttribute("categoryDTOList", categoryDTOList);
+		model.addAttribute("brandDTOList", brandDTOList);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+		model.addAttribute("count", cartCount);
 		
-		return "content/user/myPage-orderlist";
+		return "content/product";
+	}
+	
+	@GetMapping("/productSortDesc")
+	public String productSortDesc(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		Long id = user.getMemberDTO().getId();
+		Long cartCount = cartService.getCartCount(id);
+		
+		List<CategoryDTO> categoryDTOList = categoryService.getCategoryList();
+		List<BrandDTO> brandDTOList = brandService.getBrandList();
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		
+		model.addAttribute("itemDTO", itemService.getPriceDesc(pageRequestDTO));
+		model.addAttribute("count", itemService.readAll());
+		model.addAttribute("categoryDTOList", categoryDTOList);
+		model.addAttribute("brandDTOList", brandDTOList);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+		model.addAttribute("count", cartCount);
+		
+		return "content/product";
 	}
 	
 }

@@ -55,6 +55,9 @@ public class MemberDTO implements Serializable{
 		@NotBlank(message = "휴대폰 입력.")
 		@Pattern(regexp = "\\d{3}-\\d{4}-\\d{4}", message = "올바른 형식으로 입력해주세요. ex) 666-6666-6666")
 		private String phone;
+		
+		@NotBlank(message = "성별 입력.")
+		private String gender;
 
 		private MemberRole role;
 		
@@ -75,6 +78,7 @@ public class MemberDTO implements Serializable{
 					.address1(address1)
 					.address2(address2)
 					.phone(phone)
+					.gender(gender)
 					.role(role.USER)
 					.point(0)
 					.build();
@@ -94,6 +98,7 @@ public class MemberDTO implements Serializable{
 		private String address1;
 		private String address2;
 		private String phone;
+		private String gender;
 		private MemberRole role;
 		private int point;
 		private String createdDate;
@@ -107,6 +112,7 @@ public class MemberDTO implements Serializable{
 			this.address1 = member.getAddress1();
 			this.address2 = member.getAddress2();
 			this.phone = member.getPhone();
+			this.gender = member.getGender();
 			this.role = member.getRole();
 			this.point = member.getPoint();
 			this.createdDate = member.getCreatedDate();
