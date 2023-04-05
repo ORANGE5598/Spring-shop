@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notice List</title>
+</head>
+<style>
+	.dd{
+		height: 1000px;
+		margin: 0 auto;
+		text-align: center;
+
+	
+	}
+</style>
+<body class="dd">
+    <h2>공지사항 리스트</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Created By</th>
+                <th>Reg Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="notice : ${notices}">
+                <td th:text="${notice.id}"></td>
+                <td><a th:href="@{/notice/{id}(id=${notice.id})}" th:text="${notice.title}"></a></td>
+                <td th:text="${notice.createdBy}"></td>
+                <td th:text="${notice.regDate}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+
+    <!-- isAdmin 변수가 true일 때에만 공지사항 작성 폼을 보이도록 수정 -->
+    <div th:if="${isAdmin}">
+        <h3>새로운 공지사항 입력</h3>
+        <form action="/notice/new" method="post">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required/>
+            <br/>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="4" cols="50" required></textarea>
+            <br/>
+            <input type="submit" value="Submit"/>
+        </form>
+    </div>
+</body>
+</html>
