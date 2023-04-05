@@ -2,48 +2,57 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>회원정보변경 - 마이페이지</title>
+<title>구매후기작성 - 마이페이지</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
-<!-- default header name is X-CSRF-TOKEN -->
-<meta id="_csrf_header" name="_csrf_header"
-	th:content="${_csrf.headerName}" />
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="img/icons/favicon.png" />
+<link rel="icon" type="image/png" href="../img/icons/favicon.png" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/bootstrap/css/bootstrap.min.css">
+	href="../../vendor/bootstrap/css/bootstrap.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+	crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.3/sweetalert2.min.css"
+	integrity="sha512-qCn1nYgWV7vPzLZPd7OGJrVyq+G40TUDydUJdAEU6yYF6wMEa6MkU6Z/dzodP8aAhWQ+ff1ygb5m5oivFJ31Ow=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="fonts/iconic/css/material-design-iconic-font.min.css">
+	href="../fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	href="../fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	href="//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/css-hamburgers/hamburgers.min.css">
+	href="../vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/animsition/css/animsition.min.css">
+	href="../vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/select2/select2.min.css">
+	href="../vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	href="../vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="css/util.css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/mypage.css">
+<link rel="stylesheet" type="text/css"
+	href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="../css/util.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/mypage.css">
 <!--===============================================================================================-->
 
 
@@ -71,7 +80,6 @@
 							class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/register}"
 							class="flex-c-m trans-04 p-lr-25"> Register </a>
-
 					</div>
 				</div>
 			</div>
@@ -80,16 +88,15 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="/index" class="logo"> <img src="/img/icons/logo1.png"
+					<a href="/index" class="logo"> <img src="../img/icons/logo1.png"
 						alt="IMG-LOGO">
 					</a>
-
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
-							<li class="active-menu"><a href="/index">HOME</a></li>
-							<li><a href="/product">SHOP</a>
+							<li><a href="/index">HOME</a></li>
+							<li class="active-menu"><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -123,6 +130,7 @@
 							th:data-notify="${count}">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
+
 					</div>
 				</nav>
 			</div>
@@ -132,7 +140,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="/index"><img src="/img/icons/logo1.png" alt="IMG-LOGO"></a>
+				<a href="/index"><img src="../img/icons/logo1.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -161,8 +169,8 @@
 		<div class="menu-mobile">
 			<ul class="topbar-mobile">
 				<li>
-					<div class="left-top-bar">Free shipping for standard order
-						over $100</div>
+					<div class="left-top-bar">100% genuine ! The safest way to
+						buy limited edition!</div>
 				</li>
 
 				<li>
@@ -199,10 +207,9 @@
 						class="fa fa-angle-right" aria-hidden="true"></i>
 				</span></li>
 
-				<li><a href="/notice">ABOUT</a></li>
+				<li><a href="/review/list">ABOUT</a></li>
 							<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
-
 			</ul>
 		</div>
 
@@ -212,7 +219,7 @@
 			<div class="container-search-header">
 				<button
 					class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="/img/icons/icon-close2.png" alt="CLOSE">
+					<img src="../img/icons/icon-close2.png" alt="CLOSE">
 				</button>
 
 				<form class="wrap-search-header flex-w p-l-15">
@@ -272,84 +279,79 @@
 		</div>
 	</div>
 	<!-- 장바구니 끝 -->
-	<!------------------------------------------------------------------------------------------------------------------->
 
 	<main class="content">
 		<div id="userMypage">
 			<section class="mypage-sc">
-				<form th:object="${member}">
-					<h1 class="mypage-title">mypage</h1>
+				<h1 class="mypage-title">mypage</h1>
 
-					<div class="user-info">
+				<div class="user-info">
 
-						<div class="user-img">
-							<img src="img/user/user2.jpg">
+					<div class="user-img">
+						<img src="../img/user/user2.jpg">
+					</div>
+
+					<div class="mypage-top">
+						<div class="user-nickname">
+							<strong>[[${member.name}]]님 안녕하세요</strong>
 						</div>
 
-						<div class="mypage-top">
-							<div class="user-nickname">
-								<strong>[[${member.name}]]</strong>
-							</div>
-
-							<div class="user-name">
-								<em>[[${member.name}]]</em> <span> 가입일 :
-									[[${member.createdDate}]] </span>
-								<p class="admin-msg">[[${member.name}]] 님 반갑습니다.</p>
-							</div>
-
-						</div>
-
-						<div class="user-bankbook">
-							<a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
-									fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-										d="M12.6667 15.0667L16.4667 23.8555L19.0001 17.2639L21.5334 23.8555L25.3334 15.0667"
-										stroke="white"></path>
-                                <path d="M11.3999 18.8333H26.5999"
-										stroke="white"></path>
-                                <path
-										d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
-										stroke="white"></path>
-                            </svg> <em> 적립금 <i class="fa fa-angle-right"></i>
-							</em> <strong>0</strong>
-							</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
-									fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-										d="M16.7834 25.7389L16.7834 13.8111H20.2369C21.8274 13.8111 23.1168 15.1005 23.1168 16.691V16.691C23.1168 18.2815 21.8274 19.5708 20.2369 19.5708H16.7834"
-										stroke="white"></path>
-                                <path
-										d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
-										stroke="white"></path>
-                            </svg> <em> 포인트 <i class="fa fa-angle-right"></i>
-							</em> <strong>[[${member.point}]]</strong>
-							</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
-									fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-										d="M5.06665 28.8778H4.56665V29.3778H5.06665V28.8778ZM32.9333 28.8778V29.3778H33.4333V28.8778H32.9333ZM32.9333 21.3444H33.4333V20.8444H32.9333V21.3444ZM32.9333 16.3222V16.8222H33.4333V16.3222H32.9333ZM32.9333 8.78888L33.4333 8.78888V8.28888H32.9333V8.78888ZM5.06665 8.78888V8.28888H4.56665V8.78888H5.06665ZM5.06665 16.3222H4.56665V16.8222H5.06665V16.3222ZM5.06665 21.3444V20.8444H4.56665V21.3444H5.06665ZM25.3333 28.3778H5.06665V29.3778H25.3333V28.3778ZM32.9333 28.3778H25.3333V29.3778H32.9333V28.3778ZM32.4333 21.3444L32.4333 28.8778H33.4333L33.4333 21.3444H32.4333ZM32.9333 20.8444C31.8062 20.8444 30.9 19.9399 30.9 18.8333H29.9C29.9 20.5005 31.2622 21.8444 32.9333 21.8444V20.8444ZM30.9 18.8333C30.9 17.7268 31.8062 16.8222 32.9333 16.8222V15.8222C31.2622 15.8222 29.9 17.1662 29.9 18.8333H30.9ZM32.4333 8.78888L32.4333 16.3222H33.4333L33.4333 8.78888L32.4333 8.78888ZM25.3333 9.28888H32.9333V8.28888H25.3333V9.28888ZM5.06665 9.28888H25.3333V8.28888H5.06665V9.28888ZM5.56665 16.3222V8.78888H4.56665V16.3222H5.56665ZM8.09998 18.8333C8.09998 17.1662 6.73775 15.8222 5.06665 15.8222V16.8222C6.19379 16.8222 7.09998 17.7268 7.09998 18.8333H8.09998ZM5.06665 21.8444C6.73775 21.8444 8.09998 20.5005 8.09998 18.8333H7.09998C7.09998 19.9399 6.19379 20.8444 5.06665 20.8444V21.8444ZM5.56665 28.8778V21.3444H4.56665V28.8778H5.56665ZM24.8333 8.78888V11.3H25.8333V8.78888H24.8333ZM25.8333 28.8778V26.3667H24.8333V28.8778H25.8333Z"
-										fill="white"></path>
-                                <path
-										d="M19.6333 15.0667H17.7C15.6197 15.0667 13.9333 16.753 13.9333 18.8333V18.8333C13.9333 20.9136 15.6197 22.6 17.7 22.6H19.6333"
-										stroke="white"></path>
-                                <path
-										d="M25.3333 13.8111L25.3333 17.5778" stroke="white"></path>
-                                <path
-										d="M25.3333 20.0889L25.3333 23.8555" stroke="white"></path>
-                            </svg> <em> 쿠폰 <i class="fa fa-angle-right"></i>
-							</em> <strong>0</strong>
-							</a> <a href="/review/write"> <svg width="38" height="38" viewBox="0 0 38 38"
-									fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-										d="M31.6666 31.3889H17.7333M6.33325 24.4617L24.6781 6.27777L31.6666 13.205L13.3218 31.3889H6.33325V24.4617Z"
-										stroke="white"></path>
-                            </svg> <em> 후기작성 <i class="fa fa-angle-right"></i>
-							</em> <strong>[[${reviewCount}]]</strong>
-							</a>
+						<div class="user-name">
+							<em>[[${member.name}]]</em> <span> 가입일 :
+								[[${member.createdDate}]] </span>
 						</div>
 					</div>
-				</form>
+
+					<div class="user-bankbook">
+						<a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
+								fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M12.6667 15.0667L16.4667 23.8555L19.0001 17.2639L21.5334 23.8555L25.3334 15.0667"
+									stroke="white"></path>
+                                <path d="M11.3999 18.8333H26.5999"
+									stroke="white"></path>
+                                <path
+									d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
+									stroke="white"></path>
+                            </svg> <em> 적립금 <i class="fa fa-angle-right"></i>
+						</em> <strong>0</strong>
+						</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
+								fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M16.7834 25.7389L16.7834 13.8111H20.2369C21.8274 13.8111 23.1168 15.1005 23.1168 16.691V16.691C23.1168 18.2815 21.8274 19.5708 20.2369 19.5708H16.7834"
+									stroke="white"></path>
+                                <path
+									d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
+									stroke="white"></path>
+                            </svg> <em> 포인트 <i class="fa fa-angle-right"></i>
+						</em> <strong>[[${member.point}]]</strong>
+						</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
+								fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M5.06665 28.8778H4.56665V29.3778H5.06665V28.8778ZM32.9333 28.8778V29.3778H33.4333V28.8778H32.9333ZM32.9333 21.3444H33.4333V20.8444H32.9333V21.3444ZM32.9333 16.3222V16.8222H33.4333V16.3222H32.9333ZM32.9333 8.78888L33.4333 8.78888V8.28888H32.9333V8.78888ZM5.06665 8.78888V8.28888H4.56665V8.78888H5.06665ZM5.06665 16.3222H4.56665V16.8222H5.06665V16.3222ZM5.06665 21.3444V20.8444H4.56665V21.3444H5.06665ZM25.3333 28.3778H5.06665V29.3778H25.3333V28.3778ZM32.9333 28.3778H25.3333V29.3778H32.9333V28.3778ZM32.4333 21.3444L32.4333 28.8778H33.4333L33.4333 21.3444H32.4333ZM32.9333 20.8444C31.8062 20.8444 30.9 19.9399 30.9 18.8333H29.9C29.9 20.5005 31.2622 21.8444 32.9333 21.8444V20.8444ZM30.9 18.8333C30.9 17.7268 31.8062 16.8222 32.9333 16.8222V15.8222C31.2622 15.8222 29.9 17.1662 29.9 18.8333H30.9ZM32.4333 8.78888L32.4333 16.3222H33.4333L33.4333 8.78888L32.4333 8.78888ZM25.3333 9.28888H32.9333V8.28888H25.3333V9.28888ZM5.06665 9.28888H25.3333V8.28888H5.06665V9.28888ZM5.56665 16.3222V8.78888H4.56665V16.3222H5.56665ZM8.09998 18.8333C8.09998 17.1662 6.73775 15.8222 5.06665 15.8222V16.8222C6.19379 16.8222 7.09998 17.7268 7.09998 18.8333H8.09998ZM5.06665 21.8444C6.73775 21.8444 8.09998 20.5005 8.09998 18.8333H7.09998C7.09998 19.9399 6.19379 20.8444 5.06665 20.8444V21.8444ZM5.56665 28.8778V21.3444H4.56665V28.8778H5.56665ZM24.8333 8.78888V11.3H25.8333V8.78888H24.8333ZM25.8333 28.8778V26.3667H24.8333V28.8778H25.8333Z"
+									fill="white"></path>
+                                <path
+									d="M19.6333 15.0667H17.7C15.6197 15.0667 13.9333 16.753 13.9333 18.8333V18.8333C13.9333 20.9136 15.6197 22.6 17.7 22.6H19.6333"
+									stroke="white"></path>
+                                <path
+									d="M25.3333 13.8111L25.3333 17.5778" stroke="white"></path>
+                                <path
+									d="M25.3333 20.0889L25.3333 23.8555" stroke="white"></path>
+                            </svg> <em> 쿠폰 <i class="fa fa-angle-right"></i>
+						</em> <strong>0</strong>
+						</a> <a href="/review/write"> <svg width="38" height="38"
+								viewBox="0 0 38 38" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M31.6666 31.3889H17.7333M6.33325 24.4617L24.6781 6.27777L31.6666 13.205L13.3218 31.3889H6.33325V24.4617Z"
+									stroke="white"></path>
+                            </svg> <em> 후기작성 <i class="fa fa-angle-right"></i>
+						</em> <strong>[[${reviewCount}]]</strong>
+						</a>
+					</div>
+				</div>
 			</section>
 		</div>
-
 
 		<nav class="mypage-sidenav">
 			<h2 class="nav-tit">My page Navigation</h2>
@@ -366,132 +368,95 @@
 			</div>
 		</nav>
 
-		<section class="mypage-cont my-info-modify">
-			<header class="info_views-area">
+
+
+
+		<section class="mypage-cont mypage-order_list">
+			<form action="inWrite" method="POST" enctype="multipart/form-data">
 				<div class="section-title">
-					<h1 class="tit">회원 정보 변경</h1>
+					<h1 class="tit">구매후기작성</h1>
 				</div>
-			</header>
+				<div class="my-review-write" id="reviewWrap">
+					<!-- 상품 -->
 
-			<div class="table-responsive">
-				<table class="table">
-					<tbody>
-						<tr></tr>
-						<tr class="my-info-img" id="profile-img-area">
-							<th scope="row">사진</th>
-							<td>
-								<div class="img"
-									style="background-image: url(https://image.msscdn.net/mfile_s01/_simbols/d/4c391c7e90894bc19feebe1c2d98cd8a_20221021162247.jpg)">
-								</div>
-								<p class="txt">
-									회원님을 알릴 수 있는 사진을 등록해 주세요 <br> 등록된 사진은 회원님의 게시물이나 댓글들에
-									사용됩니다.
-								</p>
-							</td>
-							<td class="va-b">
-								<button type="button" class="btn btn-outline-dark"
-									id="change-profile-image-btn">사진변경</button>
-							</td>
-						</tr>
+					<!-- 
+					<div class="n-prd-row">
+						<img src="#">
+					</div>
+					 -->
 
-						<!----------------------사진수정------------------------------------>
-						<tr class="my-info-img" style="display: none;"
-							id="change-profile-imge-area">
-							<th scope="row">사진</th>
-							<td>
-								<div class="img"
-									style="background-image: url(https://image.msscdn.net/mfile_s01/_simbols/d/4c391c7e90894bc19feebe1c2d98cd8a_20221021162247.jpg)">
-								</div>
-								<p class="txt">
-									회원님을 알릴 수 있는 사진을 등록해 주세요 <br> 등록된 사진은 회원님의 게시물이나 댓글들에
-									사용됩니다.
-								</p>
+					<!-- 테스트 -->
+					<div class="n-prd-row">
+						<!-- orderList DB에서 조회한 img 값으로 이미지를 출력 -->
+						<!--
+					<div th:each="images : ${imgList}">
+						<img th:src="${images}" th:onclick="selectImage(this, ${images});"
+							width="50">
+					</div>
+					-->
+					</div>
+					<!-- 테스트 -->
 
-								<div class="d-grid gap-2 d-md-block">
-									<button class="btn btn-outline-dark" type="button">사진
-										선택</button>
-									<button class="btn btn-primary" type="button">기본 이미지로
-										변경</button>
-								</div>
-							</td>
+					<div>
+						<select onchange="displayImage(this)" name="reviewImg">
+							<option>미선택</option>
+							<option th:each="img : ${imgList}" th:value="${img}"
+								th:data-image="${img}" th:text="${img}"></option>
+						</select> <img id="myImage" name="img" src="" width="100" height="100">
+					</div>
 
-							<td class="va-b d-grid gap-2 d-md-block">
-								<button class="btn btn-outline-dark" type="button"
-									id="change-profile-image-cancel-btn">취소</button>
-								<button class="btn btn-primary" type="button"
-									id="change-profile-image-finish-btn">완료</button>
-							</td>
-						</tr>
-						<!--------------------------------------------------------------->
-						<tr>
-							<th scope="row">아이디</th>
-							<td colspan="2"><strong>[[${member.username}]]</strong></td>
-						</tr>
+					<div class="review-score" id="reviewScorePos">
+						<em class="label">별점을 매겨주세요</em>
+						<div class="n-score score-lg clickable goods_est_area"
+							id="startScoreWrap">
+							<span class="wrap-rating fs-18 cl11 pointer"> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(1)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(2)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(3)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(4)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(5)"></i> <input class="dis-none"
+								type="number" name="reviewRating" id="reviewRatingInput">
+							</span>
+						</div>
+					</div>
 
-						<tr id="password-area">
-							<th scope="row">비밀번호</th>
-							<td><strong>********</strong></td>
-						</tr>
 
-						<tr>
-							<th scope="row">이름(실명)</th>
-							<td><strong>[[${member.name}]]</strong></td>
-						</tr>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">작성자</th>
+								<td><input class="form-control-label bg-body-secondary"
+									type="text" name="reviewWriter" th:value="${member.username}"></td>
+							</tr>
 
-						<tr id="nickName-area">
-							<th scope="row">성별</th>
-							<td><strong>[[${member.gender}]]</strong></td>
+							<tr>
+								<th scope="col">제목</th>
+								<td><input class="form-control-label bg-body-secondary"
+									type="text" name="reviewTitle"></td>
+							</tr>
 
-						</tr>
-
-						<tr id="email-area">
-							<th scope="row">이메일</th>
-							<td><strong id="currentEmail"> [[${member.email}]]</strong>
-							</td>
-
-						</tr>
-
-						<tr id="mobile-area">
-							<th scope="row">휴대전화</th>
-							<td><strong>[[${member.phone}]]</strong></td>
-							<td><a type="button" href="/update"
-								class="btn btn-outline-dark" id="change-infomation"> 회원정보
-									변경하기 </a></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<ul class="info-txt">
-			</ul>
-		</section>
-		<!-- //기본 회원정보 -->
-
-		<!-- 추가 회원정보 -->
-		<section class="mypage-cont my-info-modify">
-			<header class="info_views-area">
-				<div class="section-title">
-					<h1 class="tit">
-						추가 회원정보 <span style="color: #aaaaaa;"> </span>
-					</h1>
+							<tr>
+								<th scope="col"></th>
+								<td>
+									<div class="form-group">
+										<label for="board_content"></label>
+										<textarea name="reviewContent" id="board_content"></textarea>
+									</div>
+								</td>
+							</tr>
+						</thead>
+					</table>
 				</div>
-			</header>
-
-			<div class="table-responsive">
-				<table class="table">
-					<tbody>
-						<tr></tr>
-						<tr>
-							<th scope="row">가입일</th>
-							<td><strong>[[${member.createdDate}]]</strong></td>
-							<td>&nbsp;</td>
-						</tr>
-
-
-					</tbody>
-				</table>
-				<ul class="info-txt">
-				</ul>
-			</div>
+				<div class="d-grid gap-2 d-md-block m-b-50">
+					<button class="btn btn-dark" type="submit">글올리기</button>
+					<button class="btn btn-danger cancle" type="button">취소</button>
+				</div>
+			</form>
 		</section>
 	</main>
 
@@ -517,16 +482,18 @@
 					<h4 class="stext-301 cl0 p-b-30">Categories</h4>
 
 					<ul>
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/product"
 							class="stext-107 cl7 hov-cl2 trans-04"> Clothing </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a
+							th:href="@{/productCategory(iCategory=3)}"
 							class="stext-107 cl7 hov-cl trans-04"> Footwear </a></li>
 
-						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> Accessorie </a></li>
+						<li class="p-b-10"><a href="/product"
+							class="stext-107 cl7 hov-cl trans-04"> Accessories </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a
+							th:href="@{/productCategory(iCategory=6)}"
 							class="stext-107 cl7 hov-cl trans-04"> Tech </a></li>
 					</ul>
 				</div>
@@ -612,15 +579,22 @@
 	</div>
 
 	<!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="../vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../vendor/bootstrap/js/popper.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	<script
+		src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="../vendor/select2/select2.min.js"></script>
 	<script>
         //////////////////(미니팝업기능)//////////////////////////////////
         const Toast = Swal.mixin({
@@ -643,8 +617,7 @@
         })
     </script>
 	<!--===============================================================================================-->
-	<script src="vendor/sweetalert/sweetalert.min.js"></script>
-
+	<script src="../vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
 
         $('.js-remove-item').on('click', function (e) {
@@ -660,7 +633,7 @@
         });
     </script>
 	<!--===============================================================================================-->
-	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
         $('.js-pscroll').each(function () {
             $(this).css('position', 'relative');
@@ -677,6 +650,71 @@
         });
     </script>
 	<!--==============================================================================================-->
+	<script>
+        function sendFile(file, el) {
+            var form_data = new FormData();
+            form_data.append('file', file);
+            $.ajax({
+                data: form_data,
+                type: "post",
+                url: 'summer_image',
+                cache: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                processData: false,
+                success: function (img_name) {
+                    $(el).summernote('editor.insertImage', img_name);
+                }
+            });
+        }
+        $(function () {
+            $('#board_content').summernote({
+                placeholder: '상품 상세설명을 작성해주세요.',
+                height: 300,
+                lang: 'ko-KR',
+                callbacks: {
+                    onImageUpload: function (files, editor, welEditable) {
+                        for (var i = files.length - 1; i >= 0; i--) {
+                            sendFile(files[i], this);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+	<!--==============================================================================================-->
+	<script>
+		$(".cancle").click(function(){
+			location.href = "/myReviewList";
+		});
+	</script>
+	<!--==============================================================================================-->
+	<script>
+		let rating = 0;
+	  
+		function setRating(num) {
+			rating = num;
+			document.getElementById("reviewRatingInput").value = rating;
+			for (let i = 1; i <= 5; i++) {
+				const star = document.querySelector(`#startScoreWrap i:nth-child(${i})`);
+				if (i <= rating) {
+				star.classList.remove("zmdi-star-outline");
+				star.classList.add("zmdi-star");
+				} else {
+					star.classList.add("zmdi-star-outline");
+					star.classList.remove("zmdi-star");
+				}
+			}
+		}
+	</script>
+	<!--==============================================================================================-->
+	<script>
+		function displayImage(element) {
+			var imgSrc = element.options[element.selectedIndex].getAttribute("data-image");
+			document.getElementById("myImage").src = imgSrc;
+		}
+	</script>
+	<!--===============================================================================================-->
 	<script>
 		(function() {
 			var w = window;
@@ -718,8 +756,6 @@
 		});
 	</script>
 	<!--==============================================================================================-->
-	<script src="js/main.js"></script>
-
+	<script src="../js/main.js"></script>
 </body>
-
 </html>

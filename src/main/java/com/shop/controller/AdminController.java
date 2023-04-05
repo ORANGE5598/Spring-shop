@@ -95,7 +95,7 @@ public class AdminController{
 		return "content/admin/admin-product";
 	}
 	
-	@GetMapping("/Notice")
+	@GetMapping("/noticeWrite")
 	public String adminNotice(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -112,7 +112,7 @@ public class AdminController{
 		model.addAttribute("count", cartCount);
 		model.addAttribute("member", member);
 		
-		return "content/admin/admin-notice";
+		return "content/admin/admin-notice-write";
 	}
 	
 	@GetMapping("/Modify")
@@ -177,9 +177,13 @@ public class AdminController{
 	}
 	
 	@GetMapping("/userlist")
-	public String adminUserlist(Model model) {
+	public String adminUserlist(Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		Long id = user.getMemberDTO().getId();
+		ResponseDTO member = memberService.getById(id);
 		List<Member> members = memberService.findMembers();
 		model.addAttribute("members", members);
+		model.addAttribute("member", member);
 		return "content/admin/admin-userlist";
 	}
 	

@@ -127,7 +127,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/product-detail")
-	public void detail(Long iNumber, PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public void detail(Long iNumber, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long member_id = user.getMemberDTO().getId();
 		ResponseDTO responseDto = memberService.getById(member_id);
@@ -166,8 +166,6 @@ public class IndexController {
 	    
 	}
 	
-
-	// 테스트
 	@GetMapping("/productCategory")
 	public String productByCategory(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user,
 	        @RequestParam("iCategory") Long iCategory) {
@@ -192,10 +190,9 @@ public class IndexController {
 	    model.addAttribute("cartList", cartDTOList);
 	    model.addAttribute("count", cartCount);
 	    
-	    return "product";
+	    return "content/product";
 	}
 	
-	// 테스트
 	@GetMapping("/productBrand")
 	public String productByBrand(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user,
 			@RequestParam("brandNumber") Long brandNumber) {
@@ -220,10 +217,9 @@ public class IndexController {
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
 		
-		return "product";
+		return "content/product";
 	}
 	
-	// 테스트
 	@GetMapping("/productSortAsc")
 	public String productSortAsc(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
@@ -247,10 +243,9 @@ public class IndexController {
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
 		
-		return "product";
+		return "content/product";
 	}
 	
-	// 테스트
 	@GetMapping("/productSortDesc")
 	public String productSortDesc(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
@@ -274,7 +269,27 @@ public class IndexController {
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
 		
-		return "product";
+		return "content/product";
+	}
+	
+	@GetMapping("/faq")
+	public String goFAQ(Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		Long id = user.getMemberDTO().getId();
+		
+		Long cartCount = cartService.getCartCount(id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		
+        model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+		model.addAttribute("count", cartCount);
+		
+		return "board/qna/faq";
 	}
 	
 }

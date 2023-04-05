@@ -555,8 +555,20 @@ nav.mypage-sidenav {
     padding-left: 20px;
 }
 
+.table.table-hover.table-col .column-1x {
+    width: 133px;
+    text-align: center;
+    padding-left: 20px;
+}
+
 .table.table-hover.table-col .column-2 {
     width: 220px;
+    padding-right: 25px;
+}
+
+.table.table-hover.table-col .column-2x {
+    width: 220px;
+    text-align: center;
     padding-right: 25px;
 }
 

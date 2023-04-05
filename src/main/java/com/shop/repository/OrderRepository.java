@@ -31,5 +31,6 @@ public interface OrderRepository extends JpaRepository<OrderList, Long> {
 	@Query("SELECT count(o) FROM OrderList o WHERE o.deliveryStatus = '반품완료' AND o.mId =:id")
 	Long afterCancle(@Param("id") Long oNumber);
 	
-	
+	@Query("SELECT o.img FROM OrderList o WHERE o.mId =:id")
+	List<String> getImgById(@Param("id") Long id);
 }

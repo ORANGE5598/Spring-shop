@@ -216,4 +216,51 @@
         var nameTab = $(e.target).attr('href'); 
         $(nameTab).find('.slick2').slick('reinit');          
       });      
+            
+      /*==================================================================
+        [ Slick5 ]*/
+        $('.wrap-slick5').each(function(){
+          $(this).find('.slick5').slick({
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            autoplay: true,
+            autoplaySpeed: 9000,
+            autoplayTimeout: 5000,
+            arrows: true,
+            appendArrows: $(this),
+            prevArrow:'<button class="arrow-slick5 prev-slick5"><i class="fa fa-angle-left" aria-hidden="true"></i></button>',
+            nextArrow:'<button class="arrow-slick5 next-slick5"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',  
+            responsive: [
+              {
+                breakpoint: 1200,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 3,
+                }
+              },
+              {
+                breakpoint: 992,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                }
+              },
+              {
+                breakpoint: 768,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+            ]    
+          });
+        });
+
+
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        var nameTab = $(e.target).attr('href'); 
+        $(nameTab).find('.slick5').slick('reinit');          
+      });      
+      
 })(jQuery);

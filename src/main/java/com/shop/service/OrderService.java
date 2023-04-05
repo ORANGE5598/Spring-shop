@@ -58,4 +58,6 @@ public interface OrderService {
 	
 	Long afterCancle(Long id);
 	
+	List<String> getImgList(Long id);
+	
 }

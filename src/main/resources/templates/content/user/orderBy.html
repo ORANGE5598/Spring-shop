@@ -5,6 +5,8 @@
     <title>Order</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="/img/icons/favicon.png"/>
     <!--===============================================================================================-->
@@ -97,9 +99,9 @@
                         </li>
 
                         <li>
-                            <a href="/com">COMMUNITY</a>
+                            <a href="/notice">ABOUT</a>
                         </li>
-
+							<li><a href="/contact">CONTACT</a></li>
                         <li>
                             <a href="/mypage">MYPAGE</a>
                         </li>
@@ -218,9 +220,9 @@
             </li>
 
             <li>
-                <a href="/com">Community</a>
+                <a href="/notice">ABOUT</a>
             </li>
-
+							<li><a href="/contact">CONTACT</a></li>
             <li>
                 <a href="/mypage">MYPAGE</a>
             </li>
@@ -649,7 +651,8 @@
 <script>
 	const header = $("meta[name='_csrf_header']").attr('content');
 	const token = $("meta[name='_csrf']").attr('content');
-		
+	
+	const oName = $("input[name='iName']").val();
 	const priceAmount = $("input[name='totalPrice']").val();
 	const buyerMemberEmail = $("input[name='mEmail']").val();
 	const buyerMemberName = $("input[name='mName']").val();
@@ -663,39 +666,19 @@
 
     function requestPay() {
 
-    	var formData = new FormData();
     	
-    	var iNumber = $("input[name='iNumber']").val();
-    	var img = $("input[name='img']").val();
-    	var mId = $("input[name='mId']").val();
-    	var mName = $("input[name='mName']").val();
-    	var oCount = $("input[name='oCount']").val()
-    	var oDeliveryPrice = $("input[name='dPrice']").val();
-    	var oItemPrice = $("input[name='iPrice']").val();
-    	var oGetPoint = Math.floor($("input[name='totalPrice']").val() / 100);
-    	var oName = $("input[name='iName']").val();
-    	var oTotalPrice = $("input[name='totalPrice']").val();
-    	var firPoint = $("input[name='firPoint']").val();
-    	var oUsePoint = $("input[name='oUsePoint']").val();
-    	var phoneNumber = $("input[name='phoneNumber']").val()
-    	var roadAddress = $("input[name='roadAddress']").val();
-    	var detailAddress = $("input[name='detailAddress']").val();
-    	var deliveryMessage = $("input[name='deliveryMessage']").val();
-    	var oSize = $("input[name='oSize']").val();
-    	var paymentMethod = $(":input:radio[name='payment']:checked").val();
     	
         // IMP.request_pay(param, callback) 결제창 호출
         IMP.request_pay({ // param
             pg: "kakaopay.TC0ONETIME",
             pay_method: "card",
             merchant_uid: 'cart_' + new Date().getTime(),
-            name: "${ordering.iName}",
+            name: oName,
             amount: priceAmount,
             buyer_email: buyerMemberEmail,
             buyer_name: buyerMemberName,
 
         }, function (rsp) { // callback
-
             /** 결제 검증 **/
             $.ajax({
                 type: 'POST',
@@ -704,10 +687,51 @@
                     xhr.setRequestHeader(header, token);
                 }
             }).done(function(result){
-
                 // rsp.paid_amount와 result.response.amount(서버 검증) 비교 후 로직 실행
                 if(rsp.paid_amount === result.response.amount){
-                    alert("결제가 완료되었습니다.");
+                    
+                    var formData = new FormData();
+                	
+                	var iNumber = $("input[name='iNumber']").val();
+                	var img = $("input[name='img']").val();
+                	var mId = $("input[name='mId']").val();
+                	var mName = $("input[name='mName']").val();
+                	var oCount = $("input[name='oCount']").val()
+                	var oDeliveryPrice = $("input[name='dPrice']").val();
+                	var oItemPrice = $("input[name='iPrice']").val();
+                	var oGetPoint = Math.floor($("input[name='totalPrice']").val() / 100);
+                	var oName = $("input[name='iName']").val();
+                	var oTotalPrice = $("input[name='totalPrice']").val();
+                	var firPoint = $("input[name='firPoint']").val();
+                	var oUsePoint = $("input[name='oUsePoint']").val();
+                	var phoneNumber = $("input[name='phoneNumber']").val()
+                	var roadAddress = $("input[name='roadAddress']").val();
+                	var detailAddress = $("input[name='detailAddress']").val();
+                	var deliveryMessage = $("input[name='deliveryMessage']").val();
+                	var oSize = $("input[name='oSize']").val();
+                	var paymentMethod = $(":input:radio[name='payment']:checked").val();
+                	var tmpPoint = parseInt(firPoint) + oGetPoint - oUsePoint;
+            		
+                	$('#point').val(tmpPoint);
+            		var point = $("input[name='point']").val();
+            		
+            		formData.append("iNumber", iNumber);
+            		formData.append("img", img);
+            		formData.append("mId", mId);
+            		formData.append("mName", mName);
+            		formData.append("oCount", oCount);
+            		formData.append("oDeliveryPrice", oDeliveryPrice);
+            		formData.append("oItemPrice", oItemPrice);
+            		formData.append("oName", oName);
+            		formData.append("oTotalPrice", oTotalPrice);
+            		formData.append("phoneNumber", phoneNumber);
+            		formData.append("roadAddress", roadAddress);
+            		formData.append("detailAddress", detailAddress);
+            		formData.append("deliveryMessage", deliveryMessage);
+            		formData.append("oSize", oSize);
+            		formData.append("paymentMethod", paymentMethod);
+            		formData.append("point", point);
+            		
                     $.ajax({
                         type:'POST',
                         url:'insertOrder',
@@ -717,12 +741,11 @@
             			type : 'POST',
             			dataType : 'json',
             			success : function(result){
-            				alert('성공');
             				console.log(result);
             			},
             			error : function(jqXHR, textStatus, errThrown){
-            				alert('실패');
-            				console.log(errThrown)
+            				console.log(errThrown);
+            				console.log("error로 넘어오지만 실제론 db에 잘 저장됨");
             			},
                         beforeSend: function(xhr){
                             xhr.setRequestHeader(header, token);
@@ -731,6 +754,7 @@
                         window.location.reload();
                     }).fail(function(error){
                             alert(JSON.stringify(error));
+                            console.log(JSON.stringify(error));
                     })
                 } else{
                     alert("결제에 실패했습니다."+"에러코드 : "+rsp.error_code+"에러 메시지 : "+rsp.error_message);

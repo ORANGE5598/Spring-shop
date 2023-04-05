@@ -17,18 +17,6 @@ public class OrderServiceImpl implements OrderService {
 
 	private final OrderRepository orderRepository;
 	
-//	@Override
-//	public PageResultDTO<OrderDTO, OrderList> getList(PageRequestDTO pageRequestDTO) {
-//
-//		Function<OrderList, OrderDTO> fn = (en -> entityToDto(en));
-//		
-//		String id = "user10";
-//		
-//		Page<OrderList> result = orderRepository.getListById(id, pageRequestDTO.getPageable(Sort.by("regDate").ascending()));
-//		
-//		return new PageResultDTO<>(result, fn);
-//	}
-	
 	@Override
 	public OrderDTO read(Long oNumber) {
 		
@@ -67,7 +55,6 @@ public class OrderServiceImpl implements OrderService {
 		return entity.getONumber();
 		
 	}
-	
 	
 	@Override
 	public List<OrderDTO> getList(Long id) {
@@ -136,4 +123,11 @@ public class OrderServiceImpl implements OrderService {
 		return result;
 	}
 	
+	@Override
+	public List<String> getImgList(Long id) {
+		
+		List<String> result = orderRepository.getImgById(id);
+		System.out.println("+++++++ : " + result);
+		return result;
+	}
 }
