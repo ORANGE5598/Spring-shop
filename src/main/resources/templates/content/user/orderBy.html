@@ -739,22 +739,20 @@
             			contentType : false,
             			data : formData,
             			type : 'POST',
-            			dataType : 'json',
+            			dataType : 'JSON',
             			success : function(result){
             				console.log(result);
             			},
             			error : function(jqXHR, textStatus, errThrown){
-            				console.log(errThrown);
-            				console.log("error로 넘어오지만 실제론 db에 잘 저장됨");
+            				window.location.href="/orderlist"
             			},
                         beforeSend: function(xhr){
                             xhr.setRequestHeader(header, token);
                         }
                     }).done(function() {
-                        window.location.reload();
+                    	window.location.href="/orderlist"
                     }).fail(function(error){
-                            alert(JSON.stringify(error));
-                            console.log(JSON.stringify(error));
+                        window.location.href="/orderlist"
                     })
                 } else{
                     alert("결제에 실패했습니다."+"에러코드 : "+rsp.error_code+"에러 메시지 : "+rsp.error_message);
