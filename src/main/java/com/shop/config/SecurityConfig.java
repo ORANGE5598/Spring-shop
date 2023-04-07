@@ -4,7 +4,6 @@ import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,7 +16,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.shop.config.auth.CustomUserDetailsService;
 import com.shop.config.oauth.CustomOAuth2UserService;
-import com.siot.IamportRestClient.IamportClient;
 
 import lombok.RequiredArgsConstructor;
 
@@ -63,6 +61,9 @@ public class SecurityConfig {
 			auth.antMatchers("/findPassword").permitAll();
 			auth.antMatchers("/login").permitAll();
 			auth.antMatchers("/register").permitAll();
+			auth.antMatchers("/contact").permitAll();
+			auth.antMatchers("/notice").permitAll();
+			auth.antMatchers("/faq").permitAll();
 			
 			/** 권한이 있어야 들어올 수 있는 주소 **/
 			auth.antMatchers("/mypage").hasAnyRole("USER", "ADMIN", "SOCIAL");
@@ -70,6 +71,12 @@ public class SecurityConfig {
 			auth.antMatchers("/orderBy").hasAnyRole("USER", "ADMIN", "SOCIAL");
 			auth.antMatchers("/review/**").hasAnyRole("USER", "ADMIN", "SOCIAL");
 			auth.antMatchers("/reply").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/product").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/orderlist").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/myReviewList").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/product-detail").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			auth.antMatchers("/shopping-cart").hasAnyRole("USER", "ADMIN", "SOCIAL");
+			
 			
 			/** 관리자 권한이 있어야 들어올 수 있는 주소 **/
 			auth.antMatchers("/admin/**").hasAnyRole("ADMIN");

@@ -21,7 +21,6 @@ import com.shop.service.CartService;
 import com.shop.service.CategoryService;
 import com.shop.service.ItemService;
 import com.shop.service.MemberService;
-import com.shop.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,7 +33,6 @@ public class IndexController {
 	private final CartService cartService;
 	private final CategoryService categoryService;
 	private final BrandService brandService;
-	private final OrderService orderService;
 	
 	@GetMapping({"/","/index"})
 	public String goIndex(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
@@ -97,7 +95,30 @@ public class IndexController {
 	}
 	
 	@GetMapping("/contact")
-	public String contact() {
+	public String contact(Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		
+		
+		if(user == null) {
+			
+		} else {
+		
+			Long id = user.getMemberDTO().getId();
+			List<CartDTO> cartDTOList = cartService.getCartList(id);
+			List<CartDTO> cartList = cartService.getCartList(id);
+			
+			int totalPrice2 = 0;
+		    for (CartDTO cart : cartList) {
+		        totalPrice2 += cart.getCPrice() * cart.getCount();
+		    }
+		    
+		    Long cartCount = cartService.getCartCount(id);
+			
+		    model.addAttribute("totalPrice", totalPrice2);
+		    model.addAttribute("cartList", cartDTOList);
+		    model.addAttribute("count", cartCount);
+		}
+		
 		return "contact";
 	}
 	
@@ -127,7 +148,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("/product-detail")
-	public void detail(Long iNumber, PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public void detail(Long iNumber, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long member_id = user.getMemberDTO().getId();
 		ResponseDTO responseDto = memberService.getById(member_id);
@@ -270,6 +291,32 @@ public class IndexController {
 		model.addAttribute("count", cartCount);
 		
 		return "content/product";
+	}
+	
+	@GetMapping("/faq")
+	public String goFAQ(Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		if(user == null) {
+			
+		} else {
+		
+			Long id = user.getMemberDTO().getId();
+			
+			Long cartCount = cartService.getCartCount(id);
+			List<CartDTO> cartDTOList = cartService.getCartList(id);
+			
+			int totalPrice = 0;
+			for (CartDTO cart : cartDTOList) {
+				totalPrice += cart.getCPrice() * cart.getCount();
+			}
+			
+	        model.addAttribute("totalPrice", totalPrice);
+			model.addAttribute("cartList", cartDTOList);
+			model.addAttribute("count", cartCount);
+		
+		}
+		
+		return "board/qna/faq";
 	}
 	
 }

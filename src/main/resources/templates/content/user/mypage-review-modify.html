@@ -2,37 +2,38 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<title>Notice</title>
+<title>구매후기작성 - 마이페이지</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
 <link rel="icon" type="image/png" href="../img/icons/favicon.png" />
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="../img/icons/favicon.png" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.2.0/css/ionicons.min.css"
-	integrity="sha256-F3Xeb7IIFr1QsWD113kV2JXaEbjhsfpgrKkwZFGIA4E="
-	crossorigin="anonymous" />
-
-<!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="../vendor/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	href="../../vendor/bootstrap/css/bootstrap.min.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
 	crossorigin="anonymous">
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.3/sweetalert2.min.css"
+	integrity="sha512-qCn1nYgWV7vPzLZPd7OGJrVyq+G40TUDydUJdAEU6yYF6wMEa6MkU6Z/dzodP8aAhWQ+ff1ygb5m5oivFJ31Ow=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="fonts/iconic/css/material-design-iconic-font.min.css">
+	href="../fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	href="../fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="../vendor/animate/animate.css">
@@ -49,12 +50,18 @@
 <link rel="stylesheet" type="text/css"
 	href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="css/util.css">
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/util.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/mypage.css">
 <!--===============================================================================================-->
+
+
 </head>
 
-<body class="animsition">
+<body class="animsition mypage_body">
+
+
+
 
 	<!-- Header -->
 	<header class="header-v4">
@@ -66,8 +73,8 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs
-						</a> <a sec:authorize="isAnonymous()" th:href="@{/login}"
+						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
 							class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
@@ -201,7 +208,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-				<li><a href="/contact">CONTACT</a></li>
+							<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -273,124 +280,168 @@
 	</div>
 	<!-- 장바구니 끝 -->
 
+	<main class="content">
+		<div id="userMypage">
+			<section class="mypage-sc">
+				<h1 class="mypage-title">mypage</h1>
 
-	<section class="bg-img1 txt-center p-lr-15 p-tb-140"
-		style="background-image: url('../img/banner/banner7.png')">
-		<h2 class="ltext-201 cl5 float-center m-l-140">Notice</h2>
-	</section>
+				<div class="user-info">
 
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-5 p-lr-0-lg">
-			<a href="/index" class="stext-109 cl8 hov-cl1 trans-04"> Home <i
-				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <a href="/notice" class="stext-109 cl8 hov-cl1 trans-04"> About
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> Notice </span>
+					<div class="user-img">
+						<img src="../img/user/user2.jpg">
+					</div>
+
+					<div class="mypage-top">
+						<div class="user-nickname">
+							<strong>[[${member.name}]]님 안녕하세요</strong>
+						</div>
+
+						<div class="user-name">
+							<em>[[${member.name}]]</em> <span> 가입일 :
+								[[${member.createdDate}]] </span>
+						</div>
+					</div>
+
+					<div class="user-bankbook">
+						<a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
+								fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M12.6667 15.0667L16.4667 23.8555L19.0001 17.2639L21.5334 23.8555L25.3334 15.0667"
+									stroke="white"></path>
+                                <path d="M11.3999 18.8333H26.5999"
+									stroke="white"></path>
+                                <path
+									d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
+									stroke="white"></path>
+                            </svg> <em> 적립금 <i class="fa fa-angle-right"></i>
+						</em> <strong>0</strong>
+						</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
+								fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M16.7834 25.7389L16.7834 13.8111H20.2369C21.8274 13.8111 23.1168 15.1005 23.1168 16.691V16.691C23.1168 18.2815 21.8274 19.5708 20.2369 19.5708H16.7834"
+									stroke="white"></path>
+                                <path
+									d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
+									stroke="white"></path>
+                            </svg> <em> 포인트 <i class="fa fa-angle-right"></i>
+						</em> <strong>[[${member.point}]]</strong>
+						</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
+								fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M5.06665 28.8778H4.56665V29.3778H5.06665V28.8778ZM32.9333 28.8778V29.3778H33.4333V28.8778H32.9333ZM32.9333 21.3444H33.4333V20.8444H32.9333V21.3444ZM32.9333 16.3222V16.8222H33.4333V16.3222H32.9333ZM32.9333 8.78888L33.4333 8.78888V8.28888H32.9333V8.78888ZM5.06665 8.78888V8.28888H4.56665V8.78888H5.06665ZM5.06665 16.3222H4.56665V16.8222H5.06665V16.3222ZM5.06665 21.3444V20.8444H4.56665V21.3444H5.06665ZM25.3333 28.3778H5.06665V29.3778H25.3333V28.3778ZM32.9333 28.3778H25.3333V29.3778H32.9333V28.3778ZM32.4333 21.3444L32.4333 28.8778H33.4333L33.4333 21.3444H32.4333ZM32.9333 20.8444C31.8062 20.8444 30.9 19.9399 30.9 18.8333H29.9C29.9 20.5005 31.2622 21.8444 32.9333 21.8444V20.8444ZM30.9 18.8333C30.9 17.7268 31.8062 16.8222 32.9333 16.8222V15.8222C31.2622 15.8222 29.9 17.1662 29.9 18.8333H30.9ZM32.4333 8.78888L32.4333 16.3222H33.4333L33.4333 8.78888L32.4333 8.78888ZM25.3333 9.28888H32.9333V8.28888H25.3333V9.28888ZM5.06665 9.28888H25.3333V8.28888H5.06665V9.28888ZM5.56665 16.3222V8.78888H4.56665V16.3222H5.56665ZM8.09998 18.8333C8.09998 17.1662 6.73775 15.8222 5.06665 15.8222V16.8222C6.19379 16.8222 7.09998 17.7268 7.09998 18.8333H8.09998ZM5.06665 21.8444C6.73775 21.8444 8.09998 20.5005 8.09998 18.8333H7.09998C7.09998 19.9399 6.19379 20.8444 5.06665 20.8444V21.8444ZM5.56665 28.8778V21.3444H4.56665V28.8778H5.56665ZM24.8333 8.78888V11.3H25.8333V8.78888H24.8333ZM25.8333 28.8778V26.3667H24.8333V28.8778H25.8333Z"
+									fill="white"></path>
+                                <path
+									d="M19.6333 15.0667H17.7C15.6197 15.0667 13.9333 16.753 13.9333 18.8333V18.8333C13.9333 20.9136 15.6197 22.6 17.7 22.6H19.6333"
+									stroke="white"></path>
+                                <path
+									d="M25.3333 13.8111L25.3333 17.5778" stroke="white"></path>
+                                <path
+									d="M25.3333 20.0889L25.3333 23.8555" stroke="white"></path>
+                            </svg> <em> 쿠폰 <i class="fa fa-angle-right"></i>
+						</em> <strong>0</strong>
+						</a> <a href="/review/write"> <svg width="38" height="38"
+								viewBox="0 0 38 38" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M31.6666 31.3889H17.7333M6.33325 24.4617L24.6781 6.27777L31.6666 13.205L13.3218 31.3889H6.33325V24.4617Z"
+									stroke="white"></path>
+                            </svg> <em> 후기작성 <i class="fa fa-angle-right"></i>
+						</em> <strong>[[${reviewCount}]]</strong>
+						</a>
+					</div>
+				</div>
+			</section>
 		</div>
-	</div>
 
-	<section class="bg0 p-t-40 p-b-20">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-lg-9 p-b-80">
-					<div class="p-r-45 p-r-0-lg">
-						<div class="card card-lg">
-							<h3 class="card-header border-bottom-0 mtext-114">공지사항</h3>
+		<nav class="mypage-sidenav">
+			<h2 class="nav-tit">My page Navigation</h2>
+			<div class="my-account">
+				<h3>나의 쇼핑 활동</h3>
+				<a href="/orderlist" class="order_list">주문 내역 조회</a> <a
+					href="myReviewList" class="product_reviews">내 구매후기</a> <a
+					href="/faq" class="product_inquiry">상품문의</a>
+			</div>
 
-							<div class="accordion accordion-type-2 accordion-flush"
-								id="accordion_2"
-								th:each="notice, noticeStat : ${notices.dtoList}">
-								<div class="card">
-									<div
-										class="card-header d-flex justify-content-between activestate stext-302">
-										<div class="col-md-7">
-											<a role="button" data-toggle="collapse"
-												th:href="'#collapse_' + ${noticeStat.index}"
-												aria-expanded="true">
-												<p th:text="${notice.title}"></p>
-											</a> <small>작성자 : <strong>
-													<p th:text="${notice.createdBy}"></p>
-											</strong>
-												<p
-													th:text="${#temporals.format(notice.regDate, 'yyyy-MM-dd HH:mm:ss')}"></p></small>
-										</div>
-									</div>
-									<div th:id="'collapse_' + ${noticeStat.index}" class="collapse"
-										data-parent="#accordion_2" role="tabpanel">
-										<div class="card-body pa-15 stext-302">
-											<p th:text="${notice.content}"></p>
-										</div>
-									</div>
+			<div class="my-board">
+				<h3>커뮤니티</h3>
+				<a href="#" class="board-list">게시물 / 스크랩 / 댓글</a>
+			</div>
+		</nav>
+
+
+
+
+		<section class="mypage-cont mypage-order_list">
+			<form action="modifyReview" method="POST"
+				enctype="multipart/form-data">
+				<div class="section-title">
+					<h1 class="tit">구매후기작성</h1>
+				</div>
+				<div>
+					<select onchange="displayImage(this)" name="reviewImg"
+						id="product_select">
+						<option>미선택</option>
+						<option th:each="img : ${imgList}" th:value="${img}"
+							th:data-description="${img}" th:data-imagesrc="${img}"
+							th:data-image="${img}" th:text="${img}"></option>
+					</select> <img id="myImage" name="img" src="" width="100" height="100">
+				</div>
+
+				<div class="review-score" id="reviewScorePos">
+					<em class="label">별점을 매겨주세요</em>
+					<div class="n-score score-lg clickable goods_est_area"
+						id="startScoreWrap">
+						<span class="wrap-rating fs-18 cl11 pointer"> <i
+							class="item-rating pointer zmdi zmdi-star-outline"
+							onclick="setRating(1)"></i> <i
+							class="item-rating pointer zmdi zmdi-star-outline"
+							onclick="setRating(2)"></i> <i
+							class="item-rating pointer zmdi zmdi-star-outline"
+							onclick="setRating(3)"></i> <i
+							class="item-rating pointer zmdi zmdi-star-outline"
+							onclick="setRating(4)"></i> <i
+							class="item-rating pointer zmdi zmdi-star-outline"
+							onclick="setRating(5)"></i> <input class="dis-none" type="number"
+							name="reviewRating" id="reviewRatingInput">
+						</span>
+					</div>
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">작성자</th>
+							<td><input class="form-control-label bg-body-secondary"
+								type="text" name="reviewWriter" th:value="${member.username}" required>
+								<input type="hidden" name="id" th:value="${reviewDTO.id}"></td>
+						</tr>
+
+						<tr>
+							<th scope="col">제목</th>
+							<td><input class="form-control-label bg-body-secondary"
+								type="text" name="reviewTitle"
+								th:value="${reviewDTO.reviewTitle}" required></td>
+						</tr>
+
+						<tr>
+							<th scope="col"></th>
+							<td>
+								<div class="form-group">
+									<label for="board_content"></label>
+									<textarea name="reviewContent" id="board_content" required>[[${reviewDTO.reviewContent}]]</textarea>
 								</div>
-							</div>
-						</div>
-					</div>
+							</td>
+						</tr>
+					</thead>
+				</table>
+				<div class="d-grid gap-2 d-md-block m-b-50">
+					<button class="btn btn-dark" type="submit">수정하기</button>
+					<button class="btn btn-dark delete" type="button">삭제하기</button>
+					<button class="btn btn-danger cancle" type="button">취소</button>
 				</div>
-
-				<!-------------------------------------검색창----------------------------------------------------->
-				<div class="col-md-4 col-lg-3">
-					<div class="side-menu">
-						<div class="bor17 of-hidden pos-relative">
-							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55"
-								type="text" name="search" placeholder="Search">
-
-							<button
-								class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
-								<i class="zmdi zmdi-search"></i>
-							</button>
-						</div>
-
-						<!-- -----------------------------------카테고리-------------------------------------------->
-						<div class="p-t-55 m-t-8">
-							<h4 class="mtext-112 cl2 p-b-33">Categories</h4>
-
-							<ul>
-								<li class="bor18"><a href="/notice"
-									class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-15 p-lr-4">
-										Notice <!--자유게시판-->
-								</a></li>
-
-								<li class="bor18"><a href="/review/list"
-									class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-15 p-lr-4">
-										Review <!--리뷰 몰아넣기-->
-								</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="product__pagination">
-
-						<div
-							class="pagination h-100 justify-content-center align-items-center">
-
-							<!-- 페이지 링크 -->
-							<div class="product__pagination " th:if="${notices.prev}">
-								<a class="page-link"
-									th:href="@{/notice(page= ${notices.start -1})}" tabindex="-1">이전
-									페이지</a>
-							</div>
-
-							<div
-								th:class=" 'product__pagination ' + ${notices.page == page?'active':''} "
-								th:each="page: ${notices.pageList}">
-								<a class="page-link" th:href="@{/notice(page=${page})}">
-									[[${page}]] </a>
-							</div>
-							<div class="product__pagination" th:if="${notices.next}">
-								<a class="page-link"
-									th:href="@{/notice(page= ${notices.end + 1})}">다음 페이지</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+			</form>
+		</section>
+	</main>
 
 	<!-- Footer -->
 	<footer class="bg3 p-t-65 p-b-32">
@@ -508,51 +559,178 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
 		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+	<script
+		src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="../vendor/select2/select2.min.js"></script>
 	<script>
-		$(".js-select2").each(function() {
-			$(this).select2({
-				minimumResultsForSearch : 20,
-				dropdownParent : $(this).next('.dropDownSelect2')
-			});
-		})
-	</script>
+        //////////////////(미니팝업기능)//////////////////////////////////
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'center-center',
+            showConfirmButton: false,
+            timer: 1500,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        ////////////////////////////////////////////////////////////
+
+        $(".js-select2").each(function () {
+            $(this).select2({
+                minimumResultsForSearch: 20,
+                dropdownParent: $(this).next('.dropDownSelect2')
+            });
+        })
+    </script>
 	<!--===============================================================================================-->
 	<script src="../vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-remove-item').on('click', function(e) {
-			e.preventDefault();
-		});
 
-		$('.js-remove-item').each(
-				function() {
-					var nameProduct = $(this).parent().parent().find(
-							'.js-name-item').html();
-					$(this).on('click', function() {
-						swal(nameProduct, "장바구니에서 삭제되었습니다 ! ", "success");
+        $('.js-remove-item').on('click', function (e) {
+            e.preventDefault();
+        });
 
-					});
-				});
-	</script>
+        $('.js-remove-item').each(function () {
+            var nameProduct = $(this).parent().parent().find('.js-name-item').html();
+            $(this).on('click', function () {
+                swal(nameProduct, "장바구니에서 삭제되었습니다 ! ", "success");
+
+            });
+        });
+    </script>
 	<!--===============================================================================================-->
 	<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
-		$('.js-pscroll').each(function() {
-			$(this).css('position', 'relative');
-			$(this).css('overflow', 'hidden');
-			var ps = new PerfectScrollbar(this, {
-				wheelSpeed : 1,
-				scrollingThreshold : 1000,
-				wheelPropagation : false,
-			});
+        $('.js-pscroll').each(function () {
+            $(this).css('position', 'relative');
+            $(this).css('overflow', 'hidden');
+            var ps = new PerfectScrollbar(this, {
+                wheelSpeed: 1,
+                scrollingThreshold: 1000,
+                wheelPropagation: false,
+            });
 
-			$(window).on('resize', function() {
-				ps.update();
-			})
-		});
+            $(window).on('resize', function () {
+                ps.update();
+            })
+        });
+    </script>
+	<!--==============================================================================================-->
+	<script>
+        function sendFile(file, el) {
+            var form_data = new FormData();
+            form_data.append('file', file);
+            $.ajax({
+                data: form_data,
+                type: "post",
+                url: 'summer_image',
+                cache: false,
+                contentType: false,
+                enctype: 'multipart/form-data',
+                processData: false,
+                success: function (img_name) {
+                    $(el).summernote('editor.insertImage', img_name);
+                }
+            });
+        }
+        $(function () {
+            $('#board_content').summernote({
+                placeholder: '상품 상세설명을 작성해주세요.',
+                height: 300,
+                lang: 'ko-KR',
+                callbacks: {
+                    onImageUpload: function (files, editor, welEditable) {
+                        for (var i = files.length - 1; i >= 0; i--) {
+                            sendFile(files[i], this);
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+	<!--==============================================================================================-->
+	<script>
+	  const cancelButton = document.querySelector('#cancel');
+	  cancelButton.addEventListener('click', () => {
+	    window.location.href = '/review/list';
+	  });
 	</script>
-	<!--===============================================================================================-->
+	<!--==============================================================================================-->
+	<script>
+		let rating = 0;
+	  
+		function setRating(num) {
+			rating = num;
+			document.getElementById("reviewRatingInput").value = rating;
+			for (let i = 1; i <= 5; i++) {
+				const star = document.querySelector(`#startScoreWrap i:nth-child(${i})`);
+				if (i <= rating) {
+				star.classList.remove("zmdi-star-outline");
+				star.classList.add("zmdi-star");
+				} else {
+					star.classList.add("zmdi-star-outline");
+					star.classList.remove("zmdi-star");
+				}
+			}
+		}
+	</script>
+	<!--==============================================================================================-->
+	<script>
+		function displayImage(element) {
+			var imgSrc = element.options[element.selectedIndex].getAttribute("data-image");
+			document.getElementById("myImage").src = imgSrc;
+		}
+	</script>
+	<!--==============================================================================================-->
+	<script>
+	$(".delete").click(function(){
+		var formData = new FormData();
+		
+		var id = $("input[name='id']").val();
+		formData.append("id", id);
+
+		$.ajax({
+			url : 'delete',
+			processData : false,
+			contentType : false,
+			data : formData,
+			type : 'POST',
+			dataType : 'text',
+			success : function(result){
+				
+				console.log(result);
+				location.href = "/myReviewList";
+			},
+			error : function(jqXHR, textStatus, errThrown){
+				
+				console.log(errThrown);
+			}
+			
+		})	// ajax의 끝
+	});
+	</script>
+	<!--==============================================================================================-->
+	<script>
+	$(".cancle").click(function(){
+		location.href = "/myReviewList";
+	});
+	</script>
+	<!--==============================================================================================-->
+	<script>
+		$('#product_select').ddslick({
+            width: "100%",
+            imagePosition: "left",
+            selectText: "Select product",
+            onSelected: function (data) {
+                $("#selected").html(data.selectedData.value);
+            }
+        });
+    </script>
+	<!--==============================================================================================-->
 	<script>
 		(function() {
 			var w = window;
@@ -570,7 +748,6 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
-
 				}
 				w.ChannelIOInitialized = true;
 				var s = document.createElement("script");
@@ -594,9 +771,8 @@
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
 	</script>
-	<!--===============================================================================================-->
+	<!--==============================================================================================-->
 	<script src="../js/main.js"></script>
 
 </body>
-
 </html>

@@ -20,7 +20,6 @@ public class UploadResultDTO implements Serializable{	// 직렬화 선언
 			return URLEncoder.encode(folderPath + "/" + uuid + "_" + fileName, "UTF-8");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println(e.getMessage());
 		}
 		
 		

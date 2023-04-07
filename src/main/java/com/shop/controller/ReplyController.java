@@ -22,7 +22,7 @@ public class ReplyController {
 
 	@PostMapping("/save")
 	public ResponseEntity save(@ModelAttribute ReplyDTO replyDTO) {
-		System.out.println("replyDTO = " + replyDTO);
+		
 		Long saveResult = replyService.save(replyDTO);
 		if(saveResult != null) {
 			

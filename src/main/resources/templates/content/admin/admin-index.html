@@ -109,9 +109,9 @@
                             </li>
 
                             <li>
-                                <a href="/com">COMMUNITY</a>
+                                <a href="/notice">ABOUT</a>
                             </li>
-
+							<li><a href="/contact">CONTACT</a></li>
                             <li>
                                 <a href="/mypage">MYPAGE</a>
                             </li>
@@ -227,9 +227,9 @@
 	            </li>
 	
 	            <li>
-	                <a href="/com">Community</a>
+	                <a href="/notice">ABOUT</a>
 	            </li>
-	
+								<li><a href="/contact">CONTACT</a></li>
 	            <li>
 	                <a href="/mypage">MYPAGE</a>
 	            </li>
@@ -331,7 +331,7 @@
                     <div class="user-bankbook">
                         
 
-                        <a href="/adminList">
+                        <a href="/admin/list">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -351,7 +351,7 @@
                                 등록/목록</strong>
                         </a>
 
-                        <a href="#">
+                        <a href="/admin/userlist">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white"></path>
@@ -369,7 +369,7 @@
                                 목록</strong>
                         </a>
 
-                        <a href="#">
+                        <a href="/admin/noticeWrite">
                             <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -381,7 +381,7 @@
                                 <i class="fa fa-angle-right"></i>
                             </em>
                             <strong style="font-size: 25px;">
-                                게시글관리</strong>
+                                공지사항 작성</strong>
                         </a>
                     </div>
                 </div>
@@ -400,8 +400,8 @@
                         <div class="card-body">
                             <div class="my-board">
                                 <ul>
-                                    <li><a href="/admin/Product">상품등록</a></li>
-                                    <li><a href="/admin/List">상품목록</a></li>
+                                    <li><a href="/admin/product">상품등록</a></li>
+                                    <li><a href="/admin/list">상품목록</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -432,9 +432,9 @@
                         <div class="card-body">
                             <div class="my-board">
                                 <ul>
-                                    <li><a href="#">공지사항</a></li>
-                                    <li><a href="#">리뷰관리</a></li>
-                                    <li><a href="#">커뮤니티관리</a></li>
+                                    <li><a href="/notice">공지사항 목록</a></li>
+                                    <li><a href="/admin/noticeWrite">공지사항 작성</a></li>
+                                    <li><a href="/admin/reviewlist">리뷰관리</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -633,7 +633,7 @@
 
                 <div class="col-sm-6 col-lg-3 p-b-50">
                     <h4 class="stext-301 cl0 p-b-30">
-                        고객센터<a href="tel:031-837-4111" style="color:white;"> 031-837-4111</a>
+                        고객센터<a href="tel:031-123-1234" style="color:white;"> 031-123-1234</a>
                     </h4>
 
                     <p class="stext-107 cl7 size-201">
@@ -860,19 +860,18 @@
     <!--==============================================================================================-->
     <script>
 		function statusClicked(event) {
-			event.preventDefault(); // 기본 동작 중단
+			event.preventDefault();
 			
-			const deliveryStatus = event.target.getAttribute('data-status'); // 클릭한 배송상태
+			const deliveryStatus = event.target.getAttribute('data-status');
 	
-			const rows = document.querySelectorAll('.table_row'); // 모든 주문 row 가져오기
+			const rows = document.querySelectorAll('.table_row');
 	
-			// 각 row를 순회하면서 해당 배송상태에 속하는지 확인
 			rows.forEach((row) => {
-				const rowDeliveryStatus = row.querySelector('.dStatus').textContent; // 해당 row의 배송상태
+				const rowDeliveryStatus = row.querySelector('.dStatus').textContent;
 	
-				if (rowDeliveryStatus !== deliveryStatus && deliveryStatus !== '전체') { // 다른 배송상태에 속하는 경우
+				if (rowDeliveryStatus !== deliveryStatus && deliveryStatus !== '전체') {
 					row.style.display = 'none'; // 숨김 처리
-				} else { // 해당 배송상태에 속하는 경우
+				} else {
 					row.style.display = 'table-row'; // 보이게 처리
 				}
 			});

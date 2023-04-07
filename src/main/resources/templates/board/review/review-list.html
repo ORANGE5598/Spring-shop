@@ -57,8 +57,6 @@
 <body class="animsition">
 
 
-
-
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -69,7 +67,7 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -80,19 +78,19 @@
 				</div>
 			</div>
 
-			<div class="wrap-menu-desktop">
+			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="/index" class="logo"> <img
-						src="../img/icons/logo1.png" alt="IMG-LOGO">
+					<a href="/index" class="logo"> <img src="../img/icons/logo1.png"
+						alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
-						<ul class="customMenu gnb expanded">
-							<li class="active-menu"><a href="/index">HOME</a></li>
-							<li><a href="/index">SHOP</a>
+						<ul class="customMenu expanded">
+							<li><a href="/index">HOME</a></li>
+							<li class="active-menu"><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -109,78 +107,61 @@
 								</ul></li>
 
 							<li><a href="/notice">ABOUT</a></li>
-
+							<li><a href="/contact">CONTACT</a></li>
 							<li><a href="/mypage">MYPAGE</a></li>
 						</ul>
 					</div>
 
 					<!-- Icon header -->
-
-					<!--------------------검색창 (클릭 시 따로 열리는 속성)----------------------->
 					<div class="wrap-icon-header flex-w flex-r-m">
 						<div
 							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<!---------------------------------장바구니 기능 ( 장바구니에 상품 넣으면 카운트 메서드 필요)---------------------------->
 						<div
 							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
 							th:data-notify="${count}">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
 
-						<!----------------------찜하기 기능 (상품 찜하기 버튼 누르면 카운트 메서드 필요)--------------------------->
 					</div>
 				</nav>
 			</div>
 		</div>
 
-
-
-
-		<!-- 반응형용 아이콘임, 이건 메서드 추가해야함... -->
+		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="/index"><img src="../img/icons/logo1.png"
-					alt="IMG-LOGO"></a>
+				<a href="/index"><img src="../img/icons/logo1.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<!---------------------------------검색창아이콘------------------------->
 				<div
 					class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-
-
-				<!---------------------------카트아이콘 ( 카운트 메서드 필요)--------------------------->
 				<div
 					class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
 					th:data-notify="${count}">
 					<i class="zmdi zmdi-shopping-cart"></i>
-
 				</div>
-				<!---------------찜하기 아이콘 ( 카운트 메서드 필요 ) ------------------------->
 			</div>
 
-
-
-			<!-- 카트 버튼 누르면 내가 장바구니 안에 넣은 상품들이 보임. -->
+			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
 				<span class="hamburger-box"> <span class="hamburger-inner"></span>
 				</span>
 			</div>
 		</div>
-		<!----------------------------------------------------------------->
 
-		<!-- 반응형 메뉴바, 안건드려도 되는 부분-->
+
+		<!-- Menu Mobile -->
 		<div class="menu-mobile">
 			<ul class="topbar-mobile">
-
 				<li>
 					<div class="left-top-bar">100% genuine ! The safest way to
 						buy limited edition!</div>
@@ -221,9 +202,8 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-
+							<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
-
 			</ul>
 		</div>
 
@@ -294,6 +274,7 @@
 	</div>
 	<!-- 장바구니 끝 -->
 
+
 	<section class="bg-img1 txt-center p-lr-15 p-tb-45"
 		style="background-color: #ffffff;">
 		<h2 class="ltext-201 cl5 txt-center p-r-130">Review</h2>
@@ -328,14 +309,13 @@
 										<div class="wrap-slick5">
 											<div class="slick5">
 												<div class="item-slick5 p-l-15 p-r-15 p-t-15 p-b-15"
-													th:each="list : ${bestReview}">
+													th:each="list : ${listRating}">
 													<!-- Block2 -->
 													<div class="block2 widget_item_type">
 														<div class="widget_item_img">
 															<img src="../img/icons/best_icon.png"
 																class="widget_bestreview_img"> <img
-																th:src="@{|/upload/${list.storedFileName}|}"
-																alt="IMG-USER">
+																th:src="${list.reviewImg}" alt="IMG-USER">
 														</div>
 														<div class="review-content">
 															<div class="widget_box">
@@ -375,12 +355,11 @@
 							<div class="row isotope-grid">
 								<div
 									class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women"
-									th:each="list : ${reviewList}">
+									th:each="list : ${list.dtoList}">
 									<!-- Block2 -->
 									<div class="block2 widget_item_type">
 										<div class="widget_item_img">
-											<img th:src="@{|/upload/${list.storedFileName}|}"
-												alt="IMG-USER">
+											<img th:src="${list.reviewImg}" alt="IMG-USER">
 										</div>
 
 										<div class="review-content">
@@ -414,19 +393,40 @@
 								</div>
 							</div>
 
+
+
+
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="product__pagination">
-										<a class="active" href="#">1</a> <a href="#">2</a> <a href="#">3</a>
+
+										<div
+											class="pagination h-100 justify-content-center align-items-center">
+
+											<!-- 페이지 링크 -->
+											<div class="product__pagination " th:if="${list.prev}">
+												<a class="page-link"
+													th:href="@{/review/list(page= ${list.start -1})}"
+													tabindex="-1">이전 페이지</a>
+											</div>
+
+											<div
+												th:class=" 'product__pagination ' + ${list.page == page?'active':''} "
+												th:each="page: ${list.pageList}">
+												<a class="page-link" th:href="@{/review/list(page=${page})}">
+													[[${page}]] </a>
+											</div>
+											<div class="product__pagination" th:if="${list.next}">
+												<a class="page-link"
+													th:href="@{/review/list(page= ${list.end + 1})}">다음 페이지</a>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-
-
 						</div>
 					</div>
 				</div>
-
 
 				<!-------------------------------------검색창----------------------------------------------------->
 				<div class="col-md-4 col-lg-3">
@@ -461,10 +461,6 @@
 			</div>
 		</div>
 	</section>
-	<!------------------------------------------------------------------------------------------------------------------->
-
-
-
 
 
 	<!-- Footer -->
@@ -480,16 +476,16 @@
 							class="stext-107 cl7 hov-cl2 trans-04"> Clothing </a></li>
 
 						<li class="p-b-10"><a
-							th:href="@{/productCategory(iCategory=4)}"
-							class="stext-107 cl7 hov-cl trans-04"> Footwear </a></li>
+							th:href="@{/productCategory(iCategory=3)}"
+							class="stext-107 cl7 hov-cl2 trans-04"> Footwear </a></li>
 
 						<li class="p-b-10"><a
 							th:href="@{/productCategory(iCategory=4)}"
-							class="stext-107 cl7 hov-cl trans-04"> Accessories </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> Accessories </a></li>
 
 						<li class="p-b-10"><a
 							th:href="@{/productCategory(iCategory=6)}"
-							class="stext-107 cl7 hov-cl trans-04"> Tech </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> Tech </a></li>
 					</ul>
 				</div>
 
@@ -498,23 +494,23 @@
 
 					<ul>
 						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> Track Order </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> 배송 추적 </a></li>
 
 						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> Returns </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> 환불 </a></li>
 
 						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> Shipping </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
 						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> FAQs </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						고객센터<a href="tel:031-837-4111" style="color: white;">
-							031-837-4111</a>
+						고객센터<a href="tel:031-123-1234" style="color: white;">
+							031-123-1234</a>
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
@@ -563,9 +559,7 @@
 				by Team 1
 			</p>
 		</div>
-		</div>
 	</footer>
-
 
 
 	<!-- Back to top -->
@@ -574,7 +568,6 @@
 			class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
-
 
 	<!--===============================================================================================-->
 	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -586,9 +579,8 @@
 	<script src="../vendor/bootstrap/js/popper.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!--===============================================================================================-->
-
-	<!--===============================================================================================-->
 	<script src="../vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
 	<script>
 		$(".js-select2").each(function() {
 			$(this).select2({
@@ -647,6 +639,47 @@
 			reviewRatings[i].nextElementSibling
 					.querySelector('.reviewRatingStars').innerHTML = stars;
 		}
+	</script>
+	<!--===============================================================================================-->
+	<script>
+		(function() {
+			var w = window;
+			if (w.ChannelIO) {
+				return w.console.error("ChannelIO script included twice.")
+			}
+			var ch = function() {
+				ch.c(arguments)
+			};
+			ch.q = [];
+			ch.c = function(args) {
+				ch.q.push(args)
+			};
+			w.ChannelIO = ch;
+			function l() {
+				if (w.ChannelIOInitialized) {
+					return
+				}
+				w.ChannelIOInitialized = true;
+				var s = document.createElement("script");
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = "https://cdn.channel.io/plugin/ch-plugin-web.js";
+				var x = document.getElementsByTagName("script")[0];
+				if (x.parentNode) {
+					x.parentNode.insertBefore(s, x)
+				}
+			}
+			if (document.readyState === "complete") {
+				l()
+			} else {
+				w.addEventListener("DOMContentLoaded", l);
+				w.addEventListener("load", l)
+			}
+		})();
+
+		ChannelIO('boot', {
+			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
+		});
 	</script>
 	<!--===============================================================================================-->
 	<script src="../js/main.js"></script>

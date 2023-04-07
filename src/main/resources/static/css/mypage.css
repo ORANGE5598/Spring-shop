@@ -503,6 +503,7 @@ nav.mypage-sidenav {
     font-weight: 600;
     line-height: 1.12;
     color: #ffffff;
+    margin-right: 10px;
 }
 
 
@@ -555,8 +556,20 @@ nav.mypage-sidenav {
     padding-left: 20px;
 }
 
+.table.table-hover.table-col .column-1x {
+    width: 133px;
+    text-align: center;
+    padding-left: 20px;
+}
+
 .table.table-hover.table-col .column-2 {
     width: 220px;
+    padding-right: 25px;
+}
+
+.table.table-hover.table-col .column-2x {
+    width: 220px;
+    text-align: center;
     padding-right: 25px;
 }
 
@@ -595,8 +608,10 @@ nav.mypage-sidenav {
     cursor: pointer;
 }
 
-.img-block img img {
-    width: 100%;
+.img-block img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
 }
 
 .product_row {

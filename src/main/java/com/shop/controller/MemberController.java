@@ -34,6 +34,7 @@ import com.shop.service.CartService;
 import com.shop.service.MailService;
 import com.shop.service.MemberService;
 import com.shop.service.OrderService;
+import com.shop.service.ReviewService;
 import com.shop.validator.CheckEmailValidator;
 import com.shop.validator.CheckUsernameValidator;
 
@@ -51,7 +52,7 @@ public class MemberController {
 	private final MailService mailService;
 	private final CartService cartService;
 	private final OrderService orderService;
-	
+	private final ReviewService reviewService;
 
 	/** 중복 체크 유효성 검사 **/
 	private final CheckUsernameValidator checkUsernameValidator;
@@ -160,18 +161,18 @@ public class MemberController {
 	public String findByMemberId(@AuthenticationPrincipal UserAdapter user,
 			Model model) {
 
-		Long member_id = user.getMemberDTO().getId();
-		ResponseDTO responseDto = memberService.getById(member_id);
+		Long id = user.getMemberDTO().getId();
+		ResponseDTO responseDto = memberService.getById(id);
 		
 		
-		List<CartDTO> cartDTOList = cartService.getCartList(member_id);
-		Long cartCount = cartService.getCartCount(member_id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		Long cartCount = cartService.getCartCount(id);
 		
 		int totalPrice = 0;
 		for (CartDTO cart : cartDTOList) {
 			totalPrice += cart.getCPrice() * cart.getCount();
 		}
-		
+		model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
@@ -181,9 +182,11 @@ public class MemberController {
 
 	/** 회원정보 수정 페이지 **/
 	@GetMapping("/update")
-	public String MemberUpdate(@AuthenticationPrincipal UserAdapter member, Model model) {
-		Long member_id = member.getMemberDTO().getId();
-		ResponseDTO responseDTO = memberService.getById(member_id);
+	public String MemberUpdate(@AuthenticationPrincipal UserAdapter user, Model model) {
+		Long id = user.getMemberDTO().getId();
+		ResponseDTO responseDTO = memberService.getById(id);
+		
+		model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("member", responseDTO);
 		return "/content/user/update";
 	}
@@ -204,7 +207,7 @@ public class MemberController {
 	    }
 	    model.addAttribute("cartList", cartList);
 	    model.addAttribute("totalPrice", totalPrice);
-		
+	    model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("member", member);
 		model.addAttribute("orderList", orderService.getList(id));	// 사용자 id에 따른 전체 목록 출력
 		model.addAttribute("count0", orderService.allStatus(id));
@@ -215,5 +218,31 @@ public class MemberController {
 		
 		return "content/user/mypage-orderlist";
 	}
+	
+    @GetMapping("/myReviewList")
+    public String myReviewList(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+    	
+    	Long id = user.getMemberDTO().getId();
+    	String username = user.getMemberDTO().getUsername();
+    	ResponseDTO member = memberService.getById(id);
+    	
+    	Long cartCount = cartService.getCartCount(id);
+    	List<CartDTO> cartDTOList = cartService.getCartList(id);
+    	
+    	int totalPrice = 0;
+    	for (CartDTO cart : cartDTOList) {
+    		totalPrice += cart.getCPrice() * cart.getCount();
+    	}
+    	
+    	model.addAttribute("reviewCount", reviewService.myReviewCount(id));
+    	model.addAttribute("list", reviewService.read(username));
+    	model.addAttribute("member", member);
+    	model.addAttribute("totalPrice", totalPrice);
+    	model.addAttribute("cartList", cartDTOList);
+    	model.addAttribute("count", cartCount);
+    	
+    	return "content/user/mypage-reviewlist";
+    	
+    }
 	
 }

@@ -73,7 +73,7 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -88,8 +88,8 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="/index" class="logo"> <img
-						src="../img/icons/logo1.png" alt="IMG-LOGO">
+					<a href="/index" class="logo"> <img src="../img/icons/logo1.png"
+						alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -98,29 +98,23 @@
 							<li><a href="/index">HOME</a></li>
 							<li class="active-menu"><a href="/product">SHOP</a>
 								<ul class="sub-menu">
-									<li><a href="/product">CLOTHING</a>
+									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
-											<li><a th:href="@{/productCategory(iCategory=1)}"
-												onclick="categoryClicked(event)">TOP</a></li>
-											<li><a th:href="@{/productCategory(iCategory=2)}"
-												onclick="categoryClicked(event)">BOTTOM</a></li>
+											<li><a th:href="@{/productCategory(iCategory=1)}">TOP</a></li>
+											<li><a th:href="@{/productCategory(iCategory=2)}">BOTTOM</a></li>
 										</ul></li>
-									<li><a th:href="@{/productCategory(iCategory=3)}"
-										onclick="categoryClicked(event)">FOOTWEAR</a></li>
-									<li><a href="/product">ACCESSORIES</a>
+									<li><a th:href="@{/productCategory(iCategory=3)}">FOOTWEAR</a></li>
+									<li><a th:href="@{/productCategory(iCategory=4)}">ACCESSORIES</a>
 										<ul class="sub-menu">
-											<li><a th:href="@{/productCategory(iCategory=4)}"
-												onclick="categoryClicked(event)">BAG</a></li>
-											<li><a th:href="@{/productCategory(iCategory=5)}"
-												onclick="categoryClicked(event)">HAEDWEAR</a></li>
+											<li><a th:href="@{/productCategory(iCategory=4)}">BAG</a></li>
+											<li><a th:href="@{/productCategory(iCategory=5)}">HAEDWEAR</a></li>
 										</ul></li>
-									<li><a th:href="@{/productCategory(iCategory=6)}"
-										onclick="categoryClicked(event)">TECH</a></li>
+									<li><a th:href="@{/productCategory(iCategory=6)}">TECH</a></li>
 								</ul></li>
 
-							<li><a href="/com">COMMUNITY</a></li>
-
-							<li><a href="/myPage-orderlist">MYPAGE</a></li>
+							<li><a href="/notice">ABOUT</a></li>
+							<li><a href="/contact">CONTACT</a></li>
+							<li><a href="/mypage">MYPAGE</a></li>
 						</ul>
 					</div>
 
@@ -146,8 +140,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="/index"><img src="../img/icons/logo1.png"
-					alt="IMG-LOGO"></a>
+				<a href="/index"><img src="../img/icons/logo1.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -194,17 +187,17 @@
 			</ul>
 
 			<ul class="main-menu-m">
-				<li><a href="index.html">HOME</a></li>
+				<li><a href="/index">HOME</a></li>
 
-				<li><a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
+				<li><a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
 					<ul class="sub-menu-m">
-						<li><a href="/product">CLOTHING</a>
+						<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 							<ul class="sub-menu-m">
 								<li><a th:href="@{/productCategory(iCategory=1)}">TOP</a></li>
 								<li><a th:href="@{/productCategory(iCategory=2)}">BOTTOM</a></li>
 							</ul></li>
 						<li><a th:href="@{/productCategory(iCategory=3)}">FOOTWEAR</a></li>
-						<li><a href="/product">ACCESSORIES</a>
+						<li><a th:href="@{/productCategory(iCategory=4)}">ACCESSORIES</a>
 							<ul class="sub-menu-m">
 								<li><a th:href="@{/productCategory(iCategory=4)}">BAG</a></li>
 								<li><a th:href="@{/productCategory(iCategory=5)}">HAEDWEAR</a></li>
@@ -214,9 +207,9 @@
 						class="fa fa-angle-right" aria-hidden="true"></i>
 				</span></li>
 
-				<li><a href="/com">Community</a></li>
-
-				<li><a href="/myPage-orderlist">MYPAGE</a></li>
+				<li><a href="/review/list">ABOUT</a></li>
+							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
 
@@ -300,7 +293,7 @@
 
 					<div class="mypage-top">
 						<div class="user-nickname">
-							<strong>[[${member.name}]]님 안녕하세요</strong> <a href="#">회원정보변경</a>
+							<strong>[[${member.name}]]님 안녕하세요</strong>
 						</div>
 
 						<div class="user-name">
@@ -346,13 +339,14 @@
 									d="M25.3333 20.0889L25.3333 23.8555" stroke="white"></path>
                             </svg> <em> 쿠폰 <i class="fa fa-angle-right"></i>
 						</em> <strong>0</strong>
-						</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
-								fill="none" xmlns="http://www.w3.org/2000/svg">
+						</a> <a href="/review/write"> <svg width="38" height="38"
+								viewBox="0 0 38 38" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
                                 <path
 									d="M31.6666 31.3889H17.7333M6.33325 24.4617L24.6781 6.27777L31.6666 13.205L13.3218 31.3889H6.33325V24.4617Z"
 									stroke="white"></path>
                             </svg> <em> 후기작성 <i class="fa fa-angle-right"></i>
-						</em> <strong>0</strong>
+						</em> <strong>[[${reviewCount}]]</strong>
 						</a>
 					</div>
 				</div>
@@ -363,9 +357,9 @@
 			<h2 class="nav-tit">My page Navigation</h2>
 			<div class="my-account">
 				<h3>나의 쇼핑 활동</h3>
-				<a href="/orderlist" class="order_list">주문 내역 조회</a> <a href="#"
-					class="product_reviews">구매후기</a> <a href="#"
-					class="product_inquiry">상품문의</a>
+				<a href="/orderlist" class="order_list">주문 내역 조회</a> <a
+					href="/myReviewList" class="product_reviews">내 구매후기</a> <a
+					href="/faq" class="product_inquiry">상품문의</a>
 			</div>
 
 			<div class="my-board">
@@ -374,98 +368,70 @@
 			</div>
 		</nav>
 
-
-
-
 		<section class="mypage-cont mypage-order_list">
 			<form action="inWrite" method="POST" enctype="multipart/form-data">
 				<div class="section-title">
 					<h1 class="tit">구매후기작성</h1>
 				</div>
 				<div class="my-review-write" id="reviewWrap">
-					<!-- 상품 -->
-
-					<!-- 
-					<div class="n-prd-row">
-						<img src="#">
+					<div>
+						<select onchange="displayImage(this)" name="reviewImg">
+							<option>미선택</option>
+							<option th:each="img : ${imgList}" th:value="${img}"
+								th:data-image="${img}" th:text="${img}"></option>
+						</select> <img id="myImage" name="img" src="" width="100" height="100">
 					</div>
-					 -->
 
-				<!-- 테스트 -->
-					<div class="n-prd-row">
-					  <!-- orderList DB에서 조회한 img 값으로 이미지를 출력 -->
-					<!--
-					<div th:each="images : ${imgList}">
-						<img th:src="${images}" th:onclick="selectImage(this, ${images});"
-							width="50">
+					<div class="review-score" id="reviewScorePos">
+						<em class="label">별점을 매겨주세요</em>
+						<div class="n-score score-lg clickable goods_est_area"
+							id="startScoreWrap">
+							<span class="wrap-rating fs-18 cl11 pointer"> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(1)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(2)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(3)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(4)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(5)"></i> <input class="dis-none"
+								type="number" name="reviewRating" id="reviewRatingInput">
+							</span>
+						</div>
 					</div>
-					-->
-				</div>
-				<!-- 테스트 -->
-
-				<div>
-					<select onchange="displayImage(this)">
-						<option th:each="img : ${imgList}" name="img" th:value="${img}" th:data-image="${img}" th:text="${img}"></option>
-					</select>
-
-					<img id="myImage" name="img" src="" width="100" height="100">
-				</div>
-
-				<div class="review-score" id="reviewScorePos">
-					<em class="label">별점을 매겨주세요</em>
-					<div class="n-score score-lg clickable goods_est_area"
-						id="startScoreWrap">
-						<span class="wrap-rating fs-18 cl11 pointer"> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(1)"></i> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(2)"></i> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(3)"></i> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(4)"></i> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(5)"></i> <input class="dis-none" type="number"
-							name="reviewRating" id="reviewRatingInput">
-						</span>
-					</div>
-				</div>
 
 
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">작성자</th>
-							<td><input class="form-control-label bg-body-secondary"
-								type="text" name="reviewWriter" th:value="${member.username}"></td>
-						</tr>
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">작성자</th>
+								<td><input class="form-control-label bg-body-secondary"
+									type="text" name="reviewWriter" th:value="${member.username}" required></td>
+							</tr>
 
-						<tr>
-							<th scope="col">제목</th>
-							<td><input class="form-control-label bg-body-secondary"
-								type="text" name="reviewTitle"></td>
-						</tr>
+							<tr>
+								<th scope="col">제목</th>
+								<td><input class="form-control-label bg-body-secondary"
+									type="text" name="reviewTitle" required></td>
+							</tr>
 
-						<tr>
-							<th scope="col">사진</th>
-							<td><input class="form-control" type="file"
-								id="formFileMultiple" name="reviewFile" multiple></td>
-						</tr>
-						<tr>
-							<th scope="col"></th>
-							<td>
-								<div class="form-group">
-									<label for="board_content"></label>
-									<textarea name="reviewContent" id="BOARD_CONTENT"></textarea>
-								</div>
-							</td>
-						</tr>
-					</thead>
-				</table>
+							<tr>
+								<th scope="col"></th>
+								<td>
+									<div class="form-group">
+										<label for="board_content"></label>
+										<textarea name="reviewContent" id="board_content" required></textarea>
+									</div>
+								</td>
+							</tr>
+						</thead>
+					</table>
 				</div>
 				<div class="d-grid gap-2 d-md-block m-b-50">
 					<button class="btn btn-dark" type="submit">글올리기</button>
-					<button class="btn btn-danger" type="button" id="cancle">취소</button>
+					<button class="btn btn-danger cancle" type="button">취소</button>
 				</div>
 			</form>
 		</section>
@@ -529,8 +495,8 @@
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						고객센터<a href="tel:031-837-4111" style="color: white;">
-							031-837-4111</a>
+						고객센터<a href="tel:031-123-1234" style="color: white;">
+							031-123-1234</a>
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
@@ -695,10 +661,9 @@
     </script>
 	<!--==============================================================================================-->
 	<script>
-	  const cancelButton = document.querySelector('#cancel');
-	  cancelButton.addEventListener('click', () => {
-	    window.location.href = '/orderlist';
-	  });
+		$(".cancle").click(function(){
+			location.href = "/myReviewList";
+		});
 	</script>
 	<!--==============================================================================================-->
 	<script>
@@ -725,6 +690,47 @@
 			var imgSrc = element.options[element.selectedIndex].getAttribute("data-image");
 			document.getElementById("myImage").src = imgSrc;
 		}
+	</script>
+	<!--===============================================================================================-->
+	<script>
+		(function() {
+			var w = window;
+			if (w.ChannelIO) {
+				return w.console.error("ChannelIO script included twice.")
+			}
+			var ch = function() {
+				ch.c(arguments)
+			};
+			ch.q = [];
+			ch.c = function(args) {
+				ch.q.push(args)
+			};
+			w.ChannelIO = ch;
+			function l() {
+				if (w.ChannelIOInitialized) {
+					return
+				}
+				w.ChannelIOInitialized = true;
+				var s = document.createElement("script");
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = "https://cdn.channel.io/plugin/ch-plugin-web.js";
+				var x = document.getElementsByTagName("script")[0];
+				if (x.parentNode) {
+					x.parentNode.insertBefore(s, x)
+				}
+			}
+			if (document.readyState === "complete") {
+				l()
+			} else {
+				w.addEventListener("DOMContentLoaded", l);
+				w.addEventListener("load", l)
+			}
+		})();
+
+		ChannelIO('boot', {
+			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
+		});
 	</script>
 	<!--==============================================================================================-->
 	<script src="../js/main.js"></script>

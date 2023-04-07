@@ -1,7 +1,5 @@
 package com.shop.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -9,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shop.dto.ItemDTO;
 import com.shop.entity.Item;
 import com.shop.repository.AdminRepository;
-import com.shop.repository.ItemRepository;
 
 import lombok.RequiredArgsConstructor;
 

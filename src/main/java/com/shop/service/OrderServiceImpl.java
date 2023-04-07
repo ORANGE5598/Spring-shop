@@ -127,7 +127,7 @@ public class OrderServiceImpl implements OrderService {
 	public List<String> getImgList(Long id) {
 		
 		List<String> result = orderRepository.getImgById(id);
-		System.out.println("+++++++ : " + result);
+		
 		return result;
 	}
 }

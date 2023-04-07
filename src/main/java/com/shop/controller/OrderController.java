@@ -11,13 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.CartDTO;
 import com.shop.dto.ItemDTO;
-import com.shop.dto.OrderDTO;
 import com.shop.dto.PageRequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.service.CartService;
 import com.shop.service.ItemService;
 import com.shop.service.MemberService;
-import com.shop.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class OrderController {
 	
-	private final OrderService orderService;
 	private final ItemService itemService;
 	private final MemberService memberService;
 	private final CartService cartService;
