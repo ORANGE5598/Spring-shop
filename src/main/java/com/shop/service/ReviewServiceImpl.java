@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.shop.dto.PageRequestDTO;
 import com.shop.dto.PageResultDTO;
-import com.shop.dto.ReviewDTO2;
+import com.shop.dto.ReviewDTO;
 import com.shop.entity.Review;
 import com.shop.repository.ReviewRepository;
 
@@ -26,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
 	private final ReviewRepository reviewRepository2;
 	
 	@Override
-	public Long write(ReviewDTO2 dto) {
+	public Long write(ReviewDTO dto) {
 		
 		String reviewContent = dto.getReviewContent();
 	    reviewContent = reviewContent.replaceAll("<p>", "").replaceAll("</p>", "");
@@ -40,11 +40,10 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public Long modify(ReviewDTO2 dto, Long id) {
-		System.out.println("+++++ : "+dto.getReviewImg());
+	public Long modify(ReviewDTO dto, Long id) {
+		
 		Review entity = reviewRepository2.getById(id);
 		String img = !dto.getReviewImg().equals("미선택") ? dto.getReviewImg() : "https://i.imgur.com/OEzmJJ8.jpeg";
-		System.out.println("+++++ : "+img);
 		String reviewContent = dto.getReviewContent();
 	    reviewContent = reviewContent.replaceAll("<p>", "").replaceAll("</p>", "");
 	    dto.setReviewContent(reviewContent);
@@ -60,17 +59,25 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public List<ReviewDTO2> getListByRating() {
+	public List<ReviewDTO> getAllList() {
 		
-		List<ReviewDTO2> result = reviewRepository2.getListByRating().stream().map(review -> entityToDto(review)).collect(Collectors.toList());
+		List<ReviewDTO> result = reviewRepository2.getAllList().stream().map(review -> entityToDto(review)).collect(Collectors.toList());
+		
+		return result;
+	}
+	
+	@Override
+	public List<ReviewDTO> getListByRating() {
+		
+		List<ReviewDTO> result = reviewRepository2.getListByRating().stream().map(review -> entityToDto(review)).collect(Collectors.toList());
 		
 		return result;
 	}
 
 	@Override
-	public PageResultDTO<ReviewDTO2, Review> getList(PageRequestDTO pageRequestDTO) {
+	public PageResultDTO<ReviewDTO, Review> getList(PageRequestDTO pageRequestDTO) {
 		
-		Function<Review, ReviewDTO2> fn = (en -> entityToDto(en));
+		Function<Review, ReviewDTO> fn = (en -> entityToDto(en));
 		
 		Page<Review> result = reviewRepository2.getList(pageRequestDTO.getPageable(Sort.by("id").ascending()));
 		
@@ -78,7 +85,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public ReviewDTO2 read(Long id) {
+	public ReviewDTO read(Long id) {
 		
 		Review result = reviewRepository2.getReviewById(id);
 		
@@ -86,9 +93,9 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public List<ReviewDTO2> read(String username) {
+	public List<ReviewDTO> read(String username) {
 		
-		List<ReviewDTO2> result = reviewRepository2.getReviewByName(username).stream().map(en -> entityToDto(en)).collect(Collectors.toList());
+		List<ReviewDTO> result = reviewRepository2.getReviewByName(username).stream().map(en -> entityToDto(en)).collect(Collectors.toList());
 		
 		return result;
 	}

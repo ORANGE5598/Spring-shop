@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <title>구매후기작성 - 마이페이지</title>
@@ -35,7 +35,8 @@
 <link rel="stylesheet"
 	href="//cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0/all.min.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
+<link rel="stylesheet" type="text/css"
+	href="../vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="../vendor/css-hamburgers/hamburgers.min.css">
@@ -60,8 +61,6 @@
 <body class="animsition mypage_body">
 
 
-
-
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
@@ -72,8 +71,8 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
-							sec:authorize="isAnonymous()" th:href="@{/login}"
+						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs
+						</a> <a sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
 							class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
@@ -87,8 +86,8 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="/index" class="logo"> <img src="../img/icons/logo1.png"
-						alt="IMG-LOGO">
+					<a href="/index" class="logo"> <img
+						src="../img/icons/logo1.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -97,29 +96,23 @@
 							<li><a href="/index">HOME</a></li>
 							<li class="active-menu"><a href="/product">SHOP</a>
 								<ul class="sub-menu">
-									<li><a href="/product">CLOTHING</a>
+									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
-											<li><a th:href="@{/productCategory(iCategory=1)}"
-												onclick="categoryClicked(event)">TOP</a></li>
-											<li><a th:href="@{/productCategory(iCategory=2)}"
-												onclick="categoryClicked(event)">BOTTOM</a></li>
+											<li><a th:href="@{/productCategory(iCategory=1)}">TOP</a></li>
+											<li><a th:href="@{/productCategory(iCategory=2)}">BOTTOM</a></li>
 										</ul></li>
-									<li><a th:href="@{/productCategory(iCategory=3)}"
-										onclick="categoryClicked(event)">FOOTWEAR</a></li>
-									<li><a href="/product">ACCESSORIES</a>
+									<li><a th:href="@{/productCategory(iCategory=3)}">FOOTWEAR</a></li>
+									<li><a th:href="@{/productCategory(iCategory=4)}">ACCESSORIES</a>
 										<ul class="sub-menu">
-											<li><a th:href="@{/productCategory(iCategory=4)}"
-												onclick="categoryClicked(event)">BAG</a></li>
-											<li><a th:href="@{/productCategory(iCategory=5)}"
-												onclick="categoryClicked(event)">HAEDWEAR</a></li>
+											<li><a th:href="@{/productCategory(iCategory=4)}">BAG</a></li>
+											<li><a th:href="@{/productCategory(iCategory=5)}">HAEDWEAR</a></li>
 										</ul></li>
-									<li><a th:href="@{/productCategory(iCategory=6)}"
-										onclick="categoryClicked(event)">TECH</a></li>
+									<li><a th:href="@{/productCategory(iCategory=6)}">TECH</a></li>
 								</ul></li>
 
 							<li><a href="/notice">ABOUT</a></li>
 							<li><a href="/contact">CONTACT</a></li>
-							<li><a href="/myPage-orderlist">MYPAGE</a></li>
+							<li><a href="/mypage">MYPAGE</a></li>
 						</ul>
 					</div>
 
@@ -145,7 +138,8 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="/index"><img src="../img/icons/logo1.png" alt="IMG-LOGO"></a>
+				<a href="/index"><img src="../img/icons/logo1.png"
+					alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -192,17 +186,17 @@
 			</ul>
 
 			<ul class="main-menu-m">
-				<li><a href="index.html">HOME</a></li>
+				<li><a href="/index">HOME</a></li>
 
-				<li><a href="#" class="label1 rs1" data-label1="hot">SHOP</a>
+				<li><a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
 					<ul class="sub-menu-m">
-						<li><a href="/product">CLOTHING</a>
+						<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 							<ul class="sub-menu-m">
 								<li><a th:href="@{/productCategory(iCategory=1)}">TOP</a></li>
 								<li><a th:href="@{/productCategory(iCategory=2)}">BOTTOM</a></li>
 							</ul></li>
 						<li><a th:href="@{/productCategory(iCategory=3)}">FOOTWEAR</a></li>
-						<li><a href="/product">ACCESSORIES</a>
+						<li><a th:href="@{/productCategory(iCategory=4)}">ACCESSORIES</a>
 							<ul class="sub-menu-m">
 								<li><a th:href="@{/productCategory(iCategory=4)}">BAG</a></li>
 								<li><a th:href="@{/productCategory(iCategory=5)}">HAEDWEAR</a></li>
@@ -212,9 +206,9 @@
 						class="fa fa-angle-right" aria-hidden="true"></i>
 				</span></li>
 
-				<li><a href="/notice">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
-				<li><a href="/myPage-orderlist">MYPAGE</a></li>
+				<li><a href="/review/list">ABOUT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
 
@@ -285,6 +279,7 @@
 	</div>
 	<!-- 장바구니 끝 -->
 
+
 	<main class="content">
 		<div id="userMypage">
 			<section class="mypage-sc">
@@ -302,7 +297,8 @@
 						</div>
 
 						<div class="user-name">
-							<em>[[${member.name}]]</em> <span> 가입일 : [[${member.createdDate}]] </span>
+							<em>[[${member.name}]]</em> <span> 가입일 :
+								[[${member.createdDate}]] </span>
 						</div>
 					</div>
 
@@ -375,51 +371,39 @@
 
 
 		<section class="mypage-cont mypage-order_list">
-    <form action="/notice/new" method="post">
-        <div class="section-title">
-            <h1 class="tit">공지사항작성</h1>
-        </div>
+			<form action="/notice/new" method="post">
+				<div class="section-title">
+					<h1 class="tit">공지사항작성</h1>
+				</div>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">제목</th>
-                    <td><input class="form-control-label bg-body-secondary" type="text" name="title"></td>
-                </tr>
-                <tr>
-                    <th scope="col"></th>
-                    <td>
-                        <div class="form-group">
-                            <label for="content"></label>
-                            <textarea id="content" name="content"></textarea>
-                        </div>
-                    </td>
-                </tr>
-            </thead>
-        </table>
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">제목</th>
+							<td><input class="form-control-label bg-body-secondary"
+								type="text" name="title" required></td>
+						</tr>
+						<tr>
+							<th scope="col"></th>
+							<td>
+								<div class="form-group">
+									<label for="content"></label>
+									<textarea id="board_content" name="content" required></textarea>
+								</div>
+							</td>
+						</tr>
+					</thead>
+				</table>
 
-        <div class="d-grid gap-2 d-md-block m-b-50">
-            <button class="btn btn-dark" type="submit">글올리기</button>
-            <button class="btn btn-danger" type="button" id="cancle">취소</button>
-        </div>
-    </form>
-</section>
+				<div class="d-grid gap-2 d-md-block m-b-50">
+					<button class="btn btn-dark" type="submit">글올리기</button>
+					<button class="btn btn-danger cancle" type="button">취소</button>
+				</div>
+			</form>
+		</section>
 	</main>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-	<!------------------------------------------------------------------------------------------------------------------->
 	<!-- Footer -->
 	<footer class="bg3 p-t-65 p-b-32">
 		<div class="container">
@@ -428,19 +412,21 @@
 					<h4 class="stext-301 cl0 p-b-30">Categories</h4>
 
 					<ul>
-						<li class="p-b-10"><a href="/product"
+						<li class="p-b-10"><a
+							th:href="@{/productCategory(iCategory=1)}"
 							class="stext-107 cl7 hov-cl2 trans-04"> Clothing </a></li>
 
 						<li class="p-b-10"><a
 							th:href="@{/productCategory(iCategory=3)}"
-							class="stext-107 cl7 hov-cl trans-04"> Footwear </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> Footwear </a></li>
 
-						<li class="p-b-10"><a href="/product"
-							class="stext-107 cl7 hov-cl trans-04"> Accessories </a></li>
+						<li class="p-b-10"><a
+							th:href="@{/productCategory(iCategory=4)}"
+							class="stext-107 cl7 hov-cl2 trans-04"> Accessories </a></li>
 
 						<li class="p-b-10"><a
 							th:href="@{/productCategory(iCategory=6)}"
-							class="stext-107 cl7 hov-cl trans-04"> Tech </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> Tech </a></li>
 					</ul>
 				</div>
 
@@ -449,23 +435,23 @@
 
 					<ul>
 						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> Track Order </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> 배송 추적 </a></li>
 
 						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> Returns </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> 환불 </a></li>
 
 						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> Shipping </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
 						<li class="p-b-10"><a href="#"
-							class="stext-107 cl7 hov-cl trans-04"> FAQs </a></li>
+							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						고객센터<a href="tel:031-837-4111" style="color: white;">
-							031-837-4111</a>
+						고객센터<a href="tel:031-123-1234" style="color: white;">
+							031-123-1234</a>
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
@@ -478,7 +464,8 @@
 							class="fa fa-stack-overflow"></i>
 						</a> <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
 							class="fa fa-instagram"></i>
-						</a> <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
+						</a> <a href="https://github.com/ORANGE5598/shop"
+							class="fs-18 cl7 hov-cl1 trans-04 m-r-16"> <i
 							class="fa fa-github-alt"></i>
 						</a>
 					</div>
@@ -506,15 +493,14 @@
 
 			<p class="stext-107 cl6 txt-center">
 				<script>
-                    document.write(new Date().getFullYear());
-                </script>
+					document.write(new Date().getFullYear());
+				</script>
 				All rights reserved | This template is made with <i
 					class="fa fa-heart-o" aria-hidden="true" style="color: #fa4251;"></i>
 				by Team 1
 			</p>
 		</div>
 	</footer>
-
 
 
 	<!-- Back to top -->
@@ -630,10 +616,9 @@
     </script>
 	<!--==============================================================================================-->
 	<script>
-	  const cancelButton = document.querySelector('#cancel');
-	  cancelButton.addEventListener('click', () => {
-	    window.location.href = '/orderlist';
-	  });
+		$(".cancle").click(function(){
+			location.href = "/admin/index";
+		});
 	</script>
 	<!--==============================================================================================-->
 	<script>
@@ -653,6 +638,47 @@
 				}
 			}
 		}
+	</script>
+	<!--==============================================================================================-->
+	<script>
+		(function() {
+			var w = window;
+			if (w.ChannelIO) {
+				return w.console.error("ChannelIO script included twice.")
+			}
+			var ch = function() {
+				ch.c(arguments)
+			};
+			ch.q = [];
+			ch.c = function(args) {
+				ch.q.push(args)
+			};
+			w.ChannelIO = ch;
+			function l() {
+				if (w.ChannelIOInitialized) {
+					return
+				}
+				w.ChannelIOInitialized = true;
+				var s = document.createElement("script");
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = "https://cdn.channel.io/plugin/ch-plugin-web.js";
+				var x = document.getElementsByTagName("script")[0];
+				if (x.parentNode) {
+					x.parentNode.insertBefore(s, x)
+				}
+			}
+			if (document.readyState === "complete") {
+				l()
+			} else {
+				w.addEventListener("DOMContentLoaded", l);
+				w.addEventListener("load", l)
+			}
+		})();
+
+		ChannelIO('boot', {
+			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
+		});
 	</script>
 	<!--==============================================================================================-->
 	<script src="../js/main.js"></script>

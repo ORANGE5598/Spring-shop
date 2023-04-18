@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 @Data
-public class NoticeDto {
+public class NoticeDTO {
 
     private Long id;
 
@@ -17,12 +17,12 @@ public class NoticeDto {
 
     private LocalDateTime RegDate;
 
-    public NoticeDto(String title, String content) {
+    public NoticeDTO(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
  
-    public NoticeDto() {
+    public NoticeDTO() {
     }
 }

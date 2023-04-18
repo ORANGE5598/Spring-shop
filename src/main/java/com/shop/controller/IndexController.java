@@ -21,7 +21,6 @@ import com.shop.service.CartService;
 import com.shop.service.CategoryService;
 import com.shop.service.ItemService;
 import com.shop.service.MemberService;
-import com.shop.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,7 +33,6 @@ public class IndexController {
 	private final CartService cartService;
 	private final CategoryService categoryService;
 	private final BrandService brandService;
-	private final OrderService orderService;
 	
 	@GetMapping({"/","/index"})
 	public String goIndex(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
@@ -59,8 +57,6 @@ public class IndexController {
 			model.addAttribute("cartList", cartDTOList);
 			model.addAttribute("count", cartCount);
 			model.addAttribute("itemDTO", itemDTO);
-//			model.addAttribute("list", itemService.getList(pageRequestDTO));
-//			model.addAttribute("list", itemService.getListTest());
 			model.addAttribute("list1", itemService.getTopListTest());
 			model.addAttribute("list4", itemService.getBagListTest());
 			model.addAttribute("list6", itemService.getTechListTest());
@@ -97,7 +93,30 @@ public class IndexController {
 	}
 	
 	@GetMapping("/contact")
-	public String contact() {
+	public String contact(Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		
+		
+		if(user == null) {
+			
+		} else {
+		
+			Long id = user.getMemberDTO().getId();
+			List<CartDTO> cartDTOList = cartService.getCartList(id);
+			List<CartDTO> cartList = cartService.getCartList(id);
+			
+			int totalPrice2 = 0;
+		    for (CartDTO cart : cartList) {
+		        totalPrice2 += cart.getCPrice() * cart.getCount();
+		    }
+		    
+		    Long cartCount = cartService.getCartCount(id);
+			
+		    model.addAttribute("totalPrice", totalPrice2);
+		    model.addAttribute("cartList", cartDTOList);
+		    model.addAttribute("count", cartCount);
+		}
+		
 		return "contact";
 	}
 	
@@ -108,11 +127,6 @@ public class IndexController {
 		Long id = user.getMemberDTO().getId();
 		
 		List<CartDTO> cartDTOList = cartService.getCartList(id);
-		
-//		CartDTO dto = cartService.order(cNumber);
-//		Long cPrice = dto.getCPrice();
-//		Long totalPrice = cPrice * oCount + dPrice;
-		
 		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
 		int totalPrice2 = 0;
 	    for (CartDTO cart : cartList) {
@@ -274,12 +288,13 @@ public class IndexController {
 	
 	@GetMapping("/faq")
 	public String goFAQ(Model model, @AuthenticationPrincipal UserAdapter user) {
+		
 		if(user == null) {
-			return "board/qna/faq";
 			
 		} else {
-
+		
 			Long id = user.getMemberDTO().getId();
+			
 			Long cartCount = cartService.getCartCount(id);
 			List<CartDTO> cartDTOList = cartService.getCartList(id);
 			
@@ -288,13 +303,13 @@ public class IndexController {
 				totalPrice += cart.getCPrice() * cart.getCount();
 			}
 			
-			model.addAttribute("totalPrice", totalPrice);
+	        model.addAttribute("totalPrice", totalPrice);
 			model.addAttribute("cartList", cartDTOList);
 			model.addAttribute("count", cartCount);
-			
-			return "board/qna/faq";
+		
 		}
-			
+		
+		return "board/qna/faq";
 	}
 	
 }

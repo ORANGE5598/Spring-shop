@@ -503,6 +503,7 @@ nav.mypage-sidenav {
     font-weight: 600;
     line-height: 1.12;
     color: #ffffff;
+    margin-right: 10px;
 }
 
 
@@ -607,8 +608,10 @@ nav.mypage-sidenav {
     cursor: pointer;
 }
 
-.img-block img img {
-    width: 100%;
+.img-block img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
 }
 
 .product_row {

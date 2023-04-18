@@ -4,13 +4,13 @@ import java.util.List;
 
 import com.shop.dto.PageRequestDTO;
 import com.shop.dto.PageResultDTO;
-import com.shop.dto.ReviewDTO2;
+import com.shop.dto.ReviewDTO;
 import com.shop.entity.Review;
 
 public interface ReviewService {
 	
 	
-	default Review dtoToEntity(ReviewDTO2 dto) {
+	default Review dtoToEntity(ReviewDTO dto) {
 		
 		String img = dto.getReviewImg() != null ? dto.getReviewImg() : "https://i.imgur.com/OEzmJJ8.jpeg";
 		
@@ -22,9 +22,9 @@ public interface ReviewService {
 		return review;
 	}
 	
-	default ReviewDTO2 entityToDto(Review rEntity) {
+	default ReviewDTO entityToDto(Review rEntity) {
 		
-		ReviewDTO2 reviewDTO2 = ReviewDTO2.builder()
+		ReviewDTO reviewDTO2 = ReviewDTO.builder()
 				.id(rEntity.getId()).reviewTitle(rEntity.getReviewTitle())
 				.reviewContent(rEntity.getReviewContent()).reviewWriter(rEntity.getReviewWriter())
 				.reviewRating(rEntity.getReviewRating()).reviewImg(rEntity.getReviewImg())
@@ -34,17 +34,19 @@ public interface ReviewService {
 		return reviewDTO2;
 	}
 	
-	Long write(ReviewDTO2 dto);
+	Long write(ReviewDTO dto);
 	
-	Long modify(ReviewDTO2 dto, Long id);
+	Long modify(ReviewDTO dto, Long id);
 	
-	PageResultDTO<ReviewDTO2, Review> getList(PageRequestDTO pageRequestDTO);
+	PageResultDTO<ReviewDTO, Review> getList(PageRequestDTO pageRequestDTO);
 	
-	List<ReviewDTO2> getListByRating();
+	List<ReviewDTO> getAllList();
 	
-	ReviewDTO2 read(Long id);
+	List<ReviewDTO> getListByRating();
 	
-	List<ReviewDTO2> read(String username);
+	ReviewDTO read(Long id);
+	
+	List<ReviewDTO> read(String username);
 	
 	void remove(Long id);
 	

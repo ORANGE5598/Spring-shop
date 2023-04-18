@@ -73,7 +73,7 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -368,35 +368,12 @@
 			</div>
 		</nav>
 
-
-
-
 		<section class="mypage-cont mypage-order_list">
 			<form action="inWrite" method="POST" enctype="multipart/form-data">
 				<div class="section-title">
 					<h1 class="tit">구매후기작성</h1>
 				</div>
 				<div class="my-review-write" id="reviewWrap">
-					<!-- 상품 -->
-
-					<!-- 
-					<div class="n-prd-row">
-						<img src="#">
-					</div>
-					 -->
-
-					<!-- 테스트 -->
-					<div class="n-prd-row">
-						<!-- orderList DB에서 조회한 img 값으로 이미지를 출력 -->
-						<!--
-					<div th:each="images : ${imgList}">
-						<img th:src="${images}" th:onclick="selectImage(this, ${images});"
-							width="50">
-					</div>
-					-->
-					</div>
-					<!-- 테스트 -->
-
 					<div>
 						<select onchange="displayImage(this)" name="reviewImg">
 							<option>미선택</option>
@@ -431,13 +408,13 @@
 							<tr>
 								<th scope="col">작성자</th>
 								<td><input class="form-control-label bg-body-secondary"
-									type="text" name="reviewWriter" th:value="${member.username}"></td>
+									type="text" name="reviewWriter" th:value="${member.username}" required></td>
 							</tr>
 
 							<tr>
 								<th scope="col">제목</th>
 								<td><input class="form-control-label bg-body-secondary"
-									type="text" name="reviewTitle"></td>
+									type="text" name="reviewTitle" required></td>
 							</tr>
 
 							<tr>
@@ -445,7 +422,7 @@
 								<td>
 									<div class="form-group">
 										<label for="board_content"></label>
-										<textarea name="reviewContent" id="board_content"></textarea>
+										<textarea name="reviewContent" id="board_content" required></textarea>
 									</div>
 								</td>
 							</tr>
@@ -518,8 +495,8 @@
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						고객센터<a href="tel:031-837-4111" style="color: white;">
-							031-837-4111</a>
+						고객센터<a href="tel:031-123-1234" style="color: white;">
+							031-123-1234</a>
 					</h4>
 
 					<p class="stext-107 cl7 size-201">

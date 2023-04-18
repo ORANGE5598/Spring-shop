@@ -18,6 +18,7 @@ import com.shop.dto.CategoryDTO;
 import com.shop.dto.ItemDTO;
 import com.shop.dto.OrderDTO;
 import com.shop.dto.PageRequestDTO;
+import com.shop.dto.ReviewDTO;
 import com.shop.entity.Member;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
@@ -28,6 +29,7 @@ import com.shop.service.CategoryService;
 import com.shop.service.ItemService;
 import com.shop.service.MemberService;
 import com.shop.service.OrderService;
+import com.shop.service.ReviewService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -35,7 +37,7 @@ import lombok.RequiredArgsConstructor;
 //한 클래스에 넣어두면 작동이 안됨
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class AdminController{
 	
 	private final ItemService itemService;
@@ -45,8 +47,9 @@ public class AdminController{
 	private final CategoryService categoryService;
 	private final BrandService brandService;
 	private final AdminService adminService;
+	private final ReviewService reviewService;
 	
-	@GetMapping("/List")
+	@GetMapping("/list")
 	public String adminList(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -75,7 +78,7 @@ public class AdminController{
 		return "content/admin/adminList";
 	}
 	
-	@GetMapping("/Product")
+	@GetMapping("/product")
 	public String adminProduct(PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -115,7 +118,7 @@ public class AdminController{
 		return "content/admin/admin-notice-write";
 	}
 	
-	@GetMapping("/Modify")
+	@GetMapping("/modify")
 	public String adminModify(Long iNumber, PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -138,7 +141,7 @@ public class AdminController{
 		return "content/admin/admin-modify";
 	}
 	
-	@GetMapping("/Index")
+	@GetMapping("/index")
 	public String adminIndex(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
@@ -166,14 +169,14 @@ public class AdminController{
 	}
 	
 	@PostMapping("/modifyDeliveryStatus")
-	public String modifyDeliveryStatus2(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
+	public String modifyDeliveryStatus(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
 		
 		Long oNumber = dto.getONumber();
 		
 		orderService.modify(dto, oNumber);
 		
 		redirectAttributes.addFlashAttribute("message", "주문 정보 수정이 완료되었습니다.");
-	    return "redirect:/admin/Index";
+	    return "redirect:/admin/index";
 	}
 	
 	@GetMapping("/userlist")
@@ -181,10 +184,56 @@ public class AdminController{
 		
 		Long id = user.getMemberDTO().getId();
 		ResponseDTO member = memberService.getById(id);
+		
 		List<Member> members = memberService.findMembers();
+		
+		Long cartCount = cartService.getCartCount(id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+	    model.addAttribute("count", cartCount);
 		model.addAttribute("members", members);
 		model.addAttribute("member", member);
 		return "content/admin/admin-userlist";
+	}
+	
+	@GetMapping("/reviewlist")
+	public String adminReviewlist(Model model, @AuthenticationPrincipal UserAdapter user) {
+		
+		Long id = user.getMemberDTO().getId();
+		ResponseDTO member = memberService.getById(id);
+		
+		List<ReviewDTO> reviewDTOList = reviewService.getListByRating();
+		
+		Long cartCount = cartService.getCartCount(id);
+		List<CartDTO> cartDTOList = cartService.getCartList(id);
+		int totalPrice = 0;
+		for (CartDTO cart : cartDTOList) {
+			totalPrice += cart.getCPrice() * cart.getCount();
+		}
+		
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("cartList", cartDTOList);
+		model.addAttribute("count", cartCount);
+		model.addAttribute("reviews", reviewDTOList);
+		model.addAttribute("member", member);
+		return "content/admin/admin-reviewlist";
+	}
+	
+	@PostMapping("/deleteReview")
+	public String deleteReview(ReviewDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
+		
+		Long id = dto.getId();
+		
+		reviewService.remove(id);
+		
+		redirectAttributes.addFlashAttribute("message", "리뷰 삭제가 완료되었습니다.");
+	    return "redirect:/admin/reviewlist";
 	}
 	
 }

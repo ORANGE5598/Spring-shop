@@ -4,12 +4,17 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.shop.dto.NoticeDto;
+import com.shop.dto.NoticeDTO;
+import com.shop.dto.PageRequestDTO2;
+import com.shop.dto.PageResultDTO2;
 import com.shop.entity.Notice;
 import com.shop.repository.NoticeRepository;
 
@@ -19,14 +24,27 @@ public class NoticeService {
 
     @Autowired
     private NoticeRepository noticeRepository;
-
-    public List<NoticeDto> getAllNotices() {
-        return noticeRepository.findAll().stream()
-                .map(this::convertToDto)
-                .collect(Collectors.toList());
+    
+//    public List<NoticeDTO> getAllNotices() {
+//    	return noticeRepository.findAll().stream()
+//    			.map(this::convertToDto)
+//    			.collect(Collectors.toList());
+//    }
+    
+    public PageResultDTO2<NoticeDTO, Notice> getNotices(PageRequestDTO2 pageRequestDTO2) {
+    	
+    	Function<Notice, NoticeDTO> fn = (en -> convertToDto(en));
+    	
+    	Page<Notice> result = noticeRepository.findAll(pageRequestDTO2.getPageable(Sort.by("regDate").ascending()));
+    	
+    	return new PageResultDTO2<>(result, fn);
+    	
+//    	return noticeRepository.findAll().stream()
+//    			.map(this::convertToDto)
+//    			.collect(Collectors.toList());
     }
 
-    public NoticeDto createNotice(NoticeDto noticeDto, String createdBy) {
+    public NoticeDTO createNotice(NoticeDTO noticeDto, String createdBy) {
         Notice notice = new Notice();
         notice.setTitle(noticeDto.getTitle());
         notice.setContent(noticeDto.getContent());
@@ -36,8 +54,8 @@ public class NoticeService {
         return convertToDto(notice);
     }
 
-    private NoticeDto convertToDto(Notice notice) {
-        NoticeDto noticeDto = new NoticeDto();
+    private NoticeDTO convertToDto(Notice notice) {
+        NoticeDTO noticeDto = new NoticeDTO();
         noticeDto.setId(notice.getId());
         noticeDto.setTitle(notice.getTitle());
         noticeDto.setContent(notice.getContent());
@@ -46,7 +64,7 @@ public class NoticeService {
         return noticeDto;
     }
 
-    public NoticeDto getNoticeById(Long id) {
+    public NoticeDTO getNoticeById(Long id) {
         Optional<Notice> notice = noticeRepository.findById(id);
         if (notice.isPresent()) {
             return convertToDto(notice.get());

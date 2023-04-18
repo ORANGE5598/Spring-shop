@@ -15,14 +15,14 @@ import com.shop.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/reply")
+@RequestMapping("reply")
 @RequiredArgsConstructor
 public class ReplyController {
 	private final ReplyService replyService;
 
 	@PostMapping("/save")
 	public ResponseEntity save(@ModelAttribute ReplyDTO replyDTO) {
-		System.out.println("replyDTO = " + replyDTO);
+		
 		Long saveResult = replyService.save(replyDTO);
 		if(saveResult != null) {
 			

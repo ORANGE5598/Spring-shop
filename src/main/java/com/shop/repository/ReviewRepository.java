@@ -12,6 +12,9 @@ import com.shop.entity.Review;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 	
+	@Query(value = "SELECT * FROM Review", nativeQuery = true)
+	List<Review> getAllList();
+	
 	@Query(value = "SELECT * FROM Review WHERE id > 0 ORDER BY review_rating DESC", nativeQuery = true)
 	List<Review> getListByRating();
 	

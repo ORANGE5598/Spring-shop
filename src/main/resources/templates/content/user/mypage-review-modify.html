@@ -73,7 +73,7 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -88,7 +88,7 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="index" class="logo"> <img src="img/icons/logo1.png"
+					<a href="/index" class="logo"> <img src="img/icons/logo1.png"
 						alt="IMG-LOGO">
 					</a>
 
@@ -412,7 +412,7 @@
 						<tr>
 							<th scope="col">작성자</th>
 							<td><input class="form-control-label bg-body-secondary"
-								type="text" name="reviewWriter" th:value="${member.username}">
+								type="text" name="reviewWriter" th:value="${member.username}" required>
 								<input type="hidden" name="id" th:value="${reviewDTO.id}"></td>
 						</tr>
 
@@ -420,7 +420,7 @@
 							<th scope="col">제목</th>
 							<td><input class="form-control-label bg-body-secondary"
 								type="text" name="reviewTitle"
-								th:value="${reviewDTO.reviewTitle}"></td>
+								th:value="${reviewDTO.reviewTitle}" required></td>
 						</tr>
 
 						<tr>
@@ -428,7 +428,7 @@
 							<td>
 								<div class="form-group">
 									<label for="board_content"></label>
-									<textarea name="reviewContent" id="board_content">[[${reviewDTO.reviewContent}]]</textarea>
+									<textarea name="reviewContent" id="board_content" required>[[${reviewDTO.reviewContent}]]</textarea>
 								</div>
 							</td>
 						</tr>
@@ -489,8 +489,8 @@
 
 				<div class="col-sm-6 col-lg-3 p-b-50">
 					<h4 class="stext-301 cl0 p-b-30">
-						고객센터<a href="tel:031-837-4111" style="color: white;">
-							031-837-4111</a>
+						고객센터<a href="tel:031-123-1234" style="color: white;">
+							031-123-1234</a>
 					</h4>
 
 					<p class="stext-107 cl7 size-201">
@@ -692,7 +692,6 @@
 		
 		var id = $("input[name='id']").val();
 		formData.append("id", id);
-		alert(id);
 
 		$.ajax({
 			url : 'delete',
@@ -702,12 +701,12 @@
 			type : 'POST',
 			dataType : 'text',
 			success : function(result){
-				alert('성공');
+				
 				console.log(result);
 				location.href = "/myReviewList";
 			},
 			error : function(jqXHR, textStatus, errThrown){
-				alert('실패');
+				
 				console.log(errThrown);
 			}
 			

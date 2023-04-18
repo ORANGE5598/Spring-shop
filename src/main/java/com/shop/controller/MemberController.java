@@ -52,7 +52,7 @@ public class MemberController {
 	private final MailService mailService;
 	private final CartService cartService;
 	private final OrderService orderService;
-	private final ReviewService reviewService2;
+	private final ReviewService reviewService;
 
 	/** 중복 체크 유효성 검사 **/
 	private final CheckUsernameValidator checkUsernameValidator;
@@ -172,7 +172,7 @@ public class MemberController {
 		for (CartDTO cart : cartDTOList) {
 			totalPrice += cart.getCPrice() * cart.getCount();
 		}
-		model.addAttribute("reviewCount", reviewService2.myReviewCount(id));
+		model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
@@ -186,7 +186,7 @@ public class MemberController {
 		Long id = user.getMemberDTO().getId();
 		ResponseDTO responseDTO = memberService.getById(id);
 		
-		model.addAttribute("reviewCount", reviewService2.myReviewCount(id));
+		model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("member", responseDTO);
 		return "/content/user/update";
 	}
@@ -207,7 +207,7 @@ public class MemberController {
 	    }
 	    model.addAttribute("cartList", cartList);
 	    model.addAttribute("totalPrice", totalPrice);
-	    model.addAttribute("reviewCount", reviewService2.myReviewCount(id));
+	    model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("member", member);
 		model.addAttribute("orderList", orderService.getList(id));	// 사용자 id에 따른 전체 목록 출력
 		model.addAttribute("count0", orderService.allStatus(id));
@@ -234,8 +234,8 @@ public class MemberController {
     		totalPrice += cart.getCPrice() * cart.getCount();
     	}
     	
-    	model.addAttribute("reviewCount", reviewService2.myReviewCount(id));
-    	model.addAttribute("list", reviewService2.read(username));
+    	model.addAttribute("reviewCount", reviewService.myReviewCount(id));
+    	model.addAttribute("list", reviewService.read(username));
     	model.addAttribute("member", member);
     	model.addAttribute("totalPrice", totalPrice);
     	model.addAttribute("cartList", cartDTOList);
