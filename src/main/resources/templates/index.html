@@ -68,9 +68,9 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a th:if="${isADMIN}"></a>
-						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20">ADMIN</a>
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -172,7 +172,9 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -205,7 +207,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -276,7 +278,7 @@
 		</div>
 	</div>
 	<!-- 장바구니 끝 -->
-	
+
 
 	<section class="section-slide">
 		<div class="wrap-slick1 rs2-slick1">
@@ -385,9 +387,9 @@
 							href="/review/list"
 							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-16 p-tb-9 trans-03 respon3">
 							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8"> Review
-								</span> <span class="block1-info stext-102 trans-04"> TAG YOUR
-									STYLE </span>
+								<span class="block1-name ltext-102 trans-04 p-b-8">
+									Review </span> <span class="block1-info stext-102 trans-04">
+									TAG YOUR STYLE </span>
 							</div>
 
 							<div class="block1-txt-child2 p-b-4 trans-05">
@@ -1484,7 +1486,7 @@
 						<li class="p-b-10"><a href="#"
 							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/faq"
 							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
@@ -1674,13 +1676,18 @@
 
 		// var timerdate = "2023/03/19"
 
-		$("#countdown").countdown(timerdate, function(event) {
-			$(this).html(event.strftime(
-					"<div class='cd-item'><span>%D</span> <p>Days</p> </div>"
-						+ "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>"
-						+ "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>"
-						+ "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"));
-		});
+		$("#countdown")
+				.countdown(
+						timerdate,
+						function(event) {
+							$(this)
+									.html(
+											event
+													.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>"
+															+ "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>"
+															+ "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>"
+															+ "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"));
+						});
 	</script>
 	<!--===============================================================================================-->
 	<script>
@@ -1700,6 +1707,7 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
 				}
 				w.ChannelIOInitialized = true;
 				var s = document.createElement("script");
@@ -1721,7 +1729,7 @@
 
 		ChannelIO('boot', {
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
-			
+
 		});
 	</script>
 	<!--===============================================================================================-->

@@ -2,35 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Order</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="_csrf" th:content="${_csrf.token}">
-    <meta name="_csrf_header" th:content="${_csrf.headerName}">
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/img/icons/favicon.png"/>
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/linearicons-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/css/util.css">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <!--===============================================================================================-->
+<title>Order</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="_csrf" th:content="${_csrf.token}">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="/img/icons/favicon.png" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="/css/util.css">
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+<!--===============================================================================================-->
 </head>
 
 <body class="animsition">
@@ -45,8 +54,8 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
-							sec:authorize="isAnonymous()" th:href="@{/login}"
+						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs
+						</a> <a sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
 							class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
@@ -147,7 +156,9 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -180,7 +191,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -255,133 +266,150 @@
 
 	<!-- breadcrumb -->
 	<section class="breadcrumb-option">
-	    <div class="container">
-	        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-	            <div class="breadcrumb__text">
-	                <h3>Order / Payment</h3>
-	                <a href="/index" class="stext-109 cl8 hov-cl1 trans-04">
-	                    Home
-	                    <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-	                </a>
-	
-	                <a href="/product" class="stext-109 cl8 hov-cl1 trans-04">
-	                    Shop
-	                    <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-	                </a>
-	                <span class="stext-109 cl8 hov-cl1 trans-04">상품번호 [[${ordering.iNumber}]]</span>
-	            </div>
-	        </div>
-	    </div>
+		<div class="container">
+			<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+				<div class="breadcrumb__text">
+					<h3>Order / Payment</h3>
+					<a href="/index" class="stext-109 cl8 hov-cl1 trans-04"> Home <i
+						class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+					</a> <a href="/product" class="stext-109 cl8 hov-cl1 trans-04">
+						Shop <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+					</a> <span class="stext-109 cl8 hov-cl1 trans-04">상품번호
+						[[${ordering.iNumber}]]</span>
+				</div>
+			</div>
+		</div>
 	</section>
-	
-	
+
+
 	<!-- orderBy Section Begin -->
 	<section class="orderBy spad">
-	    <div class="container">
-	        <div class="orderBy__form">
-	            <form action="#">
-	                <div class="row">
-	                    <div class="col-lg-8 col-md-6">
-	                        <h6 class="member_tag"><span class="fa fa-user"></span>
-	                            <a href="#">[[${member.name}]]</a>님!! 배송정보를 전부 기입해주세요. 미입력 시 추후 주문이 취소될 수 있습니다.
-	                            <input name="iNumber" type="hidden" th:value="${ordering.iNumber}">
-	                        </h6>
-	                        <h6 class="orderBy__title">주문정보</h6>
-	                        <div class="row">
-	                            <div class="col-lg-6">
-	                                <div class="orderBy__input">
-	                                    <p>이름<span>*</span></p>
-	                                    <input type="hidden" name="mId" th:value="${member.id}">
-	                                    <input type="hidden" name="mEmail" th:value="${member.email}">
-	                                    <input type="text" name="mName" class="form-control" th:value="${member.name}" readonly="readonly" required>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <div class="row">
-	                            <div class="col-lg-8">
-	                                <div class="orderBy__input">
-	                                    <p>Phone<span>*</span></p>
-	                                    <input type="text" name="phoneNumber" th:value="${member.phone}" required>
-	                                </div>
-	                            </div>
-	                        </div>
-	                        <h6 class="orderBy__title m-t-60">배송정보</h6>
-	                        <div class="orderBy__input">
-	                            <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-	                            <input type="text" name="roadAddress" id="sample6_address" placeholder="도로명주소" th:value="${member.address1}" required="required">
-	                            <span id="guide" style="color:#999;display:none"></span>
-	                            <input type="text" id="sample6_detailAddress" name="detailAddress" placeholder="상세주소" th:value="${member.address2}" required="required">
-	                        </div>
-	
-	                        <div class="orderBy__input">
-	                            <p class="m-t-50">배송메세지</p>
-	                            <input type="text" name="deliveryMessage" placeholder="배송 시 참고사항">
-	                        </div>
-	                    </div>
-	
-	
-	                    <div class="col-lg-4 col-md-6">
-	                        <div class="orderBy__order">
-	                            <h4 class="order__title mtext-109">Payment</h4>
-	                            
-	                            <ul class="orderBy__total__products">
-	                                <li><img th:src="${ordering.iImg}" width="200" height="200"><input name="img" type="hidden" th:value="${ordering.iImg}"></li>
-	                                <li>상품명 <input name="iName" th:value="${ordering.iName}" readonly="readonly"></li>
-	                                <li>가격 <input name="iPrice2" th:value="${ordering.iPrice}" readonly="readonly">
-	                                <input name="iPrice" th:value="${ordering.iPrice}" readonly="readonly" type="hidden"></li>
-	                            </ul><br>
-	                            <ul class="orderBy__total__products">
-	                            	<li>사이즈 <input name="oSize" th:value="${ordering.iSize}" readonly="readonly"></li>
-	                            	<li>주문 갯수 <input name="oCount" th:value="${param.oCount}" readonly="readonly"></li>
-	                            </ul>
-	                            <ul class="orderBy__total__products">
-	                                <!-- <li>배송비 <input name="dPrice" th:value="${ordering.iDeliveryPrice}" readonly="readonly"></li> -->
-	                                <li>배송비 <input name="dPrice2" th:value="${param.dPrice}" readonly="readonly">
-	                                <input name="dPrice" th:value="${param.dPrice}" readonly="readonly" type="hidden"></li>
-	                                <li>보유 포인트 <input name="firPoint2" th:value="${member.point}" readonly="readonly">
-	                                <input name="firPoint" th:value="${member.point}" readonly="readonly" type="hidden"></li>
-	                                <li>사용 포인트 <input name="oUsePoint" th:placeholder="${member.point}">
-	                                <input id="point" name="point" type="hidden" value=""></li>
-	                                <li>총금액 <input name="totalPrice2" th:value="${total}" readonly="readonly">
-	                                <input name="totalPrice" th:value="${total}" readonly="readonly" type="hidden"></li>
-	                            </ul>
-	
-	                            <div class="form-check">
-	                                <label for="credit-card">
-	                                    카드결제
-	                                    <input class="form-check-input" type="radio"
-	                                           name="payment" id="credit-card" value="카드결제" checked="checked">
-	                                </label>
-	                            </div>
-	
-	                            <div class="form-check">
-	                                <label for="deposit">
-	                                    무통장입금
-	                                    <input class="form-check-input" type="radio"
-	                                           name="payment" id="deposit" value="무통장입금">
-	                                </label>
-	                            </div>
-	
-	                            <div class="form-check">
-	                                <label for="easy-payment">
-	                                    간편결제
-	                                    <input class="form-check-input" type="radio"
-	                                           name="payment" id="easy-payment" value="간편결제">
-	                                </label>
-	                            </div>
-	
-	
-	                            <button class="flex-c-m stext-101 cl2 size-116 bg8 bor14 hov-btn5 p-lr-15 trans-04 pointer m-t-20 paymentBtn"
-	                                    type="button" onclick="requestPay()">
-	                                결제하기
-	                            </button>
-	                            <div id="root"></div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </form>
-	        </div>
-	    </div>
+		<div class="container">
+			<div class="orderBy__form">
+				<form action="#">
+					<div class="row">
+						<div class="col-lg-8 col-md-6">
+							<h6 class="member_tag">
+								<span class="fa fa-user"></span> <a href="#">[[${member.name}]]</a>님!!
+								배송정보를 전부 기입해주세요. 미입력 시 추후 주문이 취소될 수 있습니다. <input name="iNumber"
+									type="hidden" th:value="${ordering.iNumber}">
+							</h6>
+							<h6 class="orderBy__title">주문정보</h6>
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="orderBy__input">
+										<p>
+											이름<span>*</span>
+										</p>
+										<input type="hidden" name="mId" th:value="${member.id}">
+										<input type="hidden" name="mEmail" th:value="${member.email}">
+										<input type="text" name="mName" class="form-control"
+											th:value="${member.name}" readonly="readonly" required>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-8">
+									<div class="orderBy__input">
+										<p>
+											Phone<span>*</span>
+										</p>
+										<input type="text" name="phoneNumber"
+											th:value="${member.phone}" required>
+									</div>
+								</div>
+							</div>
+							<h6 class="orderBy__title m-t-60">배송정보</h6>
+							<div class="orderBy__input">
+								<input type="button" onclick="sample6_execDaumPostcode()"
+									value="우편번호 찾기"><br> <input type="text"
+									name="roadAddress" id="sample6_address" placeholder="도로명주소"
+									th:value="${member.address1}" required="required"> <span
+									id="guide" style="color: #999; display: none"></span> <input
+									type="text" id="sample6_detailAddress" name="detailAddress"
+									placeholder="상세주소" th:value="${member.address2}"
+									required="required">
+							</div>
+
+							<div class="orderBy__input">
+								<p class="m-t-50">배송메세지</p>
+								<input type="text" name="deliveryMessage"
+									placeholder="배송 시 참고사항">
+							</div>
+						</div>
+
+
+						<div class="col-lg-4 col-md-6">
+							<div class="orderBy__order">
+								<h4 class="order__title mtext-109">Payment</h4>
+
+								<ul class="orderBy__total__products">
+									<li><img th:src="${ordering.iImg}" width="200"
+										height="200"><input name="img" type="hidden"
+										th:value="${ordering.iImg}"></li>
+									<li>상품명 <input name="iName" th:value="${ordering.iName}"
+										readonly="readonly"></li>
+									<li>가격 <input name="iPrice2" th:value="${ordering.iPrice}"
+										readonly="readonly"> <input name="iPrice"
+										th:value="${ordering.iPrice}" readonly="readonly"
+										type="hidden"></li>
+								</ul>
+								<br>
+								<ul class="orderBy__total__products">
+									<li>사이즈 <input name="oSize" th:value="${ordering.iSize}"
+										readonly="readonly"></li>
+									<li>주문 갯수 <input name="oCount" th:value="${param.oCount}"
+										readonly="readonly"></li>
+								</ul>
+								<ul class="orderBy__total__products">
+									<!-- <li>배송비 <input name="dPrice" th:value="${ordering.iDeliveryPrice}" readonly="readonly"></li> -->
+									<li>배송비 <input name="dPrice2" th:value="${param.dPrice}"
+										readonly="readonly"> <input name="dPrice"
+										th:value="${param.dPrice}" readonly="readonly" type="hidden"></li>
+									<li>보유 포인트 <input name="firPoint2"
+										th:value="${member.point}" readonly="readonly"> <input
+										name="firPoint" th:value="${member.point}" readonly="readonly"
+										type="hidden"></li>
+									<li>사용 포인트 <input name="oUsePoint"
+										th:placeholder="${member.point}"> <input id="point"
+										name="point" type="hidden" value=""></li>
+									<li>총금액 <input name="totalPrice2" th:value="${total}"
+										readonly="readonly"> <input name="totalPrice"
+										th:value="${total}" readonly="readonly" type="hidden"></li>
+								</ul>
+
+								<div class="form-check">
+									<label for="credit-card"> 카드결제 <input
+										class="form-check-input" type="radio" name="payment"
+										id="credit-card" value="카드결제" checked="checked">
+									</label>
+								</div>
+
+								<div class="form-check">
+									<label for="deposit"> 무통장입금 <input
+										class="form-check-input" type="radio" name="payment"
+										id="deposit" value="무통장입금">
+									</label>
+								</div>
+
+								<div class="form-check">
+									<label for="easy-payment"> 간편결제 <input
+										class="form-check-input" type="radio" name="payment"
+										id="easy-payment" value="간편결제">
+									</label>
+								</div>
+
+
+								<button
+									class="flex-c-m stext-101 cl2 size-116 bg8 bor14 hov-btn5 p-lr-15 trans-04 pointer m-t-20 paymentBtn"
+									type="button" onclick="requestPay()">결제하기</button>
+								<div id="root"></div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	</section>
 	<!-- orderBy Section End -->
 
@@ -425,7 +453,7 @@
 						<li class="p-b-10"><a href="#"
 							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/faq"
 							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
@@ -483,13 +511,13 @@
 			</p>
 		</div>
 	</footer>
-	
+
 
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
-	        <span class="symbol-btn-back-to-top">
-	            <i class="zmdi zmdi-chevron-up"></i>
-	        </span>
+		<span class="symbol-btn-back-to-top"> <i
+			class="zmdi zmdi-chevron-up"></i>
+		</span>
 	</div>
 
 	<!--===============================================================================================-->
@@ -502,193 +530,295 @@
 	<!--===============================================================================================-->
 	<script src="/vendor/select2/select2.min.js"></script>
 	<script>
-	    $(".js-select2").each(function () {
-	        $(this).select2({
-	            minimumResultsForSearch: 20,
-	            dropdownParent: $(this).next('.dropDownSelect2')
-	        });
-	    })
+		$(".js-select2").each(function() {
+			$(this).select2({
+				minimumResultsForSearch : 20,
+				dropdownParent : $(this).next('.dropDownSelect2')
+			});
+		})
 	</script>
 	<!--===============================================================================================-->
 	<script src="/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
-	
+
 	<!--===============================================================================================-->
 	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
-	    $('.js-pscroll').each(function () {
-	        $(this).css('position', 'relative');
-	        $(this).css('overflow', 'hidden');
-	        var ps = new PerfectScrollbar(this, {
-	            wheelSpeed: 1,
-	            scrollingThreshold: 1000,
-	            wheelPropagation: false,
-	        });
-	
-	        $(window).on('resize', function () {
-	            ps.update();
-	        })
-	    });
+		$('.js-pscroll').each(function() {
+			$(this).css('position', 'relative');
+			$(this).css('overflow', 'hidden');
+			var ps = new PerfectScrollbar(this, {
+				wheelSpeed : 1,
+				scrollingThreshold : 1000,
+				wheelPropagation : false,
+			});
+
+			$(window).on('resize', function() {
+				ps.update();
+			})
+		});
 	</script>
 	<!--===============================================================================================-->
 	<script src="/vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-	
-	    $('.js-remove-item').on('click', function (e) {
-	        e.preventDefault();
-	    });
-	
-	    $('.js-remove-item').each(function () {
-	        var nameProduct = $(this).parent().parent().find('.js-name-item').html();
-	        $(this).on('click', function () {
-	            swal(nameProduct, "삭제되었습니다 ! ", "success");
-	
-	        });
-	    });
+		$('.js-remove-item').on('click', function(e) {
+			e.preventDefault();
+		});
+
+		$('.js-remove-item').each(
+				function() {
+					var nameProduct = $(this).parent().parent().find(
+							'.js-name-item').html();
+					$(this).on('click', function() {
+						swal(nameProduct, "삭제되었습니다 ! ", "success");
+
+					});
+				});
 	</script>
-	
+
 	<!--===============================================================================================-->
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script
+		src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-	    function sample6_execDaumPostcode() {
-	        new daum.Postcode({
-	            oncomplete: function(data) {
-	                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-	
-	                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-	                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-	                var addr = ''; // 주소 변수
-	
-	                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
-	                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-	                    addr = data.roadAddress;
-	                } else { // 사용자가 지번 주소를 선택했을 경우(J)
-	                    addr = data.jibunAddress;
-	                }
-	
-	                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-	                document.getElementById("sample6_address").value = addr;
-	                // 커서를 상세주소 필드로 이동한다.
-	                document.getElementById("sample6_detailAddress").focus();
-	            }
-	        }).open();
-	    }
+		function sample6_execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete : function(data) {
+					// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+					// 각 주소의 노출 규칙에 따라 주소를 조합한다.
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+					var addr = ''; // 주소 변수
+
+					//사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+					if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+						addr = data.roadAddress;
+					} else { // 사용자가 지번 주소를 선택했을 경우(J)
+						addr = data.jibunAddress;
+					}
+
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document.getElementById("sample6_address").value = addr;
+					// 커서를 상세주소 필드로 이동한다.
+					document.getElementById("sample6_detailAddress").focus();
+				}
+			}).open();
+		}
 	</script>
 	<!--===============================================================================================-->
 	<!-- iamport.payment.js -->
-	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 	<script>
 		const header = $("meta[name='_csrf_header']").attr('content');
 		const token = $("meta[name='_csrf']").attr('content');
-		
+
 		const oName = $("input[name='iName']").val();
 		const priceAmount = $("input[name='totalPrice']").val();
 		const buyerMemberEmail = $("input[name='mEmail']").val();
 		const buyerMemberName = $("input[name='mName']").val();
-	
-	    console.log(priceAmount);
-	    console.log(buyerMemberName);
-	    console.log(buyerMemberEmail);
-	    
-	    const IMP = window.IMP;
-	    IMP.init('imp99053400');
-	
-	    function requestPay() {
-	
-	    	
-	    	
-	        // IMP.request_pay(param, callback) 결제창 호출
-	        IMP.request_pay({ // param
-	            pg: "kakaopay.TC0ONETIME",
-	            pay_method: "card",
-	            merchant_uid: 'cart_' + new Date().getTime(),
-	            name: oName,
-	            amount: priceAmount,
-	            buyer_email: buyerMemberEmail,
-	            buyer_name: buyerMemberName,
-	
-	        }, function (rsp) { // callback
-	            /** 결제 검증 **/
-	            $.ajax({
-	                type: 'POST',
-	                url: '/verifyIamport/'+rsp.imp_uid,
-	                beforeSend: function(xhr){
-	                    xhr.setRequestHeader(header, token);
-	                }
-	            }).done(function(result){
-	                // rsp.paid_amount와 result.response.amount(서버 검증) 비교 후 로직 실행
-	                if(rsp.paid_amount === result.response.amount){
-	                    
-	                    var formData = new FormData();
-	                	
-	                	var iNumber = $("input[name='iNumber']").val();
-	                	var img = $("input[name='img']").val();
-	                	var mId = $("input[name='mId']").val();
-	                	var mName = $("input[name='mName']").val();
-	                	var oCount = $("input[name='oCount']").val()
-	                	var oDeliveryPrice = $("input[name='dPrice']").val();
-	                	var oItemPrice = $("input[name='iPrice']").val();
-	                	var oGetPoint = Math.floor($("input[name='totalPrice']").val() / 100);
-	                	var oName = $("input[name='iName']").val();
-	                	var oTotalPrice = $("input[name='totalPrice']").val();
-	                	var firPoint = $("input[name='firPoint']").val();
-	                	var oUsePoint = $("input[name='oUsePoint']").val();
-	                	var phoneNumber = $("input[name='phoneNumber']").val()
-	                	var roadAddress = $("input[name='roadAddress']").val();
-	                	var detailAddress = $("input[name='detailAddress']").val();
-	                	var deliveryMessage = $("input[name='deliveryMessage']").val();
-	                	var oSize = $("input[name='oSize']").val();
-	                	var paymentMethod = $(":input:radio[name='payment']:checked").val();
-	                	var tmpPoint = parseInt(firPoint) + oGetPoint - oUsePoint;
-	            		
-	                	$('#point').val(tmpPoint);
-	            		var point = $("input[name='point']").val();
-	            		
-	            		formData.append("iNumber", iNumber);
-	            		formData.append("img", img);
-	            		formData.append("mId", mId);
-	            		formData.append("mName", mName);
-	            		formData.append("oCount", oCount);
-	            		formData.append("oDeliveryPrice", oDeliveryPrice);
-	            		formData.append("oItemPrice", oItemPrice);
-	            		formData.append("oName", oName);
-	            		formData.append("oTotalPrice", oTotalPrice);
-	            		formData.append("phoneNumber", phoneNumber);
-	            		formData.append("roadAddress", roadAddress);
-	            		formData.append("detailAddress", detailAddress);
-	            		formData.append("deliveryMessage", deliveryMessage);
-	            		formData.append("oSize", oSize);
-	            		formData.append("paymentMethod", paymentMethod);
-	            		formData.append("point", point);
-	            		
-	                    $.ajax({
-	                        type:'POST',
-	                        url:'insertOrder',
-	                        processData : false,
-	            			contentType : false,
-	            			data : formData,
-	            			type : 'POST',
-	            			dataType : 'JSON',
-	            			success : function(result){
-	            				console.log(result);
-	            			},
-	            			error : function(jqXHR, textStatus, errThrown){
-	            				window.location.href="/orderlist"
-	            			},
-	                        beforeSend: function(xhr){
-	                            xhr.setRequestHeader(header, token);
-	                        }
-	                    }).done(function() {
-	                    	window.location.href="/orderlist"
-	                    }).fail(function(error){
-	                        window.location.href="/orderlist"
-	                    })
-	                } else{
-	                    alert("결제에 실패했습니다."+"에러코드 : "+rsp.error_code+"에러 메시지 : "+rsp.error_message);
-	
-	                }
-	            })
-	        });
-	    };
+
+		console.log(priceAmount);
+		console.log(buyerMemberName);
+		console.log(buyerMemberEmail);
+
+		const IMP = window.IMP;
+		IMP.init('imp99053400');
+
+		function requestPay() {
+
+			// IMP.request_pay(param, callback) 결제창 호출
+			IMP
+					.request_pay(
+							{ // param
+								pg : "kakaopay.TC0ONETIME",
+								pay_method : "card",
+								merchant_uid : 'cart_' + new Date().getTime(),
+								name : oName,
+								amount : priceAmount,
+								buyer_email : buyerMemberEmail,
+								buyer_name : buyerMemberName,
+
+							},
+							function(rsp) { // callback
+								/** 결제 검증 **/
+								$
+										.ajax(
+												{
+													type : 'POST',
+													url : '/verifyIamport/'
+															+ rsp.imp_uid,
+													beforeSend : function(xhr) {
+														xhr.setRequestHeader(
+																header, token);
+													}
+												})
+										.done(
+												function(result) {
+													// rsp.paid_amount와 result.response.amount(서버 검증) 비교 후 로직 실행
+													if (rsp.paid_amount === result.response.amount) {
+
+														var formData = new FormData();
+
+														var iNumber = $(
+																"input[name='iNumber']")
+																.val();
+														var img = $(
+																"input[name='img']")
+																.val();
+														var mId = $(
+																"input[name='mId']")
+																.val();
+														var mName = $(
+																"input[name='mName']")
+																.val();
+														var oCount = $(
+																"input[name='oCount']")
+																.val()
+														var oDeliveryPrice = $(
+																"input[name='dPrice']")
+																.val();
+														var oItemPrice = $(
+																"input[name='iPrice']")
+																.val();
+														var oGetPoint = Math
+																.floor($(
+																		"input[name='totalPrice']")
+																		.val() / 100);
+														var oName = $(
+																"input[name='iName']")
+																.val();
+														var oTotalPrice = $(
+																"input[name='totalPrice']")
+																.val();
+														var firPoint = $(
+																"input[name='firPoint']")
+																.val();
+														var oUsePoint = $(
+																"input[name='oUsePoint']")
+																.val();
+														var phoneNumber = $(
+																"input[name='phoneNumber']")
+																.val()
+														var roadAddress = $(
+																"input[name='roadAddress']")
+																.val();
+														var detailAddress = $(
+																"input[name='detailAddress']")
+																.val();
+														var deliveryMessage = $(
+																"input[name='deliveryMessage']")
+																.val();
+														var oSize = $(
+																"input[name='oSize']")
+																.val();
+														var paymentMethod = $(
+																":input:radio[name='payment']:checked")
+																.val();
+														var tmpPoint = parseInt(firPoint)
+																+ oGetPoint
+																- oUsePoint;
+
+														$('#point').val(
+																tmpPoint);
+														var point = $(
+																"input[name='point']")
+																.val();
+
+														formData.append(
+																"iNumber",
+																iNumber);
+														formData.append("img",
+																img);
+														formData.append("mId",
+																mId);
+														formData.append(
+																"mName", mName);
+														formData.append(
+																"oCount",
+																oCount);
+														formData
+																.append(
+																		"oDeliveryPrice",
+																		oDeliveryPrice);
+														formData.append(
+																"oItemPrice",
+																oItemPrice);
+														formData.append(
+																"oName", oName);
+														formData.append(
+																"oTotalPrice",
+																oTotalPrice);
+														formData.append(
+																"phoneNumber",
+																phoneNumber);
+														formData.append(
+																"roadAddress",
+																roadAddress);
+														formData
+																.append(
+																		"detailAddress",
+																		detailAddress);
+														formData
+																.append(
+																		"deliveryMessage",
+																		deliveryMessage);
+														formData.append(
+																"oSize", oSize);
+														formData
+																.append(
+																		"paymentMethod",
+																		paymentMethod);
+														formData.append(
+																"point", point);
+
+														$
+																.ajax(
+																		{
+																			type : 'POST',
+																			url : 'insertOrder',
+																			processData : false,
+																			contentType : false,
+																			data : formData,
+																			type : 'POST',
+																			dataType : 'JSON',
+																			success : function(
+																					result) {
+																				console
+																						.log(result);
+																			},
+																			error : function(
+																					jqXHR,
+																					textStatus,
+																					errThrown) {
+																				window.location.href = "/orderlist"
+																			},
+																			beforeSend : function(
+																					xhr) {
+																				xhr
+																						.setRequestHeader(
+																								header,
+																								token);
+																			}
+																		})
+																.done(
+																		function() {
+																			window.location.href = "/orderlist"
+																		})
+																.fail(
+																		function(
+																				error) {
+																			window.location.href = "/orderlist"
+																		})
+													} else {
+														alert("결제에 실패했습니다."
+																+ "에러코드 : "
+																+ rsp.error_code
+																+ "에러 메시지 : "
+																+ rsp.error_message);
+
+													}
+												})
+							});
+		};
 	</script>
 	<!--===============================================================================================-->
 	<script>
@@ -708,6 +838,7 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
 				}
 				w.ChannelIOInitialized = true;
 				var s = document.createElement("script");

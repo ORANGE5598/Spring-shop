@@ -40,6 +40,8 @@ public interface CartService {
 	
 	void saveCart(CartDTO dto, @AuthenticationPrincipal UserAdapter user);
 	
+	void deleteCart(Long cartItemId);
+	
 	Long getCartCount(Long id);
 	
 	CartDTO order(Long cNumber);

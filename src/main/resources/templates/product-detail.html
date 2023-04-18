@@ -59,7 +59,9 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -161,7 +163,9 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -194,7 +198,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -357,7 +361,7 @@
 									<input type="hidden" name="cPrice" th:value="${item.iPrice}">
 									<button
 										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail addCart"
-										type="submit">장바구니 담기</button>
+										type="button">장바구니 담기</button>
 
 
 									<a
@@ -514,7 +518,7 @@
 						<li class="p-b-10"><a href="#"
 							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/faq"
 							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
@@ -675,46 +679,62 @@
 	</script>
 	<!--===============================================================================================-->
 	<script>
-		$(".addCart").click(function() {
-		
-			var formData = new FormData();
-			
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			var iNumber = $("input[name='iNumber']").val();
-			var mId = $("input[name='mId']").val();
-			var cImg = $("input[name='cImg']").val();
-			var cName = $("input[name='cName']").val();
-			var cInfo = $("input[name='cInfo']").val();
-			var cPrice = $("input[name='cPrice']").val();
-			var count = $("input[name='num-product']").val();
+		$(".addCart")
+				.click(
+						function() {
 
-			formData.append("cNumber", iNumber);
-			formData.append("mId", mId);
-			formData.append("cImg", cImg);
-			formData.append("cName", cName);
-			formData.append("cInfo", cInfo);
-			formData.append("cPrice", cPrice);
-			formData.append("count", count);
-					
-			$.ajax({
-				url : 'addCart',
-				processData : false,
-				contentType : false,
-				data : formData,
-				type : 'POST',
-				dataType : 'json',
-				success : function(result) {
-					swal.fire(nameProduct,"장바구니에 담았습니다 ! ","success").then(function() {
-						window.location.href = '/shopping-cart';
-					});
-				},
-				error : function(jqXHR, textStatus, errThrown) {
-					swal.fire(nameProduct,"장바구니에 담았습니다 ! ","success").then(function() {
-						window.location.href = '/shopping-cart';
-					});
-				}
-			})
-		});
+							var formData = new FormData();
+
+							var nameProduct = $(this).parent().parent()
+									.parent().parent().find('.js-name-detail')
+									.html();
+							var iNumber = $("input[name='iNumber']").val();
+							var mId = $("input[name='mId']").val();
+							var cImg = $("input[name='cImg']").val();
+							var cName = $("input[name='cName']").val();
+							var cInfo = $("input[name='cInfo']").val();
+							var cPrice = $("input[name='cPrice']").val();
+							var count = $("input[name='num-product']").val();
+
+							formData.append("cNumber", iNumber);
+							formData.append("mId", mId);
+							formData.append("cImg", cImg);
+							formData.append("cName", cName);
+							formData.append("cInfo", cInfo);
+							formData.append("cPrice", cPrice);
+							formData.append("count", count);
+
+							$
+									.ajax({
+										url : 'addCart',
+										processData : false,
+										contentType : false,
+										data : formData,
+										type : 'POST',
+										dataType : 'json',
+										success : function(result) {
+											swal
+													.fire(nameProduct,
+															"장바구니에 담았습니다 ! ",
+															"success")
+													.then(
+															function() {
+																window.location.href = '/shopping-cart';
+															});
+										},
+										error : function(jqXHR, textStatus,
+												errThrown) {
+											swal
+													.fire(nameProduct,
+															"장바구니에 담았습니다 ! ",
+															"success")
+													.then(
+															function() {
+																window.location.href = '/shopping-cart';
+															});
+										}
+									})
+						});
 	</script>
 	<!--===============================================================================================-->
 	<script>
@@ -734,6 +754,9 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
+					
+
 				}
 				w.ChannelIOInitialized = true;
 				var s = document.createElement("script");

@@ -17,6 +17,7 @@ import com.shop.dto.CartDTO;
 import com.shop.dto.ItemDTO;
 import com.shop.dto.PageRequestDTO;
 import com.shop.dto.ReviewDTO;
+import com.shop.entity.OrderList;
 import com.shop.dto.MemberDTO.ResponseDTO;
 import com.shop.service.CartService;
 import com.shop.service.MemberService;
@@ -81,7 +82,7 @@ public class ReviewController {
 			totalPrice += cart.getCPrice() * cart.getCount();
 		}
 		
-		List<String> imgList = orderService.getImgList(id);
+		List<OrderList> imgList = orderService.getImgList(id);
 		
 		model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("member", member);
@@ -107,7 +108,7 @@ public class ReviewController {
 			totalPrice += cart.getCPrice() * cart.getCount();
 		}
 		
-		List<String> imgList = orderService.getImgList(member_id);
+		List<OrderList> imgList = orderService.getImgList(member_id);
 		
 		ReviewDTO dtoList = reviewService.read(id);
 		

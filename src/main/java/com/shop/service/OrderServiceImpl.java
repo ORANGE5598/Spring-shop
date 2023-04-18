@@ -124,9 +124,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<String> getImgList(Long id) {
+	public List<OrderList> getImgList(Long id) {
 		
-		List<String> result = orderRepository.getImgById(id);
+		List<OrderList> result = orderRepository.getImgById(id);
 		
 		return result;
 	}

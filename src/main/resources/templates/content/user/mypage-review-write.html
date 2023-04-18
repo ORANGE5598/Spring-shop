@@ -73,8 +73,8 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
-							sec:authorize="isAnonymous()" th:href="@{/login}"
+						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs
+						</a> <a sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
 							class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
@@ -88,8 +88,8 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="/index" class="logo"> <img src="../img/icons/logo1.png"
-						alt="IMG-LOGO">
+					<a href="/index" class="logo"> <img
+						src="../img/icons/logo1.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
@@ -140,7 +140,8 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="/index"><img src="../img/icons/logo1.png" alt="IMG-LOGO"></a>
+				<a href="/index"><img src="../img/icons/logo1.png"
+					alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -175,7 +176,9 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -208,7 +211,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -306,18 +309,6 @@
 						<a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
 								fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
-									d="M12.6667 15.0667L16.4667 23.8555L19.0001 17.2639L21.5334 23.8555L25.3334 15.0667"
-									stroke="white"></path>
-                                <path d="M11.3999 18.8333H26.5999"
-									stroke="white"></path>
-                                <path
-									d="M5.06665 19.9843C5.65768 27.0734 11.6594 32.6444 18.9761 32.6444C26.6845 32.6444 32.9333 26.461 32.9333 18.8333C32.9333 11.2057 26.6845 5.02222 18.9761 5.02222C11.6594 5.02222 5.65768 10.5932 5.06665 17.6824"
-									stroke="white"></path>
-                            </svg> <em> 적립금 <i class="fa fa-angle-right"></i>
-						</em> <strong>0</strong>
-						</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
-								fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
 									d="M16.7834 25.7389L16.7834 13.8111H20.2369C21.8274 13.8111 23.1168 15.1005 23.1168 16.691V16.691C23.1168 18.2815 21.8274 19.5708 20.2369 19.5708H16.7834"
 									stroke="white"></path>
                                 <path
@@ -325,20 +316,6 @@
 									stroke="white"></path>
                             </svg> <em> 포인트 <i class="fa fa-angle-right"></i>
 						</em> <strong>[[${member.point}]]</strong>
-						</a> <a href="#"> <svg width="38" height="38" viewBox="0 0 38 38"
-								fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path
-									d="M5.06665 28.8778H4.56665V29.3778H5.06665V28.8778ZM32.9333 28.8778V29.3778H33.4333V28.8778H32.9333ZM32.9333 21.3444H33.4333V20.8444H32.9333V21.3444ZM32.9333 16.3222V16.8222H33.4333V16.3222H32.9333ZM32.9333 8.78888L33.4333 8.78888V8.28888H32.9333V8.78888ZM5.06665 8.78888V8.28888H4.56665V8.78888H5.06665ZM5.06665 16.3222H4.56665V16.8222H5.06665V16.3222ZM5.06665 21.3444V20.8444H4.56665V21.3444H5.06665ZM25.3333 28.3778H5.06665V29.3778H25.3333V28.3778ZM32.9333 28.3778H25.3333V29.3778H32.9333V28.3778ZM32.4333 21.3444L32.4333 28.8778H33.4333L33.4333 21.3444H32.4333ZM32.9333 20.8444C31.8062 20.8444 30.9 19.9399 30.9 18.8333H29.9C29.9 20.5005 31.2622 21.8444 32.9333 21.8444V20.8444ZM30.9 18.8333C30.9 17.7268 31.8062 16.8222 32.9333 16.8222V15.8222C31.2622 15.8222 29.9 17.1662 29.9 18.8333H30.9ZM32.4333 8.78888L32.4333 16.3222H33.4333L33.4333 8.78888L32.4333 8.78888ZM25.3333 9.28888H32.9333V8.28888H25.3333V9.28888ZM5.06665 9.28888H25.3333V8.28888H5.06665V9.28888ZM5.56665 16.3222V8.78888H4.56665V16.3222H5.56665ZM8.09998 18.8333C8.09998 17.1662 6.73775 15.8222 5.06665 15.8222V16.8222C6.19379 16.8222 7.09998 17.7268 7.09998 18.8333H8.09998ZM5.06665 21.8444C6.73775 21.8444 8.09998 20.5005 8.09998 18.8333H7.09998C7.09998 19.9399 6.19379 20.8444 5.06665 20.8444V21.8444ZM5.56665 28.8778V21.3444H4.56665V28.8778H5.56665ZM24.8333 8.78888V11.3H25.8333V8.78888H24.8333ZM25.8333 28.8778V26.3667H24.8333V28.8778H25.8333Z"
-									fill="white"></path>
-                                <path
-									d="M19.6333 15.0667H17.7C15.6197 15.0667 13.9333 16.753 13.9333 18.8333V18.8333C13.9333 20.9136 15.6197 22.6 17.7 22.6H19.6333"
-									stroke="white"></path>
-                                <path
-									d="M25.3333 13.8111L25.3333 17.5778" stroke="white"></path>
-                                <path
-									d="M25.3333 20.0889L25.3333 23.8555" stroke="white"></path>
-                            </svg> <em> 쿠폰 <i class="fa fa-angle-right"></i>
-						</em> <strong>0</strong>
 						</a> <a href="/review/write"> <svg width="38" height="38"
 								viewBox="0 0 38 38" fill="none"
 								xmlns="http://www.w3.org/2000/svg">
@@ -376,9 +353,8 @@
 				<div class="my-review-write" id="reviewWrap">
 					<div>
 						<select onchange="displayImage(this)" name="reviewImg">
-							<option>미선택</option>
-							<option th:each="img : ${imgList}" th:value="${img}"
-								th:data-image="${img}" th:text="${img}"></option>
+							<option th:each="order : ${imgList}" th:value="${order.oName}"
+								th:data-image="${order.img}" th:text="${order.oName}"></option>
 						</select> <img id="myImage" name="img" src="" width="100" height="100">
 					</div>
 
@@ -408,7 +384,8 @@
 							<tr>
 								<th scope="col">작성자</th>
 								<td><input class="form-control-label bg-body-secondary"
-									type="text" name="reviewWriter" th:value="${member.username}" required></td>
+									type="text" name="reviewWriter" th:value="${member.username}"
+									required></td>
 							</tr>
 
 							<tr>
@@ -438,19 +415,6 @@
 	</main>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-	<!------------------------------------------------------------------------------------------------------------------->
 	<!-- Footer -->
 	<footer class="bg3 p-t-65 p-b-32">
 		<div class="container">
