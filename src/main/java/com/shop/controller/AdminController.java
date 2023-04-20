@@ -160,6 +160,7 @@ public class AdminController{
 		model.addAttribute("member", member);
 		model.addAttribute("allList", orderService.getAllList());
 		model.addAttribute("listCount", orderService.getAllCount());
+		model.addAttribute("count0", adminService.donePayment());
 		model.addAttribute("count1", adminService.deliverying());
 		model.addAttribute("count2", adminService.afterDelivery());
 		model.addAttribute("count3", adminService.beforeCancle());

@@ -6,6 +6,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,13 +25,16 @@ public class CartController {
 	
 	@PostMapping("/addCart")
 	public void addCart(CartDTO dto, @AuthenticationPrincipal UserAdapter user) {
+		
+		
 		cartService.saveCart(dto, user);
 	}
 	
-	@DeleteMapping(value = "/deleteCart/{cartItemId}")
-	@ResponseBody
-	public ResponseEntity deleteCartItem(@PathVariable("cartItemId") Long cartItemId, @AuthenticationPrincipal UserAdapter user) {
-		cartService.deleteCart(cartItemId);
-		return new ResponseEntity<Long>(cartItemId, HttpStatus.OK);
+	@DeleteMapping("/delete/{cart_id}")
+	public ResponseEntity<?> deleteById(@PathVariable("cart_id") Long cart_id){
+	    cartService.deleteById(cart_id);
+	    return ResponseEntity.noContent().build();
 	}
+	
+	
 }

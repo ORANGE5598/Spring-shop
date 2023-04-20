@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>주문내역 조회 - 관리자페이지</title>
@@ -60,7 +60,7 @@
 	<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
-		<div class="container-menu-desktop mypage">
+		<div class="container-menu-desktop">
 			<!-- Topbar -->
 			<div class="top-bar">
 				<div class="content-topbar flex-sb-m h-full container">
@@ -80,32 +80,32 @@
 				</div>
 			</div>
 
-			<div class="wrap-menu-desktop">
+			<div class="wrap-menu-desktop how-shadow1">
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="#" class="logo"> <img src="../img/icons/logo1.png"
-						alt="">
+					<a href="/index" class="logo"> <img
+						src="../img/icons/logo1.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
-					<div class="menu-desktop ">
-						<ul class="customMenu">
+					<div class="menu-desktop">
+						<ul class="customMenu expanded">
 							<li><a href="/index">HOME</a></li>
 							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
-									<li><a href="/product">CLOTHING</a>
+									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
-											<li><a href="/product">TOP</a></li>
-											<li><a href="/product">BOTTOM</a></li>
+											<li><a th:href="@{/productCategory(iCategory=1)}">TOP</a></li>
+											<li><a th:href="@{/productCategory(iCategory=2)}">BOTTOM</a></li>
 										</ul></li>
-									<li><a href="/product">FOOTWEAR</a></li>
-									<li><a href="/product">ACCESSORIES</a>
+									<li><a th:href="@{/productCategory(iCategory=3)}">FOOTWEAR</a></li>
+									<li><a th:href="@{/productCategory(iCategory=4)}">ACCESSORIES</a>
 										<ul class="sub-menu">
-											<li><a href="/product">BAG</a></li>
-											<li><a href="/product">HAEDWEAR</a></li>
+											<li><a th:href="@{/productCategory(iCategory=4)}">BAG</a></li>
+											<li><a th:href="@{/productCategory(iCategory=5)}">HAEDWEAR</a></li>
 										</ul></li>
-									<li><a href="/product">TECH</a></li>
+									<li><a th:href="@{/productCategory(iCategory=6)}">TECH</a></li>
 								</ul></li>
 
 							<li><a href="/notice">ABOUT</a></li>
@@ -115,65 +115,56 @@
 					</div>
 
 					<!-- Icon header -->
-
-					<!--------------------검색창 (클릭 시 따로 열리는 속성)----------------------->
 					<div class="wrap-icon-header flex-w flex-r-m">
 						<div
-							class="icon-header-item cl8 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
 							<i class="zmdi zmdi-search"></i>
 						</div>
 
-						<!---------------------------------장바구니 기능 ( 장바구니에 상품 넣으면 카운트 메서드 필요)---------------------------->
 						<div
-							class="icon-header-item cl8 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+							class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
 							th:data-notify="${count}">
 							<i class="zmdi zmdi-shopping-cart"></i>
 						</div>
+
 					</div>
 				</nav>
 			</div>
 		</div>
 
-
-
-
-		<!-- 반응형용 아이콘임, 이건 메서드 추가해야함... -->
+		<!-- Header Mobile -->
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="index.html"><img src="/../img/icons/logo1.png"
+				<a href="/index"><img src="../img/icons/logo1.png"
 					alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
 			<div class="wrap-icon-header flex-w flex-r-m m-r-15">
-				<!---------------------------------검색창아이콘------------------------->
 				<div
 					class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
 					<i class="zmdi zmdi-search"></i>
 				</div>
 
-				<!---------------------------카트아이콘 ( 카운트 메서드 필요)--------------------------->
 				<div
 					class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
 					th:data-notify="${count}">
 					<i class="zmdi zmdi-shopping-cart"></i>
-
 				</div>
 			</div>
 
-			<!-- 카트 버튼 누르면 내가 장바구니 안에 넣은 상품들이 보임. -->
+			<!-- Button show menu -->
 			<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
 				<span class="hamburger-box"> <span class="hamburger-inner"></span>
 				</span>
 			</div>
 		</div>
-		<!----------------------------------------------------------------->
 
-		<!-- 반응형 메뉴바, 안건드려도 되는 부분-->
+
+		<!-- Menu Mobile -->
 		<div class="menu-mobile">
 			<ul class="topbar-mobile">
-
 				<li>
 					<div class="left-top-bar">100% genuine ! The safest way to
 						buy limited edition!</div>
@@ -199,23 +190,23 @@
 
 				<li><a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
 					<ul class="sub-menu-m">
-						<li><a href="/product">CLOTHING</a>
+						<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 							<ul class="sub-menu-m">
-								<li><a href="/product">TOP</a></li>
-								<li><a href="/product">BOTTOM</a></li>
+								<li><a th:href="@{/productCategory(iCategory=1)}">TOP</a></li>
+								<li><a th:href="@{/productCategory(iCategory=2)}">BOTTOM</a></li>
 							</ul></li>
-						<li><a href="/product">FOOTWEAR</a></li>
-						<li><a href="/product">ACCESSORIES</a>
+						<li><a th:href="@{/productCategory(iCategory=3)}">FOOTWEAR</a></li>
+						<li><a th:href="@{/productCategory(iCategory=4)}">ACCESSORIES</a>
 							<ul class="sub-menu-m">
-								<li><a href="/product">BAG</a></li>
-								<li><a href="/product">HAEDWEAR</a></li>
+								<li><a th:href="@{/productCategory(iCategory=4)}">BAG</a></li>
+								<li><a th:href="@{/productCategory(iCategory=5)}">HAEDWEAR</a></li>
 							</ul></li>
-						<li><a href="/product">TECH</a></li>
+						<li><a th:href="@{/productCategory(iCategory=6)}">TECH</a></li>
 					</ul> <span class="arrow-main-menu-m"> <i
 						class="fa fa-angle-right" aria-hidden="true"></i>
 				</span></li>
 
-				<li><a href="/notice">ABOUT</a></li>
+				<li><a href="/review/list">ABOUT</a></li>
 				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
@@ -241,7 +232,7 @@
 		</div>
 	</header>
 
-	<!-- 카트이모티콘 눌렀을때 나오는 메뉴창 -->
+	<!-- 장바구니 -->
 	<div class="wrap-header-cart js-panel-cart">
 		<div class="s-full js-hide-cart"></div>
 
@@ -260,7 +251,7 @@
 					<li class="header-cart-item flex-w flex-t m-b-12"
 						th:each="cart : ${cartList}">
 						<div class="header-cart-item-img">
-							<img th:src="${cart.cImg}">
+							<img th:src="${cart.cImg}" alt="IMG">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -272,21 +263,21 @@
 				</ul>
 
 				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">Total:
-						￦[[${#vars.totalPrice}]]</div>
+					<div class="header-cart-total w-full p-tb-40">
+						Total: ￦[[${totalPrice}]]<input type="hidden"
+							th:value="${totalPrice}" />
+					</div>
 
 					<div class="header-cart-buttons flex-w w-full">
-						<a href="#"
+						<a href="/shopping-cart"
 							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-							장바구니로 </a> <a href="#"
-							class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							바로 결제하기 </a>
+							장바구니로 </a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!------------------------------------------------------------------------------------------------------------------->
+	<!-- 장바구니 끝 -->
 
 	<main class="content">
 		<div id="userMypage">
@@ -414,13 +405,6 @@
 		<section class="mypage-cont mypage-order_list">
 			<div class="section-title">
 				<h1 class="tit">주문 목록</h1>
-				<ul class="state">
-					<li><a href="javascript:void(0);">전체 [[${listCount}]]</a></li>
-					<li><a href="javascript:void(0);">배송중 [[${count1}]]</a></li>
-					<li><a href="javascript:void(0);">배송완료 [[${count2}]]</a></li>
-					<li><a href="javascript:void(0);">반품대기 [[${count3}]]</a></li>
-					<li><a href="javascript:void(0);">반품완료 [[${count4}]]</a></li>
-				</ul>
 			</div>
 
 			<form name="admin-search" id="admin-search" method="get" action="#">
@@ -428,15 +412,17 @@
 					<div class="flex-c-m">
 						<div class="d-grid gap-2 d-md-block m-r-8">
 							<button type="button" class="btn btn-dark btn__tab"
-								onClick="statusClicked(event)" data-status="전체">전체</button>
+								onClick="statusClicked(event)" data-status="전체">전체 ([[${listCount}]])</button>
 							<button type="button" class="btn btn-dark btn__tab"
-								onClick="statusClicked(event)" data-status="배송중">배송중</button>
+								onClick="statusClicked(event)" data-status="결제완료">결제완료 ([[${count0}]])</button>
+							<button type="button" class="btn btn-dark btn__tab"
+								onClick="statusClicked(event)" data-status="배송중">배송중 ([[${count1}]])</button>
 							<button type="button" class="btn btn btn-dark btn__tab"
-								onClick="statusClicked(event)" data-status="배송완료">배송완료</button>
+								onClick="statusClicked(event)" data-status="배송완료">배송완료 ([[${count2}]])</button>
 							<button type="button" class="btn btn btn-dark btn__tab"
-								onClick="statusClicked(event)" data-status="반품대기">반품대기</button>
+								onClick="statusClicked(event)" data-status="반품대기">반품대기 ([[${count3}]])</button>
 							<button type="button" class="btn btn btn-dark btn__tab"
-								onClick="statusClicked(event)" data-status="반품완료">반품완료</button>
+								onClick="statusClicked(event)" data-status="반품완료">반품완료 ([[${count4}]])</button>
 						</div>
 
 					</div>

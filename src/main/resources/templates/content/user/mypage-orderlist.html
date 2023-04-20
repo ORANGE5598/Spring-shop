@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>주문내역 조회 - 마이페이지</title>
@@ -58,8 +58,10 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs
-						</a> <a sec:authorize="isAnonymous()" th:href="@{/login}"
+						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
 							class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
@@ -81,7 +83,7 @@
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
 							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -99,7 +101,7 @@
 
 							<li><a href="/notice">ABOUT</a></li>
 							<li><a href="/contact">CONTACT</a></li>
-							<li><a href="/mypage">MYPAGE</a></li>
+							<li class="active-menu"><a href="/mypage">MYPAGE</a></li>
 						</ul>
 					</div>
 
@@ -302,8 +304,7 @@
 									stroke="white"></path>
                             </svg> <em> 포인트 <i class="fa fa-angle-right"></i>
 						</em> <strong>[[${member.point}]]</strong>
-						</a>
-						<a href="/review/write"> <svg width="38" height="38"
+						</a> <a href="/review/write"> <svg width="38" height="38"
 								viewBox="0 0 38 38" fill="none"
 								xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -337,14 +338,19 @@
 
 		<section class="mypage-cont mypage-order_list">
 			<div class="section-title">
-				<h1 class="tit">주문내역 조회</h1>
-				<ul class="state">
-					<li><a href="#">전체 [[${count0}]]</a></li>
-					<li><a href="#">배송중 [[${count1}]]</a></li>
-					<li><a href="#">배송완료 [[${count2}]]</a></li>
-					<li><a href="#">반품대기 [[${count3}]]</a></li>
-					<li><a href="#">반품완료 [[${count4}]]</a></li>
-				</ul>
+				<h1 class="tit">주문내역 조회</h1><br>
+							<button type="button" class="btn btn-dark btn__tab"
+								onClick="statusClicked(event)" data-status="전체">전체 ([[${count0}]])</button>
+							<button type="button" class="btn btn-dark btn__tab"
+								onClick="statusClicked(event)" data-status="결제완료">결제완료 ([[${count1}]])</button>
+							<button type="button" class="btn btn-dark btn__tab"
+								onClick="statusClicked(event)" data-status="배송중">배송중 ([[${count2}]])</button>
+							<button type="button" class="btn btn btn-dark btn__tab"
+								onClick="statusClicked(event)" data-status="배송완료">배송완료 ([[${count3}]])</button>
+							<button type="button" class="btn btn btn-dark btn__tab"
+								onClick="statusClicked(event)" data-status="반품대기">반품대기 ([[${count4}]])</button>
+							<button type="button" class="btn btn btn-dark btn__tab"
+								onClick="statusClicked(event)" data-status="반품완료">반품완료 ([[${count5}]])</button>
 			</div>
 
 			<ul class="info-txt">
@@ -453,7 +459,7 @@
 							<td class="column-3">[[${list.createdDate}]]</td>
 
 							<!--주문번호--->
-							<td class="column-4 ">[[${list.oNumber}]]</td>
+							<td class="column-4">[[${list.oNumber}]]</td>
 
 							<!--가격,갯수-->
 							<td class="column-5">[[${list.oTotalPrice}]]원 <br> <span
@@ -466,8 +472,15 @@
 								<br></td>
 
 							<td class="txt-lighter column-6">
-								<button type="button" class="btn btn-outline-dark">후기
-									작성하기</button>
+								<button type="button" class="btn btn-outline-dark"
+									onclick="goWrite()">후기 작성하기</button> <br> <br>
+								<form method="post" th:action="@{/returnDeliveryStatus}">
+									<input type="hidden" name="oNumber" th:value="${list.oNumber}">
+									<input type="hidden" name="deliveryStatus" value="반품대기">
+									<button type="submit" class="btn btn-outline-dark"
+										onclick="goReturn()"
+										th:if="${list.deliveryStatus == '배송중' or list.deliveryStatus == '배송완료'}">반품하기</button>
+								</form>
 							</td>
 						</tr>
 					</tbody>
@@ -712,6 +725,32 @@
 		ChannelIO('boot', {
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
+	</script>
+	<!--==============================================================================================-->
+	<script>
+		function statusClicked(event) {
+			event.preventDefault();
+			
+			const deliveryStatus = event.target.getAttribute('data-status');
+	
+			const rows = document.querySelectorAll('.table_row');
+	
+			rows.forEach((row) => {
+				const rowDeliveryStatus = row.querySelector('.dStatus').textContent;
+	
+				if (rowDeliveryStatus !== deliveryStatus && deliveryStatus !== '전체') {
+					row.style.display = 'none'; // 숨김 처리
+				} else {
+					row.style.display = 'table-row'; // 보이게 처리
+				}
+			});
+		}
+	</script>
+	<!--==============================================================================================-->
+	<script>
+		function goReview() {
+			
+		}
 	</script>
 	<!--==============================================================================================-->
 	<script src="js/main.js"></script>

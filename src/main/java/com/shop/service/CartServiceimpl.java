@@ -3,8 +3,6 @@ package com.shop.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 
@@ -40,9 +38,10 @@ public class CartServiceimpl implements CartService {
 	}
 	
 	@Override
-	public void deleteCart(Long cartItemId) {
-		Cart entity = cartRepository.findById(cartItemId).orElseThrow(EntityNotFoundException::new);
+	public void deleteById(Long cart_id) {
+		Cart entity = cartRepository.findById(cart_id).orElseThrow(() -> new IllegalArgumentException("해당 장바구니 정보 없음."));
 		cartRepository.delete(entity);
+		
 	}
 	
 	@Override

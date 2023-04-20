@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>FAQ</title>
@@ -102,7 +103,7 @@
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
 							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -299,23 +300,21 @@
 							<div class="col-xl-4">
 								<div class="card">
 									<ul class="list-group list-group-flush">
-										<a href="javascript:void(0)" onclick="memberF">
-											<li class="list-group-item d-flex align-items-center active">
-												<i class="fa fa-user-circle m-r-15"></i> 회원정보
+										<li class="list-group-item d-flex align-items-center active">
+											<a href="javascript:void(0)" onclick="memberF"> <i
+												class="fa fa-user-circle m-r-15"></i> 회원정보
+										</a>
 										</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-cart-plus m-r-15"></i> 주문 &amp; 결제</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-won m-r-15"></i> 교환 &amp; 환불</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-truck m-r-15"></i> 배송</li>
-										</a>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-cart-plus m-r-15"></i> 주문 &amp;
+												결제
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-truck m-r-15"></i> 배송
+										</a></li>
 									</ul>
 								</div>
 							</div>
@@ -419,23 +418,21 @@
 							<div class="col-xl-4">
 								<div class="card">
 									<ul class="list-group list-group-flush">
-										<a href="javascript:void(0)" onclick="memberFAQ">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-user-circle m-r-15"></i> 회원정보</li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="javascript:void(0)" onclick="memberFAQ"> <i
+												class="fa fa-user-circle m-r-15"></i> 회원정보
+										</a></li>
+										<li class="list-group-item d-flex align-items-center active">
+											<a href="#"> <i class="fa fa-cart-plus m-r-15"></i> 주문
+												&amp; 결제
 										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center active">
-												<i class="fa fa-cart-plus m-r-15"></i> 주문 &amp; 결제
 										</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-won m-r-15"></i> 교환 &amp; 환불</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-truck m-r-15"></i> 배송</li>
-										</a>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-truck m-r-15"></i> 배송
+										</a></li>
 									</ul>
 								</div>
 							</div>
@@ -534,23 +531,21 @@
 							<div class="col-xl-4">
 								<div class="card">
 									<ul class="list-group list-group-flush">
-										<a href="javascript:void(0)" onclick="memberFAQ">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-user-circle m-r-15"></i> 회원정보</li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="javascript:void(0)" onclick="memberFAQ"> <i
+												class="fa fa-user-circle m-r-15"></i> 회원정보
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-cart-plus m-r-15"></i> 주문 &amp;
+												결제
+										</a></li>
+										<li class="list-group-item d-flex align-items-center active">
+											<a href="#"> <i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
 										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-cart-plus m-r-15"></i> 주문 &amp; 결제</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center active">
-												<i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
 										</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-truck m-r-15"></i> 배송</li>
-										</a>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-truck m-r-15"></i> 배송
+										</a></li>
 									</ul>
 								</div>
 							</div>
@@ -631,23 +626,21 @@
 							<div class="col-xl-4">
 								<div class="card">
 									<ul class="list-group list-group-flush">
-										<a href="javascript:void(0)" onclick="memberFAQ">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-user-circle m-r-15"></i> 회원정보</li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="javascript:void(0)" onclick="memberFAQ"> <i
+												class="fa fa-user-circle m-r-15"></i> 회원정보
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-cart-plus m-r-15"></i> 주문 &amp;
+												결제
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
+										</a></li>
+										<li class="list-group-item d-flex align-items-center active">
+											<a href="#"> <i class="fa fa-truck m-r-15"></i> 배송
 										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-cart-plus m-r-15"></i> 주문 &amp; 결제</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-won m-r-15"></i> 교환 &amp; 환불</li>
-										</a>
-										<a href="#">
-											<li class="list-group-item d-flex align-items-center active">
-												<i class="fa fa-truck m-r-15"></i> 배송
 										</li>
-										</a>
 									</ul>
 								</div>
 							</div>
@@ -943,6 +936,66 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																				
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																									
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																				
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
 
 					
 

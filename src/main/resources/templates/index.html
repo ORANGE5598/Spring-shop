@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>Home</title>
@@ -92,8 +93,8 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
-							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li class="active-menu"><a href="/index">HOME</a></li>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -345,58 +346,46 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w bor4">
-						<img src="/img/main/banner/banner1.jpg" alt="IMG-BANNER"> <a
-							href="#"
-							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8"> New
-									Trend </span> <span class="block1-info stext-102 trans-04">
-									Spring 2023 </span>
-							</div>
-
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
-							</div>
-						</a>
+						<div class="block1-txt-child1 flex-col-l">
+							<img src="/img/main/banner/banner1.jpg" alt="IMG-BANNER"> <span
+								class="block1-name ltext-102 trans-04 p-b-8"> New Trend </span>
+							<span class="block1-info stext-102 trans-04"> Spring 2023
+							</span>
+						</div>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
+						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w bor4">
-						<img src="/img/main/banner/banner2.jpg" alt="IMG-BANNER"> <a
-							href="#"
-							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8"> Best
-									Seller </span> <span class="block1-info stext-102 trans-04">
-									Celebrity Picks </span>
-							</div>
+						<div class="block1-txt-child1 flex-col-l">
+							<img src="/img/main/banner/banner2.jpg" alt="IMG-BANNER"> <span
+								class="block1-name ltext-102 trans-04 p-b-8"> Best Seller
+							</span> <span class="block1-info stext-102 trans-04"> Celebrity
+								Picks </span>
+						</div>
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
-							</div>
-						</a>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
+						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w bor4">
-						<img src="/img/main/banner/banner3.jpg" alt="IMG-BANNER"> <a
-							href="/review/list"
-							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-16 p-tb-9 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8">
-									Review </span> <span class="block1-info stext-102 trans-04">
-									TAG YOUR STYLE </span>
-							</div>
+						<div class="block1-txt-child1 flex-col-l">
+							<img src="/img/main/banner/banner3.jpg" alt="IMG-BANNER"> <span
+								class="block1-name ltext-102 trans-04 p-b-8"> Review </span> <span
+								class="block1-info stext-102 trans-04"> TAG YOUR STYLE </span>
+						</div>
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">Load page
-								</div>
-							</div>
-						</a>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">Load page</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1184,14 +1173,10 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user1.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														admin</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user1.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">admin</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1200,14 +1185,10 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user2.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														admin</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user2.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">admin</div>
+											</div>
 										</div>
 
 									</div>
@@ -1217,14 +1198,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user3.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														jay3614</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user3.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													jay3614</div>
+											</div>
 										</div>
 
 									</div>
@@ -1234,14 +1212,10 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user4.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														admin</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user4.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">admin</div>
+											</div>
 										</div>
 
 									</div>
@@ -1251,14 +1225,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user5.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														UserName</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user5.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													UserName</div>
+											</div>
 										</div>
 
 									</div>
@@ -1268,14 +1239,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user6.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														UserName</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user6.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													UserName</div>
+											</div>
 										</div>
 
 									</div>
@@ -1285,14 +1253,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user7.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														UserName</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user7.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													UserName</div>
+											</div>
 										</div>
 
 									</div>
@@ -1302,14 +1267,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1 ">
-											<img src="/img/board/user/user8.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														UserName</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user8.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													UserName</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1707,6 +1669,36 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																				
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
 
 				}
 				w.ChannelIOInitialized = true;

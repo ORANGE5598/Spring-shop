@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>Shopping Cart</title>
@@ -77,7 +77,7 @@
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
 							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -95,7 +95,7 @@
 
 							<li><a href="/notice">ABOUT</a></li>
 							<li><a href="/contact">CONTACT</a></li>
-							<li><a href="/mypage">MYPAGE</a></li>
+							<li class="active-menu"><a href="/mypage">MYPAGE</a></li>
 						</ul>
 					</div>
 
@@ -274,7 +274,7 @@
 
 
 	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85"> <!-- th:action="@{/deleteCart}" method="delete" th:object="${member}"> -->
+	<form class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
@@ -287,8 +287,7 @@
 									<th class="column-2"></th>
 									<th class="column-3">가격</th>
 									<th class="column-4">갯수</th>
-									<th class="column-5">삭제</th>
-									
+									<th class="column-5">금액</th>
 								</tr>
 
 								<tr class="table_row" th:each="list : ${cartList}">
@@ -296,8 +295,7 @@
 										th:value="${list.id}" name="selectedItem"></td>
 									<td class="column-1">
 										<div class="how-itemcart1">
-											
-											<img class="delete_btn" th:src="${list.cImg}" alt="IMG" th:value="${list.id}"> <input
+											<img th:src="${list.cImg}" alt="IMG"> <input
 												type="hidden" name="cNumber" th:value="${list.cNumber}">
 										</div>
 									</td>
@@ -320,16 +318,12 @@
 											</div>
 										</div>
 									</td>
-										<td>
-											<button type="button" class="close" aria-label="Close">
-												<span aria-hidden="true" th:data-id="${list.id}" onclick="deleteCartItem(this);">삭제</span>
-											</button>
-											
-										</td>
-					<!-- 				<td class="column-5 totalPrice" id="totalPrice"
-										th:text="${list.cPrice * list.count}"></td> -->
 									<td>
+										<input type='hidden' name='cart_id', id='cart_id' value='${list.id}'>
+										<button type=button th:onclick="deleteById([[${list.id}]])">삭제</button>
 									</td>
+									<!-- <td class="column-5 totalPrice" id="totalPrice"
+										th:text="${list.cPrice * list.count}"></td> -->
 								</tr>
 							</table>
 						</div>
@@ -405,11 +399,10 @@
 						</div>
 
 
-						<a class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
+						<a
+							class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
 							th:href="@{/orderBy(dPrice = deliveryX, iNumber = iNumberX, oCount = countX)}"
 							onclick="orderWithCount(this); orderWithINumber(this); orderWithDelivery(this)">구매하기</a>
-							<br>
-						
 
 					</div>
 				</div>
@@ -598,8 +591,6 @@
 			element.href = element.href.replace('iNumberX', iNumber);
 
 		}
-		
-		
 	</script>
 	<!--===============================================================================================-->
 	<script>
@@ -658,38 +649,26 @@
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
 	</script>
+	
+	<script>
+	
+	function deleteById(cart_id) {
+		$.ajax({
+			type: 'DELETE',
+			url: '/delete/' + cart_id,
+			
+			dataType: 'text'
+		}).done(function() {
+			alert('삭제되었습니다.');
+			window.location.reload();
+		}).fail(function(error) {
+			alert(JSON.stringify(error));
+			console.log(JSON.stringify(error));
+		});
+	};
+</script>
 	<!--===============================================================================================-->
 	<script src="/js/main.js"></script>
-	<script>
-		function deleteCartItem(obj) {
-			var cartItemId = obj.dataset.id;
-			var token = $("meta[name='_csrf']".attr("content"));
-			var header = $("meta[name='_csrf_header']".attr("content"));
-			
-			var url = "/deleteCart/" + cartItemId;
-			
-			$.ajax({ 
-				url: url, 
-				type: "DELETE",
-				beforeSend: function(xhr) {
-					xhr.setRequestHeader(header, token);
-				},
-				dataType: "JSON", 
-				cache: false, 
-				success: function(result, status) {
-					location.href='/shopping-cart';
-				}, 
-				error: function(jqXHR, status, error) {
-					if(jqXHR.status == '401') {
-						alert('로그인하세요.');
-						location.href='/login';
-					} else {
-						alert(jqXHR.responseJSON.message);
-					}
-				}
-			})
-		}
-	</script>
 
 </body>
 

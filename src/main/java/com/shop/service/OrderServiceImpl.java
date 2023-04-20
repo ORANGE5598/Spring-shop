@@ -92,6 +92,14 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
+	public Long donePayment(Long id) {
+		
+		Long result = orderRepository.donePayment(id);
+		
+		return result;
+	}
+	
+	@Override
 	public Long deliverying(Long id) {
 		
 		Long result = orderRepository.deliverying(id);

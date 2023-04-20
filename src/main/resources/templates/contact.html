@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>Contact</title>
@@ -79,7 +79,7 @@
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
 							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -96,7 +96,7 @@
 								</ul></li>
 
 							<li><a href="/notice">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+							<li class="active-menu"><a href="/contact">CONTACT</a></li>
 							<li><a href="/mypage">MYPAGE</a></li>
 						</ul>
 					</div>

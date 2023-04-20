@@ -72,4 +72,9 @@ public class NoticeService {
             throw new NoSuchElementException("찾을수없는 : " + id);
         }
     }
+    
+    public void remove(Long id) {
+    	
+    	noticeRepository.deleteById(id);
+    }
 }

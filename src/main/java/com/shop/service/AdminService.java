@@ -23,12 +23,14 @@ public interface AdminService {
 		return item;
 	}
 	
-	Long deliverying();
+	long donePayment();
 	
-	Long afterDelivery();
+	long deliverying();
 	
-	Long beforeCancle();
+	long afterDelivery();
 	
-	Long afterCancle();
+	long beforeCancle();
+	
+	long afterCancle();
 	
 }

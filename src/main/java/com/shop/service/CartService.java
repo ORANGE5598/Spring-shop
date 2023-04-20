@@ -40,7 +40,7 @@ public interface CartService {
 	
 	void saveCart(CartDTO dto, @AuthenticationPrincipal UserAdapter user);
 	
-	void deleteCart(Long cartItemId);
+	void deleteById(Long cart_id);
 	
 	Long getCartCount(Long id);
 	

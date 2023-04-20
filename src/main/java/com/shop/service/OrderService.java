@@ -50,6 +50,8 @@ public interface OrderService {
 	
 	Long allStatus(Long id);
 	
+	Long donePayment(Long id);
+	
 	Long deliverying(Long id);
 	
 	Long afterDelivery(Long id);

@@ -125,7 +125,6 @@ public class IndexController {
 	public String cart(Long cNumber, Long oCount, Long dPrice, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		Long id = user.getMemberDTO().getId();
-		ResponseDTO responseDTO = memberService.getById(id);
 		
 		List<CartDTO> cartDTOList = cartService.getCartList(id);
 		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
@@ -138,7 +137,6 @@ public class IndexController {
 	    model.addAttribute("totalPrice", totalPrice2);
 	    model.addAttribute("cartList", cartDTOList);
 	    model.addAttribute("count", cartCount);
-	    model.addAttribute("member", responseDTO);
 		return "content/cart/shopping-cart";
 	}
 	

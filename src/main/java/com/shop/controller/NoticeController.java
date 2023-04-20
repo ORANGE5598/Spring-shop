@@ -50,7 +50,6 @@ public class NoticeController {
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
-//	    model.addAttribute("notices", noticeService.getAllNotices());
 	    model.addAttribute("notices", noticeService.getNotices(pageRequestDTO2));
 	    
 	    return "board/notice/notice";
@@ -66,6 +65,14 @@ public class NoticeController {
 	    
 	    noticeService.createNotice(new NoticeDTO(title, contentWithoutHtml), username);
 	    return "redirect:/notice";
+	}
+	
+	@PostMapping("/deleteNotice")
+	public String deleteNotice(Long id) {
+		
+		noticeService.remove(id);
+		
+		return "redirect:/notice";
 	}
 	
 }
