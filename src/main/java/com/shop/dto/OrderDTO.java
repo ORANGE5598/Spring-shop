@@ -1,5 +1,7 @@
 package com.shop.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +22,14 @@ public class OrderDTO {
 	private Long oDeliveryPrice;
 	private Long mId;
 	private String mName;
+//	@NotBlank(message = "전화번호 입력.")
 	private String phoneNumber;
 	private String oName;
 	private String iNumber;
 	private String img;
+//	@NotBlank(message = "도로명주소 입력.")
 	private String roadAddress;
+//	@NotBlank(message = "상세주소 입력.")
 	private String detailAddress;
 	private String deliveryMessage;
 	private String paymentMethod;

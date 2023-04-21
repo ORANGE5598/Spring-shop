@@ -37,7 +37,7 @@ import lombok.RequiredArgsConstructor;
 //한 클래스에 넣어두면 작동이 안됨
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin")
+@RequestMapping("admin")
 public class AdminController{
 	
 	private final ItemService itemService;
@@ -160,6 +160,7 @@ public class AdminController{
 		model.addAttribute("member", member);
 		model.addAttribute("allList", orderService.getAllList());
 		model.addAttribute("listCount", orderService.getAllCount());
+		model.addAttribute("count0", adminService.donePayment());
 		model.addAttribute("count1", adminService.deliverying());
 		model.addAttribute("count2", adminService.afterDelivery());
 		model.addAttribute("count3", adminService.beforeCancle());

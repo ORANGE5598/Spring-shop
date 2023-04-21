@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/qna")
+@RequestMapping("qna")
 public class QnaController {
 	private final QnaService qnaService;
 	private final ReplyService replyService;

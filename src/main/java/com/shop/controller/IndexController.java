@@ -40,6 +40,9 @@ public class IndexController {
 		if(user == null) {
 			ItemDTO itemDTO = itemService.read(1L);
 			model.addAttribute("itemDTO", itemDTO);
+			model.addAttribute("list1", itemService.getTopListTest());
+			model.addAttribute("list4", itemService.getBagListTest());
+			model.addAttribute("list6", itemService.getTechListTest());
 		} else {
 			
 			Long id = user.getMemberDTO().getId();
@@ -57,8 +60,6 @@ public class IndexController {
 			model.addAttribute("cartList", cartDTOList);
 			model.addAttribute("count", cartCount);
 			model.addAttribute("itemDTO", itemDTO);
-//			model.addAttribute("list", itemService.getList(pageRequestDTO));
-//			model.addAttribute("list", itemService.getListTest());
 			model.addAttribute("list1", itemService.getTopListTest());
 			model.addAttribute("list4", itemService.getBagListTest());
 			model.addAttribute("list6", itemService.getTechListTest());
@@ -129,11 +130,6 @@ public class IndexController {
 		Long id = user.getMemberDTO().getId();
 		
 		List<CartDTO> cartDTOList = cartService.getCartList(id);
-		
-//		CartDTO dto = cartService.order(cNumber);
-//		Long cPrice = dto.getCPrice();
-//		Long totalPrice = cPrice * oCount + dPrice;
-		
 		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
 		int totalPrice2 = 0;
 	    for (CartDTO cart : cartList) {

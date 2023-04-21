@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-	<title>Contact</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="img/icons/favicon.png" />
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<!--===============================================================================================-->
+<title>Contact</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="img/icons/favicon.png" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
 </head>
 
 <body class="animsition">
@@ -46,7 +54,9 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -69,7 +79,7 @@
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
 							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -86,7 +96,7 @@
 								</ul></li>
 
 							<li><a href="/notice">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+							<li class="active-menu"><a href="/contact">CONTACT</a></li>
 							<li><a href="/mypage">MYPAGE</a></li>
 						</ul>
 					</div>
@@ -148,7 +158,9 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -181,7 +193,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -255,10 +267,10 @@
 
 
 	<!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-147" style="background-image: url('img/banner/banner6.jpeg');">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-147"
+		style="background-image: url('img/banner/banner6.jpeg');">
 		<h2 class="ltext-105 cl0 txt-center" style="display: none;">
-			Contact
-		</h2>
+			Contact</h2>
 	</section>
 
 
@@ -272,53 +284,43 @@
 					</div>
 				</div>
 
-				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
+				<div
+					class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
 					<div class="flex-w w-full p-b-42">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-map-marker"></span>
+						<span class="fs-18 cl5 txt-center size-211"> <span
+							class="lnr lnr-map-marker"></span>
 						</span>
 
 						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Address
-							</span>
+							<span class="mtext-110 cl2"> Address </span>
 
 							<p class="stext-118 cl6 size-213 p-t-18">
-								경기도 의정부시 의정부2동<br>
-								센트럴 타워 442-12 6층
+								경기도 의정부시 의정부2동<br> 센트럴 타워 442-12 6층
 							</p>
 						</div>
 					</div>
 
 					<div class="flex-w w-full p-b-42">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-phone-handset"></span>
+						<span class="fs-18 cl5 txt-center size-211"> <span
+							class="lnr lnr-phone-handset"></span>
 						</span>
 
 						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								CS Center
-							</span>
+							<span class="mtext-110 cl2"> CS Center </span>
 
-							<p class="stext-115 cl1 size-213 p-t-18">
-								031-123-1234
-							</p>
+							<p class="stext-115 cl1 size-213 p-t-18">031-123-1234</p>
 						</div>
 					</div>
 
 					<div class="flex-w w-full">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-envelope"></span>
+						<span class="fs-18 cl5 txt-center size-211"> <span
+							class="lnr lnr-envelope"></span>
 						</span>
 
 						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Sale Support
-							</span>
+							<span class="mtext-110 cl2"> Sale Support </span>
 
-							<p class="stext-115 cl1 size-213 p-t-18">
-								ujb.greenart.co.kr
-							</p>
+							<p class="stext-115 cl1 size-213 p-t-18">ujb.greenart.co.kr</p>
 						</div>
 					</div>
 				</div>
@@ -366,7 +368,7 @@
 						<li class="p-b-10"><a href="#"
 							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/faq"
 							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
@@ -428,8 +430,8 @@
 
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
+		<span class="symbol-btn-back-to-top"> <i
+			class="zmdi zmdi-chevron-up"></i>
 		</span>
 	</div>
 
@@ -444,39 +446,41 @@
 	<!--===============================================================================================-->
 	<script src="vendor/sweetalert/sweetalert.min.js"></script>
 	<script>
-		$('.js-remove-item').on('click', function (e) {
+		$('.js-remove-item').on('click', function(e) {
 			e.preventDefault();
 		});
 
-		$('.js-remove-item').each(function () {
-			var nameProduct = $(this).parent().parent().find('.js-name-item').html();
-			$(this).on('click', function () {
-				swal(nameProduct, "장바구니에서 삭제되었습니다 ! ", "success");
-			});
-		});
+		$('.js-remove-item').each(
+				function() {
+					var nameProduct = $(this).parent().parent().find(
+							'.js-name-item').html();
+					$(this).on('click', function() {
+						swal(nameProduct, "장바구니에서 삭제되었습니다 ! ", "success");
+					});
+				});
 
-
-		$('.js-addcart-detail').each(function () {
-			var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
-			$(this).on('click', function () {
-				swal(nameProduct, "장바구니에 담겼습니다 !", "success");
-			});
-		});
-
+		$('.js-addcart-detail').each(
+				function() {
+					var nameProduct = $(this).parent().parent().parent()
+							.parent().find('.js-name-detail').html();
+					$(this).on('click', function() {
+						swal(nameProduct, "장바구니에 담겼습니다 !", "success");
+					});
+				});
 	</script>
 	<!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
-		$('.js-pscroll').each(function () {
+		$('.js-pscroll').each(function() {
 			$(this).css('position', 'relative');
 			$(this).css('overflow', 'hidden');
 			var ps = new PerfectScrollbar(this, {
-				wheelSpeed: 1,
-				scrollingThreshold: 1000,
-				wheelPropagation: false,
+				wheelSpeed : 1,
+				scrollingThreshold : 1000,
+				wheelPropagation : false,
 			});
 
-			$(window).on('resize', function () {
+			$(window).on('resize', function() {
 				ps.update();
 			})
 		});
@@ -487,16 +491,18 @@
 	<script>
 		var container = document.getElementById('map');
 		var options = {
-			center: new kakao.maps.LatLng(37.73796407489659, 127.04409258674738),
-			level: 3
+			center : new kakao.maps.LatLng(37.73796407489659,
+					127.04409258674738),
+			level : 3
 		};
 
 		var map = new kakao.maps.Map(container, options);
-		var markerPosition = new kakao.maps.LatLng(37.73796407489659, 127.04409258674738);
+		var markerPosition = new kakao.maps.LatLng(37.73796407489659,
+				127.04409258674738);
 		var marker = new kakao.maps.Marker({
-			position: markerPosition
+			position : markerPosition
 		});
-		marker.setMap(map); 
+		marker.setMap(map);
 	</script>
 	<!--===============================================================================================-->
 	<script>
@@ -516,6 +522,9 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
+					
+
 				}
 				w.ChannelIOInitialized = true;
 				var s = document.createElement("script");

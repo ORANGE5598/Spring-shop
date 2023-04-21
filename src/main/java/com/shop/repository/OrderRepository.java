@@ -19,6 +19,9 @@ public interface OrderRepository extends JpaRepository<OrderList, Long> {
 	@Query("SELECT count(o) FROM OrderList o WHERE o.mId =:id")
 	Long countAll(@Param("id") Long oNumber);
 	
+	@Query("SELECT count(o) FROM OrderList o WHERE o.deliveryStatus = '결제완료' AND o.mId =:id")
+	Long donePayment(@Param("id") Long oNumber);
+	
 	@Query("SELECT count(o) FROM OrderList o WHERE o.deliveryStatus = '배송중' AND o.mId =:id")
 	Long deliverying(@Param("id") Long oNumber);
 	
@@ -31,6 +34,6 @@ public interface OrderRepository extends JpaRepository<OrderList, Long> {
 	@Query("SELECT count(o) FROM OrderList o WHERE o.deliveryStatus = '반품완료' AND o.mId =:id")
 	Long afterCancle(@Param("id") Long oNumber);
 	
-	@Query("SELECT o.img FROM OrderList o WHERE o.mId =:id")
-	List<String> getImgById(@Param("id") Long id);
+	@Query("SELECT o FROM OrderList o WHERE o.mId =:id")
+	List<OrderList> getImgById(@Param("id") Long id);
 }

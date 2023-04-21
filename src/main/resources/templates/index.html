@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>Home</title>
@@ -68,9 +69,9 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a th:if="${isADMIN}"></a>
-						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20">ADMIN</a>
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -92,8 +93,8 @@
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
-							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li class="active-menu"><a href="/index">HOME</a></li>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -172,7 +173,9 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -205,7 +208,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -276,7 +279,7 @@
 		</div>
 	</div>
 	<!-- 장바구니 끝 -->
-	
+
 
 	<section class="section-slide">
 		<div class="wrap-slick1 rs2-slick1">
@@ -343,58 +346,46 @@
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w bor4">
-						<img src="/img/main/banner/banner1.jpg" alt="IMG-BANNER"> <a
-							href="#"
-							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8"> New
-									Trend </span> <span class="block1-info stext-102 trans-04">
-									Spring 2023 </span>
-							</div>
-
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
-							</div>
-						</a>
+						<div class="block1-txt-child1 flex-col-l">
+							<img src="/img/main/banner/banner1.jpg" alt="IMG-BANNER"> <span
+								class="block1-name ltext-102 trans-04 p-b-8"> New Trend </span>
+							<span class="block1-info stext-102 trans-04"> Spring 2023
+							</span>
+						</div>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
+						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w bor4">
-						<img src="/img/main/banner/banner2.jpg" alt="IMG-BANNER"> <a
-							href="#"
-							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8"> Best
-									Seller </span> <span class="block1-info stext-102 trans-04">
-									Celebrity Picks </span>
-							</div>
+						<div class="block1-txt-child1 flex-col-l">
+							<img src="/img/main/banner/banner2.jpg" alt="IMG-BANNER"> <span
+								class="block1-name ltext-102 trans-04 p-b-8"> Best Seller
+							</span> <span class="block1-info stext-102 trans-04"> Celebrity
+								Picks </span>
+						</div>
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
-							</div>
-						</a>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">Shop Now</div>
+						</div>
 					</div>
 				</div>
 
 				<div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
 					<!-- Block1 -->
 					<div class="block1 wrap-pic-w bor4">
-						<img src="/img/main/banner/banner3.jpg" alt="IMG-BANNER"> <a
-							href="/review/list"
-							class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-16 p-tb-9 trans-03 respon3">
-							<div class="block1-txt-child1 flex-col-l">
-								<span class="block1-name ltext-102 trans-04 p-b-8"> Review
-								</span> <span class="block1-info stext-102 trans-04"> TAG YOUR
-									STYLE </span>
-							</div>
+						<div class="block1-txt-child1 flex-col-l">
+							<img src="/img/main/banner/banner3.jpg" alt="IMG-BANNER"> <span
+								class="block1-name ltext-102 trans-04 p-b-8"> Review </span> <span
+								class="block1-info stext-102 trans-04"> TAG YOUR STYLE </span>
+						</div>
 
-							<div class="block1-txt-child2 p-b-4 trans-05">
-								<div class="block1-link stext-101 cl0 trans-09">Load page
-								</div>
-							</div>
-						</a>
+						<div class="block1-txt-child2 p-b-4 trans-05">
+							<div class="block1-link stext-101 cl0 trans-09">Load page</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -1182,14 +1173,10 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user1.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														admin</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user1.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">admin</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1198,14 +1185,10 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user2.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														admin</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user2.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">admin</div>
+											</div>
 										</div>
 
 									</div>
@@ -1215,14 +1198,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user3.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														jay3614</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user3.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													jay3614</div>
+											</div>
 										</div>
 
 									</div>
@@ -1232,14 +1212,10 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user4.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														admin</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user4.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">admin</div>
+											</div>
 										</div>
 
 									</div>
@@ -1249,14 +1225,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user5.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														UserName</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user5.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													UserName</div>
+											</div>
 										</div>
 
 									</div>
@@ -1266,14 +1239,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user6.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														UserName</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user6.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													UserName</div>
+											</div>
 										</div>
 
 									</div>
@@ -1283,14 +1253,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1">
-											<img src="/img/board/user/user7.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														UserName</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user7.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													UserName</div>
+											</div>
 										</div>
 
 									</div>
@@ -1300,14 +1267,11 @@
 									<!-- Block2 -->
 									<div class="block2">
 										<div class="block2-pic hov-img1 ">
-											<img src="/img/board/user/user8.jpg" alt="IMG-USER"> <a
-												href="#"
-												class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-18 p-tb-10 trans-03 respon3 ">
-												<div class="block1-txt-child2 p-b-4 trans-05">
-													<div class="block1-link stext-101 cl0 trans-09">
-														UserName</div>
-												</div>
-											</a>
+											<div class="block1-txt-child2 p-b-4 trans-05">
+												<img src="/img/board/user/user8.jpg" alt="IMG-USER">
+												<div class="block1-link stext-101 cl0 trans-09">
+													UserName</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1484,7 +1448,7 @@
 						<li class="p-b-10"><a href="#"
 							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/faq"
 							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
@@ -1674,13 +1638,18 @@
 
 		// var timerdate = "2023/03/19"
 
-		$("#countdown").countdown(timerdate, function(event) {
-			$(this).html(event.strftime(
-					"<div class='cd-item'><span>%D</span> <p>Days</p> </div>"
-						+ "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>"
-						+ "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>"
-						+ "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"));
-		});
+		$("#countdown")
+				.countdown(
+						timerdate,
+						function(event) {
+							$(this)
+									.html(
+											event
+													.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>"
+															+ "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>"
+															+ "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>"
+															+ "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"));
+						});
 	</script>
 	<!--===============================================================================================-->
 	<script>
@@ -1700,6 +1669,37 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																				
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
 				}
 				w.ChannelIOInitialized = true;
 				var s = document.createElement("script");
@@ -1721,7 +1721,7 @@
 
 		ChannelIO('boot', {
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
-			
+
 		});
 	</script>
 	<!--===============================================================================================-->

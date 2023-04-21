@@ -15,7 +15,7 @@ import com.shop.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
-@RequestMapping("/reply")
+@RequestMapping("reply")
 @RequiredArgsConstructor
 public class ReplyController {
 	private final ReplyService replyService;

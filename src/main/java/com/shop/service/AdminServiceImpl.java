@@ -54,7 +54,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public Long deliverying() {
+	public long donePayment() {
+		
+		Long result = adminRepository.donePayment();
+		
+		return result;
+	}
+	
+	@Override
+	public long deliverying() {
 		
 		Long result = adminRepository.deliverying();
 		
@@ -62,7 +70,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public Long afterDelivery() {
+	public long afterDelivery() {
 		
 		Long result = adminRepository.afterDelivery();
 		
@@ -70,7 +78,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Long beforeCancle() {
+	public long beforeCancle() {
 		
 		Long result = adminRepository.beforeCancle();
 		
@@ -78,7 +86,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Long afterCancle() {
+	public long afterCancle() {
 		
 		Long result = adminRepository.afterCancle();
 		

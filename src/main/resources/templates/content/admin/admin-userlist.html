@@ -1,42 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <title>회원목록 조회 - 관리자페이지</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
-    <!-- default header name is X-CSRF-TOKEN -->
-    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="../img/icons/favicon.png" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/bootstrap/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../fonts/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../fonts/linearicons-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../css/util.css">
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <link rel="stylesheet" type="text/css" href="../css/mypage.css">
-    <!--===============================================================================================-->
+<title>회원목록 조회 - 관리자페이지</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
+<!-- default header name is X-CSRF-TOKEN -->
+<meta id="_csrf_header" name="_csrf_header"
+	th:content="${_csrf.headerName}" />
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="../img/icons/favicon.png" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/bootstrap/css/bootstrap.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+	crossorigin="anonymous">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/font-applesdgothicneo@1.0">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="../css/util.css">
+<link rel="stylesheet" type="text/css" href="../css/main.css">
+<link rel="stylesheet" type="text/css" href="../css/mypage.css">
+<!--===============================================================================================-->
 
 
 </head>
@@ -54,7 +68,9 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -69,15 +85,15 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="/index" class="logo"> <img src="../img/icons/logo1.png"
-						alt="IMG-LOGO">
+					<a href="/index" class="logo"> <img
+						src="../img/icons/logo1.png" alt="IMG-LOGO">
 					</a>
 
 					<!-- Menu desktop -->
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
 							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -121,7 +137,8 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="/index"><img src="../img/icons/logo1.png" alt="IMG-LOGO"></a>
+				<a href="/index"><img src="../img/icons/logo1.png"
+					alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -156,7 +173,9 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -189,7 +208,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -260,196 +279,184 @@
 		</div>
 	</div>
 	<!-- 장바구니 끝 -->
-	
-
-    <main class="content">
-        <div id="userMypage">
-            <section class="mypage-sc">
-                <h1 class="mypage-title">
-                    mypage
-                </h1>
-
-                <div class="user-info">
-
-                    <div class="user-img">
-                        <img src="../img/icons/admin.png">
-                    </div>
-
-                    <div class="mypage-top">
-                        <div class="user-nickname">
-                            <strong>[[${member.name}]]님 안녕하세요</strong>
-                        </div>
-                    </div>
 
 
-                    <div class="user-bankbook">
+	<main class="content">
+		<div id="userMypage">
+			<section class="mypage-sc">
+				<h1 class="mypage-title">mypage</h1>
 
-                        <a href="/admin/product">
-                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+				<div class="user-info">
+
+					<div class="user-img">
+						<img src="../img/icons/admin.png">
+					</div>
+
+					<div class="mypage-top">
+						<div class="user-nickname">
+							<strong>[[${member.name}]]님 안녕하세요</strong>
+						</div>
+					</div>
+
+
+					<div class="user-bankbook">
+
+						<a href="/admin/product"> <svg width="38" height="38"
+								viewBox="0 0 38 38" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
                                 <path
-                                    d="M5.06665 28.8778H4.56665V29.3778H5.06665V28.8778ZM32.9333 28.8778V29.3778H33.4333V28.8778H32.9333ZM32.9333 21.3444H33.4333V20.8444H32.9333V21.3444ZM32.9333 16.3222V16.8222H33.4333V16.3222H32.9333ZM32.9333 8.78888L33.4333 8.78888V8.28888H32.9333V8.78888ZM5.06665 8.78888V8.28888H4.56665V8.78888H5.06665ZM5.06665 16.3222H4.56665V16.8222H5.06665V16.3222ZM5.06665 21.3444V20.8444H4.56665V21.3444H5.06665ZM25.3333 28.3778H5.06665V29.3778H25.3333V28.3778ZM32.9333 28.3778H25.3333V29.3778H32.9333V28.3778ZM32.4333 21.3444L32.4333 28.8778H33.4333L33.4333 21.3444H32.4333ZM32.9333 20.8444C31.8062 20.8444 30.9 19.9399 30.9 18.8333H29.9C29.9 20.5005 31.2622 21.8444 32.9333 21.8444V20.8444ZM30.9 18.8333C30.9 17.7268 31.8062 16.8222 32.9333 16.8222V15.8222C31.2622 15.8222 29.9 17.1662 29.9 18.8333H30.9ZM32.4333 8.78888L32.4333 16.3222H33.4333L33.4333 8.78888L32.4333 8.78888ZM25.3333 9.28888H32.9333V8.28888H25.3333V9.28888ZM5.06665 9.28888H25.3333V8.28888H5.06665V9.28888ZM5.56665 16.3222V8.78888H4.56665V16.3222H5.56665ZM8.09998 18.8333C8.09998 17.1662 6.73775 15.8222 5.06665 15.8222V16.8222C6.19379 16.8222 7.09998 17.7268 7.09998 18.8333H8.09998ZM5.06665 21.8444C6.73775 21.8444 8.09998 20.5005 8.09998 18.8333H7.09998C7.09998 19.9399 6.19379 20.8444 5.06665 20.8444V21.8444ZM5.56665 28.8778V21.3444H4.56665V28.8778H5.56665ZM24.8333 8.78888V11.3H25.8333V8.78888H24.8333ZM25.8333 28.8778V26.3667H24.8333V28.8778H25.8333Z"
-                                    fill="white"></path>
+									d="M5.06665 28.8778H4.56665V29.3778H5.06665V28.8778ZM32.9333 28.8778V29.3778H33.4333V28.8778H32.9333ZM32.9333 21.3444H33.4333V20.8444H32.9333V21.3444ZM32.9333 16.3222V16.8222H33.4333V16.3222H32.9333ZM32.9333 8.78888L33.4333 8.78888V8.28888H32.9333V8.78888ZM5.06665 8.78888V8.28888H4.56665V8.78888H5.06665ZM5.06665 16.3222H4.56665V16.8222H5.06665V16.3222ZM5.06665 21.3444V20.8444H4.56665V21.3444H5.06665ZM25.3333 28.3778H5.06665V29.3778H25.3333V28.3778ZM32.9333 28.3778H25.3333V29.3778H32.9333V28.3778ZM32.4333 21.3444L32.4333 28.8778H33.4333L33.4333 21.3444H32.4333ZM32.9333 20.8444C31.8062 20.8444 30.9 19.9399 30.9 18.8333H29.9C29.9 20.5005 31.2622 21.8444 32.9333 21.8444V20.8444ZM30.9 18.8333C30.9 17.7268 31.8062 16.8222 32.9333 16.8222V15.8222C31.2622 15.8222 29.9 17.1662 29.9 18.8333H30.9ZM32.4333 8.78888L32.4333 16.3222H33.4333L33.4333 8.78888L32.4333 8.78888ZM25.3333 9.28888H32.9333V8.28888H25.3333V9.28888ZM5.06665 9.28888H25.3333V8.28888H5.06665V9.28888ZM5.56665 16.3222V8.78888H4.56665V16.3222H5.56665ZM8.09998 18.8333C8.09998 17.1662 6.73775 15.8222 5.06665 15.8222V16.8222C6.19379 16.8222 7.09998 17.7268 7.09998 18.8333H8.09998ZM5.06665 21.8444C6.73775 21.8444 8.09998 20.5005 8.09998 18.8333H7.09998C7.09998 19.9399 6.19379 20.8444 5.06665 20.8444V21.8444ZM5.56665 28.8778V21.3444H4.56665V28.8778H5.56665ZM24.8333 8.78888V11.3H25.8333V8.78888H24.8333ZM25.8333 28.8778V26.3667H24.8333V28.8778H25.8333Z"
+									fill="white"></path>
                                 <path
-                                    d="M19.6333 15.0667H17.7C15.6197 15.0667 13.9333 16.753 13.9333 18.8333V18.8333C13.9333 20.9136 15.6197 22.6 17.7 22.6H19.6333"
-                                    stroke="white"></path>
-                                <path d="M25.3333 13.8111L25.3333 17.5778" stroke="white"></path>
-                                <path d="M25.3333 20.0889L25.3333 23.8555" stroke="white"></path>
-                            </svg>
-                            <em>
-                                상품관리
-                                <i class="fa fa-angle-right"></i>
-                            </em>
-                            <strong style="font-size: 25px;">
-                                등록하기</strong>
-                        </a>
-
-                        <a href="/admin/userlist">
-                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white"></path>
-                                <circle cx="9" cy="7" r="4" stroke="white"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87" stroke="white"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="white"></path>
-                            </svg>
-
-
-                            <em>
-                                회원관리
-                                <i class="fa fa-angle-right"></i>
-                            </em>
-                            <strong style="font-size: 25px;">
-                                목록</strong>
-                        </a>
-
-                        <a href="/admin/noticeWrite">
-                            <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+									d="M19.6333 15.0667H17.7C15.6197 15.0667 13.9333 16.753 13.9333 18.8333V18.8333C13.9333 20.9136 15.6197 22.6 17.7 22.6H19.6333"
+									stroke="white"></path>
                                 <path
-                                    d="M31.6666 31.3889H17.7333M6.33325 24.4617L24.6781 6.27777L31.6666 13.205L13.3218 31.3889H6.33325V24.4617Z"
-                                    stroke="white"></path>
-                            </svg>
-                            <em>
-                                게시판관리
-                                <i class="fa fa-angle-right"></i>
-                            </em>
-                            <strong style="font-size: 25px;">
-                                공지사항 작성</strong>
-                        </a>
-                    </div>
-                </div>
-        </div>
-        </section>
+									d="M25.3333 13.8111L25.3333 17.5778" stroke="white"></path>
+                                <path
+									d="M25.3333 20.0889L25.3333 23.8555" stroke="white"></path>
+                            </svg> <em> 상품관리 <i class="fa fa-angle-right"></i>
+						</em> <strong style="font-size: 25px;"> 등록하기</strong>
+						</a> <a href="/admin/userlist"> <svg width="38" height="38"
+								viewBox="0 0 38 38" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="white"></path>
+                                <circle cx="9" cy="7" r="4"
+									stroke="white"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"
+									stroke="white"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"
+									stroke="white"></path>
+                            </svg> <em> 회원관리 <i class="fa fa-angle-right"></i>
+						</em> <strong style="font-size: 25px;"> 목록</strong>
+						</a> <a href="/admin/noticeWrite"> <svg width="38" height="38"
+								viewBox="0 0 38 38" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+                                <path
+									d="M31.6666 31.3889H17.7333M6.33325 24.4617L24.6781 6.27777L31.6666 13.205L13.3218 31.3889H6.33325V24.4617Z"
+									stroke="white"></path>
+                            </svg> <em> 게시판관리 <i
+								class="fa fa-angle-right"></i>
+						</em> <strong style="font-size: 25px;"> 공지사항 작성</strong>
+						</a>
+					</div>
+				</div>
+		</div>
+		</section>
 
-        <nav class="mypage-sidenav shop__sidebar__accordion">
-            <h2 class="nav-tit">Admin Navigation</h2>
-            <div class="accordion" id="accordionExample">
-                <div class="card">
-                    <div class="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseOne">상품관리</a>
-                    </div>
+		<nav class="mypage-sidenav shop__sidebar__accordion">
+			<h2 class="nav-tit">Admin Navigation</h2>
+			<div class="accordion" id="accordionExample">
+				<div class="card">
+					<div class="card-heading">
+						<a data-toggle="collapse" data-target="#collapseOne">상품관리</a>
+					</div>
 
-                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="my-board">
-                                <ul>
-                                    <li><a href="/admin/product">상품등록</a></li>
-                                    <li><a href="/admin/list">상품목록</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+					<div id="collapseOne" class="collapse show"
+						data-parent="#accordionExample">
+						<div class="card-body">
+							<div class="my-board">
+								<ul>
+									<li><a href="/admin/product">상품등록</a></li>
+									<li><a href="/admin/list">상품목록</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                <div class="card">
-                    <div class="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseTwo">회원관리</a>
-                    </div>
-                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="my-board">
-                                <ul>
-                                    <li><a href="/admin/index">주문확인</a></li>
-                                    <li><a href="/admin/userlist">전체회원목록</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+				<div class="card">
+					<div class="card-heading">
+						<a data-toggle="collapse" data-target="#collapseTwo">회원관리</a>
+					</div>
+					<div id="collapseTwo" class="collapse show"
+						data-parent="#accordionExample">
+						<div class="card-body">
+							<div class="my-board">
+								<ul>
+									<li><a href="/admin/index">주문확인</a></li>
+									<li><a href="/admin/userlist">전체회원목록</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                <div class="card">
-                    <div class="card-heading">
-                        <a data-toggle="collapse" data-target="#collapseThree">게시판관리</a>
-                    </div>
-                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
-                        <div class="card-body">
-                            <div class="my-board">
-                                <ul>
-                                    <li><a href="/notice">공지사항 목록</a></li>
-                                    <li><a href="/admin/noticeWrite">공지사항 작성</a></li>
-                                    <li><a href="/admin/reviewlist">리뷰관리</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-
-        <section class="mypage-cont mypage-order_list">
-            <div class="section-title">
-                <h1 class="tit">전체 회원 목록</h1>
-            </div>
-                <div class="order-filter">
-                    <div class="flex-c-m">
-                        <div class="d-grid gap-2 d-md-block m-r-8">
-                            <button type="button" class="btn btn-dark btn__tab"
-                                onClick="genderClicked(event)" data-gender="전체">전체</button>
-                            <button type="button" class="btn btn btn-dark btn__tab"
-                                onClick="genderClicked(event)" data-gender="여성">여성</button>
-                            <button type="button" class="btn btn btn-dark btn__tab"
-                                onClick="genderClicked(event)" data-gender="남성">남성</button>
-                        </div>
-
-                    </div>
-
-					<div class="order-filter-search m-l-20">
-                        <div class="order-filter-search__input-wrap">
-                            <input type="text" class="order-filter-search__input " name="keyword" value=""
-                                placeholder="회원아이디/이름으로 검색" onchange="activateSearchButton();">
-                        </div>
-                    </div>
-                    <button type="button" class="user_state-confirm" onclick="search();">조회하기</button>
-                </div>
-            <div class="table-responsive user-list_Mem">
-                <table class="table table-hover">
-                    <thead class="table">
-                        <tr>
-                            <th></th>
-                            <th>회원아이디</th>
-                            <th>회원이름</th>
-                            <th>회원성별</th>
-                            <th colspan="2">회원가입날짜</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <tr class="table_row" th:each="member : ${members}">
-                            <td></td>
-                            <td class="userName" th:text="${member.username}"></td>
-                            <td class="name" th:text="${member.name}"></td>
-                            <td class="gender" th:text="${member.gender}"></td>
-                            <td th:text="${member.createdDate}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-    </main>
+				<div class="card">
+					<div class="card-heading">
+						<a data-toggle="collapse" data-target="#collapseThree">게시판관리</a>
+					</div>
+					<div id="collapseThree" class="collapse show"
+						data-parent="#accordionExample">
+						<div class="card-body">
+							<div class="my-board">
+								<ul>
+									<li><a href="/notice">공지사항 목록</a></li>
+									<li><a href="/admin/noticeWrite">공지사항 작성</a></li>
+									<li><a href="/admin/reviewlist">리뷰관리</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
 
 
- 	<!-- Footer -->
+		<section class="mypage-cont mypage-order_list">
+			<div class="section-title">
+				<h1 class="tit">전체 회원 목록</h1>
+			</div>
+			<div class="order-filter">
+				<div class="flex-c-m">
+					<div class="d-grid gap-2 d-md-block m-r-8">
+						<button type="button" class="btn btn-dark btn__tab"
+							onClick="genderClicked(event)" data-gender="전체">전체</button>
+						<button type="button" class="btn btn btn-dark btn__tab"
+							onClick="genderClicked(event)" data-gender="여성">여성</button>
+						<button type="button" class="btn btn btn-dark btn__tab"
+							onClick="genderClicked(event)" data-gender="남성">남성</button>
+					</div>
+
+				</div>
+
+				<div class="order-filter-search m-l-20">
+					<div class="order-filter-search__input-wrap">
+						<input type="text" class="order-filter-search__input "
+							name="keyword" value="" placeholder="회원아이디/이름으로 검색"
+							onchange="activateSearchButton();">
+					</div>
+				</div>
+				<button type="button" class="user_state-confirm" onclick="search();">조회하기</button>
+			</div>
+			<div class="table-responsive user-list_Mem">
+				<table class="table table-hover">
+					<thead class="table">
+						<tr>
+							<th></th>
+							<th>회원아이디</th>
+							<th>회원이름</th>
+							<th>회원성별</th>
+							<th colspan="2">회원가입날짜</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr class="table_row" th:each="member : ${members}">
+							<td></td>
+							<td class="userName" th:text="${member.username}"></td>
+							<td class="name" th:text="${member.name}"></td>
+							<td class="gender" th:text="${member.gender}"></td>
+							<td th:text="${member.createdDate}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</main>
+
+
+	<!-- Footer -->
 	<footer class="bg3 p-t-65 p-b-32">
 		<div class="container">
 			<div class="row">
@@ -488,7 +495,7 @@
 						<li class="p-b-10"><a href="#"
 							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/faq"
 							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
@@ -548,15 +555,15 @@
 	</footer>
 
 
-    <!-- Back to top -->
-    <div class="btn-back-to-top" id="myBtn">
-        <span class="symbol-btn-back-to-top">
-            <i class="zmdi zmdi-chevron-up"></i>
-        </span>
-    </div>
+	<!-- Back to top -->
+	<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top"> <i
+			class="zmdi zmdi-chevron-up"></i>
+		</span>
+	</div>
 
-    <!--===============================================================================================-->
-    <script>
+	<!--===============================================================================================-->
+	<script>
         // 검색 버튼 클릭 시 실행될 search 함수 정의
         function search() {
 	        const keyword = document.getElementsByName("keyword")[0].value;
@@ -575,23 +582,25 @@
 			});
 	    }
     </script>
-    <!--===============================================================================================-->
-    <script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="../vendor/animsition/js/animsition.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="../vendor/bootstrap/js/popper.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-        crossorigin="anonymous"></script>
-    <!--===============================================================================================-->
-    <scrip src="../vendor/select2/select2.min.js"></scrip>
-    <!--===============================================================================================-->
-    <script src="../vendor/sweetalert/sweetalert.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
-    <!--===============================================================================================-->
-    <script>
+	<!--===============================================================================================-->
+	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="../vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="../vendor/bootstrap/js/popper.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+		crossorigin="anonymous"></script>
+	<!--===============================================================================================-->
+	<scrip src="../vendor/select2/select2.min.js"></scrip>
+	<!--===============================================================================================-->
+	<script src="../vendor/sweetalert/sweetalert.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
+	<!--===============================================================================================-->
+	<script>
         //////////////////(미니팝업기능)//////////////////////////////////
         const Toast = Swal.mixin({
             toast: true,
@@ -604,10 +613,10 @@
             }
         })
     </script>
-    <!--===============================================================================================-->
-    <script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <!--===============================================================================================-->
-    <script>
+	<!--===============================================================================================-->
+	<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<!--===============================================================================================-->
+	<script>
         $('.js-pscroll').each(function () {
             $(this).css('position', 'relative');
             $(this).css('overflow', 'hidden');
@@ -622,7 +631,7 @@
             })
         });
     </script>
-    <!--==============================================================================================-->
+	<!--==============================================================================================-->
 	<script>
 		function genderClicked(event) {
 			event.preventDefault(); // 기본 동작 중단
@@ -642,8 +651,8 @@
 			});
 		}
 	</script>
-    <!--==============================================================================================-->
-    <script>
+	<!--==============================================================================================-->
+	<script>
         //Accordin Active
 
         $('.collapse').on('shown.bs.collapse', function () {
@@ -657,7 +666,7 @@
 
         //사이드 메뉴 아코디언기능
     </script>
-    <!--==============================================================================================-->
+	<!--==============================================================================================-->
 	<script>
 		(function() {
 			var w = window;
@@ -698,8 +707,8 @@
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
 	</script>
-    <!--==============================================================================================-->
-    <script src="../js/main.js"></script>
+	<!--==============================================================================================-->
+	<script src="../js/main.js"></script>
 
 </body>
 

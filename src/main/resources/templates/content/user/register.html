@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>SignIn</title>
@@ -53,7 +53,9 @@
 					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -76,7 +78,7 @@
 					<div class="menu-desktop">
 						<ul class="customMenu expanded">
 							<li><a href="/index">HOME</a></li>
-							<li class="active-menu"><a href="/product">SHOP</a>
+							<li><a href="/product">SHOP</a>
 								<ul class="sub-menu">
 									<li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
 										<ul class="sub-menu">
@@ -155,7 +157,9 @@
 
 				<li>
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+						<a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
 							sec:authorize="isAnonymous()" th:href="@{/login}"
 							class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
 							sec:authorize="isAuthenticated()" th:href="@{/logout}"
@@ -188,7 +192,7 @@
 				</span></li>
 
 				<li><a href="/review/list">ABOUT</a></li>
-							<li><a href="/contact">CONTACT</a></li>
+				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
 		</div>
@@ -294,8 +298,6 @@
 										<input type="text" class="form-control"
 											aria-describedby="button-addon2" th:field="*{username}"
 											placeholder="소문자/숫자만 사용 4~20자리" required>
-										<button type="button" id="button-addon2"
-											class="btn btn-outline-secondary">check</button>
 									</div>
 									<span th:class="fieldError"
 										style="color: red; font-size: 12px;"
@@ -424,7 +426,7 @@
 						<li class="p-b-10"><a href="#"
 							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/faq"
 							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
@@ -591,6 +593,66 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																				
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																									
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																				
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
 
 					
 

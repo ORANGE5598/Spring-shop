@@ -24,9 +24,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.CartDTO;
+import com.shop.dto.OrderDTO;
 import com.shop.dto.PageRequestDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
@@ -44,7 +46,6 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @Controller
 @Log4j2
-@RequestMapping("/")
 public class MemberController {
 
 	/** 서비스 **/
@@ -185,7 +186,16 @@ public class MemberController {
 	public String MemberUpdate(@AuthenticationPrincipal UserAdapter user, Model model) {
 		Long id = user.getMemberDTO().getId();
 		ResponseDTO responseDTO = memberService.getById(id);
+		Long cartCount = cartService.getCartCount(id);
+		model.addAttribute("count", cartCount);
 		
+		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
+		int totalPrice = 0;
+	    for (CartDTO cart : cartList) {
+	        totalPrice += cart.getCPrice()*cart.getCount();
+	    }
+	    model.addAttribute("cartList", cartList);
+	    model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("member", responseDTO);
 		return "/content/user/update";
@@ -211,12 +221,24 @@ public class MemberController {
 		model.addAttribute("member", member);
 		model.addAttribute("orderList", orderService.getList(id));	// 사용자 id에 따른 전체 목록 출력
 		model.addAttribute("count0", orderService.allStatus(id));
-		model.addAttribute("count1", orderService.deliverying(id));
-		model.addAttribute("count2", orderService.afterDelivery(id));
-		model.addAttribute("count3", orderService.beforeCancle(id));
-		model.addAttribute("count4", orderService.afterCancle(id));
+		model.addAttribute("count1", orderService.donePayment(id));
+		model.addAttribute("count2", orderService.deliverying(id));
+		model.addAttribute("count3", orderService.afterDelivery(id));
+		model.addAttribute("count4", orderService.beforeCancle(id));
+		model.addAttribute("count5", orderService.afterCancle(id));
 		
 		return "content/user/mypage-orderlist";
+	}
+	
+	@PostMapping("/returnDeliveryStatus")
+	public String returnDeliveryStatus(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
+		
+		Long oNumber = dto.getONumber();
+		
+		orderService.modify(dto, oNumber);
+		
+		redirectAttributes.addFlashAttribute("message", "반품처리 되었습니다.");
+	    return "redirect:/orderlist";
 	}
 	
     @GetMapping("/myReviewList")

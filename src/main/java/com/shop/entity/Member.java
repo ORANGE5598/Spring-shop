@@ -1,3 +1,7 @@
+/*
+ * 소셜로그인 API에서 제공
+ */
+
 package com.shop.entity;
 
 import java.io.Serializable;
@@ -71,15 +75,18 @@ public class Member extends BaseTimeEntity implements Serializable {
     /** 회원 포인트 **/
     private int point;
     
+    /** 프로필 이미지 **/
+    private String profile;
     
     /** 회원 정보 업데이트 메서드 **/    
-    public void update(String password, String name, String email, String address1, String address2, String phone) {
+    public void update(String password, String name, String email, String address1, String address2, String phone, String profile) {
         this.password = password;
         this.name = name;
         this.email = email;
         this.address1 = address1;
         this.address2 = address2;
         this.phone = phone;
+        this.profile = profile;
     }
     
     public void changePoint(int point) {

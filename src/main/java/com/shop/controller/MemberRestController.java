@@ -1,5 +1,7 @@
 package com.shop.controller;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,11 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.config.auth.UserAdapter;
 import com.shop.dto.MemberDTO.RequestDTO;
@@ -76,5 +80,29 @@ public class MemberRestController {
 		return true;
 
 	}
-
+	
+	@PostMapping("/uploadImg")
+	public void uploadImg(@RequestParam("uploadFile") MultipartFile uploadFile) {
+		System.out.println("+++++++++++++++ uploadImg 시작");
+		System.out.println(uploadFile.getOriginalFilename());
+		if(uploadFile.getContentType().startsWith("image") == false) {
+            log.warn("이미지 파일이 아님.");
+        }
+		
+		try {
+		
+		String projectPath = System.getProperty("user.dir");
+		
+		String path = "/img/profile";
+		
+		Path savePath = Paths.get(projectPath + "\\src\\main\\resources\\static" + path);	// 프로젝트/src/resources/static/img/profile/
+//		Path savePath = Paths.get("D:\\upload");
+		System.out.println("aaaaaaaaaaaaaaaa");
+		uploadFile.transferTo(savePath);
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

@@ -66,12 +66,13 @@ public class MemberServiceImpl implements MemberService {
 		String address1 = memberDTO.getAddress1();
 		String address2 = memberDTO.getAddress2();
 		String phone = memberDTO.getPhone();
+		String profile = "/img/profile/" + memberDTO.getProfile();
 		
 		log.info(member);
 		
 		log.info("패스워드 일치 여부 : " + passwordEncoder.matches(memberDTO.getPassword(), encryptPassword));
 		
-		member.update(encryptPassword, name, email, address1, address2, phone);
+		member.update(encryptPassword, name, email, address1, address2, phone, profile);
 		
 		log.info("회원 정보 수정 : " + member);
 	}

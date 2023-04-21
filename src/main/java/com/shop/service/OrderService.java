@@ -50,6 +50,8 @@ public interface OrderService {
 	
 	Long allStatus(Long id);
 	
+	Long donePayment(Long id);
+	
 	Long deliverying(Long id);
 	
 	Long afterDelivery(Long id);
@@ -58,6 +60,6 @@ public interface OrderService {
 	
 	Long afterCancle(Long id);
 	
-	List<String> getImgList(Long id);
+	List<OrderList> getImgList(Long id);
 	
 }
