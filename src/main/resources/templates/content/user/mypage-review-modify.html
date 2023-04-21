@@ -90,7 +90,7 @@
 				<nav class="limiter-menu-desktop container">
 
 					<!-- Logo desktop -->
-					<a href="/index" class="logo"> <img src="img/icons/logo1.png"
+					<a href="/index" class="logo"> <img src="/img/icons/logo1.png"
 						alt="IMG-LOGO">
 					</a>
 
@@ -142,7 +142,7 @@
 		<div class="wrap-header-mobile">
 			<!-- Logo moblie -->
 			<div class="logo-mobile">
-				<a href="/index"><img src="img/icons/logo1.png" alt="IMG-LOGO"></a>
+				<a href="/index"><img src="/img/icons/logo1.png" alt="IMG-LOGO"></a>
 			</div>
 
 			<!-- Icon header -->
@@ -223,7 +223,7 @@
 			<div class="container-search-header">
 				<button
 					class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-					<img src="img/icons/icon-close2.png" alt="CLOSE">
+					<img src="/img/icons/icon-close2.png" alt="CLOSE">
 				</button>
 
 				<form class="wrap-search-header flex-w p-l-15">
@@ -292,7 +292,7 @@
 				<div class="user-info">
 
 					<div class="user-img">
-						<img src="../img/user/user2.jpg">
+						<img th:src="${member.profile}">
 					</div>
 
 					<div class="mypage-top">
@@ -355,64 +355,60 @@
 				<div class="section-title">
 					<h1 class="tit">구매후기작성</h1>
 				</div>
-				<div>
-					<select onchange="displayImage(this)" name="reviewImg"
-						id="product_select">
-						<option>미선택</option>
-						<option th:each="img : ${imgList}" th:value="${img}"
-							th:data-description="${img}" th:data-imagesrc="${img}"
-							th:data-image="${img}" th:text="${img}"></option>
-					</select> <img id="myImage" name="img" src="" width="100" height="100">
-				</div>
-
-				<div class="review-score" id="reviewScorePos">
-					<em class="label">별점을 매겨주세요</em>
-					<div class="n-score score-lg clickable goods_est_area"
-						id="startScoreWrap">
-						<span class="wrap-rating fs-18 cl11 pointer"> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(1)"></i> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(2)"></i> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(3)"></i> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(4)"></i> <i
-							class="item-rating pointer zmdi zmdi-star-outline"
-							onclick="setRating(5)"></i> <input class="dis-none" type="number"
-							name="reviewRating" id="reviewRatingInput">
-						</span>
+				<div class="my-review-write" id="reviewWrap">
+					<div>
+						<img id="myImage" name="img" th:src="${reviewDTO.reviewImg}" width="100" height="100">
 					</div>
+	
+					<div class="review-score" id="reviewScorePos">
+						<em class="label">별점을 매겨주세요</em>
+						<div class="n-score score-lg clickable goods_est_area"
+							id="startScoreWrap">
+							<span class="wrap-rating fs-18 cl11 pointer"> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(1)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(2)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(3)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(4)"></i> <i
+								class="item-rating pointer zmdi zmdi-star-outline"
+								onclick="setRating(5)"></i> <input class="dis-none" type="number"
+								name="reviewRating" id="reviewRatingInput">
+							</span>
+						</div>
+					</div>
+	
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">작성자</th>
+								<td><input class="form-control-label bg-body-secondary"
+									type="text" name="reviewWriter" th:value="${member.username}"
+									required> <input type="hidden" name="id"
+									th:value="${reviewDTO.id}"></td>
+							</tr>
+	
+							<tr>
+								<th scope="col">제목</th>
+								<td><input class="form-control-label bg-body-secondary"
+									type="text" name="reviewTitle"
+									th:value="${reviewDTO.reviewTitle}" required></td>
+							</tr>
+	
+							<tr>
+								<th scope="col"></th>
+								<td>
+									<div class="form-group">
+										<label for="board_content"></label>
+										<textarea name="reviewContent" id="board_content" required>[[${reviewDTO.reviewContent}]]</textarea>
+									</div>
+								</td>
+							</tr>
+						</thead>
+					</table>
 				</div>
-
-				<table class="table">
-					<thead>
-						<tr>
-							<th scope="col">작성자</th>
-							<td><input class="form-control-label bg-body-secondary"
-								type="text" name="reviewWriter" th:value="${member.username}"
-								required> <input type="hidden" name="id"
-								th:value="${reviewDTO.id}"></td>
-						</tr>
-
-						<tr>
-							<th scope="col">제목</th>
-							<td><input class="form-control-label bg-body-secondary"
-								type="text" name="reviewTitle"
-								th:value="${reviewDTO.reviewTitle}" required></td>
-						</tr>
-
-						<tr>
-							<th scope="col"></th>
-							<td>
-								<div class="form-group">
-									<label for="board_content"></label>
-									<textarea name="reviewContent" id="board_content" required>[[${reviewDTO.reviewContent}]]</textarea>
-								</div>
-							</td>
-						</tr>
-					</thead>
-				</table>
 				<div class="d-grid gap-2 d-md-block m-b-50">
 					<button class="btn btn-dark" type="submit">수정하기</button>
 					<button class="btn btn-dark delete" type="button">삭제하기</button>

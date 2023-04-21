@@ -5793,9 +5793,6 @@ a {
   transition: color 0.2s ease;
 }
 
-
-
-
 .accordion.accordion-type-2 .card .card-header>a.collapsed:after {
   content: "\f158";
 }
@@ -5814,4 +5811,8 @@ a {
   font-size: 21px;
   top: 15px;
   left: 20px;
+}
+
+.faq_section{
+	min-height: 800px;
 }

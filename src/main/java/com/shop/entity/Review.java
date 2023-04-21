@@ -47,8 +47,4 @@ public class Review extends BaseEntity {
 		this.reviewRating = reviewRating;
 	}
 	
-	public void changeImg(String reviewImg) {
-		this.reviewImg = reviewImg;
-	}
-	
 }

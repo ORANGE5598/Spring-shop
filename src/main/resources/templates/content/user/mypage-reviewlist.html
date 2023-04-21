@@ -279,7 +279,7 @@
 				<div class="user-info">
 
 					<div class="user-img">
-						<img src="img/user/profile23.png">
+						<img th:src="${member.profile}">
 					</div>
 
 					<div class="mypage-top">
@@ -377,7 +377,7 @@
 							<td class="txt-lighter column-5"><a
 								th:href="@{review/modify(id = ${list.id})}"
 								class="btn btn-outline-dark"> 수정하기
-									</button></td>
+									</a></td>
 						</tr>
 					</tbody>
 				</table>

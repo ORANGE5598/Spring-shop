@@ -40,6 +40,9 @@ public class IndexController {
 		if(user == null) {
 			ItemDTO itemDTO = itemService.read(1L);
 			model.addAttribute("itemDTO", itemDTO);
+			model.addAttribute("list1", itemService.getTopListTest());
+			model.addAttribute("list4", itemService.getBagListTest());
+			model.addAttribute("list6", itemService.getTechListTest());
 		} else {
 			
 			Long id = user.getMemberDTO().getId();

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,10 +31,12 @@ import com.shop.dto.OrderDTO;
 import com.shop.dto.PageRequestDTO;
 import com.shop.dto.MemberDTO.RequestDTO;
 import com.shop.dto.MemberDTO.ResponseDTO;
+import com.shop.entity.Profile;
 import com.shop.service.CartService;
 import com.shop.service.MailService;
 import com.shop.service.MemberService;
 import com.shop.service.OrderService;
+import com.shop.service.ProfileService;
 import com.shop.service.ReviewService;
 import com.shop.validator.CheckEmailValidator;
 import com.shop.validator.CheckUsernameValidator;
@@ -54,6 +55,7 @@ public class MemberController {
 	private final CartService cartService;
 	private final OrderService orderService;
 	private final ReviewService reviewService;
+	private final ProfileService profileService;
 
 	/** 중복 체크 유효성 검사 **/
 	private final CheckUsernameValidator checkUsernameValidator;
@@ -187,15 +189,17 @@ public class MemberController {
 		Long id = user.getMemberDTO().getId();
 		ResponseDTO responseDTO = memberService.getById(id);
 		Long cartCount = cartService.getCartCount(id);
-		model.addAttribute("count", cartCount);
-		
 		List<CartDTO> cartList = cartService.getCartList(id); // 장바구니 리스트 가져오기
+		List<Profile> profileList = profileService.getProfileList();
+		
 		int totalPrice = 0;
 	    for (CartDTO cart : cartList) {
 	        totalPrice += cart.getCPrice()*cart.getCount();
 	    }
+	    model.addAttribute("count", cartCount);
 	    model.addAttribute("cartList", cartList);
 	    model.addAttribute("totalPrice", totalPrice);
+	    model.addAttribute("profileList", profileList);
 		model.addAttribute("reviewCount", reviewService.myReviewCount(id));
 		model.addAttribute("member", responseDTO);
 		return "/content/user/update";

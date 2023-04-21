@@ -57,11 +57,14 @@ public class MemberDTO implements Serializable{
 		private String phone;
 		
 		@NotBlank(message = "성별 입력.")
+		@Pattern(regexp = "^(남성|여성)$", message = "남성 또는 여성만 입력 가능합니다.")
 		private String gender;
 
 		private MemberRole role;
 		
 		private int point;
+		
+		private String profile;
 
 		public void encryptPassword(String password) {
 			this.password = password;
@@ -79,6 +82,7 @@ public class MemberDTO implements Serializable{
 					.address2(address2)
 					.phone(phone)
 					.gender(gender)
+					.profile(profile)
 					.role(role.USER)
 					.point(0)
 					.build();
@@ -101,6 +105,7 @@ public class MemberDTO implements Serializable{
 		private String gender;
 		private MemberRole role;
 		private int point;
+		private String profile;
 		private String createdDate;
 		private String updatedDate;
 		
@@ -115,6 +120,7 @@ public class MemberDTO implements Serializable{
 			this.gender = member.getGender();
 			this.role = member.getRole();
 			this.point = member.getPoint();
+			this.profile = member.getProfile();
 			this.createdDate = member.getCreatedDate();
 			this.updatedDate = member.getUpdatedDate();
 		}

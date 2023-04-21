@@ -31,7 +31,6 @@ public class OrderController2 {
 		Long oNumber = orderService.order(dto);
 		
 		memberService.changePoint(requestDTO, dto.getMId());
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + cart_id);
 		
 		cartService.deleteById(cart_id);
 		log.info(cart_id + " 이 삭제됨.");

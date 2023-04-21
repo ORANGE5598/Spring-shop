@@ -9,7 +9,6 @@ public interface OAuth2UserInfo {
 	String getNameAttributeKey();
 	String getUsername();
 	String getEmail();
-	
 	Member toEntity();
 
 }

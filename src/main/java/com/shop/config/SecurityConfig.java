@@ -50,25 +50,7 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 		/** csrf 예외 처리 URL **/
-		http.csrf().ignoringAntMatchers("/css/**", 
-				"/confirm", 
-				"/mypage/**", 
-				"/findPassword/**", 
-				"/sendPwd/**", 
-				"/update/**", 
-				"/insertOrder/**", 
-				"/adminProduct/**", 
-				"/modifyItem/**", 
-				"/addCart/**", 
-				"/insertItem/**", 
-				"/modifyDeliveryStatus/**", 
-				"/notice/**", 
-				"/orderlist/**", 
-				"/returnDeliveryStatus/**", 
-				"/review/**", 
-				"/qna/**", 
-				"/reply/**", 
-				"/delete/**");
+		http.csrf().ignoringAntMatchers("/css/**", "/confirm", "/uploadImg/**", "/mypage/**", "/findPassword/**", "/sendPwd/**", "/update/**", "/insertOrder/**", "/adminProduct/**", "/modifyItem/**", "/addCart/**", "/insertItem/**", "/modifyDeliveryStatus/**", "/notice/**", "/orderlist/**", "/returnDeliveryStatus/**", "/review/**", "/qna/**", "/reply/**");
 		
 		/** 권한별 접근가능 주소 설정하기 **/
 		
@@ -94,7 +76,6 @@ public class SecurityConfig {
 			auth.antMatchers("/myReviewList").hasAnyRole("USER", "ADMIN", "SOCIAL");
 			auth.antMatchers("/product-detail").hasAnyRole("USER", "ADMIN", "SOCIAL");
 			auth.antMatchers("/shopping-cart").hasAnyRole("USER", "ADMIN", "SOCIAL");
-			auth.antMatchers("/delete").hasAnyRole("USER", "ADMIN", "SOCIAL");
 			
 			
 			/** 관리자 권한이 있어야 들어올 수 있는 주소 **/
