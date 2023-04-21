@@ -25,15 +25,28 @@ public class OrderController2 {
 	private final MemberService memberService;
 	
 	// DB에 상품 정보를 저장하는 페이지를 연결하는 메서드
-	@PostMapping("/insertOrder/{cart_id}")
+	@PostMapping({"/insertOrder/{cart_id}"})
 	public String insertItem(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO, @PathVariable("cart_id") Long cart_id) {
 		
 		Long oNumber = orderService.order(dto);
 		
 		memberService.changePoint(requestDTO, dto.getMId());
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + cart_id);
+		
 		cartService.deleteById(cart_id);
 		log.info(cart_id + " 이 삭제됨.");
 		
+		
+		redirectAttributes.addFlashAttribute(oNumber);
+		
+		return "content/user/orderBy";
+	}
+	
+	@PostMapping("/insertOrder")
+	public String insertItem(OrderDTO dto, RedirectAttributes redirectAttributes, RequestDTO requestDTO) {
+		Long oNumber = orderService.order(dto);
+		
+		memberService.changePoint(requestDTO, dto.getMId());
 		redirectAttributes.addFlashAttribute(oNumber);
 		
 		return "content/user/orderBy";

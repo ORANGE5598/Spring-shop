@@ -629,8 +629,7 @@
 		function requestPay() {
 
 			// IMP.request_pay(param, callback) 결제창 호출
-			IMP
-					.request_pay(
+			IMP.request_pay(
 							{ // param
 								pg : "kakaopay.TC0ONETIME",
 								pay_method : "card",
@@ -639,191 +638,109 @@
 								amount : priceAmount,
 								buyer_email : buyerMemberEmail,
 								buyer_name : buyerMemberName,
-
 							},
 							function(rsp) { // callback
 								/** 결제 검증 **/
-								$
-										.ajax(
-												{
-													type : 'POST',
-													url : '/verifyIamport/'
-															+ rsp.imp_uid,
-													beforeSend : function(xhr) {
-														xhr.setRequestHeader(
-																header, token);
-													}
+								$.ajax({
+									type : 'POST',
+									url : '/verifyIamport/' + rsp.imp_uid,
+									beforeSend : function(xhr) {
+										xhr.setRequestHeader(header, token);
+													} // beforeSend
+								}).done(function(result) {
+									if (rsp.paid_amount === result.response.amount) {
+										var formData = new FormData();
+										var iNumber = $("input[name='iNumber']").val();
+										var img = $("input[name='img']").val();
+										var mId = $("input[name='mId']").val();
+										var mName = $("input[name='mName']").val();
+										var oCount = $("input[name='oCount']").val();
+										var oDeliveryPrice = $("input[name='dPrice']").val();
+										var oItemPrice = $("input[name='iPrice']").val();
+										var oGetPoint = Math.floor($("input[name='totalPrice']").val() / 100);
+										var oName = $("input[name='iName']").val();
+										var oTotalPrice = $("input[name='totalPrice']").val();
+										var firPoint = $("input[name='firPoint']").val();
+										var oUsePoint = $("input[name='oUsePoint']").val();
+										var phoneNumber = $("input[name='phoneNumber']").val()
+										var roadAddress = $("input[name='roadAddress']").val();
+										var detailAddress = $("input[name='detailAddress']").val();
+										var deliveryMessage = $("input[name='deliveryMessage']").val();
+										var oSize = $("input[name='oSize']").val();
+										var paymentMethod = $(":input:radio[name='payment']:checked").val();
+										var tmpPoint = parseInt(firPoint) + oGetPoint - oUsePoint;
+										var cart_id = $("input[name='cart_id']").val();
+										$('#point').val(tmpPoint);
+										var point = $("input[name='point']").val();
+										
+										formData.append("iNumber", iNumber);
+										formData.append("img", img);
+										formData.append("mId", mId);
+										formData.append("mName", mName);
+										formData.append("oCount", oCount);
+										formData.append("oDeliveryPrice", oDeliveryPrice);
+										formData.append("oItemPrice", oItemPrice);
+										formData.append("oName", oName);
+										formData.append("oTotalPrice", oTotalPrice);
+										formData.append("phoneNumber", phoneNumber);
+										formData.append("roadAddress", roadAddress);
+										formData.append("detailAddress", detailAddress);
+										formData.append("deliveryMessage", deliveryMessage);
+										formData.append("oSize", oSize);
+										formData.append("paymentMethod", paymentMethod);
+										formData.append("point", point);
+										formData.append("cart_id", cart_id);
+										
+										if(cart_id === undefined) {
+											$.ajax({
+												type : 'POST',
+												url : 'insertOrder',
+												processData : false,
+												contentType : false,
+												data : formData,
+												type : 'POST',
+												dataType : 'JSON',
+												success : function(result) {
+													console.log(result);
+												},
+												error : function(jqXHR, textStatus, errThrown) {
+													window.location.href = "/orderlist"
+												},
+												beforeSend : function(xhr) {
+													xhr.setRequestHeader(header, token);
+												}}).done(function() {
+													window.location.href = "/orderlist"
+												}).fail(function(error) {
+													window.location.href = "/orderlist"
 												})
-										.done(
-												function(result) {
-													// rsp.paid_amount와 result.response.amount(서버 검증) 비교 후 로직 실행
-													if (rsp.paid_amount === result.response.amount) {
-
-														var formData = new FormData();
-
-														var iNumber = $(
-																"input[name='iNumber']")
-																.val();
-														var img = $(
-																"input[name='img']")
-																.val();
-														var mId = $(
-																"input[name='mId']")
-																.val();
-														var mName = $(
-																"input[name='mName']")
-																.val();
-														var oCount = $(
-																"input[name='oCount']")
-																.val()
-														var oDeliveryPrice = $(
-																"input[name='dPrice']")
-																.val();
-														var oItemPrice = $(
-																"input[name='iPrice']")
-																.val();
-														var oGetPoint = Math
-																.floor($(
-																		"input[name='totalPrice']")
-																		.val() / 100);
-														var oName = $(
-																"input[name='iName']")
-																.val();
-														var oTotalPrice = $(
-																"input[name='totalPrice']")
-																.val();
-														var firPoint = $(
-																"input[name='firPoint']")
-																.val();
-														var oUsePoint = $(
-																"input[name='oUsePoint']")
-																.val();
-														var phoneNumber = $(
-																"input[name='phoneNumber']")
-																.val()
-														var roadAddress = $(
-																"input[name='roadAddress']")
-																.val();
-														var detailAddress = $(
-																"input[name='detailAddress']")
-																.val();
-														var deliveryMessage = $(
-																"input[name='deliveryMessage']")
-																.val();
-														var oSize = $(
-																"input[name='oSize']")
-																.val();
-														var paymentMethod = $(
-																":input:radio[name='payment']:checked")
-																.val();
-														var tmpPoint = parseInt(firPoint)
-																+ oGetPoint
-																- oUsePoint;
-														
-														var cart_id = $("input[name='cart_id']").val();
-
-														$('#point').val(
-																tmpPoint);
-														var point = $(
-																"input[name='point']")
-																.val();
-
-														formData.append(
-																"iNumber",
-																iNumber);
-														formData.append("img",
-																img);
-														formData.append("mId",
-																mId);
-														formData.append(
-																"mName", mName);
-														formData.append(
-																"oCount",
-																oCount);
-														formData
-																.append(
-																		"oDeliveryPrice",
-																		oDeliveryPrice);
-														formData.append(
-																"oItemPrice",
-																oItemPrice);
-														formData.append(
-																"oName", oName);
-														formData.append(
-																"oTotalPrice",
-																oTotalPrice);
-														formData.append(
-																"phoneNumber",
-																phoneNumber);
-														formData.append(
-																"roadAddress",
-																roadAddress);
-														formData
-																.append(
-																		"detailAddress",
-																		detailAddress);
-														formData
-																.append(
-																		"deliveryMessage",
-																		deliveryMessage);
-														formData.append(
-																"oSize", oSize);
-														formData
-																.append(
-																		"paymentMethod",
-																		paymentMethod);
-														formData.append(
-																"point", point);
-														
-														formData.append("cart_id", cart_id);
-
-														$
-																.ajax(
-																		{
-																			type : 'POST',
-																			url : 'insertOrder/' + cart_id,
-																			processData : false,
-																			contentType : false,
-																			data : formData,
-																			type : 'POST',
-																			dataType : 'JSON',
-																			success : function(
-																					result) {
-																				console
-																						.log(result);
-																			},
-																			error : function(
-																					jqXHR,
-																					textStatus,
-																					errThrown) {
-																				window.location.href = "/orderlist"
-																			},
-																			beforeSend : function(
-																					xhr) {
-																				xhr
-																						.setRequestHeader(
-																								header,
-																								token);
-																			}
-																		})
-																.done(
-																		function() {
-																			window.location.href = "/orderlist"
-																		})
-																.fail(
-																		function(
-																				error) {
-																			window.location.href = "/orderlist"
-																		})
-													} else {
-														alert("결제에 실패했습니다."
-																+ "에러코드 : "
-																+ rsp.error_code
-																+ "에러 메시지 : "
-																+ rsp.error_message);
-
-													}
-												})
+										} else {
+											
+										$.ajax({
+											type : 'POST',
+											url : 'insertOrder/' + cart_id,
+											processData : false,
+											contentType : false,
+											data : formData,
+											type : 'POST',
+											dataType : 'JSON',
+											success : function(result) {
+												console.log(result);
+											},
+											error : function(jqXHR, textStatus, errThrown) {
+												window.location.href = "/orderlist"
+											},
+											beforeSend : function(xhr) {
+												xhr.setRequestHeader(header, token);
+											}}).done(function() {
+												window.location.href = "/orderlist"
+											}).fail(function(error) {
+												window.location.href = "/orderlist"
+											})
+										}
+									} else {
+										alert("결제에 실패했습니다." + "에러코드 : " + rsp.error_code + "에러 메시지 : " + rsp.error_message);
+										}
+									})
 							});
 		};
 	</script>
