@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="/qna/update" method="post" name="updateForm">
+  <input type="hidden" name="id" th:value="${qnaUpdate.id}">
+  writer: <input type="text" name="qnaWriter" th:value="${qnaUpdate.qnaWriter}" readonly> <br>
+  pass: <input type="text" name="qnaPass" id="qnaPass"> <br>
+  title: <input type="text" name="qnaTitle" th:value="${qnaUpdate.qnaTitle}"> <br>
+  contents: <textarea name="qnaContents" cols="30" rows="10" th:text="${qnaUpdate.qnaContents}"></textarea> <br>
+  <input type="hidden" name="qnaHits" th:value="${qnaUpdate.qnaHits}">
+  <input type="button" value="글수정" onclick="qnaUpdate()">
+</form>
+<script th:inline="javascript">
+  const qnaUpdate = () => {
+    const pass = [[${qnaUpdate.qnaPass}]];
+    const inputPass = document.getElementById("qnaPass").value;
+    if (pass == inputPass) {
+      document.updateForm.submit();
+    } else {
+      alert("비밀번호가 일치하지 않습니다!");
+    }
+  }
+</script>
+</body>
+</html>

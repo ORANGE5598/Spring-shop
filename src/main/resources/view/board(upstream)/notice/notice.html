@@ -1,42 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-<title>Shopping Cart</title>
+<title>Notice</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-<link rel="icon" type="image/png" href="/img/icons/favicon.png" />
+<link rel="icon" type="image/png" href="../img/icons/favicon.png" />
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="../img/icons/favicon.png" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.2.0/css/ionicons.min.css"
+	integrity="sha256-F3Xeb7IIFr1QsWD113kV2JXaEbjhsfpgrKkwZFGIA4E="
+	crossorigin="anonymous" />
+
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/vendor/bootstrap/css/bootstrap.min.css">
+	href="../vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+	crossorigin="anonymous">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/fonts/iconic/css/material-design-iconic-font.min.css">
+	href="fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/fonts/linearicons-v1.0.0/icon-font.min.css">
+	href="fonts/linearicons-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/vendor/animate/animate.css">
+	href="../vendor/animate/animate.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/vendor/css-hamburgers/hamburgers.min.css">
+	href="../vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/vendor/animsition/css/animsition.min.css">
+	href="../vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/vendor/select2/select2.min.css">
+	href="../vendor/select2/select2.min.css">
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	href="../vendor/perfect-scrollbar/perfect-scrollbar.css">
 <!--===============================================================================================-->
-<link rel="stylesheet" type="text/css" href="/css/util.css">
-<link rel="stylesheet" type="text/css" href="/css/main.css">
+<link rel="stylesheet" type="text/css" href="css/util.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
 </head>
 
@@ -93,9 +107,9 @@
 									<li><a th:href="@{/productCategory(iCategory=6)}">TECH</a></li>
 								</ul></li>
 
-							<li><a href="/notice">ABOUT</a></li>
+							<li class="active-menu"><a href="/notice">ABOUT</a></li>
 							<li><a href="/contact">CONTACT</a></li>
-							<li class="active-menu"><a href="/mypage">MYPAGE</a></li>
+							<li><a href="/mypage">MYPAGE</a></li>
 						</ul>
 					</div>
 
@@ -190,7 +204,7 @@
 						class="fa fa-angle-right" aria-hidden="true"></i>
 				</span></li>
 
-				<li><a href="/notice">ABOUT</a></li>
+				<li><a href="/review/list">ABOUT</a></li>
 				<li><a href="/contact">CONTACT</a></li>
 				<li><a href="/mypage">MYPAGE</a></li>
 			</ul>
@@ -263,152 +277,131 @@
 	</div>
 	<!-- 장바구니 끝 -->
 
-	<!-- breadcrumb -->
+
+	<section class="bg-img1 txt-center p-lr-15 p-tb-140"
+		style="background-image: url('../img/banner/banner7.png')">
+		<h2 class="ltext-201 cl5 float-center m-l-140">Notice</h2>
+	</section>
+
 	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-5 p-lr-0-lg">
 			<a href="/index" class="stext-109 cl8 hov-cl1 trans-04"> Home <i
 				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> Cart </span>
+			</a> <a href="/notice" class="stext-109 cl8 hov-cl1 trans-04"> About
+				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+			</a> <span class="stext-109 cl4"> Notice </span>
 		</div>
 	</div>
 
-
-	<!-- Shoping Cart -->
-	<form class="bg0 p-t-75 p-b-85">
+	<section class="bg0 p-t-40 p-b-20">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-					<div class="m-l-25 m-r--38 m-lr-0-xl">
-						<div class="wrap-table-shopping-cart">
-							<table class="table-shopping-cart">
-								<tr class="table_head">
-									<th class="column-0"></th>
-									<th class="column-1">상품</th>
-									<th class="column-2"></th>
-									<th class="column-3">가격</th>
-									<th class="column-4">갯수</th>
-									<th class="column-5">금액</th>
-								</tr>
+				<div class="col-md-8 col-lg-9 p-b-80">
+					<div class="p-r-45 p-r-0-lg">
+						<div class="card card-lg">
+							<h3 class="card-header border-bottom-0 mtext-114">공지사항</h3>
 
-								<tr class="table_row" th:each="list : ${cartList}">
-									<td class="p-l-40"><input type="radio"
-										th:value="${list.id}" name="selectedItem"></td>
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img th:src="${list.cImg}" alt="IMG"> <input
-												type="hidden" name="cNumber" th:value="${list.cNumber}">
+							<div class="accordion accordion-type-2 accordion-flush"
+								id="accordion_2"
+								th:each="notice, noticeStat : ${notices.dtoList}">
+								<div class="card">
+									<div
+										class="card-header d-flex justify-content-between activestate stext-302">
+										<div class="col-md-7">
+											<a role="button" data-toggle="collapse"
+												th:href="'#collapse_' + ${noticeStat.index}"
+												aria-expanded="true">
+												<p th:text="${notice.title}"></p>
+											</a> <small class="d-flex">작성자 : <strong>
+													<p class="mr-2" th:text="${notice.createdBy}"></p>
+											</strong>
+												<p
+													th:text="${#temporals.format(notice.regDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
+											</small>
 										</div>
-									</td>
-									<td class="column-2 cName">[[${list.cName}]]</td>
-									<td class="column-3">[[${list.cPrice}]]<input
-										type="hidden" name="cPrice" th:value="${list.cPrice}"></td>
-									<td class="column-4">
-										<div class="wrap-num-product flex-w m-l-auto m-r-0">
-											<div
-												class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-minus"></i>
-											</div>
-
-											<input class="mtext-104 cl3 txt-center num-product count"
-												type="number" name="num-product1" th:value="${list.count}">
-
-											<div
-												class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-												<i class="fs-16 zmdi zmdi-plus"></i>
-											</div>
+										<form th:action="@{/deleteNotice}" method="post">
+											<input type="hidden" name="id" th:value="${notice.id}">
+											<button type="submit" class="ml-auto btn btn-outline-dark"
+												sec:authorize="hasAuthority('ROLE_ADMIN')">삭제하기</button>
+										</form>
+									</div>
+									<div th:id="'collapse_' + ${noticeStat.index}" class="collapse"
+										data-parent="#accordion_2" role="tabpanel">
+										<div class="card-body pa-15 stext-302">
+											<p th:text="${notice.content}"></p>
 										</div>
-									</td>
-									<td>
-										<input type='hidden' name='cart_id' id='cart_id' th:value='${list.id}'>
-										<button type=button th:onclick="deleteById([[${list.id}]])">삭제</button>
-									</td>
-									<!-- <td class="column-5 totalPrice" id="totalPrice"
-										th:text="${list.cPrice * list.count}"></td> -->
-								</tr>
-							</table>
+									</div>
+								</div>
+							</div>
 						</div>
-
-
 					</div>
 				</div>
 
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-					<div
-						class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-						<h4 class="mtext-109 cl2 p-b-30">Cart Totals</h4>
+				<!-------------------------------------검색창----------------------------------------------------->
+				<div class="col-md-4 col-lg-3">
+					<div class="side-menu">
+						<div class="bor17 of-hidden pos-relative">
+							<input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55"
+								type="text" name="search" placeholder="Search">
 
-						<div class="flex-w flex-t bor12 p-b-13">
-							<div class="size-208">
-								<span class="stext-110 cl2"> 금액: </span>
-							</div>
-
-							<div class="size-209">
-								<span class="mtext-110 cl2" id="total-price2">
-									[[${#vars.totalPrice}]] </span>
-							</div>
+							<button
+								class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
+								<i class="zmdi zmdi-search"></i>
+							</button>
 						</div>
 
-						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-							<div class="size-208 w-full-ssm">
+						<!-- -----------------------------------카테고리-------------------------------------------->
+						<div class="p-t-55 m-t-8">
+							<h4 class="mtext-112 cl2 p-b-33">Categories</h4>
 
-								<span class="stext-110 cl2 p-b-20"> 배송정보 </span>
+							<ul>
+								<li class="bor18"><a href="/notice"
+									class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-15 p-lr-4">
+										Notice <!--자유게시판-->
+								</a></li>
+
+								<li class="bor18"><a href="/review/list"
+									class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-15 p-lr-4">
+										Review <!--리뷰 몰아넣기-->
+								</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="product__pagination">
+
+						<div
+							class="pagination h-100 justify-content-center align-items-center">
+
+							<!-- 페이지 링크 -->
+							<div class="product__pagination " th:if="${notices.prev}">
+								<a class="page-link"
+									th:href="@{/notice(page= ${notices.start -1})}" tabindex="-1">이전
+									페이지</a>
 							</div>
 
-							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-								<div class="flex-l p-t-3 dis-block pos-relative">
-									<button type="button" id="delivery-fast">
-										<img class="dis-block trans-04"
-											src="img/icons/fastshipping.png" alt="ICON">
-									</button>
-									<span class="stext-111 p-l-10"> <b>빠른배송 5,000원</b><br>
-										다음날 도착예정
-									</span>
-								</div>
-								<div class="flex-l p-t-15 dis-block pos-relative">
-									<button type="button" id="delivery-standard">
-										<img class="dis-block trans-04"
-											src="img/icons/standarddelivery.png" alt="ICON">
-									</button>
-									<span class="stext-111 p-l-10"> <b>일반배송 3,000원</b><br>
-										검수 후 배송<br>
-									</span>
-								</div>
-								<div class="p-t-20">
-									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-										<select class="js-select2" name="delivery"
-											onchange="updateTotalPrice()">
-											<option class="deliveryPrice" id="delivery-fast" value="5000">빠른배송</option>
-											<option class="deliveryPrice" id="delivery-standard"
-												value="3000" selected="selected">일반배송</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-
-								</div>
+							<div
+								th:class=" 'product__pagination ' + ${notices.page == page?'active':''} "
+								th:each="page: ${notices.pageList}">
+								<a class="page-link" th:href="@{/notice(page=${page})}">
+									[[${page}]] </a>
+							</div>
+							<div class="product__pagination" th:if="${notices.next}">
+								<a class="page-link"
+									th:href="@{/notice(page= ${notices.end + 1})}">다음 페이지</a>
 							</div>
 						</div>
-
-						<div class="flex-w flex-t p-t-27 p-b-33">
-							<div class="size-208">
-								<span class="mtext-101 cl2"> Total: </span>
-							</div>
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2" id="total-price">
-									[[${#vars.totalPrice + 3000}]] </span>
-							</div>
-						</div>
-
-
-						<a
-							class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
-							th:href="@{/orderBy(dPrice = deliveryX, iNumber = iNumberX, oCount = countX, cart_id = cartNumberX)}"
-							onclick="orderWithCount(this); orderWithINumber(this); orderWithDelivery(this); getCartId(this);">구매하기</a>
-
 					</div>
 				</div>
 			</div>
 		</div>
-	</form>
+	</section>
+
 	<!-- Footer -->
 	<footer class="bg3 p-t-65 p-b-32">
 		<div class="container">
@@ -448,7 +441,7 @@
 						<li class="p-b-10"><a href="#"
 							class="stext-107 cl7 hov-cl2 trans-04"> 배송 </a></li>
 
-						<li class="p-b-10"><a href="#"
+						<li class="p-b-10"><a href="/faq"
 							class="stext-107 cl7 hov-cl2 trans-04"> FAQ </a></li>
 					</ul>
 				</div>
@@ -507,7 +500,6 @@
 		</div>
 	</footer>
 
-
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top"> <i
@@ -516,14 +508,18 @@
 	</div>
 
 	<!--===============================================================================================-->
-	<script src="/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="../vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="/vendor/animsition/js/animsition.min.js"></script>
+	<script src="../vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="/vendor/bootstrap/js/popper.js"></script>
-	<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../vendor/bootstrap/js/popper.js"></script>
+	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+		crossorigin="anonymous"></script>
 	<!--===============================================================================================-->
-	<script src="/vendor/select2/select2.min.js"></script>
+	<script src="../vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function() {
 			$(this).select2({
@@ -533,9 +529,24 @@
 		})
 	</script>
 	<!--===============================================================================================-->
-	<script src="/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+	<script src="../vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-remove-item').on('click', function(e) {
+			e.preventDefault();
+		});
+
+		$('.js-remove-item').each(
+				function() {
+					var nameProduct = $(this).parent().parent().find(
+							'.js-name-item').html();
+					$(this).on('click', function() {
+						swal(nameProduct, "장바구니에서 삭제되었습니다 ! ", "success");
+
+					});
+				});
+	</script>
 	<!--===============================================================================================-->
-	<script src="/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="../vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		$('.js-pscroll').each(function() {
 			$(this).css('position', 'relative');
@@ -550,67 +561,6 @@
 				ps.update();
 			})
 		});
-	</script>
-	<!--===============================================================================================-->
-	<script>
-		var cPrice = $('input[name="cPrice"]').val();
-		var count = $('input.count').val();
-		var totalPrice = count * cPrice;
-
-		document.getElementById("totalPrice").innerHTML = totalPrice;
-	</script>
-	<!--===============================================================================================-->
-	<script>
-		$("input[name='selectedItem']").change(function() {
-			var tr = $(this).closest("tr");
-			var iNumber = tr.find("input[name='cNumber']").val();
-			var count = tr.find(".count").val();
-			// 가져온 값을 이용하여 필요한 작업 수행
-		});
-	</script>
-	<!--===============================================================================================-->
-	<script>
-		function orderWithDelivery(element) {
-			var delivery = document
-					.querySelector('option.deliveryPrice:checked').value;
-			element.href = element.href.replace('deliveryX', delivery);
-		}
-
-		function orderWithCount(element) {
-
-			var selectedRow = $("input[name='selectedItem']:checked").closest(
-					"tr");
-			var count = selectedRow.find("input[name='num-product1']").val();
-			element.href = element.href.replace('countX', count);
-		}
-
-		function orderWithINumber(element) {
-			var selectedRow = $("input[name='selectedItem']:checked").closest(
-					"tr");
-			var iNumber = selectedRow.find("input[name='cNumber']").val();
-			element.href = element.href.replace('iNumberX', iNumber);
-		}
-		
-		function getCartId(element) {
-			var selectedRow = $("input[name='selectedItem']:checked").closest("tr");
-			var cartNumber = selectedRow.find("input[name='cart_id']").val();
-			element.href = element.href.replace('cartNumberX', cartNumber);
-		}
-	</script>
-	<!--===============================================================================================-->
-	<script>
-		const deliverySelect = document.querySelector('.js-select2');
-		deliverySelect.addEventListener('change', updateTotalPrice);
-
-		function updateTotalPrice() {
-			const totalPrice = document.getElementById('total-price'); // 수정된 부분
-			const totalPrice2 = document.getElementById('total-price2');
-			const selectedOption = deliverySelect.options[deliverySelect.selectedIndex];
-			const deliveryPrice = Number(selectedOption.value);
-			const currentTotalPrice = Number(totalPrice2.textContent.trim()); // 수정된 부분
-			const newTotalPrice = currentTotalPrice + deliveryPrice;
-			totalPrice.textContent = `${newTotalPrice}`;
-		}
 	</script>
 	<!--===============================================================================================-->
 	<script>
@@ -629,8 +579,7 @@
 			w.ChannelIO = ch;
 			function l() {
 				if (w.ChannelIOInitialized) {
-					return
-
+					return;
 				}
 				w.ChannelIOInitialized = true;
 				var s = document.createElement("script");
@@ -654,24 +603,8 @@
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
 	</script>
-	
-	<script>
-	
-	function deleteById(cart_id) {
-		$.ajax({
-			type: 'DELETE',
-			url: '/delete/' + cart_id,
-		}).done(function() {
-			alert('삭제되었습니다.');
-			window.location.reload();
-		}).fail(function(error) {
-			alert(JSON.stringify(error));
-			console.log(JSON.stringify(error));
-		});
-	};
-	</script>
 	<!--===============================================================================================-->
-	<script src="/js/main.js"></script>
+	<script src="../js/main.js"></script>
 
 </body>
 

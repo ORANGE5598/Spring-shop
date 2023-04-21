@@ -238,6 +238,7 @@
 						th:each="cart : ${cartList}">
 						<div class="header-cart-item-img">
 							<img th:src="${cart.cImg}" alt="IMG">
+							<input type="hidden" th:value="${cart.id}" name="cart_id" id="cart_id">
 						</div>
 
 						<div class="header-cart-item-txt p-t-8">
@@ -718,6 +719,8 @@
 														var tmpPoint = parseInt(firPoint)
 																+ oGetPoint
 																- oUsePoint;
+														
+														var cart_id = $("input[name='cart_id']").val();
 
 														$('#point').val(
 																tmpPoint);
@@ -771,12 +774,14 @@
 																		paymentMethod);
 														formData.append(
 																"point", point);
+														
+														formData.append("cart_id", cart_id);
 
 														$
 																.ajax(
 																		{
 																			type : 'POST',
-																			url : 'insertOrder',
+																			url : 'insertOrder/' + cart_id,
 																			processData : false,
 																			contentType : false,
 																			data : formData,

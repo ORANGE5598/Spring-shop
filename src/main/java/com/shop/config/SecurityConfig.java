@@ -50,7 +50,25 @@ public class SecurityConfig {
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		
 		/** csrf 예외 처리 URL **/
-		http.csrf().ignoringAntMatchers("/css/**", "/confirm", "/mypage/**", "/findPassword/**", "/sendPwd/**", "/update/**", "/insertOrder/**", "/adminProduct/**", "/modifyItem/**", "/addCart/**", "/insertItem/**", "/modifyDeliveryStatus/**", "/notice/**", "/orderlist/**", "/returnDeliveryStatus/**", "/review/**", "/qna/**", "/reply/**", "/delete/**");
+		http.csrf().ignoringAntMatchers("/css/**", 
+				"/confirm", 
+				"/mypage/**", 
+				"/findPassword/**", 
+				"/sendPwd/**", 
+				"/update/**", 
+				"/insertOrder/**", 
+				"/adminProduct/**", 
+				"/modifyItem/**", 
+				"/addCart/**", 
+				"/insertItem/**", 
+				"/modifyDeliveryStatus/**", 
+				"/notice/**", 
+				"/orderlist/**", 
+				"/returnDeliveryStatus/**", 
+				"/review/**", 
+				"/qna/**", 
+				"/reply/**", 
+				"/delete/**");
 		
 		/** 권한별 접근가능 주소 설정하기 **/
 		

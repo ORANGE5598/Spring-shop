@@ -32,4 +32,5 @@ public class OrderDTO {
 	private String updatedDate;
 	private String deliveryStatus;
 	private String oSize;
+
 }
