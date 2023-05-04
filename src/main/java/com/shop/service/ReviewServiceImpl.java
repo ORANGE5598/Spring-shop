@@ -43,6 +43,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public Long modify(ReviewDTO dto, Long id) {
 		
 		Review entity = reviewRepository2.getById(id);
+		String img = !dto.getReviewImg().equals("미선택") ? dto.getReviewImg() : "https://i.imgur.com/OEzmJJ8.jpeg";
 		String reviewContent = dto.getReviewContent();
 	    reviewContent = reviewContent.replaceAll("<p>", "").replaceAll("</p>", "");
 	    dto.setReviewContent(reviewContent);
@@ -50,6 +51,7 @@ public class ReviewServiceImpl implements ReviewService {
 		entity.changeTitle(dto.getReviewTitle());
 		entity.changeContent(dto.getReviewContent());
 		entity.changeRating(dto.getReviewRating());
+		entity.changeImg(img);
 		
 		reviewRepository2.save(entity);
 		

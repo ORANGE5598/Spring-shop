@@ -67,9 +67,8 @@ main.content a {
     font-family: musinsa-Bold, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
     font-size: 24px;
     font-weight: normal;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     line-height: 52px;
-    margin-left: 60px;
 }
 
 .user-info {
@@ -160,8 +159,7 @@ main.content a {
 
 .user-bankbook {
     display: flex;
-    /* float: left; */
-    justify-content: flex-end;
+    float: left;
     padding: 40px 0px 0px 50px;
 }
 
@@ -797,7 +795,7 @@ col {
 }
 
 .table tr.my-info-img .img {
-    display: inline-block;
+    display: block;
     width: 80px;
     height: 80px;
     margin: 10px 0 0 -6px;
@@ -808,24 +806,17 @@ col {
 }
 
 .table tr.my-info-img .txt {
-	display: inline-block;
     margin: 13px 0 9px 0;
-    margin-left: 50px;
 }
 
 .table+.user-info {
     border-top: 1px solid #f1f1f1;
 }
 
-.mypage-cont.mypage-order_list{
-	min-height: 700px;
-}
-
 .mypage-cont.mypage-order_list dl {
     overflow: hidden;
     padding: 12px 0 6px 0;
 }
-
 .mypage-cont.mypage-order_list dd{
     font-weight: bold;
     margin: 0 30px 0 6px;

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>후기목록 조회 - 관리자페이지</title>
@@ -10,6 +9,8 @@
 <!-- default header name is X-CSRF-TOKEN -->
 <meta id="_csrf_header" name="_csrf_header"
 	th:content="${_csrf.headerName}" />
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="../img/icons/favicon.png" />
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="../vendor/bootstrap/css/bootstrap.min.css">
@@ -288,7 +289,7 @@
 				<div class="user-info">
 
 					<div class="user-img">
-						<img th:src="${member.profile}">
+						<img src="../img/icons/admin.png">
 					</div>
 
 					<div class="mypage-top">
@@ -340,8 +341,8 @@
 						</a>
 					</div>
 				</div>
-			</section>
 		</div>
+		</section>
 
 		<nav class="mypage-sidenav shop__sidebar__accordion">
 			<h2 class="nav-tit">Admin Navigation</h2>
