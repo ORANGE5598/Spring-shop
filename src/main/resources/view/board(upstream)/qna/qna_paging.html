@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>자유게시판</h1>
+<button onclick="saveReq()">글작성</button>
+
+<table>
+    <tr>
+        <th>title</th>
+        <th>writer</th>
+        <th>date</th>
+        <th>hits</th>
+    </tr>
+    <tr th:each="qna: ${qnaList}">
+      <!--    <td th:text="${qna.id}"></td>-->
+        <td><a th:href="@{|/qna/${qna.id}|(page=${qnaList.number + 1})}" th:text="${qna.qnaTitle}"></a></td>
+        <td th:text="${qna.qnaWriter}"></td>
+        <td th:text="*{#temporals.format(qna.qnaRegDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${qna.qnaHits}"></td>
+    </tr>
+</table>
+<!-- 첫번째 페이지로 이동 -->
+<!-- /qna/paging?page=1 -->
+<a th:href="@{/qna/paging(page=1)}">First</a>
+<!-- 이전 링크 활성화 비활성화 -->
+<!-- qnaList.getNumber() 사용자:2페이지 getNumber()=1 -->
+<a th:href="${qnaList.first} ? '#' : @{/qna/paging(page=${qnaList.number})}">prev</a>
+
+<!-- 페이지 번호 링크(현재 페이지는 숫자만)
+        for(int page=startPage; page<=endPage; page++)-->
+<span th:each="page: ${#numbers.sequence(startPage, endPage)}">
+<!-- 현재페이지는 링크 없이 숫자만 -->
+    <span th:if="${page == qnaList.number + 1}" th:text="${page}"></span>
+<!-- 현재페이지 번호가 아닌 다른 페이지번호에는 링크를 보여줌 -->
+    <span th:unless="${page == qnaList.number + 1}">
+        <a th:href="@{/qna/paging(page=${page})}" th:text="${page}"></a>
+    </span>
+</span>
+
+<!-- 다음 링크 활성화 비활성화
+    사용자: 2페이지, getNumber: 1, 3페이지-->
+<a th:href="${qnaList.last} ? '#' : @{/qna/paging(page=${qnaList.number + 2})}">next</a>
+<!-- 마지막 페이지로 이동 -->
+<a th:href="@{/qna/paging(page=${qnaList.totalPages})}">Last</a>
+
+</body>
+<script>
+    const saveReq = () => {
+        location.href = "/qna/save";
+    }
+
+</script>
+</html>

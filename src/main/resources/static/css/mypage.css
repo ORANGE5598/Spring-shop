@@ -1,0 +1,2003 @@
+/* [font] */
+
+@font-face {
+    font-family: musinsa-Light;
+    src: url('../fonts/musinsa/musinsa-Light.ttf');
+}
+
+@font-face {
+    font-family: musinsa-Medium;
+    src: url('../fonts/musinsa/musinsa-Medium.ttf');
+}
+
+@font-face {
+    font-family: musinsa-Bold;
+    src: url('../fonts/musinsa/musinsa-Bold.ttf');
+}
+
+/*-------------------------------
+[my page - head] */
+
+.section-wrap{
+    margin: 0 -10px;
+}
+.section-wrap.wrap-detail{
+    min-height: 640px;
+    overflow: hidden;
+    position: relative;
+}
+.section-wrap.wrap-detail .n-section-block{
+    float: none;
+    width: 50%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.section-wrap.wrap-detail .n-section-block.block-discount{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+main.content {
+    overflow: hidden;
+    width: auto;
+    margin: 0 40px;
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+}
+
+
+main.content a {
+    color: #000;
+}
+
+.mypage-sc {
+    position: relative;
+    padding: 0px 0px 44px;
+    margin: 0 40px;
+    color: rgb(0, 0, 0);
+    background-color: #000;
+}
+
+
+
+.mypage-sc .mypage-title {
+    padding: 20px 0px 24px;
+    background: rgb(0, 0, 0);
+    display: inline-block;
+    font-family: musinsa-Bold, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+    color: rgb(255, 255, 255);
+    line-height: 52px;
+    margin-left: 60px;
+}
+
+.user-info {
+    overflow: hidden;
+    padding-left: 40px;
+}
+
+.user-img img {
+    float: left;
+    width: 160px;
+    height: 160px;
+    border-radius: 100%;
+}
+
+.mypage-top {
+    float: left;
+    min-width: calc(100% - 970px);
+    min-height: 148px;
+    padding-left: 50px;
+    box-sizing: border-box;
+}
+
+.user-nickname {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    vertical-align: baseline;
+    line-height: 60px;
+}
+
+.user-nickname strong {
+    display: inline-block;
+    font-size: 58px;
+    line-height: 87px;
+    color: rgb(255, 255, 255);
+}
+
+.user-nickname a {
+    display: inline-block;
+    padding: 4px;
+    margin: 32px 0px 0px 4px;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgb(180, 180, 180);
+}
+
+.user-name {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.user-name em {
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 24px;
+    line-height: 36px;
+    color: rgb(255, 255, 255);
+    font-style: normal;
+}
+
+.user-name span {
+    display: inline-flex;
+    margin: 4px 0px 0px 8px;
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 17px;
+    line-height: 21px;
+    color: rgb(195, 194, 194);
+}
+
+.showClock span {
+    display: inline-flex;
+    margin: 15px 0px 0px 8px;
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 17px;
+    line-height: 21px;
+    color: rgb(195, 194, 194);
+}
+
+.admin-msg {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 4px;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgb(191, 190, 190);
+}
+
+.user-bankbook {
+    display: flex;
+    /* float: left; */
+    justify-content: flex-end;
+    padding: 40px 0px 0px 50px;
+}
+
+.user-bankbook a {
+    display: flex;
+    flex-direction: column;
+    width: 180px;
+    margin-right: 10px;
+    color: #ffffff;
+}
+
+.user-bankbook a>em {
+    display: block;
+    margin: 8px 0px;
+    font-size: 14px;
+    line-height: 21px;
+    color: #ccc;
+}
+
+.user-bankbook a>strong {
+    display: block;
+    font-size: 30px;
+    line-height: 45px;
+    color: #ccc;
+}
+
+
+
+/*-------------------------------
+  [my page - side nav] */
+
+nav.mypage-sidenav {
+    width: 170px;
+    float: left;
+    margin: 52px 40px 0px 0px;
+    font-family: musinsa-Medium, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    font-size: 14px;
+
+}
+
+.mypage-sidenav .nav-tit {
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    clip: rect(0px, 0px, 0px, 0px);
+}
+
+.mypage-sidenav a:visited {
+    text-decoration: none;
+}
+
+.mypage-sidenav a {
+    display: flex;
+    margin-top: 2px;
+    font-size: 16px;
+    line-height: 40px;
+    color: rgb(110, 110, 110) !important;
+}
+
+.my-account {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+}
+
+.my-account h3 {
+    padding: 13px 0px 2px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 40px;
+    color: #000;
+}
+
+.my-board {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    padding-top: 12px;
+}
+
+.my-board h3 {
+    padding: 13px 0px 2px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 40px;
+}
+
+/*-------------------------------
+  [my page - order list] */
+
+.mypage-cont {
+    width: calc(100% - 210px);
+    padding: 0;
+    float: right;
+}
+
+
+.section-title {
+    border-bottom: 3px solid #000000;
+    padding-bottom: 14px;
+    margin-top: 48px;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    position: relative;
+}
+
+.section-title .tit {
+    display: inline-block;
+    font-size: 24px;
+    font-family: musinsa-Medium, sans-serif !important;
+    font-weight: normal;
+}
+
+.mypage-cont .section-title .state {
+    padding: 14px 0 10px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: musinsa-Medium, sans-serif !important;
+}
+
+.mypage-cont .section-title .state li {
+    display: inline-block;
+    color: #ccc;
+    margin-right: 16px;
+}
+
+.mypage-cont .section-title .state a {
+    display: block;
+    color: #ccc;
+}
+
+.mypage-cont .section-title .state a:active {
+    color: #000;
+}
+
+
+.mypage-cont .section-title .state a:hover {
+    color: #7d7d7d;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+
+}
+
+.info-txt {
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    line-height: 1.5;
+    font-size: 14px;
+    padding-top: 20px;
+}
+
+.info-txt li {
+    margin-top: 5px;
+    color: #777777;
+    padding-left: 8px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.info-txt>li:first-of-type {
+    margin-top: 0;
+}
+
+.info-txt>li:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 3px;
+    height: 3px;
+    background: #777777;
+    border-radius: 100%;
+}
+
+.table .table-hover .table-col .state {
+    display: inline-block;
+    margin: 2px 0;
+}
+
+/** contents **/
+.mypage-cont .info-txt+.btn-change-info {
+    padding-top: 14px;
+    color: #000000;
+}
+
+.mypage-cont .btn-change-info i {
+    margin: 1px 4px 0 0;
+    vertical-align: top;
+    width: 22px;
+    height: 22px;
+    padding-top: 10px;
+    font-size: 22px !important;
+}
+
+.mypage-cont .btn-change-info span {
+    display: inline-block;
+    padding-top: 11px;
+    vertical-align: top;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.orderListSearchForm input {
+    vertical-align: middle;
+}
+
+.order-filter {
+    display: flex;
+    align-items: center;
+    margin: 48px 0 24px;
+}
+
+.mypage-cont .order-filter-period {
+    display: flex;
+    align-items: center;
+}
+
+.mypage-cont .order-filter-period__tab__button--active {
+    background-color: #0078ff;
+    color: #ffffff;
+}
+
+.mypage-cont .order-filter-period__tab__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    width: 61px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #f3f3f3;
+    font-size: 13px;
+    color: #6e6e6e;
+}
+
+.btn__tab {
+    width: 101px;
+    height: 30px;
+    font-size: 14px;
+    line-height: 1.2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+}
+
+.mypage-cont .order-filter-period__tab {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.mypage-cont .order-filter-period__date {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 276px;
+}
+
+.mypage-cont .order-filter-period__input-wrap {
+    position: relative;
+    width: 130px;
+    height: 32px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.mypage-cont .order-filter-period__input {
+    position: relative;
+    padding: 0 10px;
+    width: 128px;
+    height: 30px;
+    font-size: 13px;
+    color: #6e6e6e;
+    text-align: left;
+    appearance: none;
+    z-index: 10;
+}
+
+/**search***/
+.mypage-cont .order-filter-search__input-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    width: 180px;
+    height: 30px;
+    margin-right: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+}
+
+.mypage-cont .order-filter-search__input {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+    color: #6e6e6e;
+    text-align: left;
+    font-family: musinsa-Medium;
+}
+
+.mypage-cont .order-filter-search {
+    padding: 0 8px;
+    text-indent: 3px;
+}
+
+.mypage-cont .order-filter-confirm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 105px;
+    height: 30px;
+    border-radius: 4px;
+    background: #f3f3f3;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: 700;
+    color: #b3b3b3;
+}
+
+.mypage-cont .user_state-confirm {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 105px;
+    height: 30px;
+    border-radius: 4px;
+    background: #000000;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.12;
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+
+/*----------------------------
+  [my page - order table] */
+
+.table.table-hover.table-col {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 680px;
+}
+
+.table.table-hover.table-col tr {
+    border-top: 1px solid #e6e6e6;
+    border-bottom: 1px solid #e6e6e6;
+}
+
+.table.table-hover.table-col th {
+    height: 52px;
+    border-bottom: 1px solid #000000;
+    vertical-align: middle;
+    text-transform: uppercase;
+    line-height: 1.6;
+    padding-right: 15px;
+}
+
+.table.table-hover.table-col td {
+    height: 70px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+    vertical-align: middle;
+    word-break: break-all;
+    padding-bottom: 20px;
+}
+
+.table.table-hover.table-col td>a {
+    display: inline-block;
+    word-break: break-all;
+}
+
+
+.table.table-hover.table-col .table_row {
+    height: 165px;
+}
+
+.table.table-hover.table-col .column-1 {
+    width: 133px;
+    padding-left: 20px;
+}
+
+.table.table-hover.table-col .column-1x {
+    width: 133px;
+    text-align: center;
+    padding-left: 20px;
+}
+
+.table.table-hover.table-col .column-2 {
+    width: 220px;
+    padding-right: 25px;
+}
+
+.table.table-hover.table-col .column-2x {
+    width: 220px;
+    text-align: center;
+    padding-right: 25px;
+}
+
+.table.table-hover.table-col .column-3 {
+    width: 148px;
+    text-align: center;
+    padding-left: 10px;
+}
+
+.table.table-hover.table-col .column-4 {
+    width: 180px;
+    padding-right: 25px;
+    padding-left: 20px;
+    text-align: center;
+}
+
+
+.table.table-hover.table-col .column-5 {
+    width: 195px;
+    padding-left: 15px;
+    padding-right: 5px;
+    text-align: center;
+}
+
+.table.table-hover.table-col .column-6 {
+    width: 170px;
+    padding-right: 30px;
+    text-align: center;
+}
+
+.img-block {
+    display: table-cell;
+    width: 60px;
+    position: relative;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+.img-block img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.product_row {
+    display: table;
+    table-layout: fixed;
+    line-height: 1.5;
+    text-align: left;
+    position: relative;
+    
+}
+
+.product_row .info {
+    display: table-cell;
+    vertical-align: middle;
+    margin-right: 70px;
+}
+
+.product_row .info li {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.product_row .info .brand {
+    font-weight: 300;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.product_row .info .name {
+    display: inline-block;
+    max-height: 44px;
+    font-weight: bold;
+    overflow: hidden;
+    color: #000;
+}
+
+.product_row .info .option {
+    font-weight: 300;
+    color: #777777;
+}
+
+
+.table td .total{
+    font-size: 20px;
+    font-family: musinsa-Medium;
+    font-weight: normal;
+}
+
+
+/*--버튼---*/
+
+.n-paging {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 90px;
+    clear: both;
+}
+
+.n-paging .page {
+    display: inline-block;
+    width: 28px;
+    line-height: 22px;
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif !important;
+    font-size: 16px;
+    color: #dadada;
+    vertical-align: top;
+    margin: 5px 0;
+    border: 0;
+    padding: 0;
+    background: none;
+}
+
+.n-paging .page.is-active {
+    font-weight: bold;
+    color: #000000;
+}
+
+
+/*마이페이지 주문배송조회*/
+.step_pop {
+    right: 200px;
+    top: 110px;
+}
+
+.step_pop .box_title {
+    margin-bottom: 10px;
+}
+
+.step_pop .close {
+    float: right;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.step_pop .box_info_cell ul {
+    width: 100%;
+    box-sizing: border-box;
+    border-left: none;
+    text-align: center;
+}
+
+.step_pop .box_info_cell ul:first-child {
+    border-top: 1px solid #ddd;
+}
+
+.step_pop .box_info_cell li {
+    float: none;
+    border-top: none;
+}
+
+.step_pop .box_info_cell li {
+    width: 155px;
+}
+
+.step_pop .popup_info_title {
+    border-left: 1px solid #ddd;
+}
+
+.title-box .korSub {
+    line-height: 15px;
+    margin-left: 5px;
+}
+
+
+em {
+    font-style: normal;
+}
+
+svg {
+    width: 38;
+    height: 38;
+    fill: none;
+}
+
+svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+
+g {
+    stroke: none;
+    stroke-width: 1;
+    fill: none;
+    fill-rule: evenodd;
+}
+
+colgroup {
+    display: table-column-group;
+}
+
+col {
+    display: table-column;
+}
+
+
+
+
+/*회원정보수정*/
+
+
+.mypage-cont .info_views-area {
+    display: flex;
+    align-items: center;
+
+}
+
+.mypage-cont .info_views-area>button {
+    padding: 0 15.5px;
+    margin-left: 15px;
+}
+
+.mypage-cont.table {
+    overflow: hidden;
+}
+
+.table tr.my-info-img th {
+    padding-top: 29px;
+}
+
+.table tr.my-info-img .img {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    margin: 10px 0 0 -6px;
+    background: url(#) no-repeat 50% 50%;
+    background-size: cover;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.table tr.my-info-img .txt {
+	display: inline-block;
+    margin: 13px 0 9px 0;
+    margin-left: 50px;
+}
+
+.table+.user-info {
+    border-top: 1px solid #f1f1f1;
+}
+
+.mypage-cont.mypage-order_list{
+	min-height: 700px;
+}
+
+.mypage-cont.mypage-order_list dl {
+    overflow: hidden;
+    padding: 12px 0 6px 0;
+}
+
+.mypage-cont.mypage-order_list dd{
+    font-weight: bold;
+    margin: 0 30px 0 6px;
+}
+
+.mypage-cont.mypage-order_list dt,
+.mypage-cont.mypage-order_list dd {
+    float: left;
+}
+
+
+/* admin page */
+
+.mypage-sidenav.shop__sidebar__accordion .card-heading a {
+    padding: 13px 0px 2px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 40px;
+    color: #000;
+}
+
+.mypage-sidenav.shop__sidebar__accordion li {
+    display: flex;
+    margin-top: 2px;
+    font-size: 17px;
+    line-height: 40px;
+    color: rgb(110, 110, 110) !important;
+}
+
+.my-users {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+    padding-top: 12px;
+}
+
+.my-users h3 {
+    padding: 13px 0px 2px;
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 40px;
+}
+
+.table tr.order-product_pop_img .product_img {
+    display: block;
+    width: 90px;
+    height: 90px;
+    margin: 10px 0 0 -6px;
+    background: url(#) no-repeat 50% 50%;
+    background-size: cover;
+    overflow: hidden;
+}
+/* admin-user List */
+
+.user-list_Mem{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+.table-responsive.user-list_Mem tr{
+    text-align: center;
+}
+
+
+/************ mypage- review **************/
+
+.review-list {
+    padding-top: 20px;
+    font-family: musinsa-Medium,"Apple SD Gothic Neo","Noto Sans KR",sans-serif
+}
+
+.review-list__text {
+    padding: 91px 0;
+    font-size: 12px;
+    text-align: center
+}
+
+.review-list__wrap {
+    padding-top: 5px;
+    border-bottom: 1px solid #f5f5f5
+}
+
+.review-list--mypage .review-list {
+    padding-top: 21px
+}
+
+.review-list-wrap {
+    box-sizing: border-box;
+    width: 960px;
+    border: 1px solid #ddd;
+    border-top: 0
+}
+
+.review-list-wrap--member-review {
+    width: auto;
+    min-width: 912px;
+    border-top: 1px solid #ddd
+}
+
+.review-list-wrap--member-view {
+    width: auto;
+    min-width: 912px;
+    border: 0
+}
+
+.review-list+.review-list {
+    border-top: 1px solid #ddd
+}
+
+.review-list+.review-list {
+    border-top: 1px solid #ddd
+}
+
+.review-list__rating-wrap {
+    height: 12px;
+    padding-bottom: 15px
+}
+
+.review-list__rating {
+    display: inline-flex;
+    overflow: hidden;
+    height: 20px;
+    padding-left: 20px;
+    font-family: Musinsa,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    line-height: 1;
+    color: #ff923a;
+    text-align: left;
+    align-items: baseline;
+}
+
+.review-list__rating__unit {
+    overflow: hidden;
+    width: 90px;
+    height: 100%;
+    background-position: left top;
+}
+
+.review-list__rating__active {
+    display: block;
+    width: 90px;
+    height: 100%;
+}
+
+.review-list__rating__active--single {
+    width: 17px
+}
+
+.review-list__rating__text {
+    box-sizing: border-box;
+    margin-left: 5px;
+    font-size: 15px;
+    transform: translateY(-15%)
+}
+
+.review-list--mypage .review-list__rating {
+    padding-left: 21px
+}
+
+.review-list__comment-wrap {
+    display: block;
+    margin-bottom: 20px;
+    padding-left: 53px;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 18px
+}
+
+.review-list--mypage .review-list__comment-wrap {
+    padding-left: 21px
+}
+
+.review-list__comment {
+    color: #aaa
+}
+
+.review-list__comment--new {
+    color: #0078ff
+}
+
+.review-list--none {
+    text-align: center
+}
+
+.review-list--none__text {
+    padding: 68px 0 66px;
+    font-weight: 700;
+    font-size: 12px;
+    font-family: "Apple SD Gothic Neo","Noto Sans KR",sans-serif
+}
+
+.review-label {
+    display: inline-flex;
+    height: 20px;
+    margin: 0 5px 15px 0;
+    padding: 0 6px;
+    border-radius: 2px;
+    background: #ff923a;
+    font-weight: 700;
+    font-size: 11px;
+    color: #fff;
+    align-content: center;
+    align-items: center
+}
+
+.review-label-wrap {
+    display: flex
+}
+
+.review-information-mypage__wrap .review-label {
+    margin: 0 10px 0 0
+}
+
+.review-label:first-child {
+    margin-left: 15px
+}
+
+.review-information-mypage__wrap .review-label:first-child {
+    margin-left: 0
+}
+
+.review-label--experience {
+    background: #14aaff
+}
+
+.review-label--sponsored {
+    background: #e1efff;
+    color: #0078ff
+}
+
+.review-profile {
+    display: flex;
+    padding: 0 15px 0 13px;
+    font-size: 14px;
+    font-family: "Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    line-height: 1.5
+}
+
+.review-profile__link {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    margin-top: 2px;
+    border-radius: 100%
+}
+
+.review-profile__image {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%)
+}
+
+.review-profile__text-wrap {
+    box-sizing: border-box;
+    width: calc(100% - 32px);
+    padding-left: 8px
+}
+
+.review-profile__text {
+    display: flex
+}
+
+.review-profile__name {
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 23px;
+    color: #000
+}
+
+.review-profile__information {
+    display: flex;
+    margin-top: -2px;
+    padding-bottom: 9px;
+    font-size: 12px;
+    color: #aaa;
+    align-items: center
+}
+
+.review-profile__information>a {
+    cursor: pointer
+}
+
+.review-profile__body_information {
+    display: flex;
+    line-height: 18px;
+    align-items: center
+}
+
+.review-profile__body_information::after {
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin: 0 5px;
+    background: #aaa;
+    content: ''
+}
+
+.review-profile-experience__name::after {
+    display: none
+}
+
+.review-profile__date {
+    margin-left: auto;
+    padding-top: 2px;
+    font-size: 12px;
+    color: #aaa
+}
+
+.review-goods-information {
+    display: flex;
+    max-height: 54px;
+    padding: 0 15px 15px 53px;
+    align-items: center
+}
+
+.review-list--mypage .review-goods-information {
+    padding-left: 15px
+}
+
+.review-goods-information--mypage {
+    max-height: inherit;
+    padding: 21px 10px 0 10px
+}
+
+.review-goods-information__thumbnail {
+    overflow: hidden;
+    position: relative;
+    width: 45px;
+    height: 54px;
+    border-radius: 4px
+}
+
+.review-goods-information--mypage .review-goods-information__thumbnail {
+    width: 80px;
+    height: 96px;
+    border-radius: 0;
+    flex: 0 0 80px
+}
+
+.review-goods-information__link {
+    display: block;
+    height: 100%
+}
+
+.review-goods-information__soldout {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background: rgba(255,255,255,.8);
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center
+}
+
+.review-goods-information__soldout>span {
+    display: inline-block;
+    font-family: Musinsa,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    color: #777;
+    vertical-align: middle
+}
+
+.review-goods-information__soldout::before {
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    content: ""
+}
+
+.review-goods-information__image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    transform: translate(-50%,-50%);
+    -o-object-fit: contain;
+    object-fit: contain
+}
+
+.review-goods-information__item {
+    width: calc(100% - 51px);
+    margin-left: 10px;
+    padding-top: 1px;
+    font-size: 12px
+}
+
+.review-goods-information--mypage .review-goods-information__item {
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 14px
+}
+
+.review-goods-information__brand {
+    display: block;
+    line-height: 18px;
+    color: #777
+}
+
+.review-goods-information--mypage .review-goods-information__brand {
+    line-height: 21px;
+    color: #000
+}
+
+.review-goods-information__name {
+    display: block;
+    line-height: 18px;
+    color: #777
+}
+
+.review-goods-information--mypage .review-goods-information__name {
+    font-weight: 700;
+    line-height: 21px;
+    color: #000
+}
+
+.review-goods-information__option-wrap {
+    display: flex;
+    line-height: 18px;
+    color: #aaa
+}
+
+.review-goods-information--mypage .review-goods-information__option-wrap {
+    line-height: 21px;
+    color: #777
+}
+
+.review-goods-information__option {
+    overflow: hidden;
+    max-width: 237px;
+    padding-right: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.review-goods-information--mypage .review-goods-information__option {
+    max-width: inherit;
+    padding-right: 0;
+    white-space: normal
+}
+
+.review-goods-information__body-information {
+    line-height: 21px;
+    color: #aaa
+}
+
+.review-contents {
+    cursor: pointer
+}
+
+.review-contents__experience-title {
+    padding: 15px 15px 10px 53px;
+    font-weight: 700;
+    font-size: 15px
+}
+
+.review-contents__experience-title::after {
+    display: block;
+    font-weight: 400;
+    line-height: 23px;
+    color: #aaa;
+    content: '...더보기'
+}
+
+.review-contents--active .review-contents__experience-title::after {
+    display: none
+}
+
+.review-contents__experience-thumbnail {
+    overflow: hidden;
+    position: relative;
+    width: 307px;
+    height: 307px;
+    margin: 0 15px 0 53px;
+    border-radius: 4px
+}
+
+.review-contents__experience-thumbnail>img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%,-50%);
+    -o-object-fit: contain;
+    object-fit: contain
+}
+
+.review-contents--active .review-contents__experience-thumbnail {
+    display: none
+}
+
+.review-contents__text {
+    overflow: hidden;
+    position: relative;
+    max-height: 100px;
+    padding: 10px 15px 5px 20px;
+    font-size: 15px;
+    -webkit-text-size-adjust: none;
+    line-height: 23px;
+    word-break: break-all;
+    -moz-text-size-adjust: none;
+    text-size-adjust: none
+}
+
+.review-contents__text--experience {
+    display: block;
+    padding: 15px 0 10px;
+    font-size: 12px;
+    line-height: 18px;
+    color: #777
+}
+
+.review-contents__text--experience-close::after {
+    display: block;
+    font-size: 15px;
+    color: #aaa;
+    content: '접기'
+}
+
+.review-contents__text>img {
+    display: block;
+    max-width: 100%
+}
+
+.review-list--mypage .review-contents__text {
+    margin-right: 14.7%;
+    padding-left: 21px;
+}
+
+.review-contents__experience-thumbnail+.review-contents__text {
+    display: none
+}
+
+.review-contents--active .review-contents__text {
+    display: block;
+    overflow: visible;
+    height: auto;
+    max-height: initial;
+    text-overflow: unset;
+    -webkit-line-clamp: unset
+}
+
+.review-contents__experience-title+.review-contents__text {
+    margin-bottom: 15px
+}
+
+.review-contents--overflow {
+    min-height: 46px
+}
+
+.review-contents--overflow::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+    width: 100%;
+    padding-left: 53px;
+    background-color: #fff;
+    font-size: 15px;
+    color: #aaa;
+    content: '...더보기'
+
+}
+
+.review-contents--active .review-contents--overflow::after {
+    display: block;
+    position: inherit;
+    bottom: 0;
+    left: 0;
+    padding-left: 0;
+    content: '접기'
+}
+
+.review-list__list:hover .review-contents--overflow::after {
+    background-color: #f7f7f7
+}
+
+.review-list--mypage .review-contents--overflow::after {
+    padding-left: 21px
+}
+
+.review-list--mypage .review-contents--active .review-contents--overflow::after {
+    padding-left: 0
+}
+
+
+.review-content-photo {
+    margin: 15px 0 0;
+    padding-left: 53px
+}
+
+.review-list--mypage .review-content-photo {
+    padding-left: 21px
+}
+
+.review-content-photo__wrap {
+    position: relative;
+    padding: 144px 15px 0 0
+}
+
+.review-contents--active .review-content-photo__wrap {
+    padding-top: 0
+}
+
+.review-list--mypage .review-contents--active .review-content-photo__wrap {
+    padding-right: 21px
+}
+
+.review-content-photo__list {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0
+}
+
+.review-contents--active .review-content-photo__list {
+    display: block;
+    overflow: initial;
+    position: static;
+    height: auto
+}
+
+.review-content-photo__item {
+    overflow: hidden;
+    position: relative;
+    width: 144px;
+    height: 144px;
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    align-items: center;
+    justify-content: center
+}
+
+.review-content-photo__item+.review-content-photo__item {
+    margin-left: 5px
+}
+
+.review-content-photo__item>img {
+    display: none
+}
+
+.review-contents--active .review-content-photo__item>img {
+    display: block;
+    width: 100%
+}
+
+.review-content-photo__item.review-content-photo--more {
+    display: flex
+}
+
+.review-contents--active .review-content-photo__item {
+    display: block;
+    width: 307px;
+    height: auto;
+    background-image: none!important
+}
+
+.review-contents--active .review-content-photo__item+.review-content-photo__item {
+    margin: 10px 0 0 0
+}
+
+.review-content-photo__dim {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.3)
+}
+
+.review-contents--active .review-content-photo__dim {
+    display: none
+}
+
+.review-content-photo__count {
+    position: relative;
+    z-index: 1;
+    font-size: 28px;
+    color: #fff
+}
+
+.review-contents--active .review-content-photo__count {
+    display: none
+}
+
+.review-content-emoticon {
+    padding: 10px 0 0 53px
+}
+
+.review-content-emoticon__image {
+    width: 100px
+}
+
+.review-content-emoticon__image+.review-content-emoticon__image {
+    margin-left: 5px
+}
+
+.review-evaluation-button {
+    padding: 20px 0 20px 53px
+}
+
+.review-list--mypage .review-evaluation-button {
+    padding-left: 21px
+}
+
+.review-evaluation-button__wrap {
+    display: flex
+}
+
+.review-evaluation-button__list+.review-evaluation-button__list {
+    margin-left: 5px
+}
+
+.review-evaluation-button__list>input {
+    display: none
+}
+
+.review-evaluation-button__list>input:checked+label {
+    border-color: #0078ff;
+    color: #0078ff
+}
+
+.review-evaluation-button__item01 {
+    display: flex;
+    box-sizing: border-box;
+    min-width: 90px;
+    height: 30px;
+    padding: 1px 8px 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 12px;
+    line-height: normal;
+    cursor: pointer;
+    align-items: center
+}
+
+.review-evaluation-button__item01::before {
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    margin-right: 5px;
+    background-image: url(../img/review/ic-22-solid-smile-1.svg?v=20230331111630);
+    background-repeat: no-repeat;
+    background-size: 18px 16px;
+    content: ''
+}
+
+.review-evaluation-button__item02 {
+    display: flex;
+    box-sizing: border-box;
+    min-width: 90px;
+    height: 30px;
+    padding: 1px 8px 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 12px;
+    line-height: normal;
+    cursor: pointer;
+    align-items: center
+}
+
+.review-evaluation-button__item02::before {
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    margin-right: 5px;
+    background-image: url(../img/review/ic-22-solid-smile-2.svg?v=20230331111630);
+    background-repeat: no-repeat;
+    background-size: 18px 16px;
+    content: ''
+}
+
+.review-evaluation-button__item03 {
+    display: flex;
+    box-sizing: border-box;
+    min-width: 90px;
+    height: 30px;
+    padding: 1px 8px 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 12px;
+    line-height: normal;
+    cursor: pointer;
+    align-items: center
+}
+
+.review-evaluation-button__item03::before {
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    margin-right: 5px;
+    background-image: url(../img/review/ic-22-solid-smile-3.svg?v=20230331111630);
+    background-repeat: no-repeat;
+    background-size: 18px 16px;
+    content: ''
+}
+
+.review-evaluation-button__count {
+    padding-left: 3px
+}
+
+.review-information-mypage {
+    padding-left: 21px
+}
+
+.review-information-mypage__wrap {
+    display: flex;
+    margin-bottom: 5px;
+    align-items: center
+}
+
+.review-information-mypage__information {
+    display: flex;
+    margin-right: 20px;
+    font-size: 14px;
+    color: #aaa
+}
+
+.review-information-mypage__date {
+    display: flex;
+    align-items: center
+}
+.review-information-mypage__button-wrap {
+    display: flex;
+}
+
+.review-information-mypage__date::after {
+    display: inline-flex;
+    width: 1px;
+    height: 12px;
+    margin: 0 8px;
+    background: #aaa;
+    content: '';
+    align-items: center
+}
+
+.review-information-mypage__state--fail {
+    color: red
+}
+
+.review-information-mypage__state--pass {
+    color: #14aaff
+}
+
+.review-information-mypage__state--waiting {
+    color: #777
+}
+
+.review-information-mypage__button-wrap {
+    display: flex
+}
+
+.review-information-mypage__button {
+    display: flex;
+    font-size: 14px;
+    align-items: center
+}
+
+.review-information-mypage__button:first-child::after {
+    display: inline-flex;
+    width: 1px;
+    height: 12px;
+    margin: 0 8px;
+    background: #aaa;
+    content: '';
+    align-items: center
+}
+
+.review-benefit {
+    width: 960px;
+    margin-bottom: 20px
+}
+
+.review-benefit__toggle-title {
+    display: flex;
+    box-sizing: border-box;
+    height: 45px;
+    padding: 0 20px 0 15px;
+    border: 1px solid #ffdfc5;
+    background-color: #fff4eb;
+    cursor: pointer;
+    align-items: center
+}
+
+.review-benefit__toggle-title__arrow {
+    margin-left: auto
+}
+
+.review-benefit__toggle-title--active .review-benefit__toggle-title__arrow {
+    transform: rotate(180deg)
+}
+
+.review-benefit__text {
+    padding-left: 8px;
+    font-size: 12px;
+    font-family: Musinsa,"Apple SD Gothic Neo","Noto Sans KR",sans-serif
+}
+
+.review-benefit__text>span {
+    color: #14aaff
+}
+
+.review-benefit__toggle-content {
+    display: none;
+    padding: 15px 0 20px 40px;
+    border: 1px solid #ffdfc5;
+    border-top: 0;
+    font-size: 12px;
+    line-height: 18px
+}
+
+.review-benefit__toggle-title--active+.review-benefit__toggle-content {
+    display: block
+}
+
+.review-benefit__list {
+    display: flex
+}
+
+.review-benefit__list+.review-benefit__list {
+    margin-top: 5px
+}
+
+.review-benefit__title {
+    width: 191px
+}
+
+.review-benefit__price>span {
+    color: #14aaff
+}
+
+.review-list-wrap .comments-list {
+    padding: 0 15px 15px 53px
+}
+
+.review-list-wrap .nslist_bottom {
+    height: 82px
+}
+
+.review-list-wrap .nslist_bottom .box_page_msg {
+    height: 40px;
+    padding-right: 12px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    font-weight: 700;
+    line-height: 40px;
+    color: #000;
+    text-align: right
+}
+
+.review-list__list .my-review-detail {
+    clear: both;
+    padding-left: calc(24.4% + 21px)
+}
+
+.review-list__header {
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #000
+}
+
+.review-list__index {
+    overflow: hidden;
+    height: 53px;
+    font-size: 16px;
+    text-align: center
+}
+
+.review-list__index__content {
+    float: left;
+    width: 24.4%;
+    line-height: 53px
+}
+
+.review-list__index__content:nth-of-type(2) {
+    width: 64.6%
+}
+
+
+.review-list__list {
+    overflow: hidden;
+    position: relative
+}
+
+.review-list__list:hover {
+    background: #f7f7f7
+}
+
+.review-list__good-information {
+    float: left;
+    width: 24.4%
+}
+
+.review-list__contents {
+    float: left;
+    position: relative;
+    width: 75.6%
+}
+
+.review-list__review-type__text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 11%;
+    padding-top: 60px;
+    font-size: 14px;
+    text-align: center
+}
+
+.review-satisfaction-form {
+    display: flex;
+    align-items: center
+}
+
+.review-satisfaction-form+.review-satisfaction-form {
+    margin-top: 20px
+}
+
+.review-satisfaction-form:first-of-type {
+    margin-top: 13px
+}
+
+.review-satisfaction-form:last-of-type {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f1f1f1
+}
+
+.review-satisfaction-form__title {
+    flex-basis: 154px
+}
+
+.review-satisfaction-form__input {
+    display: flex;
+    position: relative;
+    min-width: 345px
+}
+
+.review-satisfaction-form__input__wrap {
+    position: relative;
+    flex: 1
+}
+
+.review-satisfaction-form__radio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+
+.review-satisfaction-form__label {
+    display: flex;
+    box-sizing: border-box;
+    height: 35px;
+    border: 1px solid #e5e5e5;
+    border-left: none;
+    align-items: center;
+    justify-content: center
+}
+
+input[type=radio]:checked+.review-satisfaction-form__label {
+    border: none;
+    background-color: #0078ff;
+    color: #fff
+}
+
+.review-satisfaction-form__input__wrap:first-of-type>.review-satisfaction-form__label {
+    border-left: 1px solid #eee;
+    border-radius: 18px 0 0 18px
+}
+
+.review-satisfaction-form__input__wrap:last-of-type>.review-satisfaction-form__label {
+    border-radius: 0 18px 18px 0
+}
+
+.review-form--beauty {
+    display: flex;
+    align-items: center
+}
+
+.review-form--beauty+.review-form--beauty {
+    margin-top: 20px
+}
+
+.review-form--beauty__title {
+    display: flex;
+    position: relative;
+    flex-basis: 154px
+}
+
+.review-form--beauty__title--essential>span {
+    display: flex
+}
+
+.review-form--beauty__title--essential>span::after {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    margin-left: 2px;
+    border-radius: 12px;
+    background-color: red;
+    vertical-align: top;
+    content: ''
+}
+
+.review-form--beauty__title--multiple {
+    flex-direction: column;
+    align-items: flex-start
+}
+
+.review-form--beauty__title--multiple::after {
+    display: block;
+    font-size: 11px;
+    color: #b3b3b3;
+    content: '중복선택가능'
+}
+
+.review-form--beauty__button {
+    display: flex;
+    margin-left: 2px
+}
+
+.review-form--beauty__input {
+    display: flex;
+    position: relative;
+    flex-wrap: wrap
+}
+
+.review-form--beauty__input__wrap {
+    position: relative
+}
+
+.review-form--beauty__input-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none
+}
+
+.review-form--beauty__label {
+    display: flex;
+    box-sizing: border-box;
+    height: 35px;
+    margin: 0 4px 0 0;
+    padding: 0 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 18px;
+    font-size: 14px;
+    color: #000;
+    align-items: center;
+    justify-content: center
+}
+
+input:checked+.review-form--beauty__label {
+    border-color: #0078ff;
+    background-color: #0078ff;
+    color: #fff
+}
