@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 <title>회원정보변경 - 마이페이지</title>
@@ -285,7 +284,7 @@
 				<div class="user-info">
 
 					<div class="user-img">
-						<img th:src="${member.profile}">
+						<img src="img/user/user2.jpg">
 					</div>
 
 					<div class="mypage-top">
@@ -365,22 +364,20 @@
 										사용됩니다.
 									</p>
 								</td>
-								<td class="va-b"><select onchange="displayImage(this)"
-									name="profile">
-										<option th:each="profile : ${profileList}"
-											th:value="${profile.name}" th:data-image="${profile.path}"
-											th:text="${profile.name}"></option>
-								</select> <img id="myImage" name="img" src="/img/profile/profile0.png"
-									width="100" height="100"></td>
+								<td class="va-b">
+									<!-- <button type="button" class="btn btn-outline-dark"
+										id="change-profile-image-btn">사진변경</button> -->
+									<input name="uploadFile" type="file">
+								</td>
 							</tr>
 
 							<tr>
 								<th scope="row">아이디</th>
-								<td><input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" /> <input type="hidden"
-									th:field="*{id}" th:value="*{id}" class="form-control"
-									th:id="id" readonly> <input type="text"
-									th:field="*{username}" th:value="*{username}"
+								<td colspan="2"><input type="hidden"
+									name="${_csrf.parameterName}" value="${_csrf.token}" /> <input
+									type="hidden" th:field="*{id}" th:value="*{id}"
+									class="form-control" th:id="id" readonly> <input
+									type="text" th:field="*{username}" th:value="*{username}"
 									class="form-control" th:id="username" readonly></td>
 							</tr>
 
@@ -582,26 +579,6 @@
 		</span>
 	</div>
 
-
-	<!-- 이미지 파일 목록을 보여줄 모달 창 -->
-	<div class="modal fade" id="imageModal" tabindex="-1" role="dialog"
-		aria-labelledby="imageModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="imageModalLabel">이미지 파일 목록</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="row" id="imageList"></div>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
@@ -667,12 +644,13 @@
         });
     </script>
 	<!--==============================================================================================-->
-	<script src="js/main.js"></script>
 	<!--==============================================================================================-->
+	<script src="js/main.js"></script>
 	<script type="text/javascript">
+
 function memberUpdate(){
     const data = {
-    		profile: $('select[name="profile"]').val(),
+    		profile: $("input[type='file']").val().split("\\").pop(),
     		id: $('#id').val(),
     		username: $('#username').val(), 
 			name: $('#name').val(), 
@@ -688,25 +666,50 @@ function memberUpdate(){
 		const confirmCheck = confirm("수정하시겠읍니까?");	
 		
 		if(confirmCheck == true){
-					
+			
+			const formData = new FormData();
+			
+			var inputFile = $("input[type='file']");
+	 		var files = inputFile[0].files;
+	 		
+	 		for(var i = 0; i < files.length; i++){
+	 			formData.append("uploadFile", files[i]);
+	 		}
 			$.ajax({
-	            type: 'PUT',
-	            url: '/confirm',
-	            contentType: 'application/json; charset=utf-8',
-	            data: JSON.stringify(data)
+				url : '/uploadImg',
+				processData : false,	// processData 속성 : 일반적으로 우리가 말하는 쿼리스트링과 같음
+				contentType : false,
+				data : formData,
+				type : 'POST',
+				dataType : 'json',	// 이건 내가 보내는 타입이 아니고 내가 받을 타입을 말함
+				success : function(result){
+					alert('성공함');
+					console.log(result);
+					
+					$.ajax({
+			            type: 'PUT',
+			            url: '/confirm',
+			            contentType: 'application/json; charset=utf-8',
+			            data: JSON.stringify(data)
 			           
-	        }).done(function(result){
-	            if(result){
-	                alert("회원 수정이 완료되었읍니다.");
-	                window.location.href="/mypage";
-	            } else{
-	                alert("이미 사용 중인 이메일입니다. 다시 입력해주세요.");
-	                $('#email').focus();
-	            }
-	        }).fail(function(error){
-	            alert(JSON.stringify(error));
-	            console.log(JSON.stringify(error));
-	        });
+			        }).done(function(result){
+			            if(result){
+			                alert("회원 수정이 완료되었읍니다.");
+			                window.location.href="/mypage";
+			            } else{
+			                alert("이미 사용 중인 이메일입니다. 다시 입력해주세요.");
+			                $('#email').focus();
+			            }
+			        }).fail(function(error){
+			            alert(JSON.stringify(error));
+			            console.log(JSON.stringify(error));
+			        });
+				},
+				error : function(jqXHR, textStatus, errThrown){
+					alert('실패함');
+					console.log(errThrown);
+				}
+			});
 	    }
 	} else {
 		alert("패스워드를 입력하세요.")
@@ -756,13 +759,6 @@ function memberUpdate(){
 		ChannelIO('boot', {
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
-	</script>
-	<!--===============================================================================================-->
-	<script>
-		function displayImage(element) {
-			var imgSrc = element.options[element.selectedIndex].getAttribute("data-image");
-			document.getElementById("myImage").src = imgSrc;
-		}
 	</script>
 	<!--===============================================================================================-->
 </body>

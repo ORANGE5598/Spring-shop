@@ -57,7 +57,6 @@ public class MemberDTO implements Serializable{
 		private String phone;
 		
 		@NotBlank(message = "성별 입력.")
-		@Pattern(regexp = "^(남성|여성)$", message = "남성 또는 여성만 입력 가능합니다.")
 		private String gender;
 
 		private MemberRole role;

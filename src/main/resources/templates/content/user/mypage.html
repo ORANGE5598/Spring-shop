@@ -10,6 +10,8 @@
 <meta id="_csrf_header" name="_csrf_header"
 	th:content="${_csrf.headerName}" />
 <!--===============================================================================================-->
+<link rel="icon" type="image/png" href="img/icons/favicon.png" />
+<!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
 	href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -274,6 +276,7 @@
 		</div>
 	</div>
 	<!-- 장바구니 끝 -->
+	<!------------------------------------------------------------------------------------------------------------------->
 
 	<main class="content">
 		<div id="userMypage">
@@ -357,12 +360,16 @@
 							<th scope="row">사진</th>
 							<td>
 								<div class="img"
-									th:style="'background-image: url(' + ${member.profile} + ')'">
+									style="background-image: url(https://image.msscdn.net/mfile_s01/_simbols/d/4c391c7e90894bc19feebe1c2d98cd8a_20221021162247.jpg)">
 								</div>
 								<p class="txt">
 									회원님을 알릴 수 있는 사진을 등록해 주세요 <br> 등록된 사진은 회원님의 게시물이나 댓글들에
 									사용됩니다.
 								</p>
+							</td>
+							<td class="va-b">
+								<button type="button" class="btn btn-outline-dark"
+									id="change-profile-image-btn">사진변경</button>
 							</td>
 						</tr>
 
@@ -401,8 +408,8 @@
 						</tr>
 
 						<tr id="password-area">
-							<th scope="row">포인트</th>
-							<td><strong>[[${member.point}]]</strong></td>
+							<th scope="row">비밀번호</th>
+							<td><strong>********</strong></td>
 						</tr>
 
 						<tr>
@@ -675,19 +682,6 @@
 		ChannelIO('boot', {
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
-	</script>
-	<!--==============================================================================================-->
-	<script>
-	  // <div class="img"> 요소의 style 속성 값을 가져옴
-	  var imgStyle = document.querySelector('.img').getAttribute('style');
-	  // style 속성 값에 'profile0'이 포함되는지 확인
-	  if (imgStyle.includes('profile0')) {
-	    // 'profile0'이 포함되면 <p class="txt"> 요소를 보이게 처리
-	    document.querySelector('.txt').style.visibility = 'visible';
-	  } else {
-	    // 'profile0'이 포함되지 않으면 <p class="txt"> 요소를 숨기되 영역은 유지
-	    document.querySelector('.txt').style.visibility = 'hidden';
-	  }
 	</script>
 	<!--==============================================================================================-->
 	<script src="js/main.js"></script>

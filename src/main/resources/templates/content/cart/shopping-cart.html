@@ -318,12 +318,8 @@
 											</div>
 										</div>
 									</td>
-									<td>
-										<input type='hidden' name='cart_id' id='cart_id' th:value='${list.id}'>
-										<button type=button th:onclick="deleteById([[${list.id}]])">삭제</button>
-									</td>
-									<!-- <td class="column-5 totalPrice" id="totalPrice"
-										th:text="${list.cPrice * list.count}"></td> -->
+									<td class="column-5 totalPrice" id="totalPrice"
+										th:text="${list.cPrice * list.count}"></td>
 								</tr>
 							</table>
 						</div>
@@ -401,8 +397,8 @@
 
 						<a
 							class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer"
-							th:href="@{/orderBy(dPrice = deliveryX, iNumber = iNumberX, oCount = countX, cart_id = cartNumberX)}"
-							onclick="orderWithCount(this); orderWithINumber(this); orderWithDelivery(this); getCartId(this);">구매하기</a>
+							th:href="@{/orderBy(dPrice = deliveryX, iNumber = iNumberX, oCount = countX)}"
+							onclick="orderWithCount(this); orderWithINumber(this); orderWithDelivery(this)">구매하기</a>
 
 					</div>
 				</div>
@@ -589,12 +585,7 @@
 					"tr");
 			var iNumber = selectedRow.find("input[name='cNumber']").val();
 			element.href = element.href.replace('iNumberX', iNumber);
-		}
-		
-		function getCartId(element) {
-			var selectedRow = $("input[name='selectedItem']:checked").closest("tr");
-			var cartNumber = selectedRow.find("input[name='cart_id']").val();
-			element.href = element.href.replace('cartNumberX', cartNumber);
+
 		}
 	</script>
 	<!--===============================================================================================-->
@@ -631,6 +622,20 @@
 				if (w.ChannelIOInitialized) {
 					return
 
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
 				}
 				w.ChannelIOInitialized = true;
 				var s = document.createElement("script");
@@ -653,22 +658,6 @@
 		ChannelIO('boot', {
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
-	</script>
-	
-	<script>
-	
-	function deleteById(cart_id) {
-		$.ajax({
-			type: 'DELETE',
-			url: '/delete/' + cart_id,
-		}).done(function() {
-			alert('삭제되었습니다.');
-			window.location.reload();
-		}).fail(function(error) {
-			alert(JSON.stringify(error));
-			console.log(JSON.stringify(error));
-		});
-	};
 	</script>
 	<!--===============================================================================================-->
 	<script src="/js/main.js"></script>

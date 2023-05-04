@@ -290,7 +290,7 @@
 	<!-- 장바구니 끝 -->
 
 
-	<section id="memberFAQ" class="faq_section">
+	<section>
 		<div class="container-fluid">
 			<!-- Row -->
 			<div class="row">
@@ -300,24 +300,21 @@
 							<div class="col-xl-4">
 								<div class="card">
 									<ul class="list-group list-group-flush">
-										<a href="javascript:void(0)" onclick="toggleFAQ('memberFAQ')">
-											<li class="list-group-item d-flex align-items-center active">
-												<i class="fa fa-user-circle m-r-15"></i> 회원정보
+										<li class="list-group-item d-flex align-items-center active">
+											<a href="javascript:void(0)" onclick="memberF"> <i
+												class="fa fa-user-circle m-r-15"></i> 회원정보
+										</a>
 										</li>
-										</a>
-										<a href="javascript:void(0)"
-											onclick="toggleFAQ('orderPayment')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-cart-plus m-r-15"></i> 주문 &amp; 결제</li>
-										</a>
-										<a href="javascript:void(0)" onclick="toggleFAQ('exchange')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-won m-r-15"></i> 교환 &amp; 환불</li>
-										</a>
-										<a href="javascript:void(0)" onclick="toggleFAQ('delivery')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-truck m-r-15"></i> 배송</li>
-										</a>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-cart-plus m-r-15"></i> 주문 &amp;
+												결제
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-truck m-r-15"></i> 배송
+										</a></li>
 									</ul>
 								</div>
 							</div>
@@ -342,6 +339,7 @@
 													■ 일반가입 :<br> 로그인 > 회원가입 <br> ■ 간편가입 : <br>
 													로그인 > 회원가입 > 간편가입 <br> ※ 상품 구매 및 서비스 이용을 위해서는 회원가입 및
 													로그인이 필요합니다.<br>
+
 												</div>
 											</div>
 										</div>
@@ -405,8 +403,13 @@
 		<!-- /Row -->
 	</section>
 
-	<section id="orderPayment" style="display: none;" class="faq_section">
-		<div class="container-fluid">
+
+
+
+
+
+	<section>
+		<div class="container-fluid" style="display: none;">
 			<!-- Row -->
 			<div class="row">
 				<div class="col-xl-12 pa-0">
@@ -415,24 +418,21 @@
 							<div class="col-xl-4">
 								<div class="card">
 									<ul class="list-group list-group-flush">
-										<a href="javascript:void(0)" onclick="toggleFAQ('memberFAQ')">
-											<li class="list-group-item d-flex align-items-center active">
-												<i class="fa fa-user-circle m-r-15"></i> 회원정보
+										<li class="list-group-item d-flex align-items-center"><a
+											href="javascript:void(0)" onclick="memberFAQ"> <i
+												class="fa fa-user-circle m-r-15"></i> 회원정보
+										</a></li>
+										<li class="list-group-item d-flex align-items-center active">
+											<a href="#"> <i class="fa fa-cart-plus m-r-15"></i> 주문
+												&amp; 결제
+										</a>
 										</li>
-										</a>
-										<a href="javascript:void(0)"
-											onclick="toggleFAQ('orderPayment')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-cart-plus m-r-15"></i> 주문 &amp; 결제</li>
-										</a>
-										<a href="javascript:void(0)" onclick="toggleFAQ('exchange')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-won m-r-15"></i> 교환 &amp; 환불</li>
-										</a>
-										<a href="javascript:void(0)" onclick="toggleFAQ('delivery')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-truck m-r-15"></i> 배송</li>
-										</a>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-truck m-r-15"></i> 배송
+										</a></li>
 									</ul>
 								</div>
 							</div>
@@ -521,8 +521,8 @@
 
 
 
-	<section id="exchange" style="display: none;" class="faq_section">
-		<div class="container-fluid">
+	<section>
+		<div class="container-fluid" style="display: none;">
 			<!-- Row -->
 			<div class="row">
 				<div class="col-xl-12 pa-0">
@@ -531,24 +531,21 @@
 							<div class="col-xl-4">
 								<div class="card">
 									<ul class="list-group list-group-flush">
-										<a href="javascript:void(0)" onclick="toggleFAQ('memberFAQ')">
-											<li class="list-group-item d-flex align-items-center active">
-												<i class="fa fa-user-circle m-r-15"></i> 회원정보
+										<li class="list-group-item d-flex align-items-center"><a
+											href="javascript:void(0)" onclick="memberFAQ"> <i
+												class="fa fa-user-circle m-r-15"></i> 회원정보
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-cart-plus m-r-15"></i> 주문 &amp;
+												결제
+										</a></li>
+										<li class="list-group-item d-flex align-items-center active">
+											<a href="#"> <i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
+										</a>
 										</li>
-										</a>
-										<a href="javascript:void(0)"
-											onclick="toggleFAQ('orderPayment')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-cart-plus m-r-15"></i> 주문 &amp; 결제</li>
-										</a>
-										<a href="javascript:void(0)" onclick="toggleFAQ('exchange')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-won m-r-15"></i> 교환 &amp; 환불</li>
-										</a>
-										<a href="javascript:void(0)" onclick="toggleFAQ('delivery')">
-											<li class="list-group-item d-flex align-items-center"><i
-												class="fa fa-truck m-r-15"></i> 배송</li>
-										</a>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-truck m-r-15"></i> 배송
+										</a></li>
 									</ul>
 								</div>
 							</div>
@@ -571,7 +568,7 @@
 												<div class="card-body pa-15 stext-302">
 													반품 접수 시 택배기사님이 평일 기준 1일~ 3일 이내 방문합니다.
 													<hr />
-													※계약된 택배사가 아닌 다른 택배사 이용 시 추가 비용이 발생 할 수 있고, <br> 2개 이상
+													※계약된 택배사가 아닌 다른 택배사 이용 시 추가 비용이 발생할 수 있고, <br> 2개 이상
 													브랜드 반송 시, 각각 반송지로 보내주세요.
 												</div>
 											</div>
@@ -604,140 +601,139 @@
 				</div>
 			</div>
 		</div>
+		<!-- /Row -->
 	</section>
 
 
-    <section id="delivery" style="display: none;" class="faq_section">
-        <div class="container-fluid">
-            <!-- Row -->
-            <div class="row">
-                <div class="col-xl-12 pa-0">
-                    <div class="container mt-sm-60 m-t-30 m-b-40">
-                        <div class="hk-row">
-                            <div class="col-xl-4">
-                                <div class="card">
-                                    <ul class="list-group list-group-flush">
-                                        <a href="javascript:void(0)" onclick="toggleFAQ('memberFAQ')">
-                                            <li class="list-group-item d-flex align-items-center active">
-                                                <i class="fa fa-user-circle m-r-15"></i>
-                                                회원정보
-                                            </li>
-                                        </a>
-                                        <a href="javascript:void(0)" onclick="toggleFAQ('orderPayment')">
-                                            <li class="list-group-item d-flex align-items-center">
-                                                <i class="fa fa-cart-plus m-r-15"></i>
-                                                주문 &amp; 결제
-                                            </li>
-                                        </a>
-                                        <a href="javascript:void(0)" onclick="toggleFAQ('exchange')">
-                                            <li class="list-group-item d-flex align-items-center">
-                                                <i class="fa fa-won m-r-15"></i>
-                                                교환 &amp; 환불
-                                            </li>
-                                        </a>
-                                        <a href="javascript:void(0)" onclick="toggleFAQ('delivery')">
-                                            <li class="list-group-item d-flex align-items-center">
-                                                <i class="fa fa-truck m-r-15"></i>
-                                                배송
-                                            </li>
-                                        </a>
-                                    </ul>
-                                </div>
-                            </div>
 
-                            <div class="col-xl-8">
-                                <div class="card card-lg">
-                                    <h3 class="card-header border-bottom-0 mtext-114">
-                                        배송
-                                    </h3>
 
-                                    <div class="accordion accordion-type-2 accordion-flush" id="accordion_2">
-                                        <div class="card">
-                                            <div
-                                                class="card-header d-flex justify-content-between activestate stext-302">
-                                                <a role="button" data-toggle="collapse" href="#collapse_1d"
-                                                    aria-expanded="true">
-                                                    배송사고(파손,상품&구성품 누락,분실)는 어떻게 처리 해야 하나요?
-                                                </a>
-                                            </div>
-                                            <div id="collapse_1d" class="collapse show" data-parent="#accordion_2"
-                                                role="tabpanel">
-                                                <div class="card-body stext-302">
-                                                    배송사고는 상황에 따라 처리 방법이 다릅니다.<br>
-                                                    아래 내용을 확인해 주세요<br>
-                                                    <hr />
-                                                    <br>
-                                                    ■ 상품 파손<br>
-                                                    택배 박스, 제품 포장재 등을 받은 상태 그대로 보관 후 1:1 문의로 사진과 함께 접수해 주세요<br>
-                                                    ※상태 그대로를 본관하지 않으면 사고 접수 시 확인이 가능하지 않습니다.<br>
-                                                    <br>
-                                                    ■ 상품&구성품 누락<br>
-                                                    브랜드 및 상품에 따라 출고지가 다르기 때문에 여러개 상품을 주문한 경우에는 각각 배송이 됩니다.<br>
-                                                    1.주문내역조회에서 배송 진행 상황을 확인해 주세요.<br>
-                                                    2.배송조회에서도 배송완료로 확인 되고 상품이 따로 배송 되지 않았다면 고객센터로 문의해 주세요.<br>
-                                                    <br>
-                                                    ■ 상품 분실<br>
-                                                    분실했다는 택배사 연락을 받았다면 해당 문자를 캡쳐 후 1:1 문의로 사진과 함께 접수해 주세요.
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                        <div class="card">
-                                            <div class="card-header d-flex justify-content-between stext-302">
-                                                <a class="collapsed" role="button" data-toggle="collapse"
-                                                    href="#collapse_2d" aria-expanded="false">
-                                                    일반 배송 상품은 언제 배송 되나요?
-                                                </a>
-                                            </div>
-                                            <div id="collapse_2d" class="collapse" data-parent="#accordion_2">
-                                                <div class="card-body pa-15 stext-302">
-                                                    일반배송은 브랜드마다 일정이 다르고 평일 기준으로 출고 됩니다.<br>
-                                                    ※ 평일 기준 출고로 연휴 및 공휴일은 배송일에서 제외됩니다.<br>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-header d-flex justify-content-between stext-302">
-                                                <a class="collapsed" role="button" data-toggle="collapse"
-                                                    href="#collapse_3d" aria-expanded="false">
-                                                    배송완료로 나오는데 아직 상품을 받지 못했어요.
-                                                </a>
-                                            </div>
-                                            <div id="collapse_3d" class="collapse" data-parent="#accordion_2">
-                                                <div class="card-body pa-15 stext-302">
-                                                    배송 상황에 따라 배송완료로 확인될 수 있습니다. <br>
-                                                    아래 내용 확인해 주세요.
-                                                    <hr />
 
-                                                    ■ 배송 기사가 상품을 아직 보유하고 있는 경우<br>
-                                                    보유여부는 택배사 또는 배송기사분에게 확인해 주세요.<br>
-                                                    <br>
 
-                                                    ■ 경비실, 문 앞, 택배 보관함 등에 위탁 장소에 배송하는 경우<br>
-                                                    다시 한번 상품이 있는지 확인해 주세요.<br>
-                                                    <br>
 
-                                                    ■ 배송 완료로 먼저 처리 후 현재 배송 중일 경우<br>
-                                                    배송중으로 배송기사분에게 확인해 주세요.<br>
-                                                    <br>
 
-                                                    ■ 브랜드사에서 송장번호를 잘못 입력 한 경우<br>
-                                                    배송 지역이 다르게 확인될 수 있어 고객센터로 문의하면 정상 송장번호 확인 가능해요.<br>
-                                                    <br>
-                                                    <br>
-                                                    위의 내용으로 확인이 안되는 경우 고객센터로 문의해 주세요.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+	<!-------------------------------------------------------------------------------------------->
+
+
+
+	<section>
+		<div class="container-fluid" style="display: none;">
+			<!-- Row -->
+			<div class="row">
+				<div class="col-xl-12 pa-0">
+					<div class="container mt-sm-60 m-t-30 m-b-40">
+						<div class="hk-row">
+							<div class="col-xl-4">
+								<div class="card">
+									<ul class="list-group list-group-flush">
+										<li class="list-group-item d-flex align-items-center"><a
+											href="javascript:void(0)" onclick="memberFAQ"> <i
+												class="fa fa-user-circle m-r-15"></i> 회원정보
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-cart-plus m-r-15"></i> 주문 &amp;
+												결제
+										</a></li>
+										<li class="list-group-item d-flex align-items-center"><a
+											href="#"> <i class="fa fa-won m-r-15"></i> 교환 &amp; 환불
+										</a></li>
+										<li class="list-group-item d-flex align-items-center active">
+											<a href="#"> <i class="fa fa-truck m-r-15"></i> 배송
+										</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="col-xl-8">
+								<div class="card card-lg">
+									<h3 class="card-header border-bottom-0 mtext-114">배송</h3>
+
+									<div class="accordion accordion-type-2 accordion-flush"
+										id="accordion_2">
+										<div class="card">
+											<div
+												class="card-header d-flex justify-content-between activestate stext-302">
+												<a role="button" data-toggle="collapse" href="#collapse_1d"
+													aria-expanded="true"> 배송사고(파손,상품&구성품 누락,분실)는 어떻게 처리 해야
+													하나요? </a>
+											</div>
+											<div id="collapse_1d" class="collapse show"
+												data-parent="#accordion_2" role="tabpanel">
+												<div class="card-body stext-302">
+													배송사고는 상황에 따라 처리 방법이 다릅니다.<br> 아래 내용을 확인해 주세요<br>
+													<hr />
+													<br> ■ 상품 파손<br> 택배 박스, 제품 포장재 등을 받은 상태 그대로 보관 후
+													1:1 문의로 사진과 함께 접수해 주세요<br> ※상태 그대로를 본관하지 않으면 사고 접수 시
+													확인이 가능하지 않습니다.<br> <br> ■ 상품&구성품 누락<br> 브랜드
+													및 상품에 따라 출고지가 다르기 때문에 여러개 상품을 주문한 경우에는 각각 배송이 됩니다.<br>
+													1.주문내역조회에서 배송 진행 상황을 확인해 주세요.<br> 2.배송조회에서도 배송완료로 확인
+													되고 상품이 따로 배송 되지 않았다면 고객센터로 문의해 주세요.<br> <br> ■ 상품
+													분실<br> 분실했다는 택배사 연락을 받았다면 해당 문자를 캡쳐 후 1:1 문의로 사진과 함께
+													접수해 주세요.
+												</div>
+											</div>
+										</div>
+
+										<div class="card">
+											<div
+												class="card-header d-flex justify-content-between stext-302">
+												<a class="collapsed" role="button" data-toggle="collapse"
+													href="#collapse_2d" aria-expanded="false"> 일반 배송 상품은 언제
+													배송 되나요? </a>
+											</div>
+											<div id="collapse_2d" class="collapse"
+												data-parent="#accordion_2">
+												<div class="card-body pa-15 stext-302">
+													일반배송은 브랜드마다 일정이 다르고 평일 기준으로 출고 됩니다.<br> ※ 평일 기준 출고로 연휴
+													및 공휴일은 배송일에서 제외됩니다.<br>
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div
+												class="card-header d-flex justify-content-between stext-302">
+												<a class="collapsed" role="button" data-toggle="collapse"
+													href="#collapse_3d" aria-expanded="false"> 배송완료로 나오는데
+													아직 상품을 받지 못했어요. </a>
+											</div>
+											<div id="collapse_3d" class="collapse"
+												data-parent="#accordion_2">
+												<div class="card-body pa-15 stext-302">
+													배송 상황에 따라 배송완료로 확인될 수 있습니다. <br> 아래 내용 확인해 주세요.
+													<hr />
+
+													■ 배송 기사가 상품을 아직 보유하고 있는 경우<br> 보유여부는 택배사 또는 배송기사분에게
+													확인해 주세요.<br> <br> ■ 경비실, 문 앞, 택배 보관함 등에 위탁 장소에
+													배송하는 경우<br> 다시 한번 상품이 있는지 확인해 주세요.<br> <br>
+
+													■ 배송 완료로 먼저 처리 후 현재 배송 중일 경우<br> 배송중으로 배송기사분에게 확인해
+													주세요.<br> <br> ■ 브랜드사에서 송장번호를 잘못 입력 한 경우<br>
+													배송 지역이 다르게 확인될 수 있어 고객센터로 문의하면 정상 송장번호 확인 가능해요.<br> <br>
+													<br> 위의 내용으로 확인이 안되는 경우 고객센터로 문의해 주세요.
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Row -->
+	</section>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -839,7 +835,6 @@
 		</div>
 	</footer>
 
-
 	<!-- Back to top -->
 	<div class="btn-back-to-top" id="myBtn">
 		<span class="symbol-btn-back-to-top"> <i
@@ -880,6 +875,31 @@
 		$('.parallax100').parallax100();
 	</script>
 	<!--===============================================================================================-->
+	<script src="vendor/sweetalert/sweetalert.min.js"></script>
+	<script>
+		$('.js-remove-item').on('click', function(e) {
+			e.preventDefault();
+		});
+
+		$('.js-remove-item').each(
+				function() {
+					var nameProduct = $(this).parent().parent().find(
+							'.js-name-item').html();
+					$(this).on('click', function() {
+						swal(nameProduct, "장바구니에서 삭제되었습니다 ! ", "success");
+					});
+				});
+
+		$('.js-addcart-detail').each(
+				function() {
+					var nameProduct = $(this).parent().parent().parent()
+							.parent().find('.js-name-detail').html();
+					$(this).on('click', function() {
+						swal(nameProduct, "장바구니에 담겼습니다 !", "success");
+					});
+				});
+	</script>
+	<!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 	<script>
 		//스크롤바
@@ -897,6 +917,7 @@
 			})
 		});
 	</script>
+
 	<!--===============================================================================================-->
 	<script>
 		(function() {
@@ -915,6 +936,54 @@
 			function l() {
 				if (w.ChannelIOInitialized) {
 					return
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																				
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																									
+
+					
+
+										
+
+					
+
+															
+
+					
+
+										
+
+					
+
+																				
 
 					
 
@@ -952,29 +1021,6 @@
 		ChannelIO('boot', {
 			"pluginKey" : "12c57252-c4dc-4954-94c5-9970d3cb1bfb",
 		});
-	</script>
-	<!--===============================================================================================-->
-	<script>
-		function toggleFAQ(id) {
-			var faqItems = document.getElementsByClassName('list-group-item');
-			for (var i = 0; i < faqItems.length; i++) {
-				if (faqItems[i].getAttribute('onclick') === 'toggleFAQ("' + id
-						+ '")') {
-					faqItems[i].classList.add('active'); // 선택된 FAQ 항목에 active 클래스 추가
-				} else {
-					faqItems[i].classList.remove('active'); // 다른 FAQ 항목들의 active 클래스 제거
-				}
-			}
-
-			var sections = document.getElementsByTagName('section');
-			for (var i = 0; i < sections.length; i++) {
-				sections[i].style.display = 'none'; // 모든 섹션을 숨김
-			}
-			var targetSection = document.getElementById(id);
-			if (targetSection) {
-				targetSection.style.display = 'block'; // 해당 섹션만 보임
-			}
-		}
 	</script>
 	<!--===============================================================================================-->
 	<script src="js/main.js"></script>

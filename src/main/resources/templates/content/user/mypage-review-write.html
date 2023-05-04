@@ -293,7 +293,7 @@
 				<div class="user-info">
 
 					<div class="user-img">
-						<img th:src="${member.profile}">
+						<img src="../img/user/user2.jpg">
 					</div>
 
 					<div class="mypage-top">
@@ -356,10 +356,10 @@
 					<div>
 						<select onchange="displayImage(this)" name="reviewImg">
 							<option th:each="order : ${imgList}" th:value="${order.oName}"
-								th:data-image="${order.img}" th:text="${order.oName}" title="${order.img}"></option>
-						</select> <img id="myImage" name="img" src="https://i.imgur.com/OEzmJJ8.jpeg" width="100" height="100">
+								th:data-image="${order.img}" th:text="${order.oName}"></option>
+						</select> <img id="myImage" name="img" src="" width="100" height="100">
 					</div>
-					
+
 					<div class="review-score" id="reviewScorePos">
 						<em class="label">별점을 매겨주세요</em>
 						<div class="n-score score-lg clickable goods_est_area"

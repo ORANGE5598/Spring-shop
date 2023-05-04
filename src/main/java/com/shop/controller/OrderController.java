@@ -29,7 +29,7 @@ public class OrderController {
 	private final CartService cartService;
 	
 	@GetMapping("/orderBy")
-	public String orderBy(Long iNumber, Long oCount, Long dPrice, Long cart_id, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
+	public String orderBy(Long iNumber, Long oCount, Long dPrice, @ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Model model, @AuthenticationPrincipal UserAdapter user) {
 		
 		ItemDTO dto = itemService.order(iNumber);
 		Long id = user.getMemberDTO().getId();
@@ -41,8 +41,8 @@ public class OrderController {
 		Long totalPrice = iPrice * oCount + dPrice;
 		
 		int totalPrice2 = 0;
-		for (CartDTO cartDTO : cartDTOList) {
-			totalPrice2 += cartDTO.getCPrice() * cartDTO.getCount();
+		for (CartDTO cart : cartDTOList) {
+			totalPrice2 += cart.getCPrice() * cart.getCount();
 		}
 		model.addAttribute("totalPrice", totalPrice2);
 		model.addAttribute("ordering", dto);
@@ -50,8 +50,6 @@ public class OrderController {
 		model.addAttribute("member", responseDto);
 		model.addAttribute("cartList", cartDTOList);
 		model.addAttribute("count", cartCount);
-		model.addAttribute("cart_id", cart_id);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+ cart_id);
 		
 		return "content/user/orderBy";
 	}
