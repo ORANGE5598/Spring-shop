@@ -38,6 +38,13 @@ public class CartServiceimpl implements CartService {
 	}
 	
 	@Override
+	public void deleteById(Long cart_id) {
+		Cart entity = cartRepository.findById(cart_id).orElseThrow(() -> new IllegalArgumentException("해당 장바구니 정보 없음."));
+		cartRepository.delete(entity);
+		
+	}
+	
+	@Override
 	public Long getCartCount(Long id) {
 		
 		Long result = cartRepository.getCartCount(id);
