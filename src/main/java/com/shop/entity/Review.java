@@ -1,9 +1,9 @@
 package com.shop.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,29 +13,42 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Getter
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @ToString
-public class Review {
+public class Review extends BaseEntity {
 	
 	@Id
-	private Long rno;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	
-	private String rTitle;
-	private String rContent;
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Member rWirter;
-	private String rImg;
+	private String reviewTitle;
 	
-	public void changerTitle(String title) {
-		this.rTitle = title;
+	private String reviewContent;
+	
+	private int reviewRating;
+	
+	private String reviewWriter;
+	
+	private String reviewImg;
+	
+	public void changeTitle(String reviewTitle) {
+		this.reviewTitle = reviewTitle;
 	}
 	
-	public void cangerContent(String content) {
-		this.rContent = content;
+	public void changeContent(String reviewContent) {
+		this.reviewContent = reviewContent;
 	}
-
+	
+	public void changeRating(int reviewRating) {
+		this.reviewRating = reviewRating;
+	}
+	
+	public void changeImg(String reviewImg) {
+		this.reviewImg = reviewImg;
+	}
+	
 }
