@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="UTF-8"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!-- Header -->
+<header th:fragment="headerFragment" class="header-v4">
+    <!-- Header desktop -->
+    <div class="container-menu-desktop">
+        <!-- Topbar -->
+        <div class="top-bar">
+            <div class="content-topbar flex-sb-m h-full container">
+                <div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
+
+                <div class="right-top-bar flex-w h-full">
+                    <a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+                       sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+                        href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+                        sec:authorize="isAnonymous()" th:href="@{/login}"
+                        class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
+                        sec:authorize="isAuthenticated()" th:href="@{/logout}"
+                        class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
+                        sec:authorize="isAnonymous()" th:href="@{/register}"
+                        class="flex-c-m trans-04 p-lr-25"> Register </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap-menu-desktop how-shadow1">
+            <nav class="limiter-menu-desktop container">
+
+                <!-- Logo desktop -->
+                <a href="/index" class="logo"> <img src="img/icons/logo1.png"
+                                                    alt="IMG-LOGO">
+                </a>
+
+                <!-- Menu desktop -->
+                <div class="menu-desktop">
+                    <ul class="customMenu expanded">
+                        <li class="active-menu"><a href="/index">HOME</a></li>
+                        <li><a href="/product">SHOP</a>
+                            <ul class="sub-menu">
+                                <li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
+                                    <ul class="sub-menu">
+                                        <li><a th:href="@{/productCategory(iCategory=1)}">TOP</a></li>
+                                        <li><a th:href="@{/productCategory(iCategory=2)}">BOTTOM</a></li>
+                                    </ul>
+                                </li>
+                                <li><a th:href="@{/productCategory(iCategory=3)}">FOOTWEAR</a></li>
+                                <li><a th:href="@{/productCategory(iCategory=4)}">ACCESSORIES</a>
+                                    <ul class="sub-menu">
+                                        <li><a th:href="@{/productCategory(iCategory=4)}">BAG</a></li>
+                                        <li><a th:href="@{/productCategory(iCategory=5)}">HAEDWEAR</a></li>
+                                    </ul>
+                                </li>
+                                <li><a th:href="@{/productCategory(iCategory=6)}">TECH</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="/notice">ABOUT</a></li>
+                        <li><a href="/contact">CONTACT</a></li>
+                        <li><a href="/mypage">MYPAGE</a></li>
+                    </ul>
+                </div>
+
+                <!-- Icon header -->
+                <div class="wrap-icon-header flex-w flex-r-m">
+                    <div
+                            class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
+                        <i class="zmdi zmdi-search"></i>
+                    </div>
+
+                    <div
+                            class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
+                            th:data-notify="${count}">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Header Mobile -->
+    <div class="wrap-header-mobile">
+        <!-- Logo moblie -->
+        <div class="logo-mobile">
+            <a href="/index"><img src="img/icons/logo1.png" alt="IMG-LOGO"></a>
+        </div>
+
+        <!-- Icon header -->
+        <div class="wrap-icon-header flex-w flex-r-m m-r-15">
+            <div
+                    class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
+                <i class="zmdi zmdi-search"></i>
+            </div>
+
+            <div
+                    class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
+                    th:data-notify="${count}">
+                <i class="zmdi zmdi-shopping-cart"></i>
+            </div>
+        </div>
+
+        <!-- Button show menu -->
+        <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box"> <span class="hamburger-inner"></span>
+				</span>
+        </div>
+    </div>
+
+
+    <!-- Menu Mobile -->
+    <div class="menu-mobile">
+        <ul class="topbar-mobile">
+            <li>
+                <div class="left-top-bar">100% genuine ! The safest way to
+                    buy limited edition!
+                </div>
+            </li>
+
+            <li>
+                <div class="right-top-bar flex-w h-full">
+                    <a href="/admin/index" class="flex-c-m p-lr-10 trans-04"
+                       sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+                        href="/faq" class="flex-c-m p-lr-10 trans-04"> Help & FAQs </a> <a
+                        sec:authorize="isAnonymous()" th:href="@{/login}"
+                        class="flex-c-m p-lr-10 trans-04"> LOG IN </a> <a
+                        sec:authorize="isAuthenticated()" th:href="@{/logout}"
+                        class="flex-c-m p-lr-10 trans-04"> LOG OUT </a> <a
+                        sec:authorize="isAnonymous()" th:href="@{/register}"
+                        class="flex-c-m p-lr-10 trans-04"> SIGN UP </a>
+                </div>
+            </li>
+        </ul>
+
+        <ul class="main-menu-m">
+            <li><a href="/index">HOME</a></li>
+
+            <li><a href="/product" class="label1 rs1" data-label1="hot">SHOP</a>
+                <ul class="sub-menu-m">
+                    <li><a th:href="@{/productCategory(iCategory=1)}">CLOTHING</a>
+                        <ul class="sub-menu-m">
+                            <li><a th:href="@{/productCategory(iCategory=1)}">TOP</a></li>
+                            <li><a th:href="@{/productCategory(iCategory=2)}">BOTTOM</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/productCategory(iCategory=3)}">FOOTWEAR</a></li>
+                    <li><a th:href="@{/productCategory(iCategory=4)}">ACCESSORIES</a>
+                        <ul class="sub-menu-m">
+                            <li><a th:href="@{/productCategory(iCategory=4)}">BAG</a></li>
+                            <li><a th:href="@{/productCategory(iCategory=5)}">HAEDWEAR</a></li>
+                        </ul>
+                    </li>
+                    <li><a th:href="@{/productCategory(iCategory=6)}">TECH</a></li>
+                </ul>
+                <span class="arrow-main-menu-m"> <i
+                        class="fa fa-angle-right" aria-hidden="true"></i>
+				</span></li>
+
+            <li><a href="/review/list">ABOUT</a></li>
+            <li><a href="/contact">CONTACT</a></li>
+            <li><a href="/mypage">MYPAGE</a></li>
+        </ul>
+    </div>
+
+    <!-- Modal Search -->
+    <div
+            class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <div class="container-search-header">
+            <button
+                    class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                <img src="img/icons/icon-close2.png" alt="CLOSE">
+            </button>
+
+            <form class="wrap-search-header flex-w p-l-15">
+                <button class="flex-c-m trans-04">
+                    <i class="zmdi zmdi-search"></i>
+                </button>
+                <input class="plh3" type="text" name="search"
+                       placeholder="Search...">
+            </form>
+        </div>
+    </div>
+</header>
+</html>

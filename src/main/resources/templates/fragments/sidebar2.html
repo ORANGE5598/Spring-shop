@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="sidebarFragment2">
+
+    <nav class="mypage-sidenav shop__sidebar__accordion">
+        <h2 class="nav-tit">Admin Navigation</h2>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-heading">
+                    <a data-toggle="collapse" data-target="#collapseOne">상품관리</a>
+                </div>
+
+                <div id="collapseOne" class="collapse show"
+                     data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="my-board">
+                            <ul>
+                                <li><a href="/admin/product">상품등록</a></li>
+                                <li><a href="/admin/list">상품목록</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-heading">
+                    <a data-toggle="collapse" data-target="#collapseTwo">회원관리</a>
+                </div>
+                <div id="collapseTwo" class="collapse show"
+                     data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="my-board">
+                            <ul>
+                                <li><a href="/admin/index">주문확인</a></li>
+                                <li><a href="/admin/userlist">전체회원목록</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-heading">
+                    <a data-toggle="collapse" data-target="#collapseThree">게시판관리</a>
+                </div>
+                <div id="collapseThree" class="collapse show"
+                     data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div class="my-board">
+                            <ul>
+                                <li><a href="/notice">공지사항 목록</a></li>
+                                <li><a href="/admin/noticeWrite">공지사항 작성</a></li>
+                                <li><a href="/admin/reviewlist">리뷰관리</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</th:block>

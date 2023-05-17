@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ <title>Notice Detail</title>
+</head>
+<body>
+    <h1 th:text="${notice.title}"></h1>
+    <p>
+        <strong>작성 관리자</strong> <span th:text="${notice.createdBy}"></span><br/>
+        <strong>작성 시간</strong> <span th:text="${notice.regDate}"></span>
+    </p>
+    <h3>공지사항 내용</h3>
+    <p th:text="${notice.content}"></p>
+    <a href="/">공지사항 목록으로 가기</a>
+</body>
+</html>
