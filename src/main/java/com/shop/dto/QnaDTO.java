@@ -2,52 +2,52 @@ package com.shop.dto;
 
 import java.time.LocalDateTime;
 
-import com.shop.entity.QnaEntity;
+import com.shop.entity.Qna;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 	@NoArgsConstructor
-	@AllArgsConstructor
 	@Getter
 	@Setter
 	@ToString
+	@Data
 	public class QnaDTO {
 		private Long id;
-		private String qnaWriter;
-		private String qnaPass;
+		private Long memberId;
 		private String qnaTitle;
-		private String qnaContents;
+		private String qnaContent;
 		private int qnaHits;
-		private LocalDateTime qnaRegDate;
-		private LocalDateTime qnaModDate;
+		private LocalDateTime regDate;
+		private LocalDateTime modDate;
 		
-		public QnaDTO(Long id, String qnaWriter, String qnaTitle, int qnaHits, LocalDateTime qnaRegDate) {
-			
+		public QnaDTO(Long id, Long memberId, String qnaTitle, String qnaContent, int qnaHits, LocalDateTime regDate,
+				LocalDateTime modDate) {
+			super();
 			this.id = id;
-			this.qnaWriter = qnaWriter;
+			this.memberId = memberId;
 			this.qnaTitle = qnaTitle;
+			this.qnaContent = qnaContent;
 			this.qnaHits = qnaHits;
-			this.qnaRegDate = qnaRegDate;
+			this.regDate = regDate;
+			this.modDate = modDate;
 		}
 		
-		//엔티티를 dto로 변환하기
-		public static QnaDTO toQnaDTO(QnaEntity qnaEntity) {
+		public static QnaDTO toQnaDTO(Qna qnaEntity) {
 			QnaDTO qnaDTO = new QnaDTO();
 			qnaDTO.setId(qnaEntity.getId());
-			qnaDTO.setQnaWriter(qnaEntity.getQnaWriter());
-			qnaDTO.setQnaPass(qnaEntity.getQnaPass());
 			qnaDTO.setQnaTitle(qnaEntity.getQnaTitle());
-			qnaDTO.setQnaContents(qnaEntity.getQnaContents());
+			qnaDTO.setQnaContent(qnaEntity.getQnaContent());
+			qnaDTO.setModDate(qnaEntity.getModDate());
+			qnaDTO.setRegDate(qnaEntity.getRegDate());
 			qnaDTO.setQnaHits(qnaEntity.getQnaHits());
-			qnaDTO.setQnaRegDate(qnaEntity.getRegDate());
-			qnaDTO.setQnaModDate(qnaEntity.getModDate());
 			return qnaDTO;
+			
 		}
-	
 	
 	
 		

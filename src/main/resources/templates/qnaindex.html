@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 
 <head>
-<title>Notice</title>
+<title>QnA</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -54,9 +54,26 @@
 <!--===============================================================================================-->
 </head>
 
-<body class="animsition">
+<body>
 
-	<!-- Header -->
+	<div class="top-bar">
+				<div class="content-topbar flex-sb-m h-full container">
+					<div class="left-top-bar">100% 정품 ! 한정판을 구매하는 가장 안전한 방법!</div>
+
+					<div class="right-top-bar flex-w h-full">
+						<a href="/admin/index" class="flex-c-m trans-04 p-lr-20"
+							sec:authorize="hasAuthority('ROLE_ADMIN')">ADMIN</a> <a
+							href="/faq" class="flex-c-m trans-04 p-lr-20"> Help & FAQs </a> <a
+							sec:authorize="isAnonymous()" th:href="@{/login}"
+							class="flex-c-m trans-04 p-lr-25"> LOG IN </a> <a
+							sec:authorize="isAuthenticated()" th:href="@{/logout}"
+							class="flex-c-m trans-04 p-lr-25"> LOGOUT </a> <a
+							sec:authorize="isAnonymous()" th:href="@{/register}"
+							class="flex-c-m trans-04 p-lr-25"> Register </a>
+					</div>
+				</div>
+			</div>
+<!-- Header -->
 	<header class="header-v4">
 		<!-- Header desktop -->
 		<div class="container-menu-desktop">
@@ -280,7 +297,7 @@
 
 	<section class="bg-img1 txt-center p-lr-15 p-tb-140"
 		style="background-image: url('../img/banner/banner7.png')">
-		<h2 class="ltext-201 cl5 float-center m-l-140">Notice</h2>
+		<h2 class="ltext-201 cl5 float-center m-l-140">Qna</h2>
 	</section>
 
 	<div class="container">
@@ -289,7 +306,7 @@
 				class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 			</a> <a href="/notice" class="stext-109 cl8 hov-cl1 trans-04"> About
 				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a> <span class="stext-109 cl4"> Notice </span>
+			</a> <span class="stext-109 cl4"> Qna </span>
 		</div>
 	</div>
 
@@ -299,40 +316,38 @@
 				<div class="col-md-8 col-lg-9 p-b-80">
 					<div class="p-r-45 p-r-0-lg">
 						<div class="card card-lg">
-							<h3 class="card-header border-bottom-0 mtext-114">공지사항</h3>
+							<h3 class="card-header border-bottom-0 mtext-114">질문하기!</h3>
 
-							<div class="accordion accordion-type-2 accordion-flush"
-								id="accordion_2"
-								th:each="notice, noticeStat : ${notices.dtoList}">
+							
 								<div class="card">
-									<div
-										class="card-header d-flex justify-content-between activestate stext-302">
-										<div class="col-md-7">
-											<a role="button" data-toggle="collapse"
-												th:href="'#collapse_' + ${noticeStat.index}"
-												aria-expanded="true">
-												<p th:text="${notice.title}"></p>
-											</a> <small class="d-flex">작성자 : <strong>
-													<p class="mr-2" th:text="${notice.createdBy}"></p>
-											</strong>
-												<p
-													th:text="${#temporals.format(notice.regDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
-											</small>
-										</div>
-										<form th:action="@{/deleteNotice}" method="post">
-											<input type="hidden" name="id" th:value="${notice.id}">
-											<button type="submit" class="ml-auto btn btn-outline-dark"
-												sec:authorize="hasAuthority('ROLE_ADMIN')">삭제하기</button>
-										</form>
-									</div>
-									<div th:id="'collapse_' + ${noticeStat.index}" class="collapse"
-										data-parent="#accordion_2" role="tabpanel">
-										<div class="card-body pa-15 stext-302">
-											<p th:text="${notice.content}"></p>
-										</div>
-									</div>
+									<form action="/qna" method="post">
+	                                <textarea name="qnaContent" rows="5" cols="50"></textarea>
+	                                <button type="submit">질문 등록</button>
+                           			</form>
+										
 								</div>
-							</div>
+					<!-- --------------------------글목록 테이블----------------------- -->			
+								
+					
+				
+								<table>
+									  <thead>
+									    <tr>
+									      <th>Title</th>
+									      <th>Content</th>
+									      <th>Date</th>
+									    </tr>
+									  </thead>
+									  <tbody>
+									    <!-- qnaList의 각 항목을 반복하며 출력 -->
+									    <tr th:each="qna : ${qnaList}">
+									      <td th:text="${qna.qnaTitle}"></td>
+									      <td th:text="${qna.qnaContent}"></td>
+									      <td th:text="${qna.regDate}"></td>
+									    </tr>
+									  </tbody>
+								</table>
+								
 						</div>
 					</div>
 				</div>
@@ -377,35 +392,6 @@
 			</div>
 
 
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="product__pagination">
-
-						<div
-							class="pagination h-100 justify-content-center align-items-center">
-
-							<!-- 페이지 링크 -->
-							<div class="product__pagination " th:if="${notices.prev}">
-								<a class="page-link"
-									th:href="@{/notice(page= ${notices.start -1})}" tabindex="-1">이전
-									페이지</a>
-							</div>
-
-							<div
-								th:class=" 'product__pagination ' + ${notices.page == page?'active':''} "
-								th:each="page: ${notices.pageList}">
-								<a class="page-link" th:href="@{/notice(page=${page})}">
-									[[${page}]] </a>
-							</div>
-							<div class="product__pagination" th:if="${notices.next}">
-								<a class="page-link"
-									th:href="@{/notice(page= ${notices.end + 1})}">다음 페이지</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 	</section>
 
 	<!-- Footer -->
